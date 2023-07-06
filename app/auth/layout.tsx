@@ -8,11 +8,8 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <div className="w-full h-screen flex flex-col">
-      <div className="w-full px-5 py-4 bg-[#12181f] text-white">
-        <Navbar />
-      </div>
-      <div className="w-full bg-[#161D26] flex flex-1 text-white">
-        {" "}
+      <Navbar />
+      <div className="w-full bg-tertiary flex  flex-col flex-1 justify-center items-center text-white">
         {children}
       </div>
     </div>

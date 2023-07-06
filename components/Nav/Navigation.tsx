@@ -9,15 +9,27 @@ const Navigation = () => {
       <div className="flex gap-12">
         <img src="/images/apklogo.png" />
         <div className="hidden lg:flex space-x-6">
-          <Link href="/">Home</Link>
-          <Link href="/">Buy Giftcards</Link>
-          <Link href="/">Contact</Link>
-          <Link href="/">Promotion</Link>
-          <Link href={"/"}>About</Link>
-          <Link href={"/"}>Blog</Link>
+          <Link href="/" className="hover:underline">
+            Home
+          </Link>
+          <Link href="/" className="hover:underline">
+            Buy Giftcards
+          </Link>
+          <Link href="/" className="hover:underline">
+            Contact
+          </Link>
+          <Link href="/" className="hover:underline">
+            Promotion
+          </Link>
+          <Link href={"/"} className="hover:underline">
+            About
+          </Link>
+          <Link href={"/"} className="hover:underline">
+            Blog
+          </Link>
         </div>
       </div>
-      <div className="hidden   lg:block">
+      <div className="hidden lg:block">
         <LanguageSelect />
       </div>
       <div className="lg:hidden">

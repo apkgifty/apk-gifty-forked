@@ -10,7 +10,7 @@ const LanguageSelect = () => {
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className="text-white bg-[#161D26] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="text-white bg-tertiary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
         onClick={() => {
           setOpen(!open);
@@ -39,7 +39,7 @@ const LanguageSelect = () => {
         id="dropdown"
         className={`z-10 absolute top-12  ${
           open ? "block" : "hidden"
-        } bg-[#12181F] divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
+        } bg-secondary divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
       >
         <ul
           className="py-2 text-sm text-white dark:text-gray-200"
@@ -48,7 +48,7 @@ const LanguageSelect = () => {
           <li>
             <a
               href="#"
-              className="block px-4 py-2 hover:bg-[#161D26] dark:hover:bg-gray-600 dark:hover:text-white"
+              className="block px-4 py-2 hover:bg-secondary dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Dashboard
             </a>
@@ -56,7 +56,7 @@ const LanguageSelect = () => {
           <li>
             <a
               href="#"
-              className="block px-4 py-2 hover:bg-[#161D26] dark:hover:bg-gray-600 dark:hover:text-white"
+              className="block px-4 py-2 hover:bg-secondary dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Settings
             </a>
@@ -64,7 +64,7 @@ const LanguageSelect = () => {
           <li>
             <a
               href="#"
-              className="block px-4 py-2 hover:bg-[#161D26] dark:hover:bg-gray-600 dark:hover:text-white"
+              className="block px-4 py-2 hover:bg-secondary dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Earnings
             </a>
@@ -72,7 +72,7 @@ const LanguageSelect = () => {
           <li>
             <a
               href="#"
-              className="block px-4 py-2 hover:bg-[#161D26] dark:hover:bg-gray-600 dark:hover:text-white"
+              className="block px-4 py-2 hover:bg-secondary dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Sign out
             </a>

@@ -3,9 +3,11 @@ import Navigation from "./Navigation";
 
 const Navbar = () => {
   return (
-    <AppLayout>
-      <Navigation />
-    </AppLayout>
+    <div className="w-full px-5 py-4 bg-secondary text-white">
+      <AppLayout>
+        <Navigation />
+      </AppLayout>
+    </div>
   );
 };
 
