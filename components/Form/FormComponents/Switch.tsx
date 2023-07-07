@@ -1,8 +1,15 @@
-import { useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import ToggleButton from "./ToggleButton";
 
 const Switch = () => {
   const [activeOption, setActiveOption] = useState("login");
+
+  useEffect(() => {
+    const pathArray = window.location.href.split("/");
+    const path = pathArray[pathArray.length - 1];
+    setActiveOption(path);
+  }, []);
 
   const handleSwitch = (option: string) => {
     setActiveOption(option);
@@ -15,11 +22,13 @@ const Switch = () => {
           title="Login"
           color={activeOption === "login" ? "bg-[#587BF2]" : "bg-transparent"}
           handleSwitch={handleSwitch}
+          url="login"
         />
         <ToggleButton
           title="Signup"
           color={activeOption === "signup" ? "bg-[#587BF2]" : "bg-transparent"}
           handleSwitch={handleSwitch}
+          url="signup"
         />
       </div>
     </div>
