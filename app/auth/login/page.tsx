@@ -4,7 +4,7 @@ import Signup from "@/components/Form/Signup";
 
 const LoginPage = () => {
   return (
-    <div className="w-full lg:max-w-4xl">
+    <div className="w-full lg:max-w-5xl">
       <Card>
         <div className="w-full flex gap-2 ">
           <div className="flex-1 ">

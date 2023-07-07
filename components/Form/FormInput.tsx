@@ -10,11 +10,11 @@ interface Props {
 
 const FormInput: React.FC<Props> = ({ icon, type, placeholder }) => {
   return (
-    <div className="w-full px-2 py-4 bg-tertiary rounded-xl flex gap-2 ">
+    <div className="w-full px-2 py-3 bg-tertiary rounded-xl flex gap-2 ">
       <div className="px-2 border-r border-gray-400">{icon}</div>
       <input
         type={type}
-        className="bg-transparent outline-none"
+        className="bg-transparent outline-none text-sm"
         placeholder={placeholder}
       />
     </div>
