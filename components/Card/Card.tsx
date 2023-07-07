@@ -5,7 +5,11 @@ interface Prop {
 }
 
 const Card: React.FC<Prop> = ({ children }) => {
-  return <div className="px-4 py-4 bg-primary rounded-lg">{children}</div>;
+  return (
+    <div className="w-full px-4 py-4 bg-secondary lg:bg-primary rounded-lg">
+      {children}
+    </div>
+  );
 };
 
 export default Card;

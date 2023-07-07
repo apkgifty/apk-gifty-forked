@@ -5,7 +5,7 @@ const ExternalLogins = () => {
   return (
     <div>
       <div className="w-full relative border-t border-gray-600 flex justify-center">
-        <p className="absolute -top-3 bg-secondary font-semibold px-2 text-sm">
+        <p className="absolute -top-2  bg-secondary font-semibold px-2 text-xs lg:text-sm lg:-top-3">
           Or Continue with
         </p>
       </div>

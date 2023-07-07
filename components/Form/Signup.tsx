@@ -7,22 +7,16 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import ButtonIcon from "./ButtonIcon";
 import ExternalLogins from "./ExternalLogins";
 import Switch from "./Switch";
+import FormHeader from "./FormHeader";
 
 const Signup = () => {
   return (
     <div className="bg-secondary rounded-lg  py-10">
-      <div className="pl-14 pr-8">
-        <h3 className="text-2xl font-semibold">Create your Account</h3>
-        <p className="text-gray-400 text-sm pr-24">
-          Setting up an account takes less than 1 minute
-        </p>
-      </div>
-      <div className="flex flex-col gap-4 mt-8 px-14">
-        {/* <FormInput
-          placeholder="Email"
-          type="text"
-          icon={<AlternateEmailIcon fontSize="small" />}
-        /> */}
+      <FormHeader
+        title="Create Your Account"
+        subtitle="Setting up an account takes less than 1 minute"
+      />
+      <div className="flex flex-col gap-4 mt-8 px-2 lg:px-14">
         <Switch />
         <FormInput
           placeholder="Email"

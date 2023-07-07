@@ -10,7 +10,7 @@ const LoginPage = () => {
           <div className="flex-1 ">
             <Signup />
           </div>
-          <div className="flex-1 bg-transparent">images</div>
+          <div className="flex-1 bg-transparent hidden lg:flex">images</div>
         </div>
       </Card>
     </div>
