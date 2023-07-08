@@ -27,7 +27,7 @@ const FormInput: React.FC<Props> = ({
       <div className="px-2 border-r border-gray-400">{icon}</div>
       <input
         type={type}
-        className="bg-transparent outline-none text-xs lg:text-sm"
+        className="bg-transparent outline-none text-xs lg:text-sm w-full"
         placeholder={placeholder}
         name={name}
         required={required}
