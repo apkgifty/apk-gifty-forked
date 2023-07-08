@@ -35,8 +35,8 @@ const LoginForm = () => {
   return (
     <FormContainer>
       <FormHeader
-        title="Create Your Account"
-        subtitle="Setting up an account takes less than 1 minute"
+        title="Welcome back"
+        subtitle="Please enter your email and password to continue"
       />
       <FormBody>
         <Switch />

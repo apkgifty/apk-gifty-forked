@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import ToggleButton from "./ToggleButton";
+import { motion } from "framer-motion";
 
 const Switch = () => {
-  const [activeOption, setActiveOption] = useState("login");
+  const [activeOption, setActiveOption] = useState("");
 
   useEffect(() => {
     const pathArray = window.location.href.split("/");
@@ -16,7 +17,12 @@ const Switch = () => {
   };
 
   return (
-    <div className="flex ">
+    <motion.div
+      className="flex "
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+    >
       <div className="max-w-md p-1 bg-tertiary rounded-xl">
         <ToggleButton
           title="Login"
@@ -31,7 +37,7 @@ const Switch = () => {
           url="signup"
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

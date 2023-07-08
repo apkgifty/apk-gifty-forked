@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { motion } from "framer-motion";
 
 interface Props {
   icon: React.ReactNode;
@@ -18,7 +18,12 @@ const FormInput: React.FC<Props> = ({
   required,
 }) => {
   return (
-    <div className="w-full px-2 py-2 bg-tertiary rounded-xl flex gap-2 lg:py-3 ">
+    <motion.div
+      className="w-full px-2 py-2 bg-tertiary rounded-xl flex gap-2 lg:py-3 "
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <div className="px-2 border-r border-gray-400">{icon}</div>
       <input
         type={type}
@@ -27,7 +32,7 @@ const FormInput: React.FC<Props> = ({
         name={name}
         required={required}
       />
-    </div>
+    </motion.div>
   );
 };
 
