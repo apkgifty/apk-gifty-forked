@@ -16,10 +16,17 @@ import { motion } from "framer-motion";
 
 const fields: Fields[] = [
   {
-    type: "text",
-    placeholder: "Email",
-    name: "email",
-    icon: <AlternateEmailIcon />,
+    type: "password",
+    placeholder: "New Password",
+    name: "password",
+    icon: <LockOpenIcon />,
+    required: true,
+  },
+  {
+    type: "password",
+    placeholder: "Confirm Password",
+    name: "confirm_password",
+    icon: <LockOpenIcon />,
     required: true,
   },
 ];
@@ -28,8 +35,8 @@ const PasswordResetForm = () => {
   return (
     <FormContainer>
       <FormHeader
-        title="Forgot Password ?"
-        subtitle="Enter your email address below, you will receive an email with a password reset link."
+        title="Reset your Password"
+        subtitle="Enter your new password."
       />
       <FormBody>
         <motion.div

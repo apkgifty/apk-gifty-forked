@@ -4,6 +4,7 @@ import AppLayout from "@/components/Layout/AppLayout";
 import Navbar from "@/components/Nav/Navbar";
 import Card from "@/components/Card/Card";
 import { AnimatePresence } from "framer-motion";
+import ImagesCard from "@/components/UI/ImagesCard";
 
 interface Props {
   children: React.ReactNode;
@@ -20,7 +21,17 @@ const Layout: React.FC<Props> = ({ children }) => {
               <div className="flex-1 ">
                 <AnimatePresence>{children}</AnimatePresence>
               </div>
-              <div className="flex-1 bg-transparent hidden lg:flex">images</div>
+              <div className="flex-1 bg-transparent hidden  justify-center items-center lg:flex lg:flex-col">
+                <ImagesCard />
+                <div className="text-center">
+                  <p className="text-xl font-bold bg-gradient-to-r from-[#FB774A] to-[#12BE73] inline-block text-transparent bg-clip-text">
+                    Trade
+                  </p>
+                  <p className="font-semibold">
+                    anything, anywhere with <br /> APKExchange!
+                  </p>
+                </div>
+              </div>
             </div>
           </Card>
         </div>
