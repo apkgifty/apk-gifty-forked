@@ -1,8 +1,13 @@
-import React from "react";
+import { motion } from "framer-motion";
 
 const ImagesCard = () => {
   return (
-    <div className="w-full max-w-sm">
+    <motion.div
+      className="w-full max-w-sm"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <div className="flex justify-between items-center">
         <img src="/images/image 5.png" />
         <img src="/images/image 7.png" />
@@ -17,7 +22,7 @@ const ImagesCard = () => {
         <img src="/images/QR-Code-Scan.svg" />
         <img src="/images/image 9.png" />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

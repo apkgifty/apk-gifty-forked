@@ -30,6 +30,7 @@ const FormInput: React.FC<Props> = ({
         className="bg-transparent outline-none text-xs lg:text-sm w-full"
         placeholder={placeholder}
         name={name}
+        autoComplete="off"
         required={required}
       />
     </motion.div>

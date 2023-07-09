@@ -1,6 +1,19 @@
 import { motion } from "framer-motion";
 import ExternalLoginButton from "./ExternalLoginButton";
 
+const logins = [
+  {
+    iconUrl: "/facebook.svg",
+  },
+  { iconUrl: "/apple.svg" },
+  { iconUrl: "/google.svg" },
+];
+
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
 const ExternalLogins = () => {
   return (
     <div>
@@ -14,11 +27,24 @@ const ExternalLogins = () => {
           Or Continue with
         </p>
       </motion.div>
-      <div className="w-full flex justify-between mt-6">
-        <ExternalLoginButton iconUrl="/facebook.svg" />
+      <motion.div
+        className="w-full flex justify-between mt-6"
+        initial="initial"
+        animate="animate"
+        variants={variants}
+      >
+        {logins.map((item, index) => (
+          <ExternalLoginButton
+            iconUrl={item.iconUrl}
+            key={index}
+            variants={variants}
+            index={index}
+          />
+        ))}
+        {/* <ExternalLoginButton iconUrl="/facebook.svg" />
         <ExternalLoginButton iconUrl="/apple.svg" />
-        <ExternalLoginButton iconUrl="/google.svg" />
-      </div>
+        <ExternalLoginButton iconUrl="/google.svg" /> */}
+      </motion.div>
     </div>
   );
 };
