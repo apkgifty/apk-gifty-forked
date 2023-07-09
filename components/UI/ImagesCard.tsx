@@ -15,7 +15,7 @@ const ImagesCard = () => {
       <div className="flex justify-between items-center">
         <div />
         <img src="/images/image 8.png" />
-        <img src="/images/NFT image.png" />
+        <img src="/images/NFT Image.png" />
       </div>
       <div className="flex justify-between items-center">
         <div />
