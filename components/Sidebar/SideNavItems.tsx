@@ -22,16 +22,17 @@ const links = [
 const SideNavItems = () => {
   return (
     <>
-      {links.map((link) => (
-        <SideNavItem
-          key={link.url}
-          title={link.title}
-          url={link.url}
-          icon={link.icon}
-        />
-      ))}
+      <nav className="-mx-3 space-y-3 ">
+        {links.map((link) => (
+          <SideNavItem
+            key={link.url}
+            title={link.title}
+            url={link.url}
+            icon={link.icon}
+          />
+        ))}
+      </nav>
     </>
   );
 };
-
 export default SideNavItems;
