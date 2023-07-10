@@ -1,7 +1,7 @@
-import InboxSvg from "../UI/SvgIcons/InboxSvg";
+import InboxSvg from "../../UI/SvgIcons/InboxSvg";
 import SideNavItem from "./SideNavItem";
 
-const links = [{ title: "Inbox", url: "#", icon: <InboxSvg /> }];
+const links = [{ title: "Inbox", url: "#", icon: <InboxSvg />, data: "8" }];
 
 const SecondaryNavs = () => {
   return (
@@ -16,6 +16,7 @@ const SecondaryNavs = () => {
             title={link.title}
             url={link.url}
             icon={link.icon}
+            badgeData={link.data}
           />
         ))}
       </nav>

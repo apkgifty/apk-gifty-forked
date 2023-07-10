@@ -3,7 +3,11 @@ interface Props {
 }
 
 const FormCard: React.FC<Props> = ({ children }) => {
-  return <div className="px-6 py-6 bg-primary rounded-lg">{children}</div>;
+  return (
+    <div className="w-full px-4 py-4 bg-secondary lg:bg-primary rounded-lg">
+      {children}
+    </div>
+  );
 };
 
 export default FormCard;

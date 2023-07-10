@@ -1,8 +1,8 @@
 import React from "react";
 import SideNavItem from "./SideNavItem";
 import SideNavItems from "./SideNavItems";
-import InboxSvg from "../UI/SvgIcons/InboxSvg";
-import VerifiedSvg from "../UI/SvgIcons/VerifiedSvg";
+import InboxSvg from "../../UI/SvgIcons/InboxSvg";
+import VerifiedSvg from "../../UI/SvgIcons/VerifiedSvg";
 import SecondaryNavs from "./SecondaryNavs";
 
 const Sidebar = () => {

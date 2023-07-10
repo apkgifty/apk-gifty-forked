@@ -1,9 +1,9 @@
-import DashboardSvg from "../UI/SvgIcons/DashboardSvg";
-import ExchangeSvg from "../UI/SvgIcons/ExchangeSvg";
-import NewsSvg from "../UI/SvgIcons/NewsSvg";
-import SettingsSvg from "../UI/SvgIcons/SettingsSvg";
-import TransactionSvg from "../UI/SvgIcons/TransactionSvg";
-import WalletSvg from "../UI/SvgIcons/WalletSvg";
+import DashboardSvg from "../../UI/SvgIcons/DashboardSvg";
+import ExchangeSvg from "../../UI/SvgIcons/ExchangeSvg";
+import NewsSvg from "../../UI/SvgIcons/NewsSvg";
+import SettingsSvg from "../../UI/SvgIcons/SettingsSvg";
+import TransactionSvg from "../../UI/SvgIcons/TransactionSvg";
+import WalletSvg from "../../UI/SvgIcons/WalletSvg";
 import SideNavItem from "./SideNavItem";
 
 interface Props {
