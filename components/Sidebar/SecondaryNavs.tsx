@@ -11,7 +11,12 @@ const SecondaryNavs = () => {
       </div>
       <nav className="mt-4 -mx-3 space-y-3 ">
         {links.map((link) => (
-          <SideNavItem title={link.title} url={link.url} icon={link.icon} />
+          <SideNavItem
+            key={link.title}
+            title={link.title}
+            url={link.url}
+            icon={link.icon}
+          />
         ))}
       </nav>
     </div>
