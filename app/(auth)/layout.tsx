@@ -38,8 +38,6 @@ export default function RootLayout({
             </div>
           </div>
         </div>
-
-        {children}
       </body>
     </html>
   );
