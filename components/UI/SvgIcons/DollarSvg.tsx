@@ -3,13 +3,13 @@ import React from "react";
 const DollarSvg = () => {
   return (
     <svg
-      width="14"
-      height="14"
+      width={14}
+      height={14}
       viewBox="0 0 14 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="cryptocurrency-color:usd" clip-path="url(#clip0_101_3679)">
+      <g id="cryptocurrency-color:usd" clipPath="url(#clip0_101_3679)">
         <g id="Group">
           <path
             id="Vector"
@@ -18,8 +18,8 @@ const DollarSvg = () => {
           />
           <path
             id="Vector_2"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M9.84375 8.37987C9.84375 9.50425 8.93112 10.2506 7.58362 10.3631V11.375H6.6605V10.353C5.74905 10.2502 4.88306 9.90014 4.15625 9.34063L4.83525 8.4105C5.44031 8.88081 6.013 9.1875 6.70294 9.28987V7.28612C5.15375 6.89762 4.43231 6.33544 4.43231 5.18044C4.43231 4.07662 5.334 3.32019 6.6605 3.21781V2.625H7.58362V3.23837C8.30512 3.31851 8.99299 3.58642 9.57862 4.01538L8.98406 4.97612C8.51725 4.63881 8.03994 4.424 7.54119 4.32206V6.26412C9.15425 6.65262 9.84375 7.27606 9.84375 8.37987ZM6.7025 6.04931V4.25031C6.03444 4.3015 5.68444 4.65938 5.68444 5.10913C5.68444 5.53788 5.88569 5.81438 6.70294 6.04975L6.7025 6.04931ZM8.59163 8.45119C8.59163 7.99181 8.3685 7.71575 7.54119 7.48037V9.331C8.20969 9.27937 8.59163 8.94206 8.59163 8.45163V8.45119Z"
             fill="white"
           />
@@ -27,7 +27,7 @@ const DollarSvg = () => {
       </g>
       <defs>
         <clipPath id="clip0_101_3679">
-          <rect width="14" height="14" fill="white" />
+          <rect width={14} height={14} fill="white" />
         </clipPath>
       </defs>
     </svg>

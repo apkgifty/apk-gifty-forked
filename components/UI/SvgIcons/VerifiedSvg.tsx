@@ -3,24 +3,24 @@ import React from "react";
 const VerifiedSvg = () => {
   return (
     <svg
-      width="15"
-      height="15"
+      width={15}
+      height={15}
       viewBox="0 0 15 15"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="Frame" clip-path="url(#clip0_101_4158)">
+      <g id="Frame" clipPath="url(#clip0_101_4158)">
         <path
           id="Vector"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M9.73225 1.43768L7.39367 0.13916L5.05504 1.43768L2.4832 2.17314L1.74773 4.74499L0.449219 7.0836L1.74773 9.4222L2.4832 11.994L5.05504 12.7295L7.39367 14.028L9.73225 12.7295L12.3042 11.994L13.0396 9.4222L14.3381 7.0836L13.0396 4.74499L12.3042 2.17314L9.73225 1.43768ZM10.8012 5.54605C11.1026 5.19825 11.065 4.67195 10.7173 4.37053C10.3694 4.0691 9.84308 4.1067 9.54167 4.4545L6.56033 7.89454L5.24563 6.37757C4.9442 6.02978 4.41791 5.99219 4.07011 6.2936C3.72232 6.59503 3.68472 7.12133 3.98614 7.46912L5.93059 9.7127C6.08888 9.89537 6.31865 10.0003 6.56033 10.0003C6.80201 10.0003 7.03178 9.89537 7.19007 9.7127L10.8012 5.54605Z"
           fill="#0CAF60"
         />
       </g>
       <defs>
         <clipPath id="clip0_101_4158">
-          <rect width="15" height="15" fill="white" />
+          <rect width={15} height={15} fill="white" />
         </clipPath>
       </defs>
     </svg>
