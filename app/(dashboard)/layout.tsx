@@ -21,9 +21,8 @@ export default function RootLayout({
         <Sidebar />
         <div className="w-full flex flex-col">
           <Topbar />
+          {children}
         </div>
-
-        {children}
       </body>
     </html>
   );

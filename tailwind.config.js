@@ -8,13 +8,16 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        candlestick: "url(/images/candlesticks.png)",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       backgroundColor: {
         primary: "#0B0E13",
         secondary: "#12181F",
+        tertiary: "#161D26",
+      },
+      borderColor: {
         tertiary: "#161D26",
       },
     },

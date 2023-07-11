@@ -15,12 +15,14 @@ const Iconcard: React.FC<Props> = ({ badgeData, icon, animate }) => {
     component = (
       <Card className="bg-tertiary cursor-pointer">
         <ScaleAnimate>
-          <span>{icon}</span>
-          {badgeData && (
-            <span className="absolute top-0 mt-1.5 right-0 mr-1.5">
-              <Badge info={badgeData} />
-            </span>
-          )}
+          <div className="w-full h-full relative">
+            <span>{icon}</span>
+            {badgeData && (
+              <span className="absolute top-0 -mt-1.5 right-0 -mr-3.5 ">
+                <Badge info={badgeData} />
+              </span>
+            )}
+          </div>
         </ScaleAnimate>
       </Card>
     );

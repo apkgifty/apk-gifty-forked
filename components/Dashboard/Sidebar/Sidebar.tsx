@@ -7,11 +7,16 @@ import SecondaryNavs from "./SecondaryNavs";
 
 const Sidebar = () => {
   return (
-    <aside className="flex flex-col w-64 h-screen py-8 overflow-y-auto bg-secondary  border-r rtl:border-r-0 rtl:border-l border-[#161D26] ">
-      <div className="w-full flex justify-center border-b border-[#161D26] pb-8">
+    <aside className="flex flex-col w-64 h-screen py-8 overflow-y-auto bg-secondary  border-r rtl:border-r-0 rtl:border-l border-tertiary">
+      <div className="w-full flex justify-center items-center cursor-pointer gap-x-1 border-b border-[#161D26] pb-8">
         <a href="#">
           <img className="w-auto h-7" src="/images/apklogo.png" alt="" />
         </a>
+        <div className="text-white text-xs">
+          <p>
+            APK <br /> XCHANGE
+          </p>
+        </div>
       </div>
 
       <div className="flex flex-col  items-center gap-y-2 py-4">

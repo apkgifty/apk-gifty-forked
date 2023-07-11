@@ -50,7 +50,7 @@ const LanguageSelect = () => {
               href="#"
               className="block px-4 py-2 hover:bg-secondary dark:hover:bg-gray-600 dark:hover:text-white"
             >
-              Dashboard
+              French
             </a>
           </li>
           <li>
@@ -58,7 +58,7 @@ const LanguageSelect = () => {
               href="#"
               className="block px-4 py-2 hover:bg-secondary dark:hover:bg-gray-600 dark:hover:text-white"
             >
-              Settings
+              German
             </a>
           </li>
           <li>
@@ -66,17 +66,17 @@ const LanguageSelect = () => {
               href="#"
               className="block px-4 py-2 hover:bg-secondary dark:hover:bg-gray-600 dark:hover:text-white"
             >
-              Earnings
+              Portuguese
             </a>
           </li>
-          <li>
+          {/* <li>
             <a
               href="#"
               className="block px-4 py-2 hover:bg-secondary dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Sign out
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
