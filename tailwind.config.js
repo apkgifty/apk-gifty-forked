@@ -17,6 +17,9 @@ module.exports = {
         secondary: "#12181F",
         tertiary: "#161D26",
       },
+      backgroundSize: {
+        halfauto: "50% auto",
+      },
       borderColor: {
         tertiary: "#161D26",
       },
