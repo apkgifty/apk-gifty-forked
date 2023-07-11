@@ -57,6 +57,7 @@ const FilterSelect: React.FC<Props> = ({ label, icon, options }) => {
           <ul className="w-full text-xs cursor-pointer ">
             {options.map((option: any) => (
               <li
+                key={option}
                 className="hover:bg-secondary w-full px-2 py-3 border-b border-zinc-700"
                 onClick={() => {
                   setSelectedOption(option);
