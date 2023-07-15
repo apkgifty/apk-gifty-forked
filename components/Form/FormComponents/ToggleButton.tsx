@@ -12,7 +12,7 @@ const ToggleButton: React.FC<Props> = ({ color, title, handleSwitch, url }) => {
     <Link href={url}>
       <button
         className={`px-4 py-2 text-xs rounded-xl transition-colors duration-300 ${color} lg:text-sm`}
-        onClick={() => handleSwitch(title.toLowerCase())}
+        onClick={() => handleSwitch(url)}
       >
         {title}
       </button>

@@ -12,7 +12,7 @@ interface Props {
   borderColor?: string;
 }
 
-const FilterSelect: React.FC<Props> = ({
+const FilterSelectOutline: React.FC<Props> = ({
   label,
   icon,
   options,
@@ -45,17 +45,15 @@ const FilterSelect: React.FC<Props> = ({
 
   return (
     <div className="space-y-1 relative" ref={componentRef}>
-      <label className="text-xs font-light">{label}</label>
+      <label className="text-xs  text-gray-300 ">{label}</label>
       <div
-        className={`w-full  px-2 py-2 bg-tertiary flex items-center gap-x-2 rounded-sm hover:cursor-pointer ${
-          border && "border"
-        } ${border && borderColor}`}
+        className="w-full  px-2 py-2 bg-tertiary flex items-center gap-x-2 rounded-lg hover:cursor-pointer  border-2 border-gray-700"
         onClick={() => {
           setShowOptions(!showOptions);
         }}
       >
         <span>{icon}</span>
-        <span className="text-gray-600 text-xs flex-shrink-0 max-w-[4rem] min-w-[4rem] whitespace-nowrap overflow-hidden overflow-ellipsis ">
+        <span className="text-white text-xs flex-shrink-0 max-w-[4rem] min-w-[4rem] whitespace-nowrap overflow-hidden overflow-ellipsis ">
           {selectedOption !== "" ? selectedOption : "All Regions"}
         </span>
         <span className="text-gray-600 text-xs">
@@ -64,12 +62,12 @@ const FilterSelect: React.FC<Props> = ({
       </div>
 
       {showOptions && (
-        <div className="absolute top-13  bg-tertiary w-36 flex rounded-sm shadow">
+        <div className="absolute top-13  bg-secondary w-36 flex rounded-sm shadow">
           <ul className="w-full text-xs cursor-pointer ">
             {options.map((option: any) => (
               <li
                 key={option}
-                className="hover:bg-secondary w-full px-2 py-3 border-b border-zinc-700"
+                className="hover:bg-tertiary w-full px-2 py-3 border-b border-zinc-700"
                 onClick={() => {
                   setSelectedOption(option);
                   setShowOptions(false);
@@ -85,4 +83,4 @@ const FilterSelect: React.FC<Props> = ({
   );
 };
 
-export default FilterSelect;
+export default FilterSelectOutline;

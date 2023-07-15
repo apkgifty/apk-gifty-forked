@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-range {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #353945;
+  outline: none;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #3772ff;
+  cursor: pointer;
+}
+
+.custom-range::-moz-range-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #3772ff;
+  cursor: pointer;
+}
+
+.custom-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #353945;
+}
+
+.custom-range::-moz-range-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #353945;
+}
+
+.custom-range::-moz-range-progress {
+  background-color: #3772ff;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.custom-range::-webkit-progress-value {
+  background-color: #3772ff;
+  height: 10px;
+  border-radius: 5px;
+}

@@ -1,3 +1,4 @@
+import Table from "@/components/Dashboard/Data/Table";
 import Image from "next/image";
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
           Payment Method!
         </p>
       </div> */}
-      <div>Filter table</div>
+      <Table />
     </main>
   );
 }

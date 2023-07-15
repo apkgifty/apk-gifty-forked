@@ -46,7 +46,13 @@ const SignupForm = () => {
         subtitle="Setting up an account takes less than 1 minute"
       />
       <FormBody>
-        <Switch />
+        <Switch
+          items={[
+            { label: "Login", url: "login" },
+            { label: "Signup", url: "signup" },
+          ]}
+          backgroundColor="bg-tertiary"
+        />
         <Form fields={fields} />
 
         <FormFooter>

@@ -39,7 +39,13 @@ const LoginForm = () => {
         subtitle="Please enter your email and password to continue"
       />
       <FormBody>
-        <Switch />
+        <Switch
+          items={[
+            { label: "Login", url: "login" },
+            { label: "Signup", url: "signup" },
+          ]}
+          backgroundColor="bg-tertiary"
+        />
         <Form fields={fields} />
 
         <FormFooter>

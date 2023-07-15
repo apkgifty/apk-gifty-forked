@@ -17,11 +17,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-tertiary flex`}>
+      <body
+        className={`${inter.className} bg-tertiary flex h-screen overflow-hidden`}
+      >
         <Sidebar />
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col ">
           <Topbar />
-          {children}
+
+          <div className="w-full flex flex-col py-2 px-2 overflow-y-auto">
+            {children}
+          </div>
         </div>
       </body>
     </html>

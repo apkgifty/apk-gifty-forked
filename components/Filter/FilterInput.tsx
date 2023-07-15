@@ -8,7 +8,7 @@ const FilterInput: React.FC<Props> = ({ label }) => {
       <label className="text-xs font-light">{label}</label>
       <div className="w-full px-3 py-2 bg-tertiary flex gap-x-2 rounded-sm ">
         <input
-          type="text"
+          type="number"
           placeholder="Enter Amount"
           className=" w-full bg-transparent text-xs"
         />

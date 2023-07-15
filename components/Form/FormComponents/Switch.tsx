@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import ToggleButton from "./ToggleButton";
 import { motion } from "framer-motion";
 
-const Switch = () => {
+interface Props {
+  items: { label: string; url: string }[];
+  backgroundColor: string;
+}
+
+const Switch: React.FC<Props> = ({ items, backgroundColor }) => {
   const [activeOption, setActiveOption] = useState("");
 
   useEffect(() => {
@@ -23,8 +28,18 @@ const Switch = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      <div className="max-w-md p-1 bg-tertiary rounded-xl">
-        <ToggleButton
+      <div className={`max-w-md p-1   rounded-xl ${backgroundColor}`}>
+        {items.map((item) => (
+          <ToggleButton
+            title={item.label}
+            color={
+              activeOption === item.url ? "bg-[#587BF2]" : "bg-transparent"
+            }
+            handleSwitch={handleSwitch}
+            url={item.url}
+          />
+        ))}
+        {/* <ToggleButton
           title="Login"
           color={activeOption === "login" ? "bg-[#587BF2]" : "bg-transparent"}
           handleSwitch={handleSwitch}
@@ -35,7 +50,7 @@ const Switch = () => {
           color={activeOption === "signup" ? "bg-[#587BF2]" : "bg-transparent"}
           handleSwitch={handleSwitch}
           url="signup"
-        />
+        /> */}
       </div>
     </motion.div>
   );

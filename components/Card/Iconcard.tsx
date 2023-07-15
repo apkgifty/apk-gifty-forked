@@ -13,7 +13,7 @@ const Iconcard: React.FC<Props> = ({ badgeData, icon, animate }) => {
 
   if (animate) {
     component = (
-      <Card className="bg-tertiary cursor-pointer">
+      <Card className="bg-tertiary cursor-pointer inline-flex items-center">
         <ScaleAnimate>
           <div className="w-full h-full relative">
             <span>{icon}</span>

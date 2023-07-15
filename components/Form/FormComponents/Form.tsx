@@ -4,6 +4,7 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 import { Fields } from "@/types/formTypes";
+import NextSvg from "@/components/UI/SvgIcons/NextSvg";
 
 interface Props {
   fields: Fields[];
@@ -40,7 +41,7 @@ const Form: React.FC<Props> = ({ fields }) => {
         icon={<LockOpenIcon fontSize="small" />}
       /> */}
 
-      <ButtonIcon />
+      <ButtonIcon icon={<NextSvg />} />
     </form>
   );
 };
