@@ -31,6 +31,7 @@ const Switch: React.FC<Props> = ({ items, backgroundColor }) => {
       <div className={`max-w-md p-1   rounded-xl ${backgroundColor}`}>
         {items.map((item) => (
           <ToggleButton
+            key={item.label}
             title={item.label}
             color={
               activeOption === item.url ? "bg-[#587BF2]" : "bg-transparent"
