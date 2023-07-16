@@ -6,63 +6,63 @@ const products = [
     title: "Amazon Gift Card",
     price: "399.00",
     category: "Amazon product",
-    imageUrl: "/images/amazon.png",
+    imageUrl: "/images/gift1.png",
     iconUrl: "/apple.svg",
   },
   {
     title: "Walmart Gift Card",
     price: "399.00",
     category: "Walmart product",
-    imageUrl: "/images/walmart.png",
+    imageUrl: "/images/gift3.png",
     iconUrl: "/apple.svg",
   },
   {
     title: "ITunes Gift Card",
     price: "399.00",
     category: "Apple product",
-    imageUrl: "/images/image 15.png",
+    imageUrl: "/images/gift3.png",
     iconUrl: "/apple.svg",
   },
   {
     title: "Flipkart Gift Card",
     price: "399.00",
     category: "Flipkart product",
-    imageUrl: "/images/Flipkart.png",
+    imageUrl: "/images/gift1.png",
     iconUrl: "/apple.svg",
   },
   {
     title: "Vanilla Gift Card",
     price: "399.00",
     category: "Vanilla product",
-    imageUrl: "/images/vanilla.png",
+    imageUrl: "/images/gift3.png",
     iconUrl: "/apple.svg",
   },
   {
     title: "Walmart Gift Card",
     price: "399.00",
     category: "Walmart product",
-    imageUrl: "/images/walmart.png",
+    imageUrl: "/images/gift1.png",
     iconUrl: "/apple.svg",
   },
   {
     title: "ITunes Gift Card",
     price: "399.00",
     category: "Apple product",
-    imageUrl: "/images/image 15.png",
+    imageUrl: "/images/gift1.png",
     iconUrl: "/apple.svg",
   },
   {
     title: "Amazon Gift Card",
     price: "399.00",
     category: "Amazon product",
-    imageUrl: "/images/amazon.png",
+    imageUrl: "/images/gift3.png",
     iconUrl: "/apple.svg",
   },
 ];
 
 const BuyPage = () => {
   return (
-    <div className="w-full flex flex-wrap gap-x-12 gap-y-12 justify-center mx-auto mt-12 xl:max-w-[1700px]">
+    <div className="w-full flex flex-wrap gap-x-12 gap-y-12 justify-center mx-auto mt-8 xl:max-w-[1700px]">
       {products.map((product) => (
         <Product
           key={product.imageUrl}

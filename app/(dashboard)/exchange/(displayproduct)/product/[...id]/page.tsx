@@ -5,6 +5,7 @@ import Toggle from "@/components/UI/Toggle";
 import CheckedSvg from "@/components/UI/SvgIcons/CheckedSvg";
 import LockSvg from "@/components/UI/SvgIcons/LockSvg";
 import ButtonIcon from "@/components/Form/FormComponents/ButtonIcon";
+import BuyAmountInput from "@/components/Form/FormComponents/BuyAmountInput";
 
 const ProductDisplay = () => {
   return (
@@ -69,7 +70,9 @@ const ProductDisplay = () => {
         <div className="px-12 py-8 bg-[#23262F] rounded-xl  text-center space-y-6">
           <div>
             <p className="font-light">You Will Get Gift Card Value</p>
-            <p className="text-3xl font-semibold">$399</p>
+
+            <BuyAmountInput />
+            {/* <p className="text-3xl font-semibold">$399</p> */}
           </div>
           <div>
             <p className="font-light">You have to pay</p>

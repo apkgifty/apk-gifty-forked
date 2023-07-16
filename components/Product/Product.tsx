@@ -25,8 +25,8 @@ const Product: React.FC<Props> = ({
         src={imageUrl}
         alt="apple card"
         width={250}
-        height={150}
-        layout="fixed"
+        height={0}
+        // className="w-[250px] h-auto"
         // style={{ objectFit: "contain" }}
       />
       <div className="flex justify-between border-b border-gray-600 py-3">
