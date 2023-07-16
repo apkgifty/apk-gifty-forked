@@ -24,7 +24,7 @@ export default function RootLayout({
         <div className="w-full flex flex-col ">
           <Topbar />
 
-          <div className="w-full flex flex-col py-2  overflow-y-auto">
+          <div className="w-full flex flex-col py-2 overflow-y-auto">
             {children}
           </div>
         </div>

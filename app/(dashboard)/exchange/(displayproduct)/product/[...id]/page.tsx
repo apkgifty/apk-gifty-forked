@@ -10,7 +10,7 @@ import BuyAmountInput from "@/components/Form/FormComponents/BuyAmountInput";
 const ProductDisplay = () => {
   return (
     <div className="w-full flex justify-between text-white py-10 bg-secondary">
-      <div className="flex flex-2 flex-col gap-y-6 px-12">
+      <div className="flex flex-2  flex-col gap-y-6 px-12">
         <div className="flex gap-x-3">
           <span className="px-3 py-1 bg-red-400 rounded-lg text-sm">
             Gift Cards
@@ -40,7 +40,7 @@ const ProductDisplay = () => {
           {/* </div> */}
         </div>
       </div>
-      <div className="flex-1 flex flex-col gap-y-8 px-12">
+      <div className="flex-1 flex-shrink flex flex-col gap-y-8 px-12">
         <div className="flex justify-between">
           <h3 className="text-xl">Buy in Custom Amount</h3>
 

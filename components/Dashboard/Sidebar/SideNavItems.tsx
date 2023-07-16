@@ -11,8 +11,8 @@ interface Props {
 }
 
 const links = [
-  { title: "Dashboard", url: "#", icon: <DashboardSvg /> },
-  { title: "Exchange", url: "#", icon: <ExchangeSvg /> },
+  { title: "Dashboard", url: "/", icon: <DashboardSvg /> },
+  { title: "Exchange", url: "/exchange/buy", icon: <ExchangeSvg /> },
   { title: "Wallet", url: "#", icon: <WalletSvg /> },
   { title: "Transaction", url: "#", icon: <TransactionSvg /> },
   { title: "Settings", url: "#", icon: <SettingsSvg /> },
