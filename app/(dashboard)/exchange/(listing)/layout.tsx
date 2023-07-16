@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Card from "@/components/Card/Card";
 import Switch from "@/components/Form/FormComponents/Switch";
-import FilterSelect from "@/components/Filter/FilterSelect";
 import FilterSelectOutline from "@/components/Filter/FilterSelectOutline";
 import FilterRange from "@/components/Filter/FilterRange";
 
