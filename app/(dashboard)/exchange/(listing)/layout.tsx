@@ -10,7 +10,7 @@ interface Props {
 
 const layout: React.FC<Props> = ({ children }) => {
   return (
-    <>
+    <div className="px-2">
       <Card className="bg-secondary justify-center items-center flex flex-col pb-8 w-full">
         <div>
           <Image
@@ -71,7 +71,7 @@ const layout: React.FC<Props> = ({ children }) => {
         <FilterRange />
       </div>
       {children}
-    </>
+    </div>
   );
 };
 
