@@ -40,7 +40,7 @@ const ProductDisplay = () => {
           {/* </div> */}
         </div>
       </div>
-      <div className="flex-1 flex-shrink flex flex-col gap-y-8 px-12">
+      <div className="flex-1 flex-shrink flex flex-col gap-y-8 px-12 mb-16 lg:mb-4">
         <div className="flex justify-between">
           <h3 className="text-xl">Buy in Custom Amount</h3>
 
