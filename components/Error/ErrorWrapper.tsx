@@ -23,7 +23,7 @@ const ErrorWrapper = ({ children }: { children: React.ReactNode }) => {
       window.removeEventListener("offline", handleOffline);
     };
   }, []);
-  return <>{isOnline ? children : <p>Oops you're offline</p>}</>;
+  return <>{isOnline ? children : <p>Oops offline</p>}</>;
 };
 
 export default ErrorWrapper;
