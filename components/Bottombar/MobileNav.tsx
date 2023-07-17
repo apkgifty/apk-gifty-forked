@@ -9,7 +9,7 @@ import ScaleAnimate from "../Animations/ScaleAnimate";
 
 const MobileNav = () => {
   return (
-    <div className="w-full flex justify-center text-white fixed bottom-4 mb-8 lg:hidden">
+    <div className="w-full flex justify-center text-white fixed bottom-2 mb-8 lg:hidden">
       <div className="w-[80%] flex justify-around bg-[#587BF2] px-4 py-3 rounded-xl z-100">
         <ScaleAnimate>
           <DashboardSvg size="medium" />
