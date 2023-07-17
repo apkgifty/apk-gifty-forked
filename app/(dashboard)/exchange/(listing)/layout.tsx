@@ -69,7 +69,7 @@ const layout: React.FC<Props> = ({ children }) => {
             border
             borderColor="border-gray-500"
           />
-          <FilterRange />
+          {/* <FilterRange /> */}
         </div>
         {children}
       </div>

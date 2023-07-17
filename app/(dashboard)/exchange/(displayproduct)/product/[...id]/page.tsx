@@ -9,7 +9,7 @@ import BuyAmountInput from "@/components/Form/FormComponents/BuyAmountInput";
 
 const ProductDisplay = () => {
   return (
-    <div className="w-full flex justify-between text-white py-10 bg-secondary">
+    <div className="w-full flex flex-col gap-y-12 justify-between text-white py-10 bg-secondary lg:flex-row">
       <div className="flex flex-2  flex-col gap-y-6 px-12">
         <div className="flex gap-x-3">
           <span className="px-3 py-1 bg-red-400 rounded-lg text-sm">
@@ -49,20 +49,25 @@ const ProductDisplay = () => {
 
         <hr className="border-t border-gray-600 "></hr>
 
-        <div className="px-8 py-6 border-2 border-gray-600 rounded-lg space-y-2">
-          <div className="flex gap-x-2">
-            <CheckedSvg />
+        <div className="px-6 py-6 border-2 border-gray-600 rounded-lg space-y-2">
+          <div className="w-full  flex gap-x-2">
+            <div className="">
+              <CheckedSvg />
+            </div>
 
             <p>Get all knowledge how to deal in gift cards</p>
           </div>
-          <div className="flex gap-x-2">
-            <CheckedSvg />
+          <div className="w-full  flex gap-x-2">
+            <div>
+              <CheckedSvg />
+            </div>
 
             <p>Best trading techniques</p>
           </div>
           <div className="flex gap-x-2">
-            <CheckedSvg />
-
+            <div>
+              <CheckedSvg />
+            </div>
             <p>Increase Profits</p>
           </div>
         </div>

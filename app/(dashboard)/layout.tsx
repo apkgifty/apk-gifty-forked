@@ -2,6 +2,7 @@ import Sidebar from "@/components/Dashboard/Sidebar/Sidebar";
 import "../globals.css";
 import { Inter } from "next/font/google";
 import Topbar from "@/components/Dashboard/Topbar/Topbar";
+import MobileNav from "@/components/Bottombar/MobileNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-tertiary flex h-screen overflow-hidden`}
+        className={`${inter.className} w-screen bg-tertiary flex  h-screen relative overflow-hidden`}
       >
         <Sidebar />
         <div className="w-full flex flex-col ">
@@ -28,6 +29,7 @@ export default function RootLayout({
             {children}
           </div>
         </div>
+        <MobileNav />
       </body>
     </html>
   );

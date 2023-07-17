@@ -15,7 +15,7 @@ const BuyAmountInput = () => {
       <input
         type="number"
         value={value}
-        className="bg-transparent text-white text-3xl w-28"
+        className="bg-transparent text-white text-3xl w-28 outline-none"
         onChange={handleValue}
       />
     </div>
