@@ -1,9 +1,24 @@
-import React from "react";
+interface Props {
+  size?: "small" | "medium" | "large";
+}
 
-const TransactionSvg = () => {
+const TransactionSvg: React.FC<Props> = ({ size }) => {
+  let iconSize;
+
+  switch (size) {
+    case "small":
+      iconSize = "w-5 h-5";
+      break;
+    case "medium":
+      iconSize = "w-8 h-8";
+      break;
+    case "large":
+      iconSize = "w-12 h-12";
+      break;
+  }
   return (
     <svg
-      className="w-5 h-5"
+      className={`${size ? iconSize : "w-5 h-5"}`}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

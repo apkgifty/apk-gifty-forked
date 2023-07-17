@@ -12,19 +12,19 @@ const MobileNav = () => {
     <div className="w-full flex justify-center text-white absolute bottom-20 mb-8 lg:hidden">
       <div className="w-[80%] flex justify-around bg-[#587BF2] px-4 py-3 rounded-xl z-100">
         <ScaleAnimate>
-          <DashboardSvg />
+          <DashboardSvg size="medium" />
         </ScaleAnimate>
         <ScaleAnimate>
-          <ExchangeSvg />
+          <ExchangeSvg size="medium" />
         </ScaleAnimate>
         <ScaleAnimate>
-          <WalletSvg />
+          <WalletSvg size="medium" />
         </ScaleAnimate>
         <ScaleAnimate>
-          <TransactionSvg />
+          <TransactionSvg size="medium" />
         </ScaleAnimate>
         <ScaleAnimate>
-          <NewsSvg />
+          <NewsSvg size="medium" />
         </ScaleAnimate>
       </div>
     </div>
