@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} w-screen bg-tertiary flex  h-screen relative overflow-hidden`}
+        className={`${inter.className} w-screen bg-tertiary flex h-screen  overflow-hidden`}
       >
         <Sidebar />
         <div className="w-full flex flex-col ">
