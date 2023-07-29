@@ -10,8 +10,8 @@ import React from "react";
 
 const ConfirmOrder = () => {
   return (
-    <div className="w-full bg-secondary h-screen text-white flex">
-      <div className="px-10 flex-[60%]">
+    <div className="w-full bg-secondary px-4 h-screen flex flex-col  text-white  lg:flex-row lg:px-0 ">
+      <div className="px-10 w-full lg:w-[60%]">
         <div className="mt-10">
           <h3 className="text-lg font-semibold">Confirm order information</h3>
         </div>
@@ -45,28 +45,28 @@ const ConfirmOrder = () => {
         <div className="mt-12">
           <p>After Transfering the amount, click on the Transfered button</p>
         </div>
-        <div className="mt-8 space-x-8">
-          <button className="px-4 py-2 bg-[#7995f5] rounded-lg">
-            Recieved The Payment, Release Gift Card
+        <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-8">
+          <button className="w-full text-sm px-4 py-2 bg-[#7995f5] rounded-lg">
+            Recieved Payment, Release Gift Card
           </button>
-          <button className="px-4 py-2">Cancel Transfer</button>
+          <button className="w-full text-sm px-4 py-2">Cancel Transfer</button>
         </div>
-        <div className="flex mt-10 space-x-4 ">
-          <button className="flex gap-x-2 px-4 py-2 bg-gray-700 rounded-lg">
+        <div className="flex mt-10 flex-col space-y-4 lg:flex-row lg:space-x-4 ">
+          <button className="w-full flex justify-center gap-x-2 px-4 py-2 bg-gray-700 rounded-lg text-sm">
             <HeadphoneSvg />
             Help center
           </button>
-          <button className="flex gap-x-2 px-4 py-2 bg-gray-700 rounded-lg">
+          <button className="w-full flex justify-center gap-x-2 px-4 py-2 bg-gray-700 rounded-lg text-sm">
             <InfoSvg />
             Report
           </button>
-          <button className="flex gap-x-2 px-4 py-2 bg-gray-700 rounded-lg">
+          <button className="w-full flex justify-center gap-x-2 px-4 py-2 bg-gray-700 rounded-lg text-sm">
             <EyeSvg />
             Track Transaction
           </button>
         </div>
       </div>
-      <div className="flex-[35%] flex-grow  h-full relative py-4 border-l border-tertiary ">
+      <div className="w-full  flex-grow  h-full relative mt-20 py-4  border-l border-tertiary lg:w-[35%] lg:mt-0">
         <div className="w-full flex justify-between px-4  ">
           <div className="flex gap-x-3">
             <div className="">
