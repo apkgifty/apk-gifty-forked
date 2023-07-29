@@ -41,7 +41,7 @@ const Form: React.FC<Props> = ({ fields }) => {
         icon={<LockOpenIcon fontSize="small" />}
       /> */}
 
-      <ButtonIcon icon={<NextSvg />} />
+      <ButtonIcon icon={<NextSvg />} url="/exchange/buy" />
     </form>
   );
 };

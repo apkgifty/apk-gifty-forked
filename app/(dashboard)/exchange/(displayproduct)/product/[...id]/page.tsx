@@ -5,12 +5,13 @@ import CheckedSvg from "@/components/UI/SvgIcons/CheckedSvg";
 import LockSvg from "@/components/UI/SvgIcons/LockSvg";
 import ButtonIcon from "@/components/Form/FormComponents/ButtonIcon";
 import BuyAmountInput from "@/components/Form/FormComponents/BuyAmountInput";
+import Link from "next/link";
 
 const ProductDisplay = () => {
   return (
-    <div className="flex w-full ">
+    <div className="flex w-full h-screen ">
       <div className="w-full flex flex-col gap-y-12 justify-between text-white py-10 bg-secondary  lg:flex-row">
-        <div className="flex flex-2  flex-col gap-y-6 px-12">
+        <div className="flex lg:flex-[65%]  flex-col gap-y-6 px-12">
           <div className="flex gap-x-3">
             <span className="px-3 py-1 bg-red-400 rounded-lg text-sm">
               Gift Cards
@@ -37,7 +38,7 @@ const ProductDisplay = () => {
             />
           </div>
         </div>
-        <div className="flex-1 flex-shrink flex flex-col gap-y-8 px-12 mb-16 lg:mb-4">
+        <div className="lg:flex-[35%] flex-shrink flex flex-col gap-y-8 px-12 mb-16 lg:mb-4 ">
           <div className="flex justify-between">
             <h3 className="text-xl">Buy in Custom Amount</h3>
 
@@ -85,12 +86,14 @@ const ProductDisplay = () => {
             <div className="p-3 rounded-full border border-gray-600">
               <LockSvg />
             </div>
-            <button
-              type="button"
-              className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7]"
-            >
-              Buy The Gift Card
-            </button>
+            <Link href={"/exchange/confirm-order"} className=" w-full">
+              <button
+                type="button"
+                className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7]"
+              >
+                Buy The Gift Card
+              </button>
+            </Link>
           </div>
         </div>
       </div>
