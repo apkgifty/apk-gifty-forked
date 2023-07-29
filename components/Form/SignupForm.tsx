@@ -1,6 +1,4 @@
 "use client";
-import React from "react";
-import FormInput from "./FormComponents/FormInput";
 
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
@@ -14,26 +12,31 @@ import FormContainer from "./FormComponents/FormContainer";
 import { Fields } from "@/types/formTypes";
 import Form from "./FormComponents/Form";
 
+import { useAuth } from "@/hooks/useAuth";
+
 const fields: Fields[] = [
   {
     type: "email",
     placeholder: "Email",
     icon: <AlternateEmailIcon />,
-    required: true,
+    config: { required: true },
     name: "email",
   },
   {
     type: "password",
     placeholder: "Password",
     icon: <LockOpenIcon />,
-    required: true,
+    config: { required: true },
     name: "password",
   },
   {
     type: "referral",
     placeholder: "Referral",
     icon: <LockOpenIcon />,
-    required: true,
+    config: {
+      required: false,
+    },
+
     name: "referral",
   },
 ];

@@ -20,14 +20,14 @@ const fields: Fields[] = [
     placeholder: "Email",
     name: "email",
     icon: <AlternateEmailIcon />,
-    required: true,
+    config: { required: true },
   },
   {
     type: "password",
     placeholder: "Password",
     name: "password",
     icon: <LockOpenIcon />,
-    required: true,
+    config: { required: true },
   },
 ];
 

@@ -1,13 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
 
 interface Props {
   icon: React.ReactNode;
   type: string;
   placeholder: string;
   name: string;
-  required: boolean;
+  config: {
+    required: boolean;
+  };
+  register: any;
+  errors: any;
 }
 
 const FormInput: React.FC<Props> = ({
@@ -15,7 +20,9 @@ const FormInput: React.FC<Props> = ({
   type,
   placeholder,
   name,
-  required,
+  config,
+  register,
+  errors,
 }) => {
   return (
     <motion.div
@@ -24,14 +31,20 @@ const FormInput: React.FC<Props> = ({
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="px-2 border-r border-gray-400">{icon}</div>
+      <div
+        className={`px-2 border-r border-gray-400 ${
+          errors[name] && "text-red-600"
+        }`}
+      >
+        {icon}
+      </div>
       <input
         type={type}
         className="bg-transparent outline-none text-xs lg:text-sm w-full"
         placeholder={placeholder}
-        name={name}
+        // name={name}
         autoComplete="off"
-        required={required}
+        {...register(name, config)}
       />
     </motion.div>
   );

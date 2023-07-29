@@ -3,7 +3,9 @@ interface Fields {
   name: string;
   icon: React.ReactNode;
   placeholder: string;
-  required: boolean;
+  config: {
+    required: boolean;
+  };
 }
 
 export type { Fields };

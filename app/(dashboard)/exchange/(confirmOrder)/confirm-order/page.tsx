@@ -45,13 +45,13 @@ const ConfirmOrder = () => {
         <div className="mt-12">
           <p>After Transfering the amount, click on the Transfered button</p>
         </div>
-        <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-8">
+        <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
           <button className="w-full text-sm px-4 py-2 bg-[#7995f5] rounded-lg">
             Recieved Payment, Release Gift Card
           </button>
           <button className="w-full text-sm px-4 py-2">Cancel Transfer</button>
         </div>
-        <div className="flex mt-10 flex-col space-y-4 lg:flex-row lg:space-x-4 ">
+        <div className="flex mt-10 flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 ">
           <button className="w-full flex justify-center gap-x-2 px-4 py-2 bg-gray-700 rounded-lg text-sm">
             <HeadphoneSvg />
             Help center
