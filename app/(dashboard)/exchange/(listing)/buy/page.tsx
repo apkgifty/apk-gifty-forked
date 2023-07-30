@@ -1,6 +1,7 @@
 import React from "react";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import axios from "axios";
+
 import Product from "@/components/Product/Product";
 
 const products = [
@@ -62,23 +63,36 @@ const products = [
   },
 ];
 
-const BuyPage = () => {
-  const cookieStore = cookies();
-  const access = cookieStore.get("access");
+const fetchProducts = async (accessToken: any) => {
+  const response = await axios.get(
+    "https://backend.apkxchange.com/api/products",
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  console.log(response.data.data);
 
-  if (!access) {
-    redirect("/login");
-  }
+  return response.data.data;
+};
+
+const BuyPage = async () => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("access");
+
+  const products = await fetchProducts(accessToken);
+
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 justify-center mx-auto mt-8 xl:max-w-[1700px]">
-      {products.map((product) => (
+      {products.map((product: any) => (
         <Product
-          key={product.imageUrl}
-          title={product.title}
+          key={product.id}
+          title={product.name}
           price={product.price}
           category={product.category}
-          imageUrl={product.imageUrl}
-          iconUrl={product.iconUrl}
+          imageUrl={product.image_url}
+          iconUrl={product.icon}
         />
       ))}
     </div>
