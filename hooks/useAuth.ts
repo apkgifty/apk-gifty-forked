@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
 
 const useAuth = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const submitRequest = async (payload: any, url: string) => {
+  const submitRequest = async (
+    payload: any,
+    redirectUrl: string,
+    endpoint: string
+  ) => {
     const config = {
-      url: url,
+      url: endpoint,
       data: payload,
       method: "POST",
       headers: {
@@ -18,6 +23,7 @@ const useAuth = () => {
     };
 
     try {
+      setLoading(true);
       const response = await axios(config);
       setData(response.data);
     } catch (error: any) {

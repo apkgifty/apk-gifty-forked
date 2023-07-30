@@ -26,6 +26,7 @@ export async function POST(req: Request, res: Response) {
 
   try {
     const response = await axios(config);
+    console.log(response.status);
     console.log(response.data);
 
     return NextResponse.json(response.data);

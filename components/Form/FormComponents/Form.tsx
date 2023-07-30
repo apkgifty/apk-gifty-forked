@@ -1,4 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
 
 import FormInput from "./FormInput";
 import ButtonIcon from "./ButtonIcon";
@@ -10,6 +12,8 @@ import NextSvg from "@/components/UI/SvgIcons/NextSvg";
 import { useAuth } from "@/hooks/useAuth";
 interface Props {
   fields: Fields[];
+  redirectUrl: string;
+  endpoint: string;
 }
 
 // interface Fields {
@@ -19,7 +23,9 @@ interface Props {
 //   name: string;
 // }
 
-const Form: React.FC<Props> = ({ fields }) => {
+const Form: React.FC<Props> = ({ fields, redirectUrl, endpoint }) => {
+  const [cookies, setCookie] = useCookies(["access"]);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -28,11 +34,19 @@ const Form: React.FC<Props> = ({ fields }) => {
   } = useForm();
 
   const { data, loading, error, submitRequest } = useAuth();
-  console.log(loading);
-  console.log(data);
-  console.log(error);
 
-  const onSubmit = (data: any) => submitRequest(data, "/api/register");
+  if (data?.data?.token) {
+    console.log(data);
+    console.log(data.data.token);
+    setCookie("access", data.data.token);
+    router.push(redirectUrl);
+  }
+
+  // console.log(loading);
+  // console.log(data);
+  // console.log(error);
+
+  const onSubmit = (data: any) => submitRequest(data, redirectUrl, endpoint);
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       {fields.map((field) => (
@@ -48,7 +62,7 @@ const Form: React.FC<Props> = ({ fields }) => {
         />
       ))}
 
-      <ButtonIcon icon={<NextSvg />} type="submit" />
+      <ButtonIcon icon={<NextSvg />} type="submit" loading={loading} />
     </form>
   );
 };

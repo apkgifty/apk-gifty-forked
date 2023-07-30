@@ -46,7 +46,7 @@ const LoginForm = () => {
           ]}
           backgroundColor="bg-tertiary"
         />
-        <Form fields={fields} />
+        <Form fields={fields} redirectUrl="/exchange/buy" endpoint="/" />
 
         <FormFooter>
           <ExternalLogins />

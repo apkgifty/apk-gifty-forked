@@ -12,8 +12,6 @@ import FormContainer from "./FormComponents/FormContainer";
 import { Fields } from "@/types/formTypes";
 import Form from "./FormComponents/Form";
 
-import { useAuth } from "@/hooks/useAuth";
-
 const fields: Fields[] = [
   {
     type: "email",
@@ -56,7 +54,11 @@ const SignupForm = () => {
           ]}
           backgroundColor="bg-tertiary"
         />
-        <Form fields={fields} />
+        <Form
+          fields={fields}
+          redirectUrl="/exchange/buy"
+          endpoint="/api/register"
+        />
 
         <FormFooter>
           <ExternalLogins />

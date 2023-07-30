@@ -1,4 +1,6 @@
 import React from "react";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import Product from "@/components/Product/Product";
 
 const products = [
@@ -61,6 +63,12 @@ const products = [
 ];
 
 const BuyPage = () => {
+  const cookieStore = cookies();
+  const access = cookieStore.get("access");
+
+  if (!access) {
+    redirect("/login");
+  }
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 justify-center mx-auto mt-8 xl:max-w-[1700px]">
       {products.map((product) => (
