@@ -14,7 +14,9 @@ const fields: Fields[] = [
     placeholder: "Email",
     name: "email",
     icon: <AlternateEmailIcon />,
-    required: true,
+    config: {
+      required: true,
+    },
   },
 ];
 
@@ -34,7 +36,7 @@ const ForgotPasswordForm = () => {
         >
           <img src="/watch-it.svg" />
         </motion.div>
-        <Form fields={fields} />
+        <Form fields={fields} redirectUrl="/" endpoint="#" />
       </FormBody>
     </FormContainer>
   );

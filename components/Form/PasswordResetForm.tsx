@@ -20,14 +20,16 @@ const fields: Fields[] = [
     placeholder: "New Password",
     name: "password",
     icon: <LockOpenIcon />,
-    required: true,
+    config: {
+      required: true,
+    },
   },
   {
     type: "password",
     placeholder: "Confirm Password",
     name: "confirm_password",
     icon: <LockOpenIcon />,
-    required: true,
+    config: { required: true },
   },
 ];
 
@@ -47,7 +49,7 @@ const PasswordResetForm = () => {
         >
           <img src="/watch-it.svg" />
         </motion.div>
-        <Form fields={fields} />
+        <Form fields={fields} redirectUrl="/" endpoint="#" />
       </FormBody>
     </FormContainer>
   );
