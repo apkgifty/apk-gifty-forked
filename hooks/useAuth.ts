@@ -4,14 +4,10 @@ import axios from "axios";
 
 const useAuth = () => {
   const [data, setData] = useState<any>(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
-  const submitRequest = async (
-    payload: any,
-    redirectUrl: string,
-    endpoint: string
-  ) => {
+  const submitRequest = async (payload: any, endpoint: string) => {
     const config = {
       url: endpoint,
       data: payload,
@@ -25,9 +21,10 @@ const useAuth = () => {
     try {
       setLoading(true);
       const response = await axios(config);
+      console.log(response.data);
       setData(response.data);
     } catch (error: any) {
-      setError(error);
+      setError(error.response.data);
     } finally {
       setLoading(false);
     }

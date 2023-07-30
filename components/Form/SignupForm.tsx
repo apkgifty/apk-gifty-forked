@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
+
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import ButtonIcon from "./FormComponents/ButtonIcon";
@@ -40,6 +43,17 @@ const fields: Fields[] = [
 ];
 
 const SignupForm = () => {
+  const [cookies, setCookie] = useCookies(["access"]);
+  const router = useRouter();
+
+  const afterSubmit = (data: any) => {
+    if (data?.data?.token) {
+      console.log(data);
+      console.log(data.data.token);
+      setCookie("access", data.data.token);
+      router.push("/exchange/buy");
+    }
+  };
   return (
     <FormContainer>
       <FormHeader
@@ -58,6 +72,7 @@ const SignupForm = () => {
           fields={fields}
           redirectUrl="/exchange/buy"
           endpoint="/api/register"
+          afterSubmit={afterSubmit}
         />
 
         <FormFooter>

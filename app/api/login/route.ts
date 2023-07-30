@@ -8,15 +8,12 @@ export async function POST(req: Request, res: Response) {
 
   let data = JSON.stringify({
     ...body,
-    firstname: "john",
-    lastname: "Piram",
-    password_confirmation: body.password,
   });
 
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: "https://backend.apkxchange.com/api/register",
+    url: "https://backend.apkxchange.com/api/login",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -26,9 +23,10 @@ export async function POST(req: Request, res: Response) {
 
   try {
     const response = await axios(config);
-
+    console.log(response.data);
     return NextResponse.json(response.data);
   } catch (error: any) {
+    console.log(error);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,

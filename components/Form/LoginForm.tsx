@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import FormInput from "./FormComponents/FormInput";
+import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
 
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
@@ -32,6 +34,18 @@ const fields: Fields[] = [
 ];
 
 const LoginForm = () => {
+  const [cookies, setCookie] = useCookies(["access"]);
+  const router = useRouter();
+
+  const afterSubmit = (data: any) => {
+    if (data?.token) {
+      console.log(data);
+      console.log(data.token);
+      setCookie("access", data.token);
+      router.push("/exchange/buy");
+    }
+  };
+
   return (
     <FormContainer>
       <FormHeader
@@ -46,7 +60,12 @@ const LoginForm = () => {
           ]}
           backgroundColor="bg-tertiary"
         />
-        <Form fields={fields} redirectUrl="/exchange/buy" endpoint="/" />
+        <Form
+          fields={fields}
+          redirectUrl="/exchange/buy"
+          endpoint="/api/login"
+          afterSubmit={afterSubmit}
+        />
 
         <FormFooter>
           <ExternalLogins />

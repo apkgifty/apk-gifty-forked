@@ -1,6 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { useCookies } from "react-cookie";
+import { useEffect } from "react";
 
 import FormInput from "./FormInput";
 import ButtonIcon from "./ButtonIcon";
@@ -10,10 +9,13 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { Fields } from "@/types/formTypes";
 import NextSvg from "@/components/UI/SvgIcons/NextSvg";
 import { useAuth } from "@/hooks/useAuth";
+import { Snackbar, Alert } from "@mui/material";
+
 interface Props {
   fields: Fields[];
   redirectUrl: string;
   endpoint: string;
+  afterSubmit?: any;
 }
 
 // interface Fields {
@@ -23,9 +25,14 @@ interface Props {
 //   name: string;
 // }
 
-const Form: React.FC<Props> = ({ fields, redirectUrl, endpoint }) => {
-  const [cookies, setCookie] = useCookies(["access"]);
-  const router = useRouter();
+const Form: React.FC<Props> = ({
+  fields,
+  redirectUrl,
+  endpoint,
+  afterSubmit,
+}) => {
+  // const [cookies, setCookie] = useCookies(["access"]);
+  // const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -35,35 +42,41 @@ const Form: React.FC<Props> = ({ fields, redirectUrl, endpoint }) => {
 
   const { data, loading, error, submitRequest } = useAuth();
 
-  if (data?.data?.token) {
+  const onSubmit = (data: any) => submitRequest(data, endpoint);
+
+  useEffect(() => {
     console.log(data);
-    console.log(data.data.token);
-    setCookie("access", data.data.token);
-    router.push(redirectUrl);
-  }
+    afterSubmit(data);
+  }, [data]);
 
-  // console.log(loading);
-  // console.log(data);
-  // console.log(error);
-
-  const onSubmit = (data: any) => submitRequest(data, redirectUrl, endpoint);
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-      {fields.map((field) => (
-        <FormInput
-          placeholder={field.placeholder}
-          type={field.type}
-          icon={field.icon}
-          name={field.name}
-          config={field.config}
-          key={field.name}
-          register={register}
-          errors={errors}
-        />
-      ))}
+    <>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+        {fields.map((field) => (
+          <FormInput
+            placeholder={field.placeholder}
+            type={field.type}
+            icon={field.icon}
+            name={field.name}
+            config={field.config}
+            key={field.name}
+            register={register}
+            errors={errors}
+          />
+        ))}
 
-      <ButtonIcon icon={<NextSvg />} type="submit" loading={loading} />
-    </form>
+        <ButtonIcon icon={<NextSvg />} type="submit" loading={loading} />
+      </form>
+      {error && (
+        <Snackbar
+          open={error === null ? false : true}
+          autoHideDuration={6000}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        >
+          <Alert severity="error">{error?.message}</Alert>
+        </Snackbar>
+      )}
+    </>
   );
 };
 
