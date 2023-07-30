@@ -4,64 +4,64 @@ import axios from "axios";
 
 import Product from "@/components/Product/Product";
 
-const products = [
-  {
-    title: "Amazon Gift Card",
-    price: "399.00",
-    category: "Amazon product",
-    imageUrl: "/images/gift1.png",
-    iconUrl: "/apple.svg",
-  },
-  {
-    title: "Walmart Gift Card",
-    price: "399.00",
-    category: "Walmart product",
-    imageUrl: "/images/gift3.png",
-    iconUrl: "/apple.svg",
-  },
-  {
-    title: "ITunes Gift Card",
-    price: "399.00",
-    category: "Apple product",
-    imageUrl: "/images/gift3.png",
-    iconUrl: "/apple.svg",
-  },
-  {
-    title: "Flipkart Gift Card",
-    price: "399.00",
-    category: "Flipkart product",
-    imageUrl: "/images/gift1.png",
-    iconUrl: "/apple.svg",
-  },
-  {
-    title: "Vanilla Gift Card",
-    price: "399.00",
-    category: "Vanilla product",
-    imageUrl: "/images/gift3.png",
-    iconUrl: "/apple.svg",
-  },
-  {
-    title: "Walmart Gift Card",
-    price: "399.00",
-    category: "Walmart product",
-    imageUrl: "/images/gift1.png",
-    iconUrl: "/apple.svg",
-  },
-  {
-    title: "ITunes Gift Card",
-    price: "399.00",
-    category: "Apple product",
-    imageUrl: "/images/gift1.png",
-    iconUrl: "/apple.svg",
-  },
-  {
-    title: "Amazon Gift Card",
-    price: "399.00",
-    category: "Amazon product",
-    imageUrl: "/images/gift3.png",
-    iconUrl: "/apple.svg",
-  },
-];
+// const products = [
+//   {
+//     title: "Amazon Gift Card",
+//     price: "399.00",
+//     category: "Amazon product",
+//     imageUrl: "/images/gift1.png",
+//     iconUrl: "/apple.svg",
+//   },
+//   {
+//     title: "Walmart Gift Card",
+//     price: "399.00",
+//     category: "Walmart product",
+//     imageUrl: "/images/gift3.png",
+//     iconUrl: "/apple.svg",
+//   },
+//   {
+//     title: "ITunes Gift Card",
+//     price: "399.00",
+//     category: "Apple product",
+//     imageUrl: "/images/gift3.png",
+//     iconUrl: "/apple.svg",
+//   },
+//   {
+//     title: "Flipkart Gift Card",
+//     price: "399.00",
+//     category: "Flipkart product",
+//     imageUrl: "/images/gift1.png",
+//     iconUrl: "/apple.svg",
+//   },
+//   {
+//     title: "Vanilla Gift Card",
+//     price: "399.00",
+//     category: "Vanilla product",
+//     imageUrl: "/images/gift3.png",
+//     iconUrl: "/apple.svg",
+//   },
+//   {
+//     title: "Walmart Gift Card",
+//     price: "399.00",
+//     category: "Walmart product",
+//     imageUrl: "/images/gift1.png",
+//     iconUrl: "/apple.svg",
+//   },
+//   {
+//     title: "ITunes Gift Card",
+//     price: "399.00",
+//     category: "Apple product",
+//     imageUrl: "/images/gift1.png",
+//     iconUrl: "/apple.svg",
+//   },
+//   {
+//     title: "Amazon Gift Card",
+//     price: "399.00",
+//     category: "Amazon product",
+//     imageUrl: "/images/gift3.png",
+//     iconUrl: "/apple.svg",
+//   },
+// ];
 
 const fetchProducts = async (accessToken: any) => {
   const response = await axios.get(
@@ -90,9 +90,10 @@ const BuyPage = async () => {
           key={product.id}
           title={product.name}
           price={product.price}
-          category={product.category}
+          category={"Walmart"}
           imageUrl={product.image_url}
-          iconUrl={product.icon}
+          iconUrl={"/apple.svg"}
+          productInfo={product}
         />
       ))}
     </div>

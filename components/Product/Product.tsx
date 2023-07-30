@@ -7,6 +7,7 @@ interface Props {
   category: string;
   iconUrl: string;
   imageUrl: string;
+  productInfo: any;
 }
 
 const Product: React.FC<Props> = ({
@@ -15,10 +16,16 @@ const Product: React.FC<Props> = ({
   category,
   iconUrl,
   imageUrl,
+  productInfo,
 }) => {
   return (
     <div className=" ">
-      <Link href="/exchange/product/sdsdu">
+      <Link
+        href={{
+          pathname: "/exchange/product/sdsdu",
+          query: productInfo,
+        }}
+      >
         {/* <div
         className="w-[250px] h-[150px] bg-red-700 rounded-lg bg-cover bg-center"
         style={{ background: `url(${imageUrl})` }}
@@ -37,9 +44,14 @@ const Product: React.FC<Props> = ({
             ${price}
           </p>
         </div>
-        <div className="py-2 flex gap-x-2">
-          <img src={iconUrl} width={20} />
-          <p className="text-xs text-white">{category}</p>
+        <div className="py-2 flex justify-between items-center gap-x-2">
+          <div className="flex items-center gap-x-2">
+            <img src={iconUrl} width={20} />
+            <p className="text-xs text-white">{category}</p>
+          </div>
+          <div>
+            <span className="text-white text-xs">Qty: 14</span>
+          </div>
         </div>
       </Link>
     </div>

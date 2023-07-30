@@ -7,7 +7,8 @@ import ButtonIcon from "@/components/Form/FormComponents/ButtonIcon";
 import BuyAmountInput from "@/components/Form/FormComponents/BuyAmountInput";
 import Link from "next/link";
 
-const ProductDisplay = () => {
+const ProductDisplay = ({ searchParams }: { searchParams: any }) => {
+  console.log(searchParams);
   return (
     <div className="flex w-full h-screen ">
       <div className="w-full flex flex-col gap-y-12 justify-between text-white py-10 bg-secondary  lg:flex-row">
@@ -21,16 +22,17 @@ const ProductDisplay = () => {
             </span>
           </div>
           <div>
-            <h4 className="text-2xl font-semibold">Buy Amazon Gift Cards</h4>
+            <h4 className="text-2xl font-semibold">
+              {searchParams.buy_header}
+            </h4>
             <p className="text-base text-gray-500">
-              Guidance that will help you in dealing with best out of all the
-              Gift Cards available in market
+              {searchParams.buy_instructions}
             </p>
           </div>
 
           <div>
             <Image
-              src={"/images/image 20.png"}
+              src={searchParams.image_url}
               alt="gifts image"
               width={650}
               height={300}
@@ -42,7 +44,9 @@ const ProductDisplay = () => {
           <div className="flex justify-between">
             <h3 className="text-xl">Buy in Custom Amount</h3>
 
-            <Toggle />
+            <Toggle
+              isChecked={Number(searchParams.can_custom) === 0 ? false : true}
+            />
           </div>
 
           <hr className="border-t border-gray-600 "></hr>
