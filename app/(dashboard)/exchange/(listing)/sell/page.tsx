@@ -70,6 +70,7 @@ const SellPage = () => {
           category={product.category}
           imageUrl={product.imageUrl}
           iconUrl={product.iconUrl}
+          productInfo={{}}
         />
       ))}
     </div>
