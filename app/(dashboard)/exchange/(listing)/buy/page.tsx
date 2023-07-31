@@ -80,8 +80,9 @@ const fetchProducts = async (accessToken: any) => {
 const BuyPage = async () => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access");
+  console.log(accessToken?.value);
 
-  const products = await fetchProducts(accessToken);
+  const products = await fetchProducts(accessToken?.value);
 
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 justify-center mx-auto mt-8 xl:max-w-[1700px]">

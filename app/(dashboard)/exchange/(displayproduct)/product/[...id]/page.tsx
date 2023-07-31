@@ -78,7 +78,11 @@ const ProductDisplay = ({ searchParams }: { searchParams: any }) => {
             <div>
               <p className="font-light">You Will Get Gift Card Value</p>
 
-              <BuyAmountInput />
+              <BuyAmountInput
+                isFixedPrice={
+                  Number(searchParams.can_custom) === 0 ? false : true
+                }
+              />
             </div>
             <div>
               <p className="font-light">You have to pay</p>

@@ -2,8 +2,12 @@
 
 import { useState } from "react";
 
-const BuyAmountInput = () => {
-  const [value, setValue] = useState("$");
+interface Props {
+  isFixedPrice: boolean;
+}
+
+const BuyAmountInput: React.FC<Props> = ({ isFixedPrice }) => {
+  const [value, setValue] = useState("");
 
   const handleValue = (e: any) => {
     setValue(e.target.value);
@@ -14,7 +18,7 @@ const BuyAmountInput = () => {
       <span className="text-3xl ml-12">$</span>
       <input
         type="number"
-        value={value}
+        value={isFixedPrice ? "200" : value}
         className="bg-transparent text-white text-3xl w-28 outline-none"
         onChange={handleValue}
       />

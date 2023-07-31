@@ -8,7 +8,6 @@ export async function POST(req: Request, res: Response) {
 
   let data = JSON.stringify({
     ...body,
-    firstname: "john",
     lastname: "Piram",
     password_confirmation: body.password,
   });

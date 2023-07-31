@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ButtonIcon from "./FormComponents/ButtonIcon";
 import ExternalLogins from "./FormComponents/ExternalLogins";
 import Switch from "./FormComponents/Switch";
@@ -16,6 +17,16 @@ import { Fields } from "@/types/formTypes";
 import Form from "./FormComponents/Form";
 
 const fields: Fields[] = [
+  {
+    type: "text",
+    placeholder: "Name",
+    icon: <PersonOutlineIcon />,
+    config: {
+      required: true,
+    },
+
+    name: "firstname",
+  },
   {
     type: "email",
     placeholder: "Email",
@@ -30,16 +41,16 @@ const fields: Fields[] = [
     config: { required: true },
     name: "password",
   },
-  {
-    type: "referral",
-    placeholder: "Referral",
-    icon: <LockOpenIcon />,
-    config: {
-      required: false,
-    },
+  // {
+  //   type: "text",
+  //   placeholder: "Referral",
+  //   icon: <LockOpenIcon />,
+  //   config: {
+  //     required: false,
+  //   },
 
-    name: "referral",
-  },
+  //   name: "referral",
+  // },
 ];
 
 const SignupForm = () => {
