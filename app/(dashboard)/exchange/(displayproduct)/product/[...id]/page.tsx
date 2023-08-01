@@ -10,7 +10,7 @@ import Link from "next/link";
 const ProductDisplay = ({ searchParams }: { searchParams: any }) => {
   console.log(searchParams);
   return (
-    <div className="flex w-full h-screen ">
+    <div className="flex w-full ">
       <div className="w-full flex flex-col gap-y-12 justify-between text-white py-10 bg-secondary  lg:flex-row">
         <div className="flex lg:flex-[65%]  flex-col gap-y-6 px-12">
           <div className="flex gap-x-3">

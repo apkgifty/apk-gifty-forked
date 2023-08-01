@@ -32,7 +32,7 @@ const ConfirmOrder = async () => {
   console.log(data);
 
   return (
-    <div className="w-full bg-secondary px-4 h-screen flex flex-col  text-white  lg:flex-row lg:px-0 ">
+    <div className="w-full bg-secondary px-4 flex flex-col  text-white  lg:flex-row lg:px-0 lg:h-screen ">
       <div className="px-10 w-full lg:w-[60%]">
         <div className="mt-10">
           <h3 className="text-lg font-semibold">Confirm order information</h3>
@@ -70,7 +70,7 @@ const ConfirmOrder = async () => {
           </button>
           <button className="w-full text-sm px-4 py-2">Cancel Transfer</button>
         </div>
-        <div className="flex mt-10 flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 ">
+        {/* <div className="flex mt-10 flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 ">
           <button className="w-full flex justify-center items-center gap-x-2 px-4 py-2 bg-gray-700 rounded-lg text-sm">
             <HeadphoneSvg />
             Help center
@@ -83,9 +83,9 @@ const ConfirmOrder = async () => {
             <EyeSvg />
             Track Transaction
           </button>
-        </div>
+        </div> */}
       </div>
-      <div className="w-full  flex-grow  h-full relative mt-20 py-4  border-l border-tertiary lg:w-[35%] lg:mt-0">
+      <div className="w-full  flex-grow  h-[750px] relative mt-20 py-4  border-l border-tertiary lg:w-[35%] lg:mt-0 lg:h-full ">
         <div className="w-full flex justify-between px-4  ">
           <div className="flex gap-x-3">
             <div className="">

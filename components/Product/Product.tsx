@@ -19,7 +19,7 @@ const Product: React.FC<Props> = ({
   productInfo,
 }) => {
   return (
-    <div className=" ">
+    <div className="w-full lg:w-[300px] ">
       <Link
         href={{
           pathname: "/exchange/product/sdsdu",
@@ -33,9 +33,9 @@ const Product: React.FC<Props> = ({
         <Image
           src={imageUrl}
           alt="apple card"
-          width={250}
+          width={0}
           height={0}
-          // className="w-[250px] h-auto"
+          className="w-full h-auto"
           // style={{ objectFit: "contain" }}
         />
         <div className="flex justify-between border-b border-gray-600 py-3">
