@@ -32,7 +32,7 @@ const ConfirmOrder = async () => {
   console.log(data);
 
   return (
-    <div className="w-full bg-secondary px-4 flex flex-col  text-white  lg:flex-row lg:px-0 lg:h-screen ">
+    <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
       <div className="px-10 w-full lg:w-[60%]">
         <div className="mt-10">
           <h3 className="text-lg font-semibold">Confirm order information</h3>
@@ -85,8 +85,8 @@ const ConfirmOrder = async () => {
           </button>
         </div> */}
       </div>
-      <div className="w-full  flex-grow  h-[750px] relative mt-20 py-4  border-l border-tertiary lg:w-[35%] lg:mt-0 lg:h-full ">
-        <div className="w-full flex justify-between px-4  ">
+      <div className="w-full  flex-grow flex flex-col  h-[750px] relative mt-20 py-4  lg:border-l-2 lg:border-tertiary lg:w-[35%] lg:mt-0 lg:h-full ">
+        <div className="w-full flex flex-1 justify-between px-4  ">
           <div className="flex gap-x-3">
             <div className="">
               <img
@@ -109,19 +109,17 @@ const ConfirmOrder = async () => {
             </button>
           </div>
         </div>
-        <div className="px-4  ">
+        <div className="px-4 h-full flex-2 overflow-scroll ">
           <div className="w-full flex justify-center mt-10">
             <p className="text-xs font-light">Today, 8:26 AM</p>
           </div>
           <div className="my-10">
             <p>Hello Linh!</p>
           </div>
-
           <div className="my-10">
             <p>I really love your work, great job</p>
             <span className="text-gray-400 text-xs mt-6 block">03:49PM</span>
           </div>
-
           <div className="my-10 flex justify-end ">
             <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
               <p>Hi Tom</p>
@@ -131,9 +129,249 @@ const ConfirmOrder = async () => {
             <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
               <p>Thank you, i also love it</p>
             </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
+          </div>{" "}
+          <div className="my-10 flex justify-end ">
+            <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+              <p>Thank you, i also love it</p>
+            </div>
           </div>
         </div>
-        <div className="w-full absolute bottom-0 flex py-6 items-center justify-between px-4   ">
+        <div className="w-full  bg-secondary  flex flex-1 py-6 items-center justify-between px-4   ">
           <div className="flex gap-x-2 ">
             <button className="px-3 py-3 bg-primary rounded-lg ">
               <EmotionSvg />

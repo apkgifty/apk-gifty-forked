@@ -74,3 +74,31 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* For WebKit-based browsers (Chrome, Safari, newer versions of Edge) */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+/* For Mozilla Firefox */
+/* Firefox doesn't support styling the scrollbar directly, so we use an extension with pseudoelements */
+/* You will need to install the 'firefox-scrollbar' extension for this to work */
+
+/* This is the scrollbar thumb */
+* {
+  scrollbar-color: #888 transparent;
+}
+
+/* This is the scrollbar track */
+* {
+  scrollbar-width: thin;
+}
