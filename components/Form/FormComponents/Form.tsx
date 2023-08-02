@@ -62,6 +62,7 @@ const Form: React.FC<Props> = ({
             key={field.name}
             register={register}
             errors={errors}
+            className="bg-tertiary"
           />
         ))}
 

@@ -8,11 +8,12 @@ interface Props {
   type: string;
   placeholder: string;
   name: string;
-  config: {
+  config?: {
     required: boolean;
   };
-  register: any;
-  errors: any;
+  register?: any;
+  errors?: any;
+  className?: string;
 }
 
 const FormInput: React.FC<Props> = ({
@@ -23,17 +24,19 @@ const FormInput: React.FC<Props> = ({
   config,
   register,
   errors,
+  className,
 }) => {
+  const j = register ? { ...register(name, config) } : { ...{} };
   return (
     <motion.div
-      className="w-full px-2 py-2 bg-tertiary rounded-xl flex gap-2 lg:py-3 "
+      className={`w-full px-2 py-2  rounded-xl flex gap-2 lg:py-3 ${className} `}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       <div
         className={`px-2 border-r border-gray-400 ${
-          errors[name] && "text-red-600"
+          errors && errors[name] && "text-red-600"
         }`}
       >
         {icon}
@@ -44,7 +47,7 @@ const FormInput: React.FC<Props> = ({
         placeholder={placeholder}
         // name={name}
         autoComplete="off"
-        {...register(name, config)}
+        {...j}
       />
     </motion.div>
   );

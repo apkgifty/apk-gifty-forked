@@ -16,6 +16,7 @@ module.exports = {
         primary: "#0B0E13",
         secondary: "#12181F",
         tertiary: "#161D26",
+        appviolet: "#7995f5",
       },
       backgroundSize: {
         halfauto: "50% auto",
