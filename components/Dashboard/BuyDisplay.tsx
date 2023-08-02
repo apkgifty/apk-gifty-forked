@@ -28,6 +28,7 @@ const BuyDisplay: React.FC<Props> = ({ canCustom, id, accessToken, price }) => {
   };
 
   const buyHandler = async () => {
+    console.log(id);
     const data = {
       product_id: id,
       quantity: quantity,
@@ -41,7 +42,7 @@ const BuyDisplay: React.FC<Props> = ({ canCustom, id, accessToken, price }) => {
         Accept: "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      data: data,
+      data: JSON.stringify(data),
     };
     try {
       const response = await axios(config);
