@@ -19,7 +19,9 @@ const BasicSelect: React.FC<Props> = ({ options, handleSelect }) => {
         className="bg-[#23262F] border text-white text-center text-sm rounded-lg  block w-full p-2.5 "
       >
         {options.map((option) => (
-          <option value={option}>{option}</option>
+          <option value={option} key={option}>
+            {option}
+          </option>
         ))}
       </select>
     </div>
