@@ -9,27 +9,39 @@ import HeadphoneSvg from "@/components/UI/SvgIcons/HeadphoneSvg";
 import InfoSvg from "@/components/UI/SvgIcons/InfoSvg";
 import PaperPlaneSvg from "@/components/UI/SvgIcons/PaperPlaneSvg";
 import PhoneSvg from "@/components/UI/SvgIcons/PhoneSvg";
+import Countdown from "@/components/Dashboard/DashUtils/Countdown";
+import Chat from "@/components/Dashboard/DashUtils/Chat";
 
-const fetchData = async (accessToken: any) => {
-  const response = await axios.post(
-    "https://backend.apkxchange.com/api/product/1/order",
-    { product_id: 2, quantity: 2 },
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-
-  return response.data;
+const runAction = async () => {
+  "use server";
+  console.log("It happened");
 };
 
-const ConfirmOrder = async () => {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get("access");
+const fetchOrder = async (id: string, token: string) => {
+  try {
+    const response = await axios.get(
+      `https://backend.apkxchange.com/api/order/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {}
+};
 
-  const data = await fetchData(accessToken?.value);
+const ConfirmOrder = async ({ searchParams }: { searchParams: any }) => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("access")?.value;
+  const id = searchParams.id;
+
+  if (!id) throw new Error("No order witht that is");
+
+  const data = await fetchOrder(id, accessToken!);
+
   console.log(data);
+  const { price } = data.data;
 
   return (
     <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
@@ -39,18 +51,18 @@ const ConfirmOrder = async () => {
         </div>
         <div className="flex gap-x-6">
           <p className="text-gray-400">
-            Gift Card Value You Will Sell{" "}
+            Gift Card Value
             <span className="text-white">:- $399</span>
           </p>
           <p className="text-gray-400">
-            Cash You WIll Receive <span className="text-white">:- $299</span>
+            Amount To Pay <span className="text-white">:- ${price}</span>
           </p>
         </div>
 
         <div className="mt-14">
           <h4 className="text-lg font-semibold">Order Instructions </h4>
           <ul className="list-disc space-y-2 mt-6 px-8">
-            <li>{data.data.instructions}</li>
+            {/* <li>{data.data.instructions}</li> */}
             {/* <li>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua
@@ -65,11 +77,23 @@ const ConfirmOrder = async () => {
           <p>After Transfering the amount, click on the Transfered button</p>
         </div>
         <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
-          <button className="w-full text-sm px-4 py-2 bg-[#7995f5] rounded-lg">
-            Recieved Payment, Release Gift Card
+          <button className="w-full text-sm px-4 py-2 bg-[#7995f5] rounded-lg lg:w-auto ">
+            Paid, Notify Seller
           </button>
-          <button className="w-full text-sm px-4 py-2">Cancel Transfer</button>
+          <button className="w-full text-sm px-4 py-2 lg:w-auto">
+            Cancel Transfer
+          </button>
         </div>
+
+        <div className="mt-10 flex items-center gap-x-4">
+          <p>Payment time:</p>
+          <Countdown
+            stopTime={data.data.processing_end_time}
+            action={runAction}
+          />
+        </div>
+        <Chat />
+
         {/* <div className="flex mt-10 flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 ">
           <button className="w-full flex justify-center items-center gap-x-2 px-4 py-2 bg-gray-700 rounded-lg text-sm">
             <HeadphoneSvg />

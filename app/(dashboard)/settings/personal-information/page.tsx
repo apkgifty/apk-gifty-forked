@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 import FormInput from "@/components/Form/FormComponents/FormInput";
 import CurrencyIconSvg from "@/components/UI/SvgIcons/CurrencyIconSvg";
 import EditIconSvg from "@/components/UI/SvgIcons/EditIconSvg";
@@ -8,9 +10,27 @@ import MailIconSvg from "@/components/UI/SvgIcons/MailIconSvg";
 import MapIconSvg from "@/components/UI/SvgIcons/MapIconSvg";
 import PhoneSvg from "@/components/UI/SvgIcons/PhoneSvg";
 
+import axios from "axios";
+
 interface Props {}
 
-const PersonalInformationPage: React.FC<Props> = () => {
+const PersonalInformationPage: React.FC<Props> = async () => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("access")?.value;
+
+  let user;
+
+  try {
+    const res = await axios.get("https://backend.apkxchange.com/api/profile", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    console.log(res.data);
+    user = res.data.data;
+  } catch (error) {
+    console.log(error);
+  }
   return (
     <div className="w-full text-white pb-32">
       <div className="w-full flex items-center justify-between pb-6 border-b-2 border-black">
@@ -33,6 +53,8 @@ const PersonalInformationPage: React.FC<Props> = () => {
               placeholder="First Name"
               name="firstname"
               className="bg-primary"
+              defaultValue={user.firstname}
+              readOnly
             />
           </div>
           <div className="w-full lg:w-[45%]">
@@ -42,6 +64,7 @@ const PersonalInformationPage: React.FC<Props> = () => {
               placeholder="Last Name"
               name="lastname "
               className="bg-primary"
+              readOnly
             />
           </div>{" "}
           <div className="w-full lg:w-[45%]">
@@ -51,6 +74,8 @@ const PersonalInformationPage: React.FC<Props> = () => {
               placeholder="Display Name"
               name="displayname"
               className="bg-primary"
+              defaultValue={user.firstname}
+              readOnly
             />
           </div>{" "}
           <div className="w-full lg:w-[45%]">
@@ -60,6 +85,8 @@ const PersonalInformationPage: React.FC<Props> = () => {
               placeholder="User Name"
               name="username"
               className="bg-primary"
+              defaultValue={user.firstname}
+              readOnly
             />
           </div>
         </div>
@@ -75,6 +102,8 @@ const PersonalInformationPage: React.FC<Props> = () => {
               placeholder="Email Address"
               name="email"
               className="bg-primary"
+              defaultValue={user.email}
+              readOnly
             />
           </div>
           <div className="w-full lg:w-[45%]">
@@ -84,6 +113,7 @@ const PersonalInformationPage: React.FC<Props> = () => {
               placeholder="Currency"
               name="currency"
               className="bg-primary"
+              readOnly
             />
           </div>{" "}
           <div className="w-full lg:w-[45%]">
@@ -93,6 +123,8 @@ const PersonalInformationPage: React.FC<Props> = () => {
               placeholder="Location"
               name="location"
               className="bg-primary"
+              defaultValue={user.nationality}
+              readOnly
             />
           </div>{" "}
           <div className="w-full lg:w-[45%]">
@@ -102,6 +134,8 @@ const PersonalInformationPage: React.FC<Props> = () => {
               placeholder="Phone Number"
               name="phonenumber"
               className="bg-primary"
+              defaultValue={user.phone_number}
+              readOnly
             />
           </div>
         </div>

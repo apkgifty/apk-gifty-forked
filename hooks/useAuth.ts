@@ -22,6 +22,7 @@ const useAuth = () => {
       setLoading(true);
       const response = await axios(config);
       console.log(response.data);
+      localStorage.setItem("userInfo", JSON.stringify(response.data));
       setData(response.data);
     } catch (error: any) {
       setError(error.response.data);

@@ -13,7 +13,9 @@ interface Props {
   };
   register?: any;
   errors?: any;
+  defaultValue?: string;
   className?: string;
+  readOnly?: boolean;
 }
 
 const FormInput: React.FC<Props> = ({
@@ -25,6 +27,8 @@ const FormInput: React.FC<Props> = ({
   register,
   errors,
   className,
+  defaultValue,
+  readOnly,
 }) => {
   const j = register ? { ...register(name, config) } : { ...{} };
   return (
@@ -47,6 +51,8 @@ const FormInput: React.FC<Props> = ({
         placeholder={placeholder}
         // name={name}
         autoComplete="off"
+        defaultValue={defaultValue}
+        readOnly={readOnly}
         {...j}
       />
     </motion.div>

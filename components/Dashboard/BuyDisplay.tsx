@@ -30,13 +30,13 @@ const BuyDisplay: React.FC<Props> = ({ canCustom, id, accessToken, price }) => {
   const buyHandler = async () => {
     console.log(id);
     const data = {
-      product_id: id,
       quantity: quantity,
+      product_id: id,
     };
     const config = {
       method: "POST",
       maxBodyLength: Infinity,
-      url: "https://backend.apkxchange.com/api/product/1/order",
+      url: "/api/order",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -47,7 +47,7 @@ const BuyDisplay: React.FC<Props> = ({ canCustom, id, accessToken, price }) => {
     try {
       const response = await axios(config);
       console.log(response.data);
-      router.push("/exchange/confirm-order");
+      router.push(`/exchange/confirm-order/hsdhsg?id=${response.data.data.id}`);
     } catch (error) {
       console.log(error);
     }

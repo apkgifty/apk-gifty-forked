@@ -4,6 +4,9 @@ const nextConfig = {
     domains: ["images.unsplash.com", "placehold.co"],
     dangerouslyAllowSVG: true,
   },
+  experimental: {
+    serverActions: true,
+  },
 };
 
 module.exports = nextConfig;
