@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
   const accessToken = await req.headers.get("Authorization");
+  console.log(body);
 
   let data = JSON.stringify({
     ...body,

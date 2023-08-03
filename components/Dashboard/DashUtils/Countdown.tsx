@@ -23,7 +23,7 @@ const CountdownTimer: React.FC<Props> = ({ stopTime }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [stopTime]);
 
   function getTimeRemaining() {
     const currentTime = new Date().getTime();

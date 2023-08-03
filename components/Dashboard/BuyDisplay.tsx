@@ -19,6 +19,7 @@ interface Props {
 }
 
 const BuyDisplay: React.FC<Props> = ({ canCustom, id, accessToken, price }) => {
+  console.log(accessToken);
   const router = useRouter();
   const [quantity, setQuantity] = useState("1");
   const handleQuantity = (e: any) => {
