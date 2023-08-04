@@ -1,4 +1,4 @@
-// import { cookies } from "next/headers";
+import { cookies } from "next/headers";
 
 import FormInput from "@/components/Form/FormComponents/FormInput";
 import CurrencyIconSvg from "@/components/UI/SvgIcons/CurrencyIconSvg";
@@ -10,25 +10,23 @@ import MailIconSvg from "@/components/UI/SvgIcons/MailIconSvg";
 import MapIconSvg from "@/components/UI/SvgIcons/MapIconSvg";
 import PhoneSvg from "@/components/UI/SvgIcons/PhoneSvg";
 
-import axiosInstance from "@/utils/axios";
+// import axiosInstance from "@/utils/axios";
+import axios from "axios";
 
 interface Props {}
 
 const PersonalInformationPage: React.FC<Props> = async () => {
-  //   const cookieStore = cookies();
-  //   const accessToken = cookieStore.get("access")?.value;
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("access")?.value;
 
   let user;
 
   try {
-    const res = await axiosInstance.get(
-      "https://backend.apkxchange.com/api/profile",
-      {
-        headers: {
-          // Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const res = await axios.get("https://backend.apkxchange.com/api/profile", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     console.log(res.data);
     user = res.data.data;
   } catch (error) {
