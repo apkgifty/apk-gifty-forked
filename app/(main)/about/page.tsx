@@ -22,10 +22,11 @@ const AboutPage = () => {
                 wide variety of gift cards, including popular brands like
                 iTunes, Amazon, and more. What sets us apart is our commitment
                 to providing the best deals, allowing you to buy a $100 iTunes
-                gift card for as low as $80! But that's not all – we go beyond
-                just buying gift cards. ApkXchange also offers a unique service
-                to sell your gift cards for cryptocurrencies like Bitcoin or
-                USDT, providing you with even more flexibility and value.
+                gift card for as low as $80! But that&apos;s not all – we go
+                beyond just buying gift cards. ApkXchange also offers a unique
+                service to sell your gift cards for cryptocurrencies like
+                Bitcoin or USDT, providing you with even more flexibility and
+                value.
               </p>
             </AboutBlock>
           </div>
