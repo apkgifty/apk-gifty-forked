@@ -48,7 +48,7 @@ const BuyDisplay: React.FC<Props> = ({ canCustom, id, accessToken, price }) => {
     try {
       const response = await axios(config);
       console.log(response.data);
-      router.push(`/exchange/confirm-order/hsdhsg?id=${response.data.data.id}`);
+      router.push(`/transaction/order/hsdhsg?id=${response.data.data.id}`);
     } catch (error) {
       console.log(error);
     }

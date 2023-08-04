@@ -18,33 +18,33 @@ const Chat = ({ status }: { status: string }) => {
   const [chats, setChats] = useState<any>([]);
   const [messageToSend, setMessageToSend] = useState("");
 
-  useEffect(() => {
-    const pusher = new Pusher("e597b63b0a16d6c4a2c6", {
-      cluster: "mt1",
-    });
+  // useEffect(() => {
+  //   const pusher = new Pusher("e597b63b0a16d6c4a2c6", {
+  //     cluster: "mt1",
+  //   });
 
-    pusher.connection.bind("error", (err: any) => {
-      if (err) {
-        console.log(err);
-      }
-    });
+  //   pusher.connection.bind("error", (err: any) => {
+  //     if (err) {
+  //       console.log(err);
+  //     }
+  //   });
 
-    const channel = pusher.subscribe("channel-name");
+  //   const channel = pusher.subscribe("channel-name");
 
-    pusher.allChannels().forEach((channel) => console.log(channel));
+  //   pusher.allChannels().forEach((channel) => console.log(channel));
 
-    channel.bind("my-event", (data: any) => {
-      console.log(data);
-      setChats((prevState: any) => [
-        ...prevState,
-        { sender: data.sender, message: data.message },
-      ]);
-    });
+  //   channel.bind("my-event", (data: any) => {
+  //     console.log(data);
+  //     setChats((prevState: any) => [
+  //       ...prevState,
+  //       { sender: data.sender, message: data.message },
+  //     ]);
+  //   });
 
-    return () => pusher.unsubscribe("channel-name");
-  }, []);
+  //   return () => pusher.unsubscribe("channel-name");
+  // }, []);
 
-  console.log(chats);
+  // console.log(chats);
   return (
     <>
       {" "}

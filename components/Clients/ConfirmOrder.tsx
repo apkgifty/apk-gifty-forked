@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useAppDispatch } from "@/redux/hooks";
 
 import Countdown from "../Dashboard/DashUtils/Countdown";
 import DisplayDialog from "../UI/Dialog/Dialog";
@@ -75,7 +76,7 @@ const ConfirmOrder: React.FC<Props> = ({
         </div>
         <div className="flex gap-x-6">
           <p className="text-xs lg:text-base text-gray-400">
-            Gift Card Value
+            Quantity
             <span className="text-white">:- $399</span>
           </p>
           <p className="text-xs lg:text-base text-gray-400">
@@ -106,8 +107,9 @@ const ConfirmOrder: React.FC<Props> = ({
         </div>
         <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
           <button
-            className="w-full text-sm px-4 py-2 bg-[#7995f5] rounded-lg lg:w-auto "
+            className="w-full text-sm px-4 py-2 bg-[#7995f5] rounded-lg lg:w-auto disabled:bg-gray-700 disabled:cursor-not-allowed "
             onClick={handleSubmit}
+            disabled={statuss.toString() === "1"}
           >
             Paid, Notify Seller
           </button>

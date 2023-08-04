@@ -11,7 +11,7 @@ const AboutPage = () => {
   return (
     <>
       <Banner />
-      <div className="px-10 lg:px-24">
+      <div className="px-10 lg:px-24 xl:max-w-[1270px] 2xl:max-w-[1450px] lg:mx-auto">
         <div className="w-full flex flex-col gap-y-4 lg:flex-row lg:gap-y-0 ">
           <div className="flex-1">Image</div>
           <div className="flex-1 pt-8">

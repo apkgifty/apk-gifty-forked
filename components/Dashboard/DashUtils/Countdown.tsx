@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 interface Props {
-  stopTime: string;
+  stopTime: any;
   action?: any;
 }
 

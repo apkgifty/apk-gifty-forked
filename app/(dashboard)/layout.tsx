@@ -3,6 +3,7 @@ import "../globals.css";
 import { Inter } from "next/font/google";
 import Topbar from "@/components/Dashboard/Topbar/Topbar";
 import MobileNav from "@/components/Bottombar/MobileNav";
+import Providers from "@/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
           <Topbar />
 
           <div className="w-full flex flex-col pt-20  py-2 overflow-y-auto  ">
-            {children}
+            <Providers>{children}</Providers>
           </div>
         </div>
         <MobileNav />
