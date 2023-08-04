@@ -1,9 +1,14 @@
 import React from "react";
+
 import axiosInstance from "@/utils/axios";
+
+const debug = require("debug");
 
 const fetchData = async () => {
   try {
     const response = await axiosInstance.get("paymentInstructions");
+    console.log(response);
+    console.log(debug);
     return response.data;
   } catch (error) {
     console.log(error);
