@@ -2,6 +2,16 @@ import Link from "next/link";
 import React from "react";
 import LanguageSelect from "../UI/LanguageSelect";
 import MenuButton from "../UI/MenuButton";
+import NavigationItem from "./NavigationItem";
+
+const mainNavigationLinks = [
+  { title: "Home", link: "#" },
+  { title: "About", link: "/about" },
+  { title: "Buy GiftCards", link: "#" },
+  { title: "Contact", link: "#" },
+  { title: "Promotion", link: "#" },
+  { title: "Blog", link: "#" },
+];
 
 const Navigation = () => {
   return (
@@ -9,24 +19,13 @@ const Navigation = () => {
       <div className="flex gap-12">
         <img src="/images/apklogo.png" />
         <div className="hidden lg:flex space-x-6">
-          <Link href="/" className="hover:underline">
-            Home
-          </Link>
-          <Link href="/" className="hover:underline">
-            Buy Giftcards
-          </Link>
-          <Link href="/" className="hover:underline">
-            Contact
-          </Link>
-          <Link href="/" className="hover:underline">
-            Promotion
-          </Link>
-          <Link href={"/"} className="hover:underline">
-            About
-          </Link>
-          <Link href={"/"} className="hover:underline">
-            Blog
-          </Link>
+          {mainNavigationLinks.map((navItem) => (
+            <NavigationItem
+              key={navItem.title}
+              title={navItem.title}
+              link={navItem.link}
+            />
+          ))}
         </div>
       </div>
       <div className="hidden lg:block">

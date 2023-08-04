@@ -1,24 +1,35 @@
 import Link from "next/link";
+import MainButton from "./MainButton";
 
 interface Props {
   title: string;
   children: React.ReactNode;
   buttonText?: string;
   link?: string;
+  icon?: React.ReactNode;
 }
 
-const AboutBlock: React.FC<Props> = ({ children, title, buttonText, link }) => {
+const AboutBlock: React.FC<Props> = ({
+  children,
+  title,
+  buttonText,
+  link,
+  icon,
+}) => {
   return (
     <div className="text-white w-full flex-1">
-      <h4 className="text-xl font-bold">{title}</h4>
+      <div className="flex gap-4 items-center mb-3">
+        {icon && <span>{icon}</span>}
+        <h4 className="text-base lg:text-xl font-bold">{title}</h4>
+      </div>
       {children}
       {buttonText && (
         <div className="py-2">
-          <Link href={link ? link : "#"}>
-            <button className="text-white px-4 py-1 text-base font-semibold  rounded-2xl bg-gradient-to-b from-[#587BF2] to-[#012B5B]">
-              {buttonText}
-            </button>
-          </Link>
+          <MainButton
+            buttonText={buttonText}
+            link={link}
+            className="text-sm lg:text-base"
+          />
         </div>
       )}
     </div>
