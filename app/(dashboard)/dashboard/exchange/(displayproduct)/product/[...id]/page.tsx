@@ -11,10 +11,16 @@ import { cookies } from "next/headers";
 import axios from "axios";
 import BuyDisplay from "@/components/Dashboard/BuyDisplay";
 
-const ProductDisplay = ({ searchParams }: { searchParams: any }) => {
+const ProductDisplay = ({
+  searchParams,
+  params,
+}: {
+  searchParams: any;
+  params: any;
+}) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access")?.value;
-  console.log(searchParams);
+  const pageType = params.id[0];
 
   return (
     <div
@@ -71,6 +77,7 @@ const ProductDisplay = ({ searchParams }: { searchParams: any }) => {
             accessToken={accessToken}
             id={searchParams.id}
             price={searchParams.price}
+            pageType={pageType}
           />
         </div>
       </div>

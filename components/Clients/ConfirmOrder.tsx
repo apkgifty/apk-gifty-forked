@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useAppDispatch } from "@/redux/hooks";
+import { usePathname } from "next/navigation";
 
 import Countdown from "../Dashboard/DashUtils/Countdown";
 import DisplayDialog from "../UI/Dialog/Dialog";
@@ -51,6 +51,10 @@ const ConfirmOrder: React.FC<Props> = ({
 
   const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState(stopTime);
+
+  // const pathname = usePathname();
+
+  // console.log(pathname)
 
   const handleSubmit = async () => {
     console.log(token);

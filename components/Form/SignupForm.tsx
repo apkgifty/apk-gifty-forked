@@ -62,7 +62,7 @@ const SignupForm = () => {
       console.log(data);
       console.log(data.data.token);
       setCookie("access", data.data.token);
-      router.push("/exchange/buy");
+      router.push("/dashboard/exchange/buy");
     }
   };
   return (
@@ -81,7 +81,7 @@ const SignupForm = () => {
         />
         <Form
           fields={fields}
-          redirectUrl="/exchange/buy"
+          redirectUrl="/dashboard/exchange/buy"
           endpoint="/api/register"
           afterSubmit={afterSubmit}
         />

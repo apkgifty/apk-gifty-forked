@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import axios from "axios";
+// import axios from "axios";
+import axiosInstance from "@/utils/axios";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request, res: Response) {
@@ -22,7 +23,7 @@ export async function POST(req: Request, res: Response) {
   };
 
   try {
-    const response = await axios(config);
+    const response = await axiosInstance(config);
     console.log(response.data);
     return NextResponse.json(response.data);
   } catch (error: any) {

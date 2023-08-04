@@ -42,7 +42,7 @@ const LoginForm = () => {
       console.log(data);
       console.log(data.token);
       setCookie("access", data.token);
-      router.push("/exchange/buy");
+      router.push("/dashboard/exchange/buy");
     }
   };
 
@@ -62,7 +62,7 @@ const LoginForm = () => {
         />
         <Form
           fields={fields}
-          redirectUrl="/exchange/buy"
+          redirectUrl="/dashboard/exchange/buy"
           endpoint="/api/login"
           afterSubmit={afterSubmit}
         />

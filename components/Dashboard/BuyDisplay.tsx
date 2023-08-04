@@ -16,9 +16,16 @@ interface Props {
   id: string;
   price: string;
   accessToken: string | undefined;
+  pageType: string;
 }
 
-const BuyDisplay: React.FC<Props> = ({ canCustom, id, accessToken, price }) => {
+const BuyDisplay: React.FC<Props> = ({
+  canCustom,
+  id,
+  accessToken,
+  price,
+  pageType,
+}) => {
   console.log(accessToken);
   const router = useRouter();
   const [quantity, setQuantity] = useState("1");
@@ -48,7 +55,9 @@ const BuyDisplay: React.FC<Props> = ({ canCustom, id, accessToken, price }) => {
     try {
       const response = await axios(config);
       console.log(response.data);
-      router.push(`/transaction/order/hsdhsg?id=${response.data.data.id}`);
+      router.push(
+        `/dashboard/transaction/order/hsdhsg?id=${response.data.data.id}`
+      );
     } catch (error) {
       console.log(error);
     }
@@ -86,15 +95,18 @@ const BuyDisplay: React.FC<Props> = ({ canCustom, id, accessToken, price }) => {
       </div>
       <div className="px-12 py-8 bg-[#23262F] rounded-xl  text-center space-y-6">
         <div>
-          <BasicSelect
-            options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-            handleSelect={handleQuantity}
-          />
+          {pageType === "buy" && (
+            <BasicSelect
+              options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+              handleSelect={handleQuantity}
+            />
+          )}
 
-          {/* 
-          <BuyAmountInput
-            isFixedPrice={Number(canCustom) === 0 ? false : true}
-          /> */}
+          {pageType === "sell" && (
+            <BuyAmountInput
+              isFixedPrice={Number(canCustom) === 0 ? false : true}
+            />
+          )}
         </div>
         <div>
           <p className="font-light">You have to pay</p>

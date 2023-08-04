@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Props {
   title: string;
@@ -18,11 +21,16 @@ const Product: React.FC<Props> = ({
   imageUrl,
   productInfo,
 }) => {
+  const pathname = usePathname();
+
+  const splitPathname = pathname.split("/");
+  const pathTag = splitPathname[splitPathname.length - 1];
+
   return (
     <div className="w-full lg:w-[300px] ">
       <Link
         href={{
-          pathname: "/exchange/product/sdsdu",
+          pathname: `/dashboard/exchange/product/${pathTag}`,
           query: productInfo,
         }}
       >
