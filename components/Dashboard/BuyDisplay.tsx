@@ -37,7 +37,7 @@ const BuyDisplay: React.FC<Props> = ({
     setQuantity(value);
   };
 
-  console.log(pid);
+  console.log("pid:", pid);
 
   const buyHandler = async () => {
     console.log(id);
