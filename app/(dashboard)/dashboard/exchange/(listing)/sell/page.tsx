@@ -63,15 +63,7 @@ const SellPage = () => {
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 justify-center mx-auto mt-8 xl:max-w-[1700px]">
       {products.map((product) => (
-        <Product
-          key={product.imageUrl}
-          title={product.title}
-          price={product.price}
-          category={product.category}
-          imageUrl={product.imageUrl}
-          iconUrl={product.iconUrl}
-          productInfo={{}}
-        />
+        <Product key={product.imageUrl} productInfo={{}} />
       ))}
     </div>
   );
