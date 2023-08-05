@@ -17,6 +17,7 @@ interface Props {
   price: string;
   accessToken: string | undefined;
   pageType: string;
+  pid: string;
 }
 
 const BuyDisplay: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const BuyDisplay: React.FC<Props> = ({
   accessToken,
   price,
   pageType,
+  pid,
 }) => {
   console.log(accessToken);
   const router = useRouter();
@@ -35,11 +37,13 @@ const BuyDisplay: React.FC<Props> = ({
     setQuantity(value);
   };
 
+  console.log(pid);
+
   const buyHandler = async () => {
     console.log(id);
     const data = {
       quantity: quantity,
-      product_id: id,
+      product_id: pid,
     };
     const config = {
       method: "POST",

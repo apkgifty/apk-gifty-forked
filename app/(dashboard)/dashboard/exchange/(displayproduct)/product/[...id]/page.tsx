@@ -22,6 +22,8 @@ const ProductDisplay = ({
   const accessToken = cookieStore.get("access")?.value;
   const pageType = params.id[0];
 
+  console.log(searchParams.pid);
+
   return (
     <div
       className="flex w-full  
@@ -78,6 +80,7 @@ const ProductDisplay = ({
             id={searchParams.id}
             price={searchParams.price}
             pageType={pageType}
+            pid={searchParams.pid}
           />
         </div>
       </div>

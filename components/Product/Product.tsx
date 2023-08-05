@@ -26,12 +26,15 @@ const Product: React.FC<Props> = ({
   const splitPathname = pathname.split("/");
   const pathTag = splitPathname[splitPathname.length - 1];
 
+  const prod = { ...productInfo, pid: "1" };
+  console.log(prod);
+
   return (
     <div className="w-full lg:w-[300px] ">
       <Link
         href={{
           pathname: `/dashboard/exchange/product/${pathTag}`,
-          query: productInfo,
+          query: prod,
         }}
       >
         {/* <div
