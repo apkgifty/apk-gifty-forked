@@ -14,6 +14,8 @@ interface Props {
   status: string;
   id: string;
   token: string;
+  paymentMethods: any;
+  orderData: any;
 }
 
 const sendRequest = async (id: string, accessToken: string) => {
@@ -41,22 +43,35 @@ const sendRequest = async (id: string, accessToken: string) => {
 };
 
 const ConfirmOrder: React.FC<Props> = ({
-  price,
-  stopTime,
-  status,
-  id,
+  // price,
+  // stopTime,
+  // status,
+  // id,
   token,
+  paymentMethods,
+  orderData,
 }) => {
+  const {
+    price,
+    description,
+    quantity,
+    id,
+    instructions,
+    status,
+    notify_seller,
+    processing_end_time,
+  } = orderData;
+
   const [openDialog, setOpenDialog] = useState(false);
 
   const [statuss, setStatuss] = useState(status);
-  const [stop, setStop] = useState(stopTime);
+  const [stop, setStop] = useState(processing_end_time);
 
   const paths = usePathname().split("/");
 
   const pathname = paths[paths.length - 1];
 
-  // console.log(pathname)
+  console.log(paymentMethods);
 
   const handleSubmit = async () => {
     console.log(token);
@@ -68,7 +83,7 @@ const ConfirmOrder: React.FC<Props> = ({
 
   return (
     <>
-      <div className="px-2 lg:px-10 w-full lg:w-[60%]">
+      <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
         <div className="mt-10 pb-8 flex justify-between">
           <h3 className="text-sm lg:text-lg font-semibold">
             Confirm order information
@@ -87,7 +102,7 @@ const ConfirmOrder: React.FC<Props> = ({
               : pathname === "sell"
               ? "Gift Card Value You Will Sell"
               : null}
-            <span className="text-white">:- $399</span>
+            <span className="text-white">:- {quantity}</span>
           </p>
           <p className="text-xs lg:text-base text-gray-400">
             Amount To Pay <span className="text-white">:- ${price}</span>
@@ -98,16 +113,30 @@ const ConfirmOrder: React.FC<Props> = ({
           <h4 className="text-sm lg:text-lg font-semibold">
             Payment Instructions{" "}
           </h4>
-          <ul className="list-disc space-y-2 mt-6 px-8">
-            {/* <li>{data.data.instructions}</li> */}
-            {/* <li>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua
-        </li>
-        <li>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua
-        </li> */}
+          <ul className=" mt-6 flex justify-between">
+            {paymentMethods.map((method: any) => (
+              <li key={method.id}>
+                <div className="space-y-3">
+                  <div>
+                    <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
+                      {method.channel}
+                    </h5>
+                  </div>
+
+                  <div>
+                    <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
+                      <span></span> {method.body}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
+                      <span className="text-white">Name:</span>{" "}
+                      {method.sub_text}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="mt-12">
@@ -121,9 +150,9 @@ const ConfirmOrder: React.FC<Props> = ({
             onClick={handleSubmit}
             disabled={statuss.toString() === "1"}
           >
-            {pathname === "buyer"
+            {pathname === "buy"
               ? "Paid, Notify Seller "
-              : pathname === "seller"
+              : pathname === "sell"
               ? "Received payment, Release Gift Card"
               : null}
           </button>

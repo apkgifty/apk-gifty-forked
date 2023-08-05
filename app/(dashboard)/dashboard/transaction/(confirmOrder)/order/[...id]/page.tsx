@@ -32,6 +32,20 @@ const fetchOrder = async (id: string, token: string) => {
   } catch (error) {}
 };
 
+const fetchPaymentMethods = async (token: string) => {
+  try {
+    const response = await axios.get(
+      "https://backend.apkxchange.com/api/paymentInstructions",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {}
+};
+
 const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access")?.value;
@@ -39,10 +53,14 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
 
   if (!id) throw new Error("No order with that id");
 
-  const data = await fetchOrder(id, accessToken!);
+  const [orderData, paymentMethods] = await Promise.all([
+    fetchOrder(id, accessToken!),
+    fetchPaymentMethods(accessToken!),
+  ]);
 
-  console.log(data);
-  const { price, processing_end_time, status } = data?.data;
+  console.log(orderData);
+  console.log(paymentMethods);
+  const { price, processing_end_time, status } = orderData?.data;
 
   return (
     <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
@@ -52,6 +70,8 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
         status={status}
         id={id}
         token={accessToken!}
+        orderData={orderData.data}
+        paymentMethods={paymentMethods.data}
       />
     </div>
   );
