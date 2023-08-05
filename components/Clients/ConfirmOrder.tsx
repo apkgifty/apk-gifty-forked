@@ -9,10 +9,10 @@ import Chat from "../Dashboard/DashUtils/Chat";
 import axios from "axios";
 
 interface Props {
-  price: string;
-  stopTime: string;
-  status: string;
-  id: string;
+  // price: string;
+  // stopTime: string;
+  // status: string;
+  // id: string;
   token: string;
   paymentMethods: any;
   orderData: any;
