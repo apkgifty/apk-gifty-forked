@@ -35,7 +35,7 @@ const fetchOrder = async (id: string, token: string) => {
 const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access")?.value;
-  const id = searchParams.id;
+  const id = searchParams.pid;
 
   if (!id) throw new Error("No order with that id");
 

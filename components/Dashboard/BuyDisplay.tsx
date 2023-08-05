@@ -60,7 +60,7 @@ const BuyDisplay: React.FC<Props> = ({
       const response = await axios(config);
       console.log(response.data);
       router.push(
-        `/dashboard/transaction/order/hsdhsg?id=${response.data.data.id}`
+        `/dashboard/transaction/order/hsdhsg?pid=${response.data.data.id}`
       );
     } catch (error) {
       console.log(error);
