@@ -71,7 +71,7 @@ const layout: React.FC<Props> = ({ children }) => {
           />
           {/* <FilterRange /> */}
         </div>
-        {children}
+        <div className="pb-32 lg:pb-10">{children}</div>
       </div>
     </div>
   );

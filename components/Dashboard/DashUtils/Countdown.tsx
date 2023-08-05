@@ -75,7 +75,7 @@ const CountdownTimer: React.FC<Props> = ({ stopTime }) => {
         </div>
       )}
 
-      {timeLeft.total <= 0 && <div>Countdown has ended.</div>}
+      {timeLeft.total < 0 && <div>Countdown has ended.</div>}
     </div>
   );
 };

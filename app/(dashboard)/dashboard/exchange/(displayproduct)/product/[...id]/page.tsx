@@ -22,8 +22,6 @@ const ProductDisplay = ({
   const accessToken = cookieStore.get("access")?.value;
   const pageType = params.id[0];
 
-  console.log(searchParams.pid);
-
   return (
     <div
       className="flex w-full  
@@ -45,7 +43,7 @@ const ProductDisplay = ({
               Before Proceeding to buy/sell your Gift Card or Other Payment
               methods, Follow These Intructions;
             </p>
-            <ol className="list-decimal pl-10 space-y-4 text-gray-400">
+            <ol className="list-decimal space-y-4 text-gray-400 lg:pl-10">
               <li>
                 Remember every trade that occurs on our platform attracts a fee
                 of 1% on every amount. All trades less than $100 will attract a
@@ -73,7 +71,7 @@ const ProductDisplay = ({
             />
           </div>
         </div>
-        <div className="lg:flex-[35%] flex-shrink flex flex-col gap-y-8 px-12 mb-16 lg:mb-0 ">
+        <div className="lg:flex-[35%] pb-32 flex-shrink flex flex-col gap-y-8 px-12 mb-16 lg:mb-0 lg:pb-2 ">
           <BuyDisplay
             canCustom={searchParams.can_custom}
             accessToken={accessToken}
