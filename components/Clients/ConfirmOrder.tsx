@@ -52,7 +52,9 @@ const ConfirmOrder: React.FC<Props> = ({
   const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState(stopTime);
 
-  // const pathname = usePathname();
+  const paths = usePathname().split("/");
+
+  const pathname = paths[paths.length - 1];
 
   // console.log(pathname)
 
@@ -80,7 +82,11 @@ const ConfirmOrder: React.FC<Props> = ({
         </div>
         <div className="flex gap-x-6">
           <p className="text-xs lg:text-base text-gray-400">
-            Quantity
+            {pathname === "buy"
+              ? "Quantity"
+              : pathname === "sell"
+              ? "Gift Card Value You Will Sell"
+              : null}
             <span className="text-white">:- $399</span>
           </p>
           <p className="text-xs lg:text-base text-gray-400">
@@ -115,7 +121,11 @@ const ConfirmOrder: React.FC<Props> = ({
             onClick={handleSubmit}
             disabled={statuss.toString() === "1"}
           >
-            Paid, Notify Seller
+            {pathname === "buyer"
+              ? "Paid, Notify Seller "
+              : pathname === "seller"
+              ? "Received payment, Release Gift Card"
+              : null}
           </button>
           <button className="w-full text-sm px-4 py-2 lg:w-auto">
             Cancel Transfer

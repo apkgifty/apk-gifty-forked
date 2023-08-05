@@ -5,29 +5,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface Props {
-  title: string;
-  price: string;
-  category: string;
-  iconUrl: string;
-  imageUrl: string;
   productInfo: any;
 }
 
 const Product: React.FC<Props> = ({
-  title,
-  price,
-  category,
-  iconUrl,
-  imageUrl,
+  // title,
+  // price,
+  // category,
+  // iconUrl,
+  // imageUrl,
   productInfo,
 }) => {
+  const { name, price, category, icon, image_url } = productInfo;
+
   const pathname = usePathname();
 
   const splitPathname = pathname.split("/");
   const pathTag = splitPathname[splitPathname.length - 1];
 
+  // Add pid to params so it can be picked from url
   const prod = { ...productInfo, pid: productInfo.id };
-  console.log(prod);
 
   return (
     <div className="w-full lg:w-[300px] ">
@@ -42,7 +39,7 @@ const Product: React.FC<Props> = ({
         style={{ background: `url(${imageUrl})` }}
       ></div> */}
         <Image
-          src={imageUrl}
+          src={image_url}
           alt="apple card"
           width={0}
           height={0}
@@ -50,19 +47,19 @@ const Product: React.FC<Props> = ({
           // style={{ objectFit: "contain" }}
         />
         <div className="flex justify-between border-b border-gray-600 py-3">
-          <p className="text-white text-sm">{title}</p>
+          <p className="text-white text-sm">{name}</p>
           <p className="text-green-400 text-xs px-1 py-1 border-2 border-green-400 rounded-sm">
             ${price}
           </p>
         </div>
         <div className="py-2 flex justify-between items-center gap-x-2">
           <div className="flex items-center gap-x-2">
-            <img src={iconUrl} width={20} />
-            <p className="text-xs text-white">{category}</p>
+            <img src={"/apple.svg"} width={20} />
+            <p className="text-xs text-white">{"Walmart"}</p>
           </div>
           <div>
             <span className="text-white text-xs">
-              Qty: ${productInfo.quantity}
+              Qty: {productInfo.quantity}
             </span>
           </div>
         </div>

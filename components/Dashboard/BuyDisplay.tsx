@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 import CheckedSvg from "@/components/UI/SvgIcons/CheckedSvg";
 import Toggle from "@/components/UI/Toggle";
@@ -28,19 +28,21 @@ const BuyDisplay: React.FC<Props> = ({
   pageType,
   pid,
 }) => {
-  console.log(accessToken);
   const router = useRouter();
+
   const [quantity, setQuantity] = useState("1");
+
   const handleQuantity = (e: any) => {
     const value = e.target.value;
 
     setQuantity(value);
   };
 
-  console.log("pid:", pid);
+  const paths = usePathname().split("/");
+
+  const pathname = paths[paths.length - 1];
 
   const buyHandler = async () => {
-    console.log(id);
     const data = {
       quantity: quantity,
       product_id: pid,
@@ -60,7 +62,7 @@ const BuyDisplay: React.FC<Props> = ({
       const response = await axios(config);
       console.log(response.data);
       router.push(
-        `/dashboard/transaction/order/hsdhsg?pid=${response.data.data.id}`
+        `/dashboard/transaction/order/${pathname}?pid=${response.data.data.id}`
       );
     } catch (error) {
       console.log(error);

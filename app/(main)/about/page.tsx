@@ -31,7 +31,7 @@ const AboutPage = () => {
             </AboutBlock>
           </div>
         </div>
-        <div className="w-full flex flex-col gap-y-8  mt-12 lg:flex-row lg:items-center lg:gap-x-24 lg:gap-y-0">
+        <div className="w-full flex flex-col gap-y-8  mt-12 lg:flex-row lg:items-start lg:gap-x-24 lg:gap-y-0">
           <AboutBlock title="Secure & Efficient" icon={<AboutSecureSvg />}>
             <p className="text-sm lg:text-base">
               Trust is paramount to us. Our secure system ensures your
