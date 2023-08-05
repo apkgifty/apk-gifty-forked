@@ -58,17 +58,13 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
     fetchPaymentMethods(accessToken!),
   ]);
 
-  console.log(orderData);
-  console.log(paymentMethods);
+  // console.log(orderData);
+  // console.log(paymentMethods);
   const { price, processing_end_time, status } = orderData?.data;
 
   return (
     <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
       <ConfirmOrder
-        // price={price}
-        // stopTime={processing_end_time}
-        // status={status}
-        // id={id}
         token={accessToken!}
         orderData={orderData.data}
         paymentMethods={paymentMethods.data}

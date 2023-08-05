@@ -9,10 +9,6 @@ import Chat from "../Dashboard/DashUtils/Chat";
 import axios from "axios";
 
 interface Props {
-  // price: string;
-  // stopTime: string;
-  // status: string;
-  // id: string;
   token: string;
   paymentMethods: any;
   orderData: any;
@@ -43,10 +39,6 @@ const sendRequest = async (id: string, accessToken: string) => {
 };
 
 const ConfirmOrder: React.FC<Props> = ({
-  // price,
-  // stopTime,
-  // status,
-  // id,
   token,
   paymentMethods,
   orderData,
