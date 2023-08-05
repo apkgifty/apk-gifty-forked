@@ -59,10 +59,11 @@ const CountdownTimer: React.FC<Props> = ({ stopTime }) => {
     // Add your code here to handle the action when the countdown ends
     console.log("Countdown has ended. Do something here.");
   }
+  console.log(stopTime);
 
   return (
     <div>
-      {timeLeft.total > 0 ? (
+      {timeLeft.total > 0 && (
         <div className="space-x-1">
           <span className="text-2xl font-bold text-violet-500">
             {formatTime(timeLeft.minutes)}
@@ -72,9 +73,9 @@ const CountdownTimer: React.FC<Props> = ({ stopTime }) => {
             {formatTime(timeLeft.seconds)}
           </span>
         </div>
-      ) : (
-        <div>Countdown has ended.</div>
       )}
+
+      {timeLeft.total <= 0 && <div>Countdown has ended.</div>}
     </div>
   );
 };
