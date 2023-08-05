@@ -26,7 +26,7 @@ const Product: React.FC<Props> = ({
   const splitPathname = pathname.split("/");
   const pathTag = splitPathname[splitPathname.length - 1];
 
-  const prod = { ...productInfo, pid: "1" };
+  const prod = { ...productInfo, pid: productInfo.id };
   console.log(prod);
 
   return (
@@ -61,7 +61,9 @@ const Product: React.FC<Props> = ({
             <p className="text-xs text-white">{category}</p>
           </div>
           <div>
-            <span className="text-white text-xs">Qty: 14</span>
+            <span className="text-white text-xs">
+              Qty: ${productInfo.quantity}
+            </span>
           </div>
         </div>
       </Link>
