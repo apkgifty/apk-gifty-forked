@@ -5,8 +5,6 @@ import Topbar from "@/components/Dashboard/Topbar/Topbar";
 import MobileNav from "@/components/Bottombar/MobileNav";
 import Providers from "@/redux/provider";
 
-import "@/polyfills";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

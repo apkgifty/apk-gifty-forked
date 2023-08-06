@@ -9,8 +9,6 @@ import EllipsesSvg from "@/components/UI/SvgIcons/EllipsesSvg";
 import PaperPlaneSvg from "@/components/UI/SvgIcons/PaperPlaneSvg";
 import AddSvg from "@/components/UI/SvgIcons/AddSvg";
 
-import { ChatEngineWrapper, Socket, ChatFeed } from "react-chat-engine";
-
 const pusherKey = process.env.NEXT_PUBLIC_PUSHER_APP_KEY;
 const cluster = process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER!;
 
