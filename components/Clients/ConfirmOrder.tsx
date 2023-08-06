@@ -7,12 +7,49 @@ import Countdown from "../Dashboard/DashUtils/Countdown";
 import DisplayDialog from "../UI/Dialog/Dialog";
 import Chat from "../Dashboard/DashUtils/Chat";
 import axios from "axios";
+import { headers } from "next/headers";
 
 interface Props {
   token: string;
   paymentMethods: any;
   orderData: any;
 }
+
+const getCreateUser = async () => {
+  const response = await axios.put(
+    "https://api.chatengine.io/users/",
+    {
+      username: "gg@g.com",
+      secret: "gg@g.com",
+      email: "gg@g.com",
+    },
+    {
+      headers: {
+        "Private-KEY": "6a558d7d-b985-4e25-a83f-2d3f4d97074e",
+      },
+    }
+  );
+
+  return response.data;
+};
+
+const getCreateChat = async () => {
+  const response = await axios.put(
+    "https://api.chatengine.io/chats/",
+    {
+      usernames: ["huntdavid175@gmail.com", "gg@g.com"],
+
+      is_direct_chat: true,
+    },
+    {
+      headers: {
+        "Private-KEY": "6a558d7d-b985-4e25-a83f-2d3f4d97074e",
+      },
+    }
+  );
+
+  return response.data;
+};
 
 const sendRequest = async (id: string, accessToken: string) => {
   let data = JSON.stringify({});
@@ -59,6 +96,8 @@ const ConfirmOrder: React.FC<Props> = ({
   const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState(processing_end_time);
 
+  const [chat, setChat] = useState(null);
+
   const paths = usePathname().split("/");
 
   const pathname = paths[paths.length - 1];
@@ -66,8 +105,9 @@ const ConfirmOrder: React.FC<Props> = ({
   console.log(paymentMethods);
 
   const handleSubmit = async () => {
-    console.log(token);
     const res = await sendRequest(id, token);
+    console.log(await getCreateUser());
+    setChat(await getCreateChat());
     console.log(res.data);
     setStatuss(res.data.status);
     setStop(res.data.processing_end_time);
@@ -176,7 +216,7 @@ const ConfirmOrder: React.FC<Props> = ({
       </button>
     </div> */}
       </div>
-      <Chat status={statuss} />
+      <Chat status={statuss} chat={chat} />
       <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}

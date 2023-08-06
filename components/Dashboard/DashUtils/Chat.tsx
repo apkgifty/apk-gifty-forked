@@ -9,10 +9,13 @@ import EllipsesSvg from "@/components/UI/SvgIcons/EllipsesSvg";
 import PaperPlaneSvg from "@/components/UI/SvgIcons/PaperPlaneSvg";
 import AddSvg from "@/components/UI/SvgIcons/AddSvg";
 
+import { ChatEngineWrapper, Socket, ChatFeed } from "react-chat-engine";
+
 const pusherKey = process.env.NEXT_PUBLIC_PUSHER_APP_KEY;
 const cluster = process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER!;
 
-const Chat = ({ status }: { status: string }) => {
+const Chat = ({ status, chat }: { status: string; chat: any }) => {
+  console.log(chat);
   //   console.log(pusherKey, cluster);
   console.log(status);
   const [chats, setChats] = useState<any>([]);
@@ -47,9 +50,17 @@ const Chat = ({ status }: { status: string }) => {
   // console.log(chats);
   return (
     <>
-      {" "}
       {status.toString() === "1" ? (
-        <div className="w-full  flex-grow flex flex-col  h-[750px] relative mt-20 py-4  lg:border-l-2 lg:border-tertiary lg:w-[35%] lg:mt-0 lg:h-full ">
+        <div className="w-full   flex-grow flex flex-col  h-[750px] relative mt-20 py-4  lg:border-l-2 lg:border-tertiary lg:w-[35%] lg:mt-0 lg:h-full ">
+          {/* <ChatEngineWrapper>
+            <Socket
+              projectID={"aac6336c-0184-4516-9c7f-2725ca8ec69a"}
+              userName={"huntdavid175@gmail.com"}
+              userSecret={"huntdavid175@gmail.com"}
+            />
+            <ChatFeed activeChat={chat?.id} />
+          </ChatEngineWrapper> */}
+
           <div className="w-full flex flex-1 justify-between px-4  ">
             <div className="flex gap-x-3">
               <div className="">
