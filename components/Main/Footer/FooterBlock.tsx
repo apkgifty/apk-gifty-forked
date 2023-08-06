@@ -12,7 +12,7 @@ const FooterBlock: React.FC<Props> = ({ headerTitle, items }) => {
       <h5 className="text-base font-semibold pb-2">{headerTitle}</h5>
       <ul className="space-y-1">
         {items.map((item) => (
-          <li className="text-sm font-thin">
+          <li key={item.title} className="text-sm font-thin">
             <Link href={item.url}>{item.title}</Link>
           </li>
         ))}
