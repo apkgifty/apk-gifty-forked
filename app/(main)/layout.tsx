@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 import Navbar from "@/components/Nav/Navbar";
+import PageFooter from "@/components/Main/Footer/PageFooter";
 
 export const metadata = {
   title: "APK Exchange",
@@ -19,6 +20,9 @@ export default function RootLayout({
       <body className={`${inter.className} bg-tertiary`}>
         <Navbar />
         <div className="w-full">{children}</div>
+        {/* <div className="hidden lg:block"> */}
+        <PageFooter />
+        {/* </div> */}
       </body>
     </html>
   );

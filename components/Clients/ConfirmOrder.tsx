@@ -7,63 +7,60 @@ import Countdown from "../Dashboard/DashUtils/Countdown";
 import DisplayDialog from "../UI/Dialog/Dialog";
 import Chat from "../Dashboard/DashUtils/Chat";
 import axios from "axios";
-import { headers } from "next/headers";
 
 interface Props {
-  token: string;
   paymentMethods: any;
   orderData: any;
 }
 
-const getCreateUser = async () => {
-  const response = await axios.put(
-    "https://api.chatengine.io/users/",
-    {
-      username: "gg@g.com",
-      secret: "gg@g.com",
-      email: "gg@g.com",
-    },
-    {
-      headers: {
-        "Private-KEY": "6a558d7d-b985-4e25-a83f-2d3f4d97074e",
-      },
-    }
-  );
+// const getCreateUser = async () => {
+//   const response = await axios.put(
+//     "https://api.chatengine.io/users/",
+//     {
+//       username: "gg@g.com",
+//       secret: "gg@g.com",
+//       email: "gg@g.com",
+//     },
+//     {
+//       headers: {
+//         "Private-KEY": "6a558d7d-b985-4e25-a83f-2d3f4d97074e",
+//       },
+//     }
+//   );
 
-  return response.data;
-};
+//   return response.data;
+// };
 
-const getCreateChat = async () => {
-  const response = await axios.put(
-    "https://api.chatengine.io/chats/",
-    {
-      usernames: ["huntdavid175@gmail.com", "gg@g.com"],
+// const getCreateChat = async () => {
+//   const response = await axios.put(
+//     "https://api.chatengine.io/chats/",
+//     {
+//       usernames: ["huntdavid175@gmail.com", "gg@g.com"],
 
-      is_direct_chat: true,
-    },
-    {
-      headers: {
-        "Private-KEY": "6a558d7d-b985-4e25-a83f-2d3f4d97074e",
-      },
-    }
-  );
+//       is_direct_chat: true,
+//     },
+//     {
+//       headers: {
+//         "Private-KEY": "6a558d7d-b985-4e25-a83f-2d3f4d97074e",
+//       },
+//     }
+//   );
 
-  return response.data;
-};
+//   return response.data;
+// };
 
-const sendRequest = async (id: string, accessToken: string) => {
-  let data = JSON.stringify({});
+const sendRequest = async (id: string) => {
+  let data = JSON.stringify({ id });
 
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: `https://backend.apkxchange.com/api/orders/${id}/notifyseller`,
+    url: "/api/notify-seller",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      Authorization: `Bearer ${accessToken}`,
     },
-    // data: data,
+    data: data,
   };
 
   try {
@@ -75,11 +72,7 @@ const sendRequest = async (id: string, accessToken: string) => {
   }
 };
 
-const ConfirmOrder: React.FC<Props> = ({
-  token,
-  paymentMethods,
-  orderData,
-}) => {
+const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
   const {
     price,
     description,
@@ -105,9 +98,8 @@ const ConfirmOrder: React.FC<Props> = ({
   console.log(paymentMethods);
 
   const handleSubmit = async () => {
-    const res = await sendRequest(id, token);
-    console.log(await getCreateUser());
-    setChat(await getCreateChat());
+    const res = await sendRequest(id);
+
     console.log(res.data);
     setStatuss(res.data.status);
     setStop(res.data.processing_end_time);

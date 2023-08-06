@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import SideNavItem from "./SideNavItem";
 import SideNavItems from "./SideNavItems";
 import InboxSvg from "../../UI/SvgIcons/InboxSvg";
@@ -6,6 +8,12 @@ import VerifiedSvg from "../../UI/SvgIcons/VerifiedSvg";
 import SecondaryNavs from "./SecondaryNavs";
 
 const Sidebar = () => {
+  const [userInfo, setUserInfo] = useState<any>(null);
+  useEffect(() => {
+    const user: any = localStorage.getItem("userInfo");
+    console.log(JSON.parse(user));
+    setUserInfo(JSON.parse(user));
+  }, []);
   return (
     <aside className="hidden  lg:flex flex-col w-64 h-screen py-8 overflow-y-auto bg-secondary  border-r rtl:border-r-0 rtl:border-l border-tertiary">
       <div className="w-full flex justify-center items-center cursor-pointer gap-x-1 border-b border-[#161D26] pb-8">
@@ -28,7 +36,7 @@ const Sidebar = () => {
 
         <div className="text-center">
           <h1 className="text-sm font-semibold text-white capitalize ">
-            APK William
+            {userInfo?.user?.firstname}
           </h1>
           <div className="flex justify-center items-center gap-x-1">
             <p className="text-xs text-white font-light ">Verified </p>

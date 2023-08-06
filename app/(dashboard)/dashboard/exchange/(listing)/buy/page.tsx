@@ -86,9 +86,12 @@ const BuyPage = async () => {
 
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
-      {products.map((product: any) => (
-        <Product key={product.id} productInfo={product} />
-      ))}
+      {products.map(
+        (product: any) =>
+          product.type === "buy" && (
+            <Product key={product.id} productInfo={product} />
+          )
+      )}
     </div>
   );
 };

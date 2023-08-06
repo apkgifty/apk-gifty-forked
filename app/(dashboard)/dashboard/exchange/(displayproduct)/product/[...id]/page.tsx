@@ -55,7 +55,7 @@ const ProductDisplay = ({
               </li>
               <li>
                 The card or the code of your order will be uploaded in the chat
-                section of the this trade. Make sure to use the card within the
+                section of this trade. Make sure to use the card within the
                 timeframe provided for you.
               </li>
             </ol>
