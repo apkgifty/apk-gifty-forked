@@ -31,6 +31,7 @@ const Navigation = () => {
             width={100}
             height={100}
             alt="apk logo"
+            priority
             className="-mt-2"
           />
         </motion.div>
