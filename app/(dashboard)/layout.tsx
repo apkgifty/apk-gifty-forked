@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import Topbar from "@/components/Dashboard/Topbar/Topbar";
 import MobileNav from "@/components/Bottombar/MobileNav";
 import Providers from "@/redux/provider";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +19,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("access");
+
+  if (accessToken === undefined) {
+    return redirect("/login");
+  }
   return (
     <html lang="en">
       <body

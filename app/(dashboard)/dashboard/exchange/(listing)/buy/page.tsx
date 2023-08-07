@@ -1,6 +1,7 @@
 import React from "react";
 import { cookies } from "next/headers";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 import Product from "@/components/Product/Product";
 
@@ -80,7 +81,10 @@ const fetchProducts = async (accessToken: any) => {
 const BuyPage = async () => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access");
-  console.log(accessToken?.value);
+
+  // if (accessToken === undefined) {
+  //   return redirect("/login");
+  // }
 
   const products = await fetchProducts(accessToken?.value);
 

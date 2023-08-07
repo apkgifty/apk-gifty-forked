@@ -6,12 +6,21 @@ import NotificationSvg from "@/components/UI/SvgIcons/NotificationSvg";
 import PaymentIconSvg from "@/components/UI/SvgIcons/PaymentIconSvg";
 import SecurityIconSvg from "@/components/UI/SvgIcons/SecurityIconSvg";
 import UserIconSvg from "@/components/UI/SvgIcons/UserIconSvg";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 interface Props {
   children: React.ReactNode;
 }
 
 const layout: React.FC<Props> = ({ children }) => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("access");
+
+  if (accessToken === undefined) {
+    return redirect("/login");
+  }
+
   return (
     <div className="w-full flex flex-col lg:flex-row ">
       <div className="hidden lg:flex flex-col w-full lg:w-[35%] text-white gap-y-8 px-8 pt-10">
