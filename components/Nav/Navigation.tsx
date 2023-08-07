@@ -48,7 +48,7 @@ const Navigation = () => {
             </button>
           </Link>
         </div>
-        {/* <LanguageSelect /> */}
+        <LanguageSelect />
       </div>
       <div className="lg:hidden">
         <MenuButton />
