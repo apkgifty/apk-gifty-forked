@@ -18,7 +18,7 @@ const Navigation = () => {
   return (
     <div className="w-full flex justify-between items-center ">
       <div className="flex gap-12">
-        <Image
+        <img
           src="/images/apklogo-new.png"
           width={100}
           height={100}
