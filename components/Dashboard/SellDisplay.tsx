@@ -20,7 +20,7 @@ interface Props {
   pid: string;
 }
 
-const BuyDisplay: React.FC<Props> = ({
+const SellDisplay: React.FC<Props> = ({
   canCustom,
   id,
   accessToken,
@@ -30,23 +30,15 @@ const BuyDisplay: React.FC<Props> = ({
 }) => {
   const router = useRouter();
 
-  const [quantity, setQuantity] = useState("1");
-
-  const handleQuantity = (e: any) => {
-    const value = e.target.value;
-
-    setQuantity(value);
-  };
-
   const paths = usePathname().split("/");
 
   const pathname = paths[paths.length - 1];
 
-  const buyHandler = async () => {
+  const sellHandler = async (amount: string) => {
     const data = {
-      quantity: quantity,
+      price: amount,
       product_id: pid,
-      type: "buyorder",
+      type: "sellorder",
     };
     const config = {
       method: "POST",
@@ -69,9 +61,15 @@ const BuyDisplay: React.FC<Props> = ({
       console.log(error);
     }
   };
+
+  const [amount, setAmount] = useState("");
+
+  const handleAmount = (e: any) => {
+    const val = e.target.value;
+    setAmount(val);
+  };
   return (
     <>
-      {" "}
       <div className="flex justify-between">
         <h3 className="text-xl">Buy in Custom Amount</h3>
 
@@ -102,18 +100,15 @@ const BuyDisplay: React.FC<Props> = ({
       </div>
       <div className="px-12 py-8 bg-[#23262F] rounded-xl  text-center space-y-6">
         <div>
-          {pageType === "buy" && (
-            <BasicSelect
-              options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-              handleSelect={handleQuantity}
-            />
-          )}
+          <BuyAmountInput
+            isFixedPrice={Number(canCustom) === 0 ? false : true}
+            handleAmount={handleAmount}
+            amount={amount}
+          />
         </div>
         <div>
           <p className="font-light">You have to pay</p>
-          <p className="text-3xl font-semibold text-[#587BF2]">
-            ${Number(quantity) * Number(price)}
-          </p>
+          <p className="text-3xl font-semibold text-[#587BF2]">${amount}</p>
         </div>
       </div>
       <div className="flex gap-x-3 items-center">
@@ -122,16 +117,18 @@ const BuyDisplay: React.FC<Props> = ({
         </div>
         {/* <Link href={"/exchange/confirm-order"} className=" w-full"> */}
         <button
-          onClick={buyHandler}
+          onClick={() => {
+            sellHandler(amount);
+          }}
           type="button"
           className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7]"
         >
           Buy The Gift Card
         </button>
         {/* </Link> */}
-      </div>{" "}
+      </div>
     </>
   );
 };
 
-export default BuyDisplay;
+export default SellDisplay;

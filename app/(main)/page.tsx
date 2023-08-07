@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div className="w-full text-white">
       <div
-        className="w-full py-[74px] lg:h-[480px] bg-cover bg-no-repeat bg-right"
+        className="w-full py-[74px] lg:h-[480px] min-[1750px]:h-[900px] flex items-center bg-cover bg-no-repeat bg-right"
         style={{
           backgroundImage: "url(/images/home-banner.webp)",
         }}
@@ -31,9 +31,9 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col items-center gap-y-8 py-12 ">
-        <div className="w-full flex flex-col items-center">
-          <div className="bg-white px-6 w-[90%] lg:px-12 lg:w-[700px] py-4 text-black rounded-full inline-flex gap-x-2">
+      <div className="w-full flex flex-col items-center gap-y-10 py-24 lg:gap-y-20 lg:py-44 ">
+        <div className="w-full flex flex-col  items-center">
+          <div className="bg-white  px-6 w-[90%] lg:px-12 lg:w-[700px] py-4 text-black rounded-full inline-flex flex-col gap-x-2 lg:flex-row">
             <p className="w-[110] lg:w-auto text-sm lg:text-2xl font-bold">
               Need Gift Cards?
             </p>
@@ -58,17 +58,18 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      {/* 
-      <div className="w-full  -mt-80">
-        <Image
+
+      <div className="w-full -mt-28  lg:-mt-80">
+        {/* <Image
           src={"/images/midbanner.webp"}
           width={0}
           height={0}
-          sizes="100vh"
+          sizes="30vh"
           style={{ width: "100%", height: "auto" }}
           alt="mid banner"
-        />
-      </div> */}
+        /> */}
+        <img src="/images/midbanner.webp" alt="mid banner" />
+      </div>
       <div
         className="bg-cover bg-no-repeat bg-center py-20"
         style={{
@@ -77,7 +78,7 @@ const HomePage = () => {
         }}
       >
         <AppLayout>
-          <div className="flex flex-col justify-center gap-y-2 items-center lg:flex-row lg:gap-x-8 lg:gap-y-0">
+          <div className="flex flex-col justify-center gap-y-2 items-center  lg:flex-row lg:gap-x-8 lg:gap-y-0">
             <div>
               <p className="text-sm lg:text-xl font-semibold">
                 Perform your first <br /> Transaction on

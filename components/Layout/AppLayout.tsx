@@ -3,7 +3,7 @@ interface Props {
 }
 
 const AppLayout: React.FC<Props> = ({ children }) => {
-  return <div className="w-full md:max-w-5xl mx-auto">{children}</div>;
+  return <div className="w-full md:max-w-6xl mx-auto">{children}</div>;
 };
 
 export default AppLayout;

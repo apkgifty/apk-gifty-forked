@@ -24,7 +24,6 @@ const SellPage = async () => {
   if (accessToken === undefined) {
     return redirect("/login");
   }
-  console.log(accessToken?.value);
 
   const products = await fetchProducts(accessToken?.value);
   return (

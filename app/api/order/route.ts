@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  console.log(body);
 
   let data = JSON.stringify({
     ...body,
@@ -14,7 +13,7 @@ export async function POST(req: Request, res: Response) {
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: "https://backend.apkxchange.com/api/product/order",
+    url: `https://backend.apkxchange.com/api/product/${body.type}`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

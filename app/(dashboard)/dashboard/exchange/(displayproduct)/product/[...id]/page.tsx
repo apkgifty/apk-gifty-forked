@@ -10,6 +10,7 @@ import { cookies } from "next/headers";
 
 import axios from "axios";
 import BuyDisplay from "@/components/Dashboard/BuyDisplay";
+import SellDisplay from "@/components/Dashboard/SellDisplay";
 
 const ProductDisplay = ({
   searchParams,
@@ -72,14 +73,27 @@ const ProductDisplay = ({
           </div>
         </div>
         <div className="lg:flex-[35%] pb-32 flex-shrink flex flex-col gap-y-8 px-12 mb-16 lg:mb-0 lg:pb-2 ">
-          <BuyDisplay
-            canCustom={searchParams.can_custom}
-            accessToken={accessToken}
-            id={searchParams.id}
-            price={searchParams.price}
-            pageType={pageType}
-            pid={searchParams.pid}
-          />
+          {pageType === "buy" && (
+            <BuyDisplay
+              canCustom={searchParams.can_custom}
+              accessToken={accessToken}
+              id={searchParams.id}
+              price={searchParams.price}
+              pageType={pageType}
+              pid={searchParams.pid}
+            />
+          )}
+
+          {pageType === "sell" && (
+            <SellDisplay
+              canCustom={searchParams.can_custom}
+              accessToken={accessToken}
+              id={searchParams.id}
+              price={searchParams.price}
+              pageType={pageType}
+              pid={searchParams.pid}
+            />
+          )}
         </div>
       </div>
     </div>

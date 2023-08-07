@@ -19,46 +19,58 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
   const [chats, setChats] = useState<any>([]);
   const [messageToSend, setMessageToSend] = useState("");
 
-  // useEffect(() => {
-  //   const pusher = new Pusher("e597b63b0a16d6c4a2c6", {
-  //     cluster: "mt1",
-  //   });
+  useEffect(() => {
+    const pusher = new Pusher("e597b63b0a16d6c4a2c6", {
+      cluster: "mt1",
+      channelAuthorization: {
+        endpoint: "https://backend.apkxchange.com/api/chat/auth",
+        transport: "ajax",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${"56|GHk1YnTPxA67gK7HJtS4wo7enuI9DdS7UhmfbXLF"}`,
+        },
+      },
+      userAuthentication: {
+        endpoint: "https://backend.apkxchange.com/api/chat/auth",
+        transport: "ajax",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer 56|GHk1YnTPxA67gK7HJtS4wo7enuI9DdS7UhmfbXLF`,
+        },
+      },
+    });
 
-  //   pusher.connection.bind("error", (err: any) => {
-  //     if (err) {
-  //       console.log(err);
-  //     }
-  //   });
+    pusher.signin();
 
-  //   const channel = pusher.subscribe("channel-name");
+    pusher.connection.bind("error", (err: any) => {
+      if (err) {
+        console.log(err);
+      }
+    });
 
-  //   pusher.allChannels().forEach((channel) => console.log(channel));
+    const channel = pusher.subscribe("private-chatify.2");
+    console.log(channel);
 
-  //   channel.bind("my-event", (data: any) => {
-  //     console.log(data);
-  //     setChats((prevState: any) => [
-  //       ...prevState,
-  //       { sender: data.sender, message: data.message },
-  //     ]);
-  //   });
+    pusher.allChannels().forEach((channel) => console.log(channel));
 
-  //   return () => pusher.unsubscribe("channel-name");
-  // }, []);
+    channel.bind("messaging", (data: any) => {
+      console.log(data);
+      setChats((prevState: any) => [
+        ...prevState,
+        { sender: data.sender, message: data.message },
+      ]);
+    });
 
-  // console.log(chats);
+    return () => pusher.unsubscribe("channel-name");
+  }, []);
+
+  console.log(chats);
+
+  const handleChatSubmit = () => {};
   return (
     <>
       {status.toString() === "1" ? (
         <div className="w-full   flex-grow flex flex-col  h-[750px] relative mt-20 py-4  lg:border-l-2 lg:border-tertiary lg:w-[35%] lg:mt-0 lg:h-full ">
-          {/* <ChatEngineWrapper>
-            <Socket
-              projectID={"aac6336c-0184-4516-9c7f-2725ca8ec69a"}
-              userName={"huntdavid175@gmail.com"}
-              userSecret={"huntdavid175@gmail.com"}
-            />
-            <ChatFeed activeChat={chat?.id} />
-          </ChatEngineWrapper> */}
-
           <div className="w-full flex flex-1 justify-between px-4  ">
             <div className="flex gap-x-3">
               <div className="">
@@ -93,256 +105,19 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
               <p>I really love your work, great job</p>
               <span className="text-gray-400 text-xs mt-6 block">03:49PM</span>
             </div>
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Hi Tom</p>
+            {/* {chats.map((chat: any) => (
+              <div key={chat.message} className="my-10 flex justify-end ">
+                <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
+                  <p>{chat.message}</p>
+                </div>
               </div>
-            </div>
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>{" "}
-            <div className="my-10 flex justify-end ">
-              <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                <p>Thank you, i also love it</p>
-              </div>
-            </div>
+            ))} */}
+            {chats.map((chat: any) => (
+              <div
+                key={chat.message}
+                dangerouslySetInnerHTML={{ __html: chat.message }}
+              ></div>
+            ))}
           </div>
           <div className="w-full  bg-secondary  flex flex-1 py-6 items-center justify-between px-4   ">
             <div className="flex gap-x-2 ">
