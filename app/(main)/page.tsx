@@ -8,13 +8,13 @@ const HomePage = () => {
   return (
     <div className="w-full text-white">
       <div
-        className="w-full py-[74px] lg:py-[120px] bg-cover bg-no-repeat bg-center"
+        className="w-full py-[74px] lg:h-[480px] bg-cover bg-no-repeat bg-right"
         style={{
           backgroundImage: "url(/images/home-banner.webp)",
         }}
       >
-        <div className="lg:pl-24 text-center">
-          <div className="max-w-[250px] m-auto lg:max-w-[430px] space-y-3">
+        <div className="lg:pl-24 text-center ">
+          <div className="max-w-[250px] m-auto lg:max-w-[430px] space-y-3 lg:ml-0">
             <h1 className="text-3xl   lg:text-5xl font-bold ">
               Trade Gift Cards on APKXCHANGE
             </h1>
