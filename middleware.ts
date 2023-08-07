@@ -5,10 +5,10 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   let token = request.cookies.get("access");
 
-  if (!token) {
-    const loginUrl = new URL("/login", request.url);
-    return NextResponse.redirect(loginUrl);
-  }
+  // if (!token) {
+  //   const loginUrl = new URL("/login", request.url);
+  //   return NextResponse.redirect(loginUrl);
+  // }
 }
 
 // See "Matching Paths" below to learn more
