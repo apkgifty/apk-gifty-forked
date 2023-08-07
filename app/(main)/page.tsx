@@ -68,7 +68,7 @@ const HomePage = () => {
           style={{ width: "100%", height: "auto" }}
           alt="mid banner"
         /> */}
-        <img src="/images/midbanner.webp" alt="mid banner" />
+        <img src="/images/midbanner.webp" alt="mid banner" className="w-full" />
       </div>
       <div
         className="bg-cover bg-no-repeat bg-center py-20"
