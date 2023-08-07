@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const useAuth = () => {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [cookies, setCookie] = useCookies(["access"]);
 
   const submitRequest = async (payload: any, endpoint: string) => {
     const config = {
@@ -22,6 +24,10 @@ const useAuth = () => {
       setLoading(true);
       const response = await axios(config);
       console.log(response.data);
+
+      if (data?.token) {
+        setCookie("access", data.cookie);
+      }
       localStorage.setItem("userInfo", JSON.stringify(response.data));
       setData(response.data);
     } catch (error: any) {
