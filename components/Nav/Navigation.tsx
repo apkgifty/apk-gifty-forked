@@ -23,7 +23,7 @@ const Navigation = () => {
           width={100}
           height={100}
           alt="apk logo"
-          // className="-mt-2"
+          className="-mt-2"
         />
         <div className="hidden lg:flex space-x-6">
           {mainNavigationLinks.map((navItem) => (
