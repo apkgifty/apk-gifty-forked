@@ -38,15 +38,15 @@ const Navigation = () => {
       <div className="hidden lg:flex lg:gap-x-3">
         <div className="space-x-1">
           {/* <Link href={"/login"}> */}
-          <button className="bg-tertiary px-3 py-2 text-sm font-medium rounded-lg">
+          {/* <button className="bg-tertiary px-3 py-2 text-sm font-medium rounded-lg">
             Login
-          </button>
+          </button> */}
           {/* </Link> */}
           {/* <Link href={"/signup"}> */}
 
-          <button className="bg-appviolet px-3 py-2 text-sm font-medium rounded-lg">
+          {/* <button className="bg-appviolet px-3 py-2 text-sm font-medium rounded-lg">
             Signup
-          </button>
+          </button> */}
           {/* </Link> */}
         </div>
         <LanguageSelect />
