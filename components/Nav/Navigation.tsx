@@ -4,6 +4,7 @@ import LanguageSelect from "../UI/LanguageSelect";
 import MenuButton from "../UI/MenuButton";
 import NavigationItem from "./NavigationItem";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const mainNavigationLinks = [
   { title: "Home", link: "/" },
@@ -18,13 +19,19 @@ const Navigation = () => {
   return (
     <div className="w-full flex justify-between items-center ">
       <div className="flex gap-12">
-        <img
-          src="/images/apklogo-new.png"
-          width={100}
-          height={100}
-          alt="apk logo"
-          className="-mt-2"
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <Image
+            src="/images/apklogo-new.png"
+            width={100}
+            height={100}
+            alt="apk logo"
+            className="-mt-2"
+          />
+        </motion.div>
         <div className="hidden lg:flex space-x-6">
           {mainNavigationLinks.map((navItem) => (
             <NavigationItem
