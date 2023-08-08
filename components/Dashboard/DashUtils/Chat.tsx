@@ -87,6 +87,8 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
       message: messageToSend,
       userId: userInfo.user.id,
     });
+
+    setMessageToSend("");
   };
 
   // const handleChatSubmit = () => {};
