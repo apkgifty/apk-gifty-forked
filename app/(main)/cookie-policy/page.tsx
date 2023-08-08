@@ -1,6 +1,7 @@
 import AppLayout from "@/components/Layout/AppLayout";
 import React from "react";
 import Cookiepolicy from "../../cookie-policy.mdx";
+import MdxWrapper from "@/components/MdxWrapper";
 
 const CookiePolicy = () => {
   return (
@@ -10,7 +11,9 @@ const CookiePolicy = () => {
           Cookie Policy
         </h1>
         <div className="space-y-4 px-3 lg:px-0 text-sm ">
-          <Cookiepolicy />
+          <MdxWrapper>
+            <Cookiepolicy />
+          </MdxWrapper>
         </div>
       </AppLayout>
     </div>

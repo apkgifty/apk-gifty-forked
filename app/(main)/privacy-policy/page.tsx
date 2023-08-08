@@ -2,6 +2,7 @@ import React from "react";
 import AppLayout from "@/components/Layout/AppLayout";
 
 import Privacy from "../../privacy-policy.mdx";
+import MdxWrapper from "@/components/MdxWrapper";
 
 const PrivacyPolicy = () => {
   return (
@@ -11,7 +12,9 @@ const PrivacyPolicy = () => {
           PRIVACY POLICIES
         </h1>
         <div className="space-y-4 px-3 lg:px-0 text-sm">
-          <Privacy />
+          <MdxWrapper>
+            <Privacy />
+          </MdxWrapper>
         </div>
       </AppLayout>
     </div>

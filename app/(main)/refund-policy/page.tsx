@@ -1,6 +1,7 @@
 import AppLayout from "@/components/Layout/AppLayout";
 import React from "react";
 import Refundpolicy from "../../refund-policy.mdx";
+import MdxWrapper from "@/components/MdxWrapper";
 
 const RefundPolicy = () => {
   return (
@@ -10,7 +11,10 @@ const RefundPolicy = () => {
           Refund Policy
         </h1>
         <div className="space-y-4 px-3 lg:px-0 text-sm">
-          <Refundpolicy />
+          <MdxWrapper>
+            {" "}
+            <Refundpolicy />
+          </MdxWrapper>
         </div>
       </AppLayout>
     </div>
