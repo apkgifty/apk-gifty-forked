@@ -126,7 +126,7 @@ const BuyDisplay: React.FC<Props> = ({
           type="button"
           className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7]"
         >
-          Buy The Gift Card
+          Buy Gift Card
         </button>
         {/* </Link> */}
       </div>{" "}

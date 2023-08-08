@@ -85,14 +85,14 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
                 <p className="text-gray-500 text-sm">Online</p>
               </div>
             </div>
-            <div className="flex gap-x-2">
+            {/* <div className="flex gap-x-2">
               <button className="px-3 py-3 bg-primary rounded-lg ">
                 <PhoneSvg />
               </button>
               <button className="px-3 py-3 bg-primary rounded-lg">
                 <EllipsesSvg />
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="px-4 h-full flex-2 overflow-scroll ">
             <div className="w-full flex justify-center mt-10">

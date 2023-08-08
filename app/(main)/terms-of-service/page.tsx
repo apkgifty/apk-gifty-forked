@@ -8,7 +8,7 @@ const TermsOfService = () => {
         <h1 className="text-center text-xl lg:text-3xl font-bold lg:pb-10">
           TERMS OF SERVICE
         </h1>
-        <div className="space-y-4 px-3 lg:px-0">
+        <div className="space-y-4 px-3 lg:px-0 text-sm">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque

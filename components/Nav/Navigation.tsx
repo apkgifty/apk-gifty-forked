@@ -26,14 +26,16 @@ const Navigation = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <Image
-            src="/images/apklogo-new.png"
-            width={100}
-            height={100}
-            alt="apk logo"
-            priority
-            className="-mt-2"
-          />
+          <Link href={"/"}>
+            <Image
+              src="/images/apklogo-new.png"
+              width={100}
+              height={100}
+              alt="apk logo"
+              priority
+              className="-mt-2"
+            />
+          </Link>
         </motion.div>
         <div className="hidden lg:flex space-x-6">
           {mainNavigationLinks.map((navItem) => (

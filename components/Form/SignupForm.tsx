@@ -15,11 +15,13 @@ import FormFooter from "./FormComponents/FormFooter";
 import FormContainer from "./FormComponents/FormContainer";
 import { Fields } from "@/types/formTypes";
 import Form from "./FormComponents/Form";
+import EmailAtSvg from "../UI/SvgIcons/EmailAtSvg";
+import ReferralSvg from "../UI/SvgIcons/ReferralSvg";
 
 const fields: Fields[] = [
   {
     type: "text",
-    placeholder: "Name",
+    placeholder: "username",
     icon: <PersonOutlineIcon />,
     config: {
       required: true,
@@ -30,7 +32,7 @@ const fields: Fields[] = [
   {
     type: "email",
     placeholder: "Email",
-    icon: <AlternateEmailIcon />,
+    icon: <EmailAtSvg />,
     config: { required: true },
     name: "email",
   },
@@ -41,16 +43,16 @@ const fields: Fields[] = [
     config: { required: true },
     name: "password",
   },
-  // {
-  //   type: "text",
-  //   placeholder: "Referral",
-  //   icon: <LockOpenIcon />,
-  //   config: {
-  //     required: false,
-  //   },
+  {
+    type: "text",
+    placeholder: "Referral (Optional)",
+    icon: <ReferralSvg />,
+    config: {
+      required: false,
+    },
 
-  //   name: "referral",
-  // },
+    name: "referral",
+  },
 ];
 
 const SignupForm = () => {

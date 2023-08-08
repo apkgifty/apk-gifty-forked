@@ -10,6 +10,8 @@ import { Fields } from "@/types/formTypes";
 import NextSvg from "@/components/UI/SvgIcons/NextSvg";
 import { useAuth } from "@/hooks/useAuth";
 import { Snackbar, Alert } from "@mui/material";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface Props {
   fields: Fields[];
@@ -31,8 +33,8 @@ const Form: React.FC<Props> = ({
   endpoint,
   afterSubmit,
 }) => {
-  // const [cookies, setCookie] = useCookies(["access"]);
-  // const router = useRouter();
+  const pathName = usePathname();
+
   const {
     register,
     handleSubmit,
@@ -65,7 +67,32 @@ const Form: React.FC<Props> = ({
             className="bg-tertiary"
           />
         ))}
+        {pathName === "/signup" && (
+          <div className="flex items-center">
+            <input
+              id="link-checkbox"
+              type="checkbox"
+              defaultValue=""
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500   focus:ring-2  "
+              {...register("agree", { required: false })}
+            />
 
+            <label
+              htmlFor="link-checkbox"
+              className="ml-2 text-sm font-medium text-white"
+            >
+              I agree to the
+              <Link
+                href={"/terms-and-conditions"}
+                className="text-blue-600  hover:underline"
+              >
+                {" "}
+                Terms and Conditions
+              </Link>
+              .
+            </label>
+          </div>
+        )}
         <ButtonIcon icon={<NextSvg />} type="submit" loading={loading} />
       </form>
       {error && (

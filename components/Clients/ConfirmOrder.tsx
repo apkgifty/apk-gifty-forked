@@ -122,9 +122,9 @@ const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
         <div className="flex gap-x-6">
           <p className="text-xs lg:text-base text-gray-400">
             {pathname === "buy"
-              ? "Quantity"
+              ? "Fees"
               : pathname === "sell"
-              ? "Gift Card Value You Will Sell"
+              ? "Value "
               : null}
             <span className="text-white">:- {quantity}</span>
           </p>

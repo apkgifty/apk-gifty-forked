@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div className="w-full text-white">
       <div
-        className="w-full py-[74px] lg:h-[480px] min-[1750px]:h-[900px] flex items-center bg-cover bg-no-repeat bg-right"
+        className="w-full py-[74px] lg:h-[580px] min-[1750px]:h-[900px] flex items-center bg-cover bg-no-repeat bg-right"
         style={{
           backgroundImage: "url(/images/home-banner.webp)",
         }}
