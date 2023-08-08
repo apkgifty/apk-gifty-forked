@@ -8,13 +8,13 @@ const HomePage = () => {
   return (
     <div className="w-full text-white">
       <div
-        className="w-full py-[74px] lg:h-[580px] min-[1750px]:h-[900px] flex items-center bg-cover bg-no-repeat bg-right"
+        className="w-full py-[74px] lg:h-[580px] min-[1750px]:h-[900px] flex justify-center items-center bg-cover bg-no-repeat bg-left lg:justify-start"
         style={{
           backgroundImage: "url(/images/home-banner.webp)",
         }}
       >
-        <div className="lg:pl-24 text-center ">
-          <div className="max-w-[250px] m-auto lg:max-w-[430px] space-y-3 lg:ml-0">
+        <div className="lg:pl-24 text-center w-full justify-center ">
+          <div className="max-w-[250px] lg:max-w-[430px] space-y-3 ">
             <h1 className="text-3xl   lg:text-5xl font-bold ">
               Trade Gift Cards on APKXCHANGE
             </h1>
@@ -46,7 +46,7 @@ const HomePage = () => {
         </div>
 
         <div className="w-full flex flex-col items-center">
-          <div className=" bg-white px-6 w-[90%] lg:px-12 lg:w-[700px] py-4 text-black rounded-full inline-flex flex-col lg:flex-row justify-end gap-x-2">
+          <div className=" bg-white px-6 w-[90%] lg:px-12 lg:w-[700px] py-4 text-black rounded-full inline-flex flex-col items-end lg:flex-row lg:justify-end gap-x-2">
             <p className="w-[160px] lg:w-auto text-sm lg:text-2xl font-semibold">
               Need To Sell Your Gift Cards?
             </p>
