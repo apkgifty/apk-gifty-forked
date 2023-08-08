@@ -3,7 +3,7 @@ import React from "react";
 const SellInstructions = () => {
   return (
     <div>
-      <ol>
+      <ol className="list-decimal space-y-4 text-gray-400 lg:pl-10">
         <li>
           Before sending us your gift card, we kindly request you to ensure that
           you have confirmed or verified its balance.

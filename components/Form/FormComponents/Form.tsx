@@ -83,7 +83,7 @@ const Form: React.FC<Props> = ({
             >
               I agree to the
               <Link
-                href={"/terms-and-conditions"}
+                href={"/terms-of-service"}
                 className="text-blue-600  hover:underline"
               >
                 {" "}
