@@ -122,7 +122,7 @@ const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
         <div className="flex gap-x-6">
           <p className="text-xs lg:text-base text-gray-400">
             {pathname === "buy"
-              ? "Fees"
+              ? "Quantity"
               : pathname === "sell"
               ? "Value "
               : null}
@@ -175,9 +175,9 @@ const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
             disabled={statuss.toString() === "1"}
           >
             {pathname === "buy"
-              ? "Paid, Notify Seller "
+              ? "Paid "
               : pathname === "sell"
-              ? "Received payment, Release Gift Card"
+              ? "Payment made"
               : null}
           </button>
           <button className="w-full text-sm px-4 py-2 lg:w-auto">

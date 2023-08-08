@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Pusher from "pusher-js";
+import axios from "axios";
 
 import EmotionSvg from "@/components/UI/SvgIcons/EmotionSvg";
 import PhoneSvg from "@/components/UI/SvgIcons/PhoneSvg";
@@ -17,6 +18,7 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
   //   console.log(pusherKey, cluster);
   console.log(status);
   const [chats, setChats] = useState<any>([]);
+  const [pusher, setPusher] = useState<any>(null);
   const [messageToSend, setMessageToSend] = useState("");
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
         transport: "ajax",
         headers: {
           Accept: "application/json",
-          Authorization: `Bearer ${"56|GHk1YnTPxA67gK7HJtS4wo7enuI9DdS7UhmfbXLF"}`,
+          Authorization: `Bearer ${"11|ITqRVhblUMf8e3JBXQ1szGn22e37TsWI8x5shZ7F"}`,
         },
       },
       userAuthentication: {
@@ -35,7 +37,7 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
         transport: "ajax",
         headers: {
           Accept: "application/json",
-          Authorization: `Bearer 56|GHk1YnTPxA67gK7HJtS4wo7enuI9DdS7UhmfbXLF`,
+          Authorization: `Bearer 11|ITqRVhblUMf8e3JBXQ1szGn22e37TsWI8x5shZ7F`,
         },
       },
     });
@@ -47,6 +49,8 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
         console.log(err);
       }
     });
+
+    setPusher(pusher);
 
     const channel = pusher.subscribe("private-chatify.2");
     console.log(channel);
@@ -66,7 +70,11 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
 
   console.log(chats);
 
-  const handleChatSubmit = () => {};
+  const handleReply = async () => {
+    await axios.post("/api/pusher", { sender: "ylee", message: "What's up" });
+  };
+
+  // const handleChatSubmit = () => {};
   return (
     <>
       {status.toString() === "1" ? (
@@ -134,7 +142,10 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
                 className="bg-transparent text-gray-500 text-sm w-full outline-none"
               />
             </div>
-            <button className="px-2 py-2 bg-[#7995f5] rounded-lg ">
+            <button
+              className="px-2 py-2 bg-[#7995f5] rounded-lg "
+              onClick={handleReply}
+            >
               <PaperPlaneSvg />
             </button>
           </div>
