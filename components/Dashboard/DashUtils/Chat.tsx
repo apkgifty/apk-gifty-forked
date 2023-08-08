@@ -79,8 +79,8 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
   const handleMessage = (e: any) => {
     setMessageToSend(e.target.value);
   };
-  const handleReply = async () => {
-    // e.preventDefault();
+  const handleReply = async (e: any) => {
+    e.preventDefault();
 
     await axios.post("/api/pusher", {
       sender: userInfo.user.firstname,
@@ -147,7 +147,10 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
               ></div>
             ))}
           </div>
-          <div className="w-full  bg-secondary  flex flex-1 py-6 items-center justify-between px-4   ">
+          <form
+            onSubmit={handleReply}
+            className="w-full  bg-secondary  flex flex-1 py-6 items-center justify-between px-4   "
+          >
             <div className="flex gap-x-2 ">
               <button className="px-3 py-3 bg-primary rounded-lg ">
                 <EmotionSvg />
@@ -166,12 +169,12 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
               />
             </div>
             <button
-              onClick={handleReply}
+              type="submit"
               className="px-2 py-2 bg-[#7995f5] rounded-lg "
             >
               <PaperPlaneSvg />
             </button>
-          </div>
+          </form>
         </div>
       ) : null}
     </>
