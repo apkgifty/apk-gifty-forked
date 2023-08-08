@@ -12,9 +12,7 @@ const PrivacyPolicy = () => {
           PRIVACY POLICIES
         </h1>
         <div className="space-y-4 px-3 lg:px-0 text-sm">
-          <MdxWrapper>
-            <Privacy />
-          </MdxWrapper>
+          <Privacy />
         </div>
       </AppLayout>
     </div>

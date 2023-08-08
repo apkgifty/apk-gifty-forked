@@ -11,10 +11,7 @@ const RefundPolicy = () => {
           Refund Policy
         </h1>
         <div className="space-y-4 px-3 lg:px-0 text-sm">
-          <MdxWrapper>
-            {" "}
-            <Refundpolicy />
-          </MdxWrapper>
+          <Refundpolicy />
         </div>
       </AppLayout>
     </div>
