@@ -88,9 +88,9 @@ const SignupForm = () => {
           afterSubmit={afterSubmit}
         />
 
-        <FormFooter>
+        {/* <FormFooter>
           <ExternalLogins />
-        </FormFooter>
+        </FormFooter> */}
       </FormBody>
     </FormContainer>
   );

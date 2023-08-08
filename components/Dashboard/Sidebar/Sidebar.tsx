@@ -28,11 +28,16 @@ const Sidebar = () => {
       </div>
 
       <div className="flex flex-col  items-center gap-y-2 py-4">
-        <img
+        {/* <img
           className="object-cover w-16 h-16 rounded-lg"
           src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=faceare&facepad=3&w=688&h=688&q=100"
           alt=""
-        />
+        /> */}
+        <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-400 rounded-full ">
+          <span className="font-medium text-gray-600 ">
+            {userInfo?.user.firstname[0].toUpperCase()}
+          </span>
+        </div>
 
         <div className="text-center">
           <h1 className="text-sm font-semibold text-white capitalize ">
@@ -46,7 +51,7 @@ const Sidebar = () => {
       </div>
       <div className="flex flex-col justify-between flex-1  px-5 mt-6">
         <SideNavItems />
-        <SecondaryNavs />
+        {/* <SecondaryNavs /> */}
       </div>
     </aside>
   );

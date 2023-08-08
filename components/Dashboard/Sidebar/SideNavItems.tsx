@@ -11,16 +11,16 @@ interface Props {
 }
 
 const links = [
-  { title: "Dashboard", url: "/", icon: <DashboardSvg /> },
+  // { title: "Dashboard", url: "/", icon: <DashboardSvg /> },
   { title: "Exchange", url: "/dashboard/exchange/buy", icon: <ExchangeSvg /> },
-  { title: "Wallet", url: "#", icon: <WalletSvg /> },
+  // { title: "Wallet", url: "#", icon: <WalletSvg /> },
   { title: "Transaction", url: "#", icon: <TransactionSvg /> },
   {
     title: "Settings",
     url: "/dashboard/settings/personal-information",
     icon: <SettingsSvg />,
   },
-  { title: "News", url: "#", icon: <NewsSvg /> },
+  // { title: "News", url: "#", icon: <NewsSvg /> },
 ];
 
 const SideNavItems = () => {

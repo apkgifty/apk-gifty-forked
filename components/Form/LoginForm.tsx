@@ -67,9 +67,9 @@ const LoginForm = () => {
           afterSubmit={afterSubmit}
         />
 
-        <FormFooter>
+        {/* <FormFooter>
           <ExternalLogins />
-        </FormFooter>
+        </FormFooter> */}
       </FormBody>
     </FormContainer>
   );

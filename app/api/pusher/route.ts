@@ -11,15 +11,19 @@ export async function POST(req: Request, res: Response) {
     cluster: "mt1",
     useTLS: true,
   });
-  const { message, sender } = await req.json();
+  const { message, sender, userId } = await req.json();
 
   console.log(message, sender);
 
   try {
-    const response = await pusher.trigger("private-chatify.2", "messaging", {
-      sender,
-      message,
-    });
+    const response = await pusher.trigger(
+      `private-chatify.${userId}`,
+      "messaging",
+      {
+        sender,
+        message,
+      }
+    );
 
     NextResponse.json({ message: "success" });
   } catch (error) {
