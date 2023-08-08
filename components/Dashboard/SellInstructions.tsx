@@ -48,7 +48,7 @@ const SellInstructions = () => {
         </li>
       </ol>
 
-      <p>
+      <p className="text-gray-400 mt-3">
         Upon verifying the card&apos;s balance and completing the payment, our
         administration will automatically close the trade.
       </p>
