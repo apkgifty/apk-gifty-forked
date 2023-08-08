@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.unsplash.com", "placehold.co"],
+    domains: ["images.unsplash.com", "placehold.co", "backend.apkxchange.com"],
     dangerouslyAllowSVG: true,
   },
   experimental: {
