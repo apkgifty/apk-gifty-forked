@@ -13,7 +13,7 @@ const HomePage = () => {
           backgroundImage: "url(/images/home-banner.webp)",
         }}
       >
-        <div className="lg:pl-24 text-center w-full justify-center ">
+        <div className="lg:pl-24 text-center  ">
           <div className="max-w-[250px] lg:max-w-[430px] space-y-3 ">
             <h1 className="text-3xl   lg:text-5xl font-bold ">
               Trade Gift Cards on APKXCHANGE

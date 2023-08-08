@@ -45,16 +45,18 @@ const PageFooter = () => {
           />
         </div>
 
-        <div className="w-full flex flex-col items-center gap-y-2">
+        <div className="w-full flex flex-col items-center gap-y-2 mt-8 lg:mt-1">
           <Image
             src={"/images/apklogo-new.png"}
-            width={150}
-            height={150}
+            width={120}
+            height={120}
             alt="apk logo"
           />
           <div className="flex gap-x-2 items-center">
             <FooterCircleSvg />
-            <p className="text-[12px] text-gray-600">2023 APKXCHANGE</p>
+            <p className="text-[10px] text-gray-600 lg:text-[12px]">
+              2023 APKXCHANGE
+            </p>
           </div>
         </div>
       </AppLayout>
