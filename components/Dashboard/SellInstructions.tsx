@@ -22,9 +22,9 @@ const SellInstructions = () => {
 
         <li>
           To verify the balance of an iTunes gift card, simply perform a quick
-          Google search using the phrase "iTunes gift card balance check." This
-          will lead you to the direct link for verifying the card's balance on
-          the Apple website.
+          Google search using the phrase &quot;iTunes gift card balance
+          check.&quot; This will lead you to the direct link for verifying the
+          card&apos;s balance on the Apple website.
         </li>
 
         <li>
@@ -42,14 +42,14 @@ const SellInstructions = () => {
         </li>
 
         <li>
-          If your card's balance is valid for usage, you can rest assured that
-          everything will proceed smoothly. Your card will be utilized, and
+          If your card&apos;s balance is valid for usage, you can rest assured
+          that everything will proceed smoothly. Your card will be utilized, and
           payment will be made to your account as expected.
         </li>
       </ol>
 
       <p>
-        Upon verifying the card's balance and completing the payment, our
+        Upon verifying the card&apos;s balance and completing the payment, our
         administration will automatically close the trade.
       </p>
     </div>
