@@ -71,7 +71,7 @@ const SellDisplay: React.FC<Props> = ({
   return (
     <>
       <div className="flex justify-between">
-        <h3 className="text-xl">Buy in Custom Amount</h3>
+        <h3 className="text-xl">Sell in Custom Amount</h3>
 
         <Toggle isChecked={Number(canCustom) === 0 ? false : true} />
       </div>
@@ -99,6 +99,8 @@ const SellDisplay: React.FC<Props> = ({
         </div>
       </div>
       <div className="px-12 py-8 bg-[#23262F] rounded-xl  text-center space-y-6">
+        <p className="font-semibold">Put your desired amount here</p>
+        <p className="font-light">You will pay in Gift Card</p>
         <div>
           <BuyAmountInput
             isFixedPrice={Number(canCustom) === 0 ? false : true}
@@ -107,7 +109,7 @@ const SellDisplay: React.FC<Props> = ({
           />
         </div>
         <div>
-          <p className="font-light">You have to pay</p>
+          <p className="font-light">You will get cash value</p>
           <p className="text-3xl font-semibold text-[#587BF2]">${amount}</p>
         </div>
       </div>

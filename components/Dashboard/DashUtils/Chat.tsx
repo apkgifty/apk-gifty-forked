@@ -71,7 +71,7 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
       ]);
     });
 
-    return () => pusher.unsubscribe("channel-name");
+    return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
   }, [userInfo]);
 
   console.log(chats);

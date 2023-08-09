@@ -11,13 +11,11 @@ import NotificationSvg from "@/components/UI/SvgIcons/NotificationSvg";
 import SettingsSvg from "@/components/UI/SvgIcons/SettingsSvg";
 import WalletSvg from "@/components/UI/SvgIcons/WalletSvg";
 import MenuButton from "@/components/UI/MenuButton";
-import VerifiedSvg from "@/components/UI/SvgIcons/VerifiedSvg";
 
 const Topbar = () => {
   const [userInfo, setUserInfo] = useState<any>(null);
 
   const dispatch = useAppDispatch();
-
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
     console.log(JSON.parse(user));
@@ -26,7 +24,17 @@ const Topbar = () => {
 
   return (
     <div className="w-full px-6 py-4 fixed right-0 left-0 top-0 z-10 flex justify-between items-center bg-secondary border-b border-tertiary text-white">
-      <div className="flex items-center gap-x-3">
+      <div className="hidden lg:block">
+        <Link href="/">
+          <Image
+            src={"/images/apklogo-new.png"}
+            width={100}
+            height={100}
+            alt="apk logo"
+          />
+        </Link>
+      </div>
+      <div className="flex items-center gap-x-3 lg:hidden">
         <div className="">
           {/* <img
                   className="object-cover w-10 h-10 rounded-lg"
@@ -52,7 +60,7 @@ const Topbar = () => {
           <LanguageSelect />
         </div>
         {/* <Iconcard icon={<WalletSvg />} animate /> */}
-        {/* <Iconcard icon={<SettingsSvg />} animate /> */}
+        <Iconcard icon={<SettingsSvg />} animate />
         <Iconcard icon={<NotificationSvg />} badgeData="8" animate />
         <div className="lg:hidden">
           <MenuButton

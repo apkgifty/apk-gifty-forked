@@ -133,36 +133,38 @@ const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
           </p>
         </div>
 
-        <div className="mt-14">
-          <h4 className="text-sm lg:text-lg font-semibold">
-            Payment Instructions{" "}
-          </h4>
-          <ul className=" mt-6 flex flex-col gap-y-8 lg:flex-row lg:justify-between lg:gap-y-0">
-            {paymentMethods.map((method: any) => (
-              <li key={method.id}>
-                <div className="space-y-3">
-                  <div>
-                    <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
-                      {method.channel}
-                    </h5>
-                  </div>
+        {pathname == "buy" && (
+          <div className="mt-14">
+            <h4 className="text-sm lg:text-lg font-semibold">
+              Payment Instructions{" "}
+            </h4>
+            <ul className=" mt-6 flex flex-col gap-y-8 lg:flex-row lg:justify-between lg:gap-y-0">
+              {paymentMethods.map((method: any) => (
+                <li key={method.id}>
+                  <div className="space-y-3">
+                    <div>
+                      <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
+                        {method.channel}
+                      </h5>
+                    </div>
 
-                  <div>
-                    <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
-                      <span></span> {method.body}
-                    </p>
+                    <div>
+                      <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
+                        <span></span> {method.body}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
+                        <span className="text-white">Name:</span>{" "}
+                        {method.sub_text}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
-                      <span className="text-white">Name:</span>{" "}
-                      {method.sub_text}
-                    </p>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div className="mt-12">
           <p className="text-sm lg:text-base">
             After Transfering the amount, click on the Transfered button
@@ -177,7 +179,7 @@ const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
             {pathname === "buy"
               ? "Paid "
               : pathname === "sell"
-              ? "Payment made"
+              ? "Start Trade"
               : null}
           </button>
           <button className="w-full text-sm px-4 py-2 lg:w-auto">

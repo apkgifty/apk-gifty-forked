@@ -67,7 +67,6 @@ const DashMobileSide = () => {
     <Box
       sx={{
         width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
-        height: "100vh",
       }}
       role="presentation"
       onClick={toggleDrawer(false)}
@@ -81,9 +80,9 @@ const DashMobileSide = () => {
           alt="apk site logo"
         />
       </div>
-      <div className="flex flex-col  h-full justify-between flex-1  px-5 mt-6">
+      <div className="flex flex-col  justify-between flex-1  px-5 mt-6">
         <SideNavItems linkItems={links} />
-        <div className="">
+        <div className="mt-8">
           <SecondaryNavs />
         </div>
       </div>
