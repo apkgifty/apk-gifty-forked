@@ -90,19 +90,11 @@ const Chat = ({
   const handleReply = async (e: any) => {
     e.preventDefault();
 
-    await axios.post(
-      "https://backend.apkxchange.com/api/chatApi",
-      {
-        // sender: userInfo.firstname,
-        message: messageToSend,
-        userId: String(userInfo.id),
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    await axios.post("/api/pusher", {
+      sender: userInfo.firstname,
+      message: messageToSend,
+      userId: userInfo.id,
+    });
 
     setMessageToSend("");
   };

@@ -15,21 +15,21 @@ export async function POST(req: Request, res: Response) {
 
   console.log(message, sender);
 
-  try {
-    const response = await pusher.trigger(
-      `private-chatify.${userId}`,
-      "messaging",
-      {
-        from_id: userId.toString(),
-        to_id: "1",
-        message,
-      }
-    );
+  // try {
+  //   const response = await pusher.trigger(
+  //     `private-chatify.${userId}`,
+  //     "messaging",
+  //     {
+  //       from_id: userId.toString(),
+  //       to_id: "1",
+  //       message,
+  //     }
+  //   );
 
-    NextResponse.json({ message: "success" });
-  } catch (error) {
-    console.log(error);
-  }
+  //   NextResponse.json({ message: "success" });
+  // } catch (error) {
+  //   console.log(error);
+  // }
 
   //   try {
   //     const response = await pusher.trigger(
@@ -42,4 +42,26 @@ export async function POST(req: Request, res: Response) {
   //   } catch (error) {
   //     console.log(error);
   //   }
+
+  let config = {
+    method: "POST",
+    maxBodyLength: Infinity,
+    url: `https://backend.apkxchange.com/api/chatApi`,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: {
+      id: userId,
+      message: message,
+    },
+  };
+
+  try {
+    const response = await axiosInstance(config);
+
+    return NextResponse.json("sent");
+  } catch (error) {
+    console.log(error);
+  }
 }
