@@ -58,7 +58,7 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
 
     console.log(userInfo);
 
-    const channel = pusher.subscribe(`private-chatify.${userInfo?.user.id}`);
+    const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
     console.log(channel);
 
     pusher.allChannels().forEach((channel) => console.log(channel));
