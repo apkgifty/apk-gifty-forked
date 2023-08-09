@@ -20,7 +20,7 @@ export async function POST(req: Request, res: Response) {
       `private-chatify.${userId}`,
       "messaging",
       {
-        from_id: sender,
+        from_id: userId,
         to_id: "1",
         message,
       }
