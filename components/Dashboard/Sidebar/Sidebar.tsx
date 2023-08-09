@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import SideNavItem from "./SideNavItem";
 import SideNavItems from "./SideNavItems";
 import InboxSvg from "../../UI/SvgIcons/InboxSvg";
@@ -17,14 +19,20 @@ const Sidebar = () => {
   return (
     <aside className="hidden  lg:flex flex-col w-64 h-screen py-8 overflow-y-auto bg-secondary  border-r rtl:border-r-0 rtl:border-l border-tertiary">
       <div className="w-full flex justify-center items-center cursor-pointer gap-x-1 border-b border-[#161D26] pb-8">
-        <a href="#">
-          <img className="w-auto h-7" src="/images/apklogo.png" alt="" />
-        </a>
-        <div className="text-white text-xs">
+        {/* <Link href="/">
+          <Image
+            width={130}
+            height={130}
+            priority
+            src="/images/apklogo-new.png"
+            alt="site logo"
+          />
+        </Link> */}
+        {/* <div className="text-white text-xs">
           <p>
             APK <br /> XCHANGE
           </p>
-        </div>
+        </div> */}
       </div>
 
       <div className="flex flex-col  items-center gap-y-2 py-4">
@@ -51,7 +59,7 @@ const Sidebar = () => {
       </div>
       <div className="flex flex-col justify-between flex-1  px-5 mt-6">
         <SideNavItems />
-        {/* <SecondaryNavs /> */}
+        <SecondaryNavs />
       </div>
     </aside>
   );

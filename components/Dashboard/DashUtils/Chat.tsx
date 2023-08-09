@@ -91,7 +91,6 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
     setMessageToSend("");
   };
 
-  // const handleChatSubmit = () => {};
   return (
     <>
       {status.toString() === "1" ? (

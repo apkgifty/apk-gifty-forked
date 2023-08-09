@@ -16,7 +16,7 @@ const Product: React.FC<Props> = ({
   // imageUrl,
   productInfo,
 }) => {
-  const { name, price, category, icon, image_url } = productInfo;
+  const { name, price, category, icon, image_url, description } = productInfo;
 
   const pathname = usePathname();
 
@@ -54,8 +54,8 @@ const Product: React.FC<Props> = ({
         </div>
         <div className="py-2 flex justify-between items-center gap-x-2">
           <div className="flex items-center gap-x-2">
-            <img src={"/apple.svg"} width={20} />
-            <p className="text-xs text-white">{"Walmart"}</p>
+            {/* <img src={"/apple.svg"} width={20} /> */}
+            <p className="text-xs text-white">{description}</p>
           </div>
           <div>
             <span className="text-white text-xs">
