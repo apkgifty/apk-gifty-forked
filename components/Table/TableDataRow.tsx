@@ -19,6 +19,10 @@ const TableDataRow: React.FC<Props> = ({
   date,
   description,
 }) => {
+  const parseDate = new Date(date);
+  const formatedDate = `${
+    parseDate.getUTCMonth() + 1
+  }/${parseDate.getUTCDate()}/${parseDate.getUTCFullYear()}`;
   return (
     <tr className="bg-tertiary cursor-pointer hover:bg-secondary ">
       <th
@@ -29,7 +33,7 @@ const TableDataRow: React.FC<Props> = ({
       </th>
       <td className="px-6 py-4">{type}</td>
       <td className="px-6 py-4">${price}</td>
-      <td className="px-6 py-4">12/09/2023</td>
+      <td className="px-6 py-4">{formatedDate}</td>
       <td className="px-6 py-4 ">
         <span
           className={`${

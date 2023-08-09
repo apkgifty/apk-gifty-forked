@@ -30,7 +30,7 @@ const TransactionHistory = async () => {
   const orders = await fetchOrders();
 
   return (
-    <div className="w-full text-white px-12 py-20">
+    <div className="w-full text-whitepy-10 py-4 px-2 lg:px-12 lg:py-20">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-white ">
           <TableHead />

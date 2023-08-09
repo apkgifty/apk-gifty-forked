@@ -30,7 +30,11 @@ type Anchor = "top" | "left" | "bottom" | "right";
 
 const links = [
   { title: "Exchange", url: "/dashboard/exchange/buy", icon: <ExchangeSvg /> },
-  { title: "Transaction", url: "#", icon: <TransactionSvg /> },
+  {
+    title: "Transaction",
+    url: "/dashboard/transaction/history",
+    icon: <TransactionSvg />,
+  },
   {
     title: "Settings",
     url: "/dashboard/settings/personal-information",
