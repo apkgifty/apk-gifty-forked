@@ -16,7 +16,11 @@ const links = [
   // { title: "Dashboard", url: "/", icon: <DashboardSvg /> },
   { title: "Exchange", url: "/dashboard/exchange/buy", icon: <ExchangeSvg /> },
   // { title: "Wallet", url: "#", icon: <WalletSvg /> },
-  { title: "Transaction", url: "#", icon: <TransactionSvg /> },
+  {
+    title: "Transaction",
+    url: "/dashboard/transaction/history",
+    icon: <TransactionSvg />,
+  },
   {
     title: "Settings",
     url: "/dashboard/settings/personal-information",
