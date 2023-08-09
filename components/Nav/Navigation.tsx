@@ -18,13 +18,10 @@ const mainNavigationLinks = [
   { title: "Blog", link: "#" },
 ];
 
-const Navigation = () => {
-  const [user, setUser] = useState<any>(() => {
-    const user: any = localStorage.getItem("userInfo");
-
-    return JSON.parse(user);
-  });
-
+interface Props {
+  isLoggedIn: any;
+}
+const Navigation: React.FC<Props> = ({ isLoggedIn }) => {
   return (
     <div className="w-full flex justify-between items-center ">
       <div className="flex gap-12">
@@ -55,7 +52,7 @@ const Navigation = () => {
         </div>
       </div>
       <div className="hidden lg:flex lg:gap-x-3">
-        {!user && (
+        {!isLoggedIn && (
           <div className="space-x-1">
             <Link href={"/login"}>
               <button className="bg-tertiary px-3 py-2 text-sm font-medium rounded-lg">
