@@ -215,7 +215,7 @@ const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
         title="Order Instructions"
         buttonText="Close"
       >
-        <ol className="list-decimal pl-2 space-y-4 text-gray-700">
+        <ol className="text-xs lg:text-sm list-decimal pl-2 space-y-4 text-gray-700">
           <li>
             Remember every trade that occurs on our platform attracts a fee of
             1% on every amount. All trades less than $100 will attract a $1 fee

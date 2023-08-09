@@ -3,11 +3,11 @@ import React from "react";
 const BuyInstructions = () => {
   return (
     <div>
-      <p className="text-sm text-gray-400 py-4">
+      <p className="text-xs lg:text-sm text-gray-400 py-4">
         Before proceeding to make the payment or checkout for your order, please
         take a moment to review the following instructions:
       </p>
-      <ol className="list-decimal space-y-4 text-gray-400 lg:pl-10">
+      <ol className="list-decimal space-y-4 text-xs lg:text-sm text-gray-400 lg:pl-10">
         <li>
           The processing and delivery time for your gift card order is typically
           30 minutes at most. If, for any reason, your order has not been
@@ -28,7 +28,7 @@ const BuyInstructions = () => {
           that you are prepared to use the gift card, and your order will be
           fulfilled accordingly.
         </li>
-        <p className="text-sm text-gray-400 py-4">
+        <p className="text-xs lg:text-sm text-gray-400 py-4">
           Please ensure that you confirm with us in the chat once you have
           successfully redeemed or utilized the provided gift card. This step
           will enable us to close or complete the trade accordingly.
