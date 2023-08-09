@@ -17,7 +17,24 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Image from "next/image";
 
+import ExchangeSvg from "../UI/SvgIcons/ExchangeSvg";
+import DashboardSvg from "../UI/SvgIcons/DashboardSvg";
+import NewsSvg from "../UI/SvgIcons/NewsSvg";
+
+import SideNavItems from "../Dashboard/Sidebar/SideNavItems";
+
 type Anchor = "top" | "left" | "bottom" | "right";
+
+const links = [
+  { title: "Home", url: "/", icon: <DashboardSvg /> },
+  { title: "About", url: "/about", icon: <ExchangeSvg /> },
+  {
+    title: "Buy GiftCards",
+    url: "/dashboard/exchange/buy",
+    icon: <ExchangeSvg />,
+  },
+  { title: "News", url: "#", icon: <NewsSvg /> },
+];
 const MobileSide = () => {
   // const [state, setState] = React.useState(false);
 
@@ -48,24 +65,18 @@ const MobileSide = () => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <Image
-        src={"/images/apklogo-new.png"}
-        width={150}
-        height={150}
-        alt="apk site logo"
-      />
-      <List>
-        {["Home", "About", "Buy GiftCards"].map((text, index) => (
-          <ListItem key={text} disablePadding className="">
-            <ListItemButton>
-              {/* <ListItemIcon sx={{ color: "#fff" }}>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon> */}
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      <div className="w-full flex justify-center mt-12">
+        <Image
+          src={"/images/apklogo-new.png"}
+          width={100}
+          height={100}
+          alt="apk site logo"
+        />
+      </div>
+      <div className="flex flex-col justify-between flex-1  px-5 mt-6">
+        <SideNavItems linkItems={links} />
+      </div>
+
       {/* <Divider /> */}
       {/* <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (

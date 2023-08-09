@@ -8,6 +8,22 @@ import SideNavItems from "./SideNavItems";
 import InboxSvg from "../../UI/SvgIcons/InboxSvg";
 import VerifiedSvg from "../../UI/SvgIcons/VerifiedSvg";
 import SecondaryNavs from "./SecondaryNavs";
+import ExchangeSvg from "@/components/UI/SvgIcons/ExchangeSvg";
+import TransactionSvg from "@/components/UI/SvgIcons/TransactionSvg";
+import SettingsSvg from "@/components/UI/SvgIcons/SettingsSvg";
+
+const links = [
+  // { title: "Dashboard", url: "/", icon: <DashboardSvg /> },
+  { title: "Exchange", url: "/dashboard/exchange/buy", icon: <ExchangeSvg /> },
+  // { title: "Wallet", url: "#", icon: <WalletSvg /> },
+  { title: "Transaction", url: "#", icon: <TransactionSvg /> },
+  {
+    title: "Settings",
+    url: "/dashboard/settings/personal-information",
+    icon: <SettingsSvg />,
+  },
+  // { title: "News", url: "#", icon: <NewsSvg /> },
+];
 
 const Sidebar = () => {
   const [userInfo, setUserInfo] = useState<any>(null);
@@ -58,7 +74,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="flex flex-col justify-between flex-1  px-5 mt-6">
-        <SideNavItems />
+        <SideNavItems linkItems={links} />
         <SecondaryNavs />
       </div>
     </aside>
