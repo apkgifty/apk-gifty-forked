@@ -11,18 +11,30 @@ export async function POST(req: Request, res: Response) {
     cluster: "mt1",
     useTLS: true,
   });
-  const { message, sender, userId } = await req.json();
+  //   const { message, sender, userId } = await req.json();
 
-  console.log(message, sender);
+  //   console.log(message, sender);
+
+  //   try {
+  //     const response = await pusher.trigger(
+  //       `private-chatify.${userId}`,
+  //       "messaging",
+  //       {
+  //         sender,
+  //         message,
+  //       }
+  //     );
+
+  //     NextResponse.json({ message: "success" });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
 
   try {
     const response = await pusher.trigger(
-      `private-chatify.${userId}`,
-      "messaging",
-      {
-        sender,
-        message,
-      }
+      `private-chatify.1`,
+      "client-contactItem",
+      { from: "2", to: "1", update: true }
     );
 
     NextResponse.json({ message: "success" });
