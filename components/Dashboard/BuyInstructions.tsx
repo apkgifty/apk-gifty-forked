@@ -18,8 +18,8 @@ const BuyInstructions = () => {
           Once your gift card order is processed and delivered to you, it will
           be presented either as an attached photo in the chat screen or in text
           format. You will have a maximum timeframe of 30 minutes to 1 hour to
-          redeem or use the purchased gift card. It's essential to adhere to the
-          specific time duration associated with each gift card.
+          redeem or use the purchased gift card. It&apos;s essential to adhere
+          to the specific time duration associated with each gift card.
         </li>
         <li>
           If you are not yet ready to use the gift card you are ordering, kindly
