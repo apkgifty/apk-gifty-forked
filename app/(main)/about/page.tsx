@@ -16,7 +16,7 @@ const AboutPage = () => {
           <div className="flex-1">Image</div>
           <div className="flex-1 pt-8">
             <AboutBlock title="What is APK Xchange">
-              <p className="text-sm lg:text-base">
+              <p className="text-xs lg:text-sm">
                 ApkXchange is the ultimate destination for savvy shoppers
                 looking to purchase gift cards at discounted rates. We offer a
                 wide variety of gift cards, including popular brands like
@@ -33,7 +33,7 @@ const AboutPage = () => {
         </div>
         <div className="w-full flex flex-col gap-y-8  mt-12 lg:flex-row lg:items-start lg:gap-x-24 lg:gap-y-0">
           <AboutBlock title="Secure & Efficient" icon={<AboutSecureSvg />}>
-            <p className="text-sm lg:text-base">
+            <p className="text-xs lg:text-sm">
               Trust is paramount to us. Our secure system ensures your
               transactions are safe, and our fast processes enable quick and
               hassle-free buying and selling experiences.
@@ -45,7 +45,7 @@ const AboutPage = () => {
             link="/exhange/buy"
             icon={<AboutDiscountSvg />}
           >
-            <p className="text-sm lg:text-base">
+            <p className="text-xs lg:text-sm">
               ApkXchange is the go-to platform for finding gift cards at
               unbeatable prices. Save money while still enjoying your favorite
               brands and services
@@ -56,7 +56,7 @@ const AboutPage = () => {
             buttonText="Read More"
             icon={<AboutCryptoSvg />}
           >
-            <p className="text-sm lg:text-base">
+            <p className="text-xs lg:text-sm">
               For those interested in the world of cryptocurrency, we offer a
               seamless way to acquire crypto by trading your gift cards, making
               it easy to enter the digital currency market.
@@ -75,8 +75,8 @@ const AboutPage = () => {
         </div>
         <div className="text-white">
           <h4 className="text-base font-light">Join Us Today!</h4>
-          <p className="text-sm lg:text-xl font-bold">TRADE SECURE,</p>
-          <p className="text-sm lg:text-xl font-bold">TRADE WITH TRUST</p>
+          <p className="text-sm lg:text-base font-bold">TRADE SECURE,</p>
+          <p className="text-sm lg:text-base font-bold">TRADE WITH TRUST</p>
           <div className="mt-2">
             <MainButton
               buttonText="Create Account"

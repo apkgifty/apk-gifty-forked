@@ -3,25 +3,36 @@ import React from "react";
 const BuyInstructions = () => {
   return (
     <div>
-      <p className="text-base text-gray-400 py-4">
-        Before Proceeding to buy/sell your Gift Card or Other Payment methods,
-        Follow These Intructions;
+      <p className="text-sm text-gray-400 py-4">
+        Before proceeding to make the payment or checkout for your order, please
+        take a moment to review the following instructions:
       </p>
       <ol className="list-decimal space-y-4 text-gray-400 lg:pl-10">
         <li>
-          Remember every trade that occurs on our platform attracts a fee of 1%
-          on every amount. All trades less than $100 will attract a $1 fee on
-          it.
+          The processing and delivery time for your gift card order is typically
+          30 minutes at most. If, for any reason, your order has not been
+          processed within 2 hours, you have the option to request a refund. For
+          more details, kindly refer to our Refund Policy.
         </li>
         <li>
-          Before you proceed Kindly make sure you’ve read through our Trade
-          Guidelines before proceeding.
+          Once your gift card order is processed and delivered to you, it will
+          be presented either as an attached photo in the chat screen or in text
+          format. You will have a maximum timeframe of 30 minutes to 1 hour to
+          redeem or use the purchased gift card. It's essential to adhere to the
+          specific time duration associated with each gift card.
         </li>
         <li>
-          The card or the code of your order will be uploaded in the chat
-          section of this trade. Make sure to use the card within the timeframe
-          provided for you.
+          If you are not yet ready to use the gift card you are ordering, kindly
+          inform us in the chat section about the preferred time you wish to
+          receive the gift card. Failure to do so will result in the assumption
+          that you are prepared to use the gift card, and your order will be
+          fulfilled accordingly.
         </li>
+        <p className="text-sm text-gray-400 py-4">
+          Please ensure that you confirm with us in the chat once you have
+          successfully redeemed or utilized the provided gift card. This step
+          will enable us to close or complete the trade accordingly.
+        </p>
       </ol>
     </div>
   );
