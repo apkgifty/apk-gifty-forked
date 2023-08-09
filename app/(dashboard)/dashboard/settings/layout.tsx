@@ -30,36 +30,36 @@ const layout: React.FC<Props> = ({ children }) => {
           icon={<UserIconSvg />}
           isSelected
         />
-        <SettingsMenuItem
+        {/* <SettingsMenuItem
           title="Security"
           subtitle="For your account security"
           icon={<SecurityIconSvg />}
           isSelected={false}
-        />
-        <SettingsMenuItem
+        /> */}
+        {/* <SettingsMenuItem
           title="Currency preferences"
           subtitle="Choose currency"
           icon={<CurrencyIconSvg />}
           isSelected={false}
-        />
-        <SettingsMenuItem
+        /> */}
+        {/* <SettingsMenuItem
           title="Notifications"
           subtitle="Application notification settings"
           isSelected={false}
           icon={<NotificationSvg />}
-        />
-        <SettingsMenuItem
+        /> */}
+        {/* <SettingsMenuItem
           title="Payment Option"
           subtitle="Methods of buying gift cards"
           icon={<PaymentIconSvg />}
           isSelected={false}
-        />
-        <SettingsMenuItem
+        /> */}
+        {/* <SettingsMenuItem
           title="Integrations"
           subtitle="Access to APIs and side programs"
           icon={<IntegrationsIconSvg />}
           isSelected={false}
-        />
+        /> */}
         <SettingsMenuItem
           title="KYC Verification"
           subtitle="Authenticate your identity"
