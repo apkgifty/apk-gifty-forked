@@ -5,10 +5,6 @@
 * {
   box-sizing: border-box;
 }
-thead: {
-  padding: 0;
-  background-color: transparent;
-}
 
 .custom-range {
   -webkit-appearance: none;
