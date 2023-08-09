@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { useAppDispatch } from "@/redux/hooks";
+import { mainPageNavHandler } from "@/redux/features/mobileNavSlice";
+
 import LanguageSelect from "../UI/LanguageSelect";
 import MenuButton from "../UI/MenuButton";
 import NavigationItem from "./NavigationItem";
@@ -22,6 +25,8 @@ interface Props {
   isLoggedIn: any;
 }
 const Navigation: React.FC<Props> = ({ isLoggedIn }) => {
+  const dispatch = useAppDispatch();
+
   return (
     <div className="w-full flex justify-between items-center ">
       <div className="flex gap-12">
@@ -69,7 +74,7 @@ const Navigation: React.FC<Props> = ({ isLoggedIn }) => {
         <LanguageSelect />
       </div>
       <div className="lg:hidden">
-        <MenuButton />
+        <MenuButton handleClick={() => dispatch(mainPageNavHandler(true))} />
       </div>
     </div>
   );

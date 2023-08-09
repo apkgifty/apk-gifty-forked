@@ -1,9 +1,11 @@
 import "../globals.css";
 import { Inter } from "next/font/google";
+import { Providers } from "@/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 import Navbar from "@/components/Nav/Navbar";
 import PageFooter from "@/components/Main/Footer/PageFooter";
+import MobileSide from "@/components/Mobile/MobileSide";
 
 export const metadata = {
   title: "APK Exchange",
@@ -18,11 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-tertiary`}>
-        <Navbar />
-        <div className="w-full">{children}</div>
-        {/* <div className="hidden lg:block"> */}
-        <PageFooter />
-        {/* </div> */}
+        <Providers>
+          <Navbar />
+          <div className="w-full">{children}</div>
+          {/* <div className="hidden lg:block"> */}
+          <PageFooter />
+          {/* </div> */}
+          <MobileSide />
+        </Providers>
       </body>
     </html>
   );

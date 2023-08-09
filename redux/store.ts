@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import orderReducer from "./features/orderSlice";
+import mobileNavReducer from "./features/mobileNavSlice";
 
 export const store = configureStore({
-  reducer: { orderReducer },
+  reducer: { orderReducer, mobileNavReducer },
   devTools: process.env.NODE_ENV !== "production",
 });
 
