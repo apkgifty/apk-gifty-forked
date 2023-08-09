@@ -19,13 +19,11 @@ const mainNavigationLinks = [
 ];
 
 const Navigation = () => {
-  const [user, setUser] = useState<any>(null);
-
-  useEffect(() => {
+  const [user, setUser] = useState<any>(() => {
     const user: any = localStorage.getItem("userInfo");
 
-    setUser(JSON.parse(user));
-  }, []);
+    return JSON.parse(user);
+  });
 
   return (
     <div className="w-full flex justify-between items-center ">
