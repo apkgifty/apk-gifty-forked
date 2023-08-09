@@ -11,6 +11,7 @@ import axios from "axios";
 interface Props {
   paymentMethods: any;
   orderData: any;
+  token: any;
 }
 
 // const getCreateUser = async () => {
@@ -72,7 +73,11 @@ const sendRequest = async (id: string) => {
   }
 };
 
-const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
+const ConfirmOrder: React.FC<Props> = ({
+  paymentMethods,
+  orderData,
+  token,
+}) => {
   const {
     price,
     description,
@@ -210,7 +215,7 @@ const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
       </button>
     </div> */}
       </div>
-      <Chat status={statuss} chat={chat} />
+      <Chat status={statuss} chat={chat} token={token} />
       <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}

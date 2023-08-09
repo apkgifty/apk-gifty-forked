@@ -13,7 +13,15 @@ import AddSvg from "@/components/UI/SvgIcons/AddSvg";
 const pusherKey = process.env.NEXT_PUBLIC_PUSHER_APP_KEY;
 const cluster = process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER!;
 
-const Chat = ({ status, chat }: { status: string; chat: any }) => {
+const Chat = ({
+  status,
+  chat,
+  token,
+}: {
+  status: string;
+  chat: any;
+  token: any;
+}) => {
   console.log(chat);
   //   console.log(pusherKey, cluster);
   console.log(status);
@@ -35,7 +43,7 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
         transport: "ajax",
         headers: {
           Accept: "application/json",
-          Authorization: `Bearer ${"11|ITqRVhblUMf8e3JBXQ1szGn22e37TsWI8x5shZ7F"}`,
+          Authorization: `Bearer ${token}`,
         },
       },
       userAuthentication: {
@@ -43,7 +51,7 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
         transport: "ajax",
         headers: {
           Accept: "application/json",
-          Authorization: `Bearer 11|ITqRVhblUMf8e3JBXQ1szGn22e37TsWI8x5shZ7F`,
+          Authorization: `Bearer ${token}`,
         },
       },
     });
