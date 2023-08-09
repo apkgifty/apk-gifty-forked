@@ -19,7 +19,7 @@ const fetchOrders = async () => {
 
   try {
     const response = await axiosInstance(config);
-    console.log(response.data);
+
     return response.data;
   } catch (error: any) {
     console.log(error);
@@ -29,7 +29,6 @@ const fetchOrders = async () => {
 const TransactionHistory = async () => {
   const orders = await fetchOrders();
 
-  console.log(orders.data);
   return (
     <div className="w-full text-white px-12 py-20">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

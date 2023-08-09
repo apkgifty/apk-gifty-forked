@@ -4,10 +4,10 @@
 
 * {
   box-sizing: border-box;
-  thead: {
-    padding: 0;
-    background-color: transparent;
-  }
+}
+thead: {
+  padding: 0;
+  background-color: transparent;
 }
 
 .custom-range {
