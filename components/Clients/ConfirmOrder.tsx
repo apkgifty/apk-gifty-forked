@@ -137,7 +137,7 @@ const ConfirmOrder: React.FC<Props> = ({ paymentMethods, orderData }) => {
           <h4 className="text-sm lg:text-lg font-semibold">
             Payment Instructions{" "}
           </h4>
-          <ul className=" mt-6 flex flex-col lg:flex-row lg:justify-between">
+          <ul className=" mt-6 flex flex-col gap-y-8 lg:flex-row lg:justify-between lg:gap-y-0">
             {paymentMethods.map((method: any) => (
               <li key={method.id}>
                 <div className="space-y-3">
