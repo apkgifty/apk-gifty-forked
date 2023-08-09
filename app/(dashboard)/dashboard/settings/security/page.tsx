@@ -1,7 +1,7 @@
 import React from "react";
 
 import axiosInstance from "@/utils/axios";
-import MobileSide from "@/components/Mobile/MobileSide";
+import MobileSide from "@/components/Mobile/MainMobileSide";
 
 const debug = require("debug");
 

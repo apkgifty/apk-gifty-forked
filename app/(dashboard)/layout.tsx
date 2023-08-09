@@ -6,6 +6,7 @@ import MobileNav from "@/components/Bottombar/MobileNav";
 import Providers from "@/redux/provider";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import DashMobileSide from "@/components/Mobile/DashMobileSide";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,15 +31,18 @@ export default function RootLayout({
       <body
         className={`${inter.className} w-screen bg-tertiary flex h-screen  overflow-hidden`}
       >
-        <Sidebar />
-        <div className="w-full flex flex-col ">
-          <Topbar />
+        <Providers>
+          <Sidebar />
+          <div className="w-full flex flex-col ">
+            <Topbar />
 
-          <div className="w-full flex flex-col pt-20  py-2 overflow-y-auto  ">
-            <Providers>{children}</Providers>
+            <div className="w-full flex flex-col pt-20  py-2 overflow-y-auto  ">
+              <Providers>{children}</Providers>
+            </div>
           </div>
-        </div>
-        <MobileNav />
+          <DashMobileSide />
+          {/* <MobileNav /> */}
+        </Providers>
       </body>
     </html>
   );

@@ -5,7 +5,7 @@ import { Providers } from "@/redux/provider";
 const inter = Inter({ subsets: ["latin"] });
 import Navbar from "@/components/Nav/Navbar";
 import PageFooter from "@/components/Main/Footer/PageFooter";
-import MobileSide from "@/components/Mobile/MobileSide";
+import MainMobileSide from "@/components/Mobile/MainMobileSide";
 
 export const metadata = {
   title: "APK Exchange",
@@ -26,7 +26,7 @@ export default function RootLayout({
           {/* <div className="hidden lg:block"> */}
           <PageFooter />
           {/* </div> */}
-          <MobileSide />
+          <MainMobileSide />
         </Providers>
       </body>
     </html>

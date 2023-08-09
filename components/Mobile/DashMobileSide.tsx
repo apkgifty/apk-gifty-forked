@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { mainPageNavHandler } from "@/redux/features/mobileNavSlice";
+import { dashboardPageNavHandler } from "@/redux/features/mobileNavSlice";
 
 import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
@@ -22,27 +22,32 @@ import DashboardSvg from "../UI/SvgIcons/DashboardSvg";
 import NewsSvg from "../UI/SvgIcons/NewsSvg";
 
 import SideNavItems from "../Dashboard/Sidebar/SideNavItems";
+import TransactionSvg from "../UI/SvgIcons/TransactionSvg";
+import SettingsSvg from "../UI/SvgIcons/SettingsSvg";
+import SecondaryNavs from "../Dashboard/Sidebar/SecondaryNavs";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
 const links = [
-  { title: "Home", url: "/", icon: <DashboardSvg /> },
-  { title: "About", url: "/about", icon: <ExchangeSvg /> },
+  { title: "Exchange", url: "/dashboard/exchange/buy", icon: <ExchangeSvg /> },
+  { title: "Transaction", url: "#", icon: <TransactionSvg /> },
   {
-    title: "Buy GiftCards",
-    url: "/dashboard/exchange/buy",
-    icon: <ExchangeSvg />,
+    title: "Settings",
+    url: "/dashboard/settings/personal-information",
+    icon: <SettingsSvg />,
   },
-  { title: "News", url: "#", icon: <NewsSvg /> },
 ];
-const MobileSide = () => {
+
+const DashMobileSide = () => {
   // const [state, setState] = React.useState(false);
 
   const openState = useAppSelector(
-    (state) => state.mobileNavReducer.mainPageNavOpen
+    (state) => state.mobileNavReducer.dashboardNavOpen
   );
 
   const dispatch = useAppDispatch();
+
+  console.log(openState);
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -55,7 +60,7 @@ const MobileSide = () => {
         return;
       }
 
-      dispatch(mainPageNavHandler(open));
+      dispatch(dashboardPageNavHandler(open));
     };
 
   const list = (anchor: Anchor) => (
@@ -75,6 +80,7 @@ const MobileSide = () => {
       </div>
       <div className="flex flex-col justify-between flex-1  px-5 mt-6">
         <SideNavItems linkItems={links} />
+        <SecondaryNavs />
       </div>
 
       {/* <Divider /> */}
@@ -116,4 +122,4 @@ const MobileSide = () => {
   );
 };
 
-export default MobileSide;
+export default DashMobileSide;

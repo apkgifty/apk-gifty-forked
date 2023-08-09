@@ -59,18 +59,18 @@ const Sidebar = () => {
         /> */}
         <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-400 rounded-full ">
           <span className="font-medium text-gray-600 ">
-            {userInfo?.user.firstname[0].toUpperCase()}
+            {userInfo?.firstname[0].toUpperCase()}
           </span>
         </div>
 
         <div className="text-center">
           <h1 className="text-sm font-semibold text-white capitalize ">
-            {userInfo?.user?.firstname}
+            {userInfo?.firstname}
           </h1>
-          <div className="flex justify-center items-center gap-x-1">
+          {/* <div className="flex justify-center items-center gap-x-1">
             <p className="text-xs text-white font-light ">Verified </p>
             <VerifiedSvg />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex flex-col justify-between flex-1  px-5 mt-6">

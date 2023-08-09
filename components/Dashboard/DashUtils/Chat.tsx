@@ -83,9 +83,9 @@ const Chat = ({ status, chat }: { status: string; chat: any }) => {
     e.preventDefault();
 
     await axios.post("/api/pusher", {
-      sender: userInfo.user.firstname,
+      sender: userInfo.firstname,
       message: messageToSend,
-      userId: userInfo.user.id,
+      userId: userInfo.id,
     });
 
     setMessageToSend("");

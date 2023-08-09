@@ -28,7 +28,7 @@ const useAuth = () => {
       if (data?.token) {
         setCookie("access", data.cookie);
       }
-      localStorage.setItem("userInfo", JSON.stringify(response.data));
+      localStorage.setItem("userInfo", JSON.stringify(response.data.user));
       setData(response.data);
     } catch (error: any) {
       setError(error.response.data);

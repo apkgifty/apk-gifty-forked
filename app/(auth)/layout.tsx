@@ -7,6 +7,7 @@ import Navbar from "@/components/Nav/Navbar";
 import ImagesCard from "@/components/UI/ImagesCard";
 import AuthLayoutText from "@/components/Card/CardTexts/AuthLayoutText";
 import FormCard from "@/components/Card/FormCard";
+import MainMobileSide from "@/components/Mobile/MainMobileSide";
 
 export const metadata = {
   title: "APK Exchange",
@@ -38,6 +39,7 @@ export default function RootLayout({
               </div>
             </div>
           </div>
+          <MainMobileSide />
         </Providers>
       </body>
     </html>
