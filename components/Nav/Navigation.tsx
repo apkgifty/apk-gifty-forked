@@ -57,7 +57,7 @@ const Navigation = () => {
         </div>
       </div>
       <div className="hidden lg:flex lg:gap-x-3">
-        {user && (
+        {!user && (
           <div className="space-x-1">
             <Link href={"/login"}>
               <button className="bg-tertiary px-3 py-2 text-sm font-medium rounded-lg">
