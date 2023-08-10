@@ -46,12 +46,12 @@ const ProductDisplay = ({
             {pageType == "sell" && <SellInstructions />}
           </div>
 
-          <div>
+          <div className="w-full lg:w[75%] h-[450px] relative">
             <Image
               src={searchParams.image_url}
               alt="gifts image"
-              width={650}
-              height={300}
+              fill
+              objectFit="cover"
               className="rounded-lg"
             />
           </div>

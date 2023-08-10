@@ -38,14 +38,10 @@ const Product: React.FC<Props> = ({
         className="w-[250px] h-[150px] bg-red-700 rounded-lg bg-cover bg-center"
         style={{ background: `url(${imageUrl})` }}
       ></div> */}
-        <Image
-          src={image_url}
-          alt="apple card"
-          width={0}
-          height={0}
-          className="w-full h-auto"
-          // style={{ objectFit: "contain" }}
-        />
+        <div className="w-full h-[200px] relative">
+          <Image src={image_url} alt={name} fill objectFit="cover" />
+        </div>
+
         <div className="flex justify-between border-b border-gray-600 py-3">
           <p className="text-white text-sm">{name}</p>
           <p className="text-green-400 text-xs px-1 py-1 border-2 border-green-400 rounded-sm">
