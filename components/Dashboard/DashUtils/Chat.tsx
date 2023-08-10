@@ -112,10 +112,10 @@ const Chat = ({
       file: fileToSend,
       userId: userInfo.id,
     });
-    // setChats((prevState: any) => [
-    //   ...prevState,
-    //   { message: `<span>${messageToSend}</span>`, userId: userInfo.id },
-    // ]);
+    setChats((prevState: any) => [
+      ...prevState,
+      { message: `<span>${messageToSend}</span>`, userId: userInfo.id },
+    ]);
     setMessageToSend("");
   };
 
@@ -169,7 +169,7 @@ const Chat = ({
             ))} */}
             {chats.map((chat: any) =>
               chat.userId === userInfo.id ? (
-                <div className="my-4 flex justify-end ">
+                <div key={chat.message} className="my-4 flex justify-end ">
                   <div className="px-4 py-2 bg-[#7995f5] rounded-xl">
                     <p
                       className="text-[14px]"
