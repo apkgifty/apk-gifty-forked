@@ -52,7 +52,7 @@ export async function POST(req: Request, res: Response) {
       Accept: "application/json",
     },
     data: {
-      id: userId,
+      id: 1,
       message: message,
     },
   };
