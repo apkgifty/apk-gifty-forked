@@ -10,6 +10,8 @@ import EllipsesSvg from "@/components/UI/SvgIcons/EllipsesSvg";
 import PaperPlaneSvg from "@/components/UI/SvgIcons/PaperPlaneSvg";
 import AddSvg from "@/components/UI/SvgIcons/AddSvg";
 
+import "./Chat.css";
+
 const pusherKey = process.env.NEXT_PUBLIC_PUSHER_APP_KEY;
 const cluster = process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER!;
 
@@ -28,6 +30,7 @@ const Chat = ({
   const [chats, setChats] = useState<any>([]);
   const [userInfo, setUserInfo] = useState<any>();
   const [messageToSend, setMessageToSend] = useState("");
+  const [fileToSend, setFileToSend] = useState<any>(null);
 
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
@@ -87,15 +90,32 @@ const Chat = ({
   const handleMessage = (e: any) => {
     setMessageToSend(e.target.value);
   };
+
+  const handleFileupload = (e: any) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        console.log(typeof e.target?.result);
+        setFileToSend(e.target?.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   const handleReply = async (e: any) => {
     e.preventDefault();
 
     await axios.post("/api/pusher", {
       sender: userInfo.firstname,
       message: messageToSend,
+      file: fileToSend,
       userId: userInfo.id,
     });
-
+    setChats((prevState: any) => [
+      ...prevState,
+      { message: `<span>${messageToSend}</span>`, userId: userInfo.id },
+    ]);
     setMessageToSend("");
   };
 
@@ -129,10 +149,10 @@ const Chat = ({
               </button>
             </div> */}
           </div>
-          <div className="px-4 h-full flex-2 overflow-scroll ">
-            <div className="w-full flex justify-center mt-10">
+          <div className="px-4 pt-10 h-full flex-2 overflow-scroll ">
+            {/* <div className="w-full flex justify-center mt-10">
               <p className="text-xs font-light">Today, 8:26 AM</p>
-            </div>
+            </div> */}
             {/* <div className="my-10">
               <p>Hello Linh!</p>
             </div> */}
@@ -147,24 +167,50 @@ const Chat = ({
                 </div>
               </div>
             ))} */}
-            {chats.map((chat: any) => (
-              <div
-                key={chat.message}
-                dangerouslySetInnerHTML={{ __html: chat.message }}
-              ></div>
-            ))}
+            {chats.map((chat: any) =>
+              chat.userId === userInfo.id ? (
+                <div className="my-4 flex justify-end ">
+                  <div className="px-4 py-2 bg-[#7995f5] rounded-xl">
+                    <p
+                      className="text-[14px]"
+                      dangerouslySetInnerHTML={{ __html: chat.message }}
+                    ></p>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  key={chat.message}
+                  dangerouslySetInnerHTML={{ __html: chat.message }}
+                ></div>
+              )
+            )}
           </div>
           <form
             onSubmit={handleReply}
             className="w-full  bg-secondary  flex flex-1 py-6 items-center justify-between px-4   "
           >
             <div className="flex gap-x-2 ">
-              <button className="px-3 py-3 bg-primary rounded-lg ">
+              <button
+                className="px-3 py-3 bg-primary rounded-lg "
+                type="button"
+              >
                 <EmotionSvg />
               </button>
-              <button className="px-3 py-3 bg-primary rounded-lg ">
-                <AddSvg />
-              </button>
+              <div className="relative">
+                <button
+                  className="px-3 py-3 bg-primary rounded-lg "
+                  type="button"
+                >
+                  <AddSvg />
+                </button>
+                <input
+                  type="file"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  id="fileInput"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={handleFileupload}
+                />
+              </div>
             </div>
 
             <div className="w-full  mx-4">

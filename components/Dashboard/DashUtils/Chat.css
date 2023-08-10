@@ -1,0 +1,12 @@
+/* .message {
+  display: inline-block;
+  background-color: #7995f5;
+  padding: 4px 10px;
+  border-radius: 20px;
+} */
+
+.message > span {
+  font-size: 10px;
+  color: gray;
+  margin-bottom: 10px;
+}
