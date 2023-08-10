@@ -112,10 +112,10 @@ const Chat = ({
       file: fileToSend,
       userId: userInfo.id,
     });
-    setChats((prevState: any) => [
-      ...prevState,
-      { message: `<span>${messageToSend}</span>`, userId: userInfo.id },
-    ]);
+    // setChats((prevState: any) => [
+    //   ...prevState,
+    //   { message: `<span>${messageToSend}</span>`, userId: userInfo.id },
+    // ]);
     setMessageToSend("");
   };
 
