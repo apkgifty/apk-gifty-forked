@@ -221,10 +221,7 @@ const Chat = ({
                 onChange={handleMessage}
               />
             </div>
-            <button
-              type="submit"
-              className="px-2 py-2 bg-[#7995f5] rounded-lg "
-            >
+            <button type="submit" className="px-2 py-2 bg-[#7995f5] rounded-lg">
               <PaperPlaneSvg />
             </button>
           </form>
