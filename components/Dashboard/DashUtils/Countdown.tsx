@@ -65,6 +65,9 @@ const CountdownTimer: React.FC<Props> = ({ stopTime }) => {
     <div>
       {timeLeft.total > 0 && (
         <div className="space-x-1">
+          <span className="text-2xl font-bold text-white mr-4">
+            Payment time:
+          </span>
           <span className="text-2xl font-bold text-violet-500">
             {formatTime(timeLeft.minutes)}
           </span>

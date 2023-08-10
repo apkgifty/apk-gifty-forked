@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -10,6 +10,8 @@ import LockSvg from "@/components/UI/SvgIcons/LockSvg";
 import BasicSelect from "../Form/FormComponents/BasicSelect";
 import ConfirmationSelect from "../Form/FormComponents/ConfirmationSelect";
 import FilterSelectOutline from "../Filter/FilterSelectOutline";
+import Lottie from "lottie-react";
+import loadingAnimation from "@/components/Animations/Lottie/blueloading.json";
 
 interface Props {
   canCustom: string;
@@ -31,6 +33,11 @@ const BuyDisplay: React.FC<Props> = ({
   const router = useRouter();
 
   const [quantity, setQuantity] = useState("1");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    () => setLoading(false);
+  }, []);
 
   const handleQuantity = (e: any) => {
     const value = e.target.value;
@@ -60,15 +67,18 @@ const BuyDisplay: React.FC<Props> = ({
       data: JSON.stringify(data),
     };
     try {
+      setLoading(true);
       const response = await axios(config);
       console.log(response.data);
       router.push(
         `/dashboard/transaction/order/${pathname}?pid=${response.data.data.id}`
       );
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
+
   return (
     <>
       {" "}
@@ -116,20 +126,28 @@ const BuyDisplay: React.FC<Props> = ({
           </p>
         </div>
       </div>
-      <div className="flex gap-x-3 items-center">
-        <div className="p-3 rounded-full border border-gray-600">
-          <LockSvg />
+      {loading ? (
+        <div className="w-full flex justify-center">
+          <div className="w-[100px] h-[100px] ">
+            <Lottie animationData={loadingAnimation} />
+          </div>
         </div>
-        {/* <Link href={"/exchange/confirm-order"} className=" w-full"> */}
-        <button
-          onClick={buyHandler}
-          type="button"
-          className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7]"
-        >
-          Buy Gift Card
-        </button>
-        {/* </Link> */}
-      </div>{" "}
+      ) : (
+        <div className="flex gap-x-3 items-center">
+          <div className="p-3 rounded-full border border-gray-600">
+            <LockSvg />
+          </div>
+          {/* <Link href={"/exchange/confirm-order"} className=" w-full"> */}
+          <button
+            onClick={buyHandler}
+            type="button"
+            className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7]"
+          >
+            Buy Gift Card
+          </button>
+          {/* </Link> */}
+        </div>
+      )}
     </>
   );
 };

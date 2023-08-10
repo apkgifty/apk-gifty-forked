@@ -2,11 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import axios from "axios";
 
 import Countdown from "../Dashboard/DashUtils/Countdown";
 import DisplayDialog from "../UI/Dialog/Dialog";
 import Chat from "../Dashboard/DashUtils/Chat";
-import axios from "axios";
+import Lottie from "lottie-react";
+import loadingAnimation from "@/components/Animations/Lottie/blueloading.json";
 
 interface Props {
   paymentMethods: any;
@@ -96,11 +98,44 @@ const ConfirmOrder: React.FC<Props> = ({
 
   const [chat, setChat] = useState(null);
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const paths = usePathname().split("/");
 
   const pathname = paths[paths.length - 1];
 
   console.log(paymentMethods);
+
+  const sendRequest = async (id: string) => {
+    let data = JSON.stringify({ id });
+
+    let config = {
+      method: "POST",
+      maxBodyLength: Infinity,
+      url: "/api/notify-seller",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      data: data,
+    };
+
+    try {
+      setLoading(true);
+      const response = await axios(config);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    () => setLoading(false);
+  });
 
   const handleSubmit = async () => {
     const res = await sendRequest(id);
@@ -191,9 +226,14 @@ const ConfirmOrder: React.FC<Props> = ({
             Cancel Transfer
           </button>
         </div>
-
+        {loading && (
+          <div className="w-full flex justify-center">
+            <div className="w-[100px] h-[100px] ">
+              <Lottie animationData={loadingAnimation} />
+            </div>
+          </div>
+        )}
         <div className="mt-10 flex items-center gap-x-4">
-          <p>Payment time:</p>
           <Countdown
             stopTime={stop}
             // action={runAction}
