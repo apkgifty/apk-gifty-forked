@@ -36,7 +36,7 @@ const sendRequest = async (id: string) => {
   }
 };
 
-const ConfirmOrder: React.FC<Props> = ({
+const SingleOrderHistory: React.FC<Props> = ({
   paymentMethods,
   orderData,
   token,
@@ -92,4 +92,4 @@ const ConfirmOrder: React.FC<Props> = ({
   );
 };
 
-export default ConfirmOrder;
+export default SingleOrderHistory;
