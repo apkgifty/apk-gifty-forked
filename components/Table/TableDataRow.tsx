@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { useRouter } from "next/navigation";
 
 interface Props {
   status: string;
@@ -19,12 +22,19 @@ const TableDataRow: React.FC<Props> = ({
   date,
   description,
 }) => {
+  const router = useRouter();
+
   const parseDate = new Date(date);
   const formatedDate = `${
     parseDate.getUTCMonth() + 1
   }/${parseDate.getUTCDate()}/${parseDate.getUTCFullYear()}`;
   return (
-    <tr className="bg-tertiary cursor-pointer hover:bg-secondary ">
+    <tr
+      className="bg-tertiary cursor-pointer hover:bg-secondary "
+      //   onClick={() => {
+      //     router.push(`/dashboard/transaction/order/order?pid=${product_id}`);
+      //   }}
+    >
       <th
         scope="row"
         className="px-6 py-4 font-medium text-white whitespace-nowrap "

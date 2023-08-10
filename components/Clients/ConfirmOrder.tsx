@@ -100,6 +100,9 @@ const ConfirmOrder: React.FC<Props> = ({
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  // Truncing price to show 0.00
+  const fees = Math.trunc(0.01 * price * 100) / 100;
+
   const paths = usePathname().split("/");
 
   const pathname = paths[paths.length - 1];
@@ -137,6 +140,7 @@ const ConfirmOrder: React.FC<Props> = ({
     () => setLoading(false);
   });
 
+  // Submit notify-seller request
   const handleSubmit = async () => {
     const res = await sendRequest(id);
 
@@ -167,6 +171,10 @@ const ConfirmOrder: React.FC<Props> = ({
               ? "Value "
               : null}
             <span className="text-white">:- {quantity}</span>
+          </p>
+          <p className="text-xs lg:text-base text-gray-400">
+            Fees
+            <span className="text-white">:- ${fees}</span>
           </p>
           <p className="text-xs lg:text-base text-gray-400">
             Amount To Pay <span className="text-white">:- ${price}</span>

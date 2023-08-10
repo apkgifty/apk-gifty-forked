@@ -82,6 +82,10 @@ const Chat = ({
       ]);
     });
 
+    channel.bind("completed", (data: any) => {
+      console.log(data);
+    });
+
     return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
   }, [userInfo]);
 
