@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Pusher from "pusher-js";
 import axios from "axios";
+import Image from "next/image";
 
 import EmotionSvg from "@/components/UI/SvgIcons/EmotionSvg";
 import PhoneSvg from "@/components/UI/SvgIcons/PhoneSvg";
@@ -30,7 +31,7 @@ const Chat = ({
   const [chats, setChats] = useState<any>([]);
   const [userInfo, setUserInfo] = useState<any>();
   const [messageToSend, setMessageToSend] = useState("");
-  const [fileToSend, setFileToSend] = useState<any>(null);
+  const [fileToSend, setFileToSend] = useState<any>("");
 
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
@@ -121,6 +122,7 @@ const Chat = ({
       { message: `<span>${messageToSend}</span>`, userId: userInfo.id },
     ]);
     setMessageToSend("");
+    setFileToSend("");
   };
 
   return (
@@ -189,6 +191,13 @@ const Chat = ({
               )
             )}
           </div>
+          {fileToSend !== "" && (
+            <div className="w-full px-4">
+              <div className="w-full h-[280px] bg-white rounded-xl relative">
+                <Image src={fileToSend} alt="selected image" fill />
+              </div>
+            </div>
+          )}
           <form
             onSubmit={handleReply}
             className="w-full  bg-secondary  flex flex-1 py-6 items-center justify-between px-4   "
