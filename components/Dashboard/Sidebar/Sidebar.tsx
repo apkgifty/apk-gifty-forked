@@ -79,7 +79,7 @@ const Sidebar = () => {
       </div>
       <div className="flex flex-col justify-between flex-1  px-5 mt-6">
         <SideNavItems linkItems={links} />
-        <SecondaryNavs />
+        <SecondaryNavs kycStatus={userInfo?.kyc.status === undefined} />
       </div>
     </aside>
   );

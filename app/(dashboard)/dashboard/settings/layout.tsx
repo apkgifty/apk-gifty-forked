@@ -29,6 +29,7 @@ const layout: React.FC<Props> = ({ children }) => {
           subtitle="Profile Settings"
           icon={<UserIconSvg />}
           isSelected
+          link="/dashboard/settings/personal-information"
         />
         {/* <SettingsMenuItem
           title="Security"
@@ -65,6 +66,7 @@ const layout: React.FC<Props> = ({ children }) => {
           subtitle="Authenticate your identity"
           icon={<KycIconSvg />}
           isSelected={false}
+          link="/dashboard/settings/kyc"
         />
       </div>
       <div className="px-8  pt-10 w-full lg:w-[65%]"> {children}</div>

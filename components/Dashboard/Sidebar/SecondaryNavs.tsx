@@ -6,10 +6,11 @@ import { useCookies } from "react-cookie";
 import InboxSvg from "../../UI/SvgIcons/InboxSvg";
 import SideNavItem from "./SideNavItem";
 import LogoutIcon from "@mui/icons-material/Logout";
+import UserIconSvg from "@/components/UI/SvgIcons/UserIconSvg";
 
 // const links = [{ title: "Inbox", url: "#", icon: <InboxSvg />, data: "8" }];
 
-const SecondaryNavs = () => {
+const SecondaryNavs = ({ kycStatus }: { kycStatus: boolean }) => {
   const router = useRouter();
 
   const [cookies, setCookie, removeCookie] = useCookies(["access"]);
@@ -37,6 +38,18 @@ const SecondaryNavs = () => {
             badgeData={link.data}
           />
         ))} */}
+
+        {kycStatus ? (
+          <div
+            className={
+              "flex items-center px-3 py-2 bg-red-800 cursor-pointer text-white bg-transparent transition-colors duration-300 transform rounded-lg hover:bg-[#587bf2] hover:text-white "
+            }
+            onClick={() => router.push("/dashboard/settings/kyc")}
+          >
+            <UserIconSvg />
+            <span className="mx-2 text-sm font-medium">Please Verify</span>
+          </div>
+        ) : null}
         <div
           className={
             "flex items-center px-3 py-2 bg-violet-800 cursor-pointer text-white bg-transparent transition-colors duration-300 transform rounded-lg hover:bg-[#587bf2] hover:text-white "

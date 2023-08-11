@@ -98,16 +98,18 @@ const Chat = ({
 
   const handleFileupload = (e: any) => {
     const file = e.target.files[0];
+    setFileToSend(file);
 
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        console.log(typeof e.target?.result);
-        setFileToSend(e.target?.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    // if (file) {
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     console.log(typeof e.target?.result);
+    //     setFileToSend(e.target?.result);
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
   };
+
   const handleReply = async (e: any) => {
     e.preventDefault();
     const message = !fileToSend ? fileToSend : messageToSend;
@@ -127,12 +129,14 @@ const Chat = ({
           </div>
         </div>`;
     }
+    const formData = new FormData();
+
+    formData.append("sender", userInfo.firstname);
+    formData.append("message", messageToSend);
+    formData.append("file", fileToSend);
 
     await axios.post("/api/pusher", {
-      sender: userInfo.firstname,
-      message: messageToSend,
-
-      userId: userInfo.id,
+      formData,
     });
 
     setChats((prevState: any) => [
