@@ -61,7 +61,7 @@ const Topbar = () => {
         </div>
         {/* <Iconcard icon={<WalletSvg />} animate /> */}
         {/* <Iconcard icon={<SettingsSvg />} animate /> */}
-        <Iconcard icon={<NotificationSvg />} badgeData="8" animate />
+        {/* <Iconcard icon={<NotificationSvg />} badgeData="8" animate /> */}
         <div className="lg:hidden">
           <MenuButton
             handleClick={() => dispatch(dashboardPageNavHandler(true))}

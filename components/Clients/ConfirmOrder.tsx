@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 
 import Countdown from "../Dashboard/DashUtils/Countdown";
@@ -9,6 +9,7 @@ import DisplayDialog from "../UI/Dialog/Dialog";
 import Chat from "../Dashboard/DashUtils/Chat";
 import Lottie from "lottie-react";
 import loadingAnimation from "@/components/Animations/Lottie/blueloading.json";
+import CancelOrderDialog from "../UI/Dialog/CancelOrderDialog";
 
 interface Props {
   paymentMethods: any;
@@ -17,64 +18,28 @@ interface Props {
   rate: string;
 }
 
-// const getCreateUser = async () => {
-//   const response = await axios.put(
-//     "https://api.chatengine.io/users/",
-//     {
-//       username: "gg@g.com",
-//       secret: "gg@g.com",
-//       email: "gg@g.com",
+// const sendRequest = async (id: string) => {
+//   let data = JSON.stringify({ id });
+
+//   let config = {
+//     method: "POST",
+//     maxBodyLength: Infinity,
+//     url: "/api/notify-seller",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Accept: "application/json",
 //     },
-//     {
-//       headers: {
-//         "Private-KEY": "6a558d7d-b985-4e25-a83f-2d3f4d97074e",
-//       },
-//     }
-//   );
+//     data: data,
+//   };
 
-//   return response.data;
+//   try {
+//     const response = await axios(config);
+//     console.log(response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.log(error);
+//   }
 // };
-
-// const getCreateChat = async () => {
-//   const response = await axios.put(
-//     "https://api.chatengine.io/chats/",
-//     {
-//       usernames: ["huntdavid175@gmail.com", "gg@g.com"],
-
-//       is_direct_chat: true,
-//     },
-//     {
-//       headers: {
-//         "Private-KEY": "6a558d7d-b985-4e25-a83f-2d3f4d97074e",
-//       },
-//     }
-//   );
-
-//   return response.data;
-// };
-
-const sendRequest = async (id: string) => {
-  let data = JSON.stringify({ id });
-
-  let config = {
-    method: "POST",
-    maxBodyLength: Infinity,
-    url: "/api/notify-seller",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    data: data,
-  };
-
-  try {
-    const response = await axios(config);
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 const ConfirmOrder: React.FC<Props> = ({
   paymentMethods,
@@ -93,8 +58,8 @@ const ConfirmOrder: React.FC<Props> = ({
     processing_end_time,
   } = orderData;
 
-  console.log(status);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openCancelDialog, setOpenCancelDialog] = useState(false);
 
   const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState(processing_end_time);
@@ -110,7 +75,7 @@ const ConfirmOrder: React.FC<Props> = ({
 
   const pathname = paths[paths.length - 1];
 
-  console.log(paymentMethods);
+  const router = useRouter();
 
   const sendRequest = async (id: string) => {
     let data = JSON.stringify({ id });
@@ -151,6 +116,32 @@ const ConfirmOrder: React.FC<Props> = ({
 
     setStatuss(String(res.data.status));
     setStop(res.data.processing_end_time);
+  };
+
+  const cancelOrder = async (id: string) => {
+    let data = JSON.stringify({ id });
+
+    let config = {
+      method: "POST",
+      maxBodyLength: Infinity,
+      url: `/api/cancel-order`,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      data: data,
+    };
+
+    try {
+      setLoading(true);
+      const response = await axios(config);
+      console.log(response.data);
+      setStatuss(response.data.data.status);
+      setLoading(false);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   };
   console.log(statuss);
   return (
@@ -241,9 +232,15 @@ const ConfirmOrder: React.FC<Props> = ({
               ? "Start Trade"
               : null}
           </button>
-          <button className="w-full text-sm px-4 py-2 lg:w-auto">
-            Cancel Transfer
-          </button>
+
+          {Number(statuss) === -1 ? null : Number(statuss) === 2 ? null : (
+            <button
+              className="w-full text-sm px-4 py-2 lg:w-auto"
+              onClick={() => setOpenCancelDialog(true)}
+            >
+              Cancel Transfer
+            </button>
+          )}
         </div>
         {loading && (
           <div className="w-full flex justify-center">
@@ -253,10 +250,12 @@ const ConfirmOrder: React.FC<Props> = ({
           </div>
         )}
         <div className="mt-10 flex items-center gap-x-4">
-          <Countdown
-            stopTime={stop}
-            // action={runAction}
-          />
+          {Number(statuss) === -1 ? null : Number(statuss) === 2 ? null : (
+            <Countdown
+              stopTime={stop}
+              // action={runAction}
+            />
+          )}
         </div>
 
         {/* <div className="flex mt-10 flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 ">
@@ -298,6 +297,16 @@ const ConfirmOrder: React.FC<Props> = ({
           </li>
         </ol>
       </DisplayDialog>
+      <CancelOrderDialog
+        cancelHandler={() => {
+          cancelOrder(id);
+          setOpenCancelDialog(false);
+        }}
+        handleClose={() => {
+          setOpenCancelDialog(false);
+        }}
+        open={openCancelDialog}
+      />
     </>
   );
 };

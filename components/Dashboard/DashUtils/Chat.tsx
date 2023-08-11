@@ -221,7 +221,11 @@ const Chat = ({
           {fileToSend && (
             <div className="w-full px-4">
               <div className="w-full h-[280px] bg-white rounded-xl relative">
-                <Image src={base64Image} alt="selected image" fill />
+                <Image
+                  src={base64Image === null ? "" : base64Image}
+                  alt="selected image"
+                  fill
+                />
               </div>
             </div>
           )}

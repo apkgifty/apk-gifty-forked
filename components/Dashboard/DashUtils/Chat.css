@@ -16,3 +16,17 @@
   color: gray;
   margin-bottom: 10px;
 }
+
+.chat-image {
+  height: 200px;
+  width: 300px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.chat-image > div {
+  visibility: hidden;
+}
