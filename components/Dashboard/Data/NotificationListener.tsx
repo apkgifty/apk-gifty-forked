@@ -53,7 +53,7 @@ const NotificationListener = ({ token }: { token: string }) => {
         console.log(err);
       }
     });
-
+    console.log(userInfo?.id);
     const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
     console.log(channel);
 

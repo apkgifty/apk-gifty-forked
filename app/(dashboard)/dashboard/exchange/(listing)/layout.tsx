@@ -4,16 +4,12 @@ import Switch from "@/components/Form/FormComponents/Switch";
 import FilterSelectOutline from "@/components/Filter/FilterSelectOutline";
 import FilterRange from "@/components/Filter/FilterRange";
 import NotificationListener from "@/components/Dashboard/Data/NotificationListener";
-import { cookies } from "next/headers";
 
 interface Props {
   children: React.ReactNode;
 }
 
 const layout: React.FC<Props> = ({ children }) => {
-  const cookieStore = cookies();
-  const token = cookieStore.get("access")?.value;
-
   return (
     <>
       <div className="px-2 mb-32  lg:mb:0">
@@ -80,7 +76,6 @@ const layout: React.FC<Props> = ({ children }) => {
           <div className="pb-32 lg:pb-10">{children}</div>
         </div>
       </div>
-      <NotificationListener token={token!} />
     </>
   );
 };

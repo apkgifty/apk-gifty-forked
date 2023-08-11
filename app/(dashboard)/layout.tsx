@@ -7,6 +7,7 @@ import Providers from "@/redux/provider";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import DashMobileSide from "@/components/Mobile/DashMobileSide";
+import NotificationListener from "@/components/Dashboard/Data/NotificationListener";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const cookieStore = cookies();
-  const accessToken = cookieStore.get("access");
+  const accessToken = cookieStore.get("access")?.value;
 
   if (accessToken === undefined) {
     return redirect("/login");
@@ -41,6 +42,7 @@ export default function RootLayout({
             </div>
           </div>
           <DashMobileSide />
+          <NotificationListener token={accessToken!} />
           {/* <MobileNav /> */}
         </Providers>
       </body>

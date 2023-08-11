@@ -111,7 +111,7 @@ const SellDisplay: React.FC<Props> = ({
         <div>
           <p className="font-light">You will get cash value</p>
           <p className="text-3xl font-semibold text-[#587BF2]">
-            ${Number(amount) * Number(price)}
+            ${(Number(amount) * Number(price)).toFixed(2)}
           </p>
         </div>
       </div>
