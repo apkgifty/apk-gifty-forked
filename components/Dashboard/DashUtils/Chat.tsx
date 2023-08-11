@@ -74,8 +74,6 @@ const Chat = ({
     const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
     console.log(channel);
 
-    pusher.allChannels().forEach((channel) => console.log(channel));
-
     channel.bind("messaging", (data: any) => {
       console.log(data);
       setChats((prevState: any) => [
@@ -126,7 +124,7 @@ const Chat = ({
     } else {
       html = `<div className="w-full px-4">
           <div className="w-[150px] h-[150px] bg-white rounded-xl relative">
-            <Image src=${fileToSend} alt="selected image" width=250px height=250px />
+            <Image src=${base64Image} alt="selected image" width=250px height=250px />
           </div>
         </div>`;
     }
@@ -136,19 +134,25 @@ const Chat = ({
     formData.append("message", messageToSend);
     formData.append("file", fileToSend);
     formData.append("id", "1");
+    console.log(formData);
 
-    await axios.post("/api/pusher", {
-      formData,
-    });
+    try {
+      await axios.post("/api/pusher", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-    setChats((prevState: any) => [
-      ...prevState,
-      { message: `${html}`, userId: userInfo.id },
-    ]);
+      setChats((prevState: any) => [
+        ...prevState,
+        { message: `${html}`, userId: userInfo.id },
+      ]);
 
-    // if (messageToSend === "") return;
-    setMessageToSend("");
-    setFileToSend(null);
+      // if (messageToSend === "") return;
+      setMessageToSend("");
+      setFileToSend(null);
+      setbase64Image(null);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -217,7 +221,7 @@ const Chat = ({
           {fileToSend && (
             <div className="w-full px-4">
               <div className="w-full h-[280px] bg-white rounded-xl relative">
-                <Image src={fileToSend} alt="selected image" fill />
+                <Image src={base64Image} alt="selected image" fill />
               </div>
             </div>
           )}

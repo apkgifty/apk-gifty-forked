@@ -12,6 +12,7 @@ export async function POST(req: Request, res: Response) {
   //   useTLS: true,
   // });
   const formData = await req.formData();
+  console.log(formData);
 
   // try {
   //   const response = await pusher.trigger(
@@ -46,12 +47,10 @@ export async function POST(req: Request, res: Response) {
     maxBodyLength: Infinity,
     url: `https://backend.apkxchange.com/api/chatApi`,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
       Accept: "application/json",
     },
-    data: {
-      formData,
-    },
+    data: formData,
   };
 
   try {
