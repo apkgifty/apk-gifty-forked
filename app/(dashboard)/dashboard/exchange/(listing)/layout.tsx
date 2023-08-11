@@ -36,7 +36,7 @@ const layout: React.FC<Props> = ({ children }) => {
           />
         </div>
         <div className="flex justify-center items-center gap-x-4 mt-3 py-6 border-b border-gray-700">
-          <span className="py-2 px-3 bg-secondary rounded-lg text-white text-xs hover:cursor-pointer">
+          {/* <span className="py-2 px-3 bg-secondary rounded-lg text-white text-xs hover:cursor-pointer">
             All Products
           </span>
 
@@ -48,9 +48,9 @@ const layout: React.FC<Props> = ({ children }) => {
           </span>
           <span className="text-gray-500 text-xs hover:cursor-pointer">
             Walmart
-          </span>
+          </span> */}
         </div>
-        <div className="flex gap-x-4 justify-center text-white mt-4">
+        {/* <div className="flex gap-x-4 justify-center text-white mt-4">
           <FilterSelectOutline
             label="Category"
             options={["Shopping", "Food", "Clothing"]}
@@ -69,8 +69,8 @@ const layout: React.FC<Props> = ({ children }) => {
             border
             borderColor="border-gray-500"
           />
-          {/* <FilterRange /> */}
-        </div>
+          <FilterRange />
+        </div> */}
         <div className="pb-32 lg:pb-10">{children}</div>
       </div>
     </div>
