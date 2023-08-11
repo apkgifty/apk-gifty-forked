@@ -32,6 +32,7 @@ const Chat = ({
   const [userInfo, setUserInfo] = useState<any>();
   const [messageToSend, setMessageToSend] = useState("");
   const [fileToSend, setFileToSend] = useState<any>(null);
+  const [base64Image, setbase64Image] = useState<any>(null);
 
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
@@ -100,14 +101,14 @@ const Chat = ({
     const file = e.target.files[0];
     setFileToSend(file);
 
-    // if (file) {
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     console.log(typeof e.target?.result);
-    //     setFileToSend(e.target?.result);
-    //   };
-    //   reader.readAsDataURL(file);
-    // }
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        console.log(typeof e.target?.result);
+        setbase64Image(e.target?.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleReply = async (e: any) => {

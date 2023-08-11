@@ -14,6 +14,7 @@ interface Props {
   paymentMethods: any;
   orderData: any;
   token: any;
+  rate: string;
 }
 
 // const getCreateUser = async () => {
@@ -79,6 +80,7 @@ const ConfirmOrder: React.FC<Props> = ({
   paymentMethods,
   orderData,
   token,
+  rate,
 }) => {
   const {
     price,
@@ -146,10 +148,11 @@ const ConfirmOrder: React.FC<Props> = ({
     const res = await sendRequest(id);
 
     console.log(res.data);
-    setStatuss(res.data.status);
+
+    setStatuss(String(res.data.status));
     setStop(res.data.processing_end_time);
   };
-
+  console.log(statuss);
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
@@ -179,6 +182,10 @@ const ConfirmOrder: React.FC<Props> = ({
           </p>
           <p className="text-xs lg:text-base text-gray-400">
             Amount To Pay <span className="text-white">:- ${price}</span>
+          </p>
+
+          <p className="text-xs lg:text-base text-gray-400">
+            Rate <span className="text-white">:- ${rate}</span>
           </p>
         </div>
 
@@ -223,7 +230,7 @@ const ConfirmOrder: React.FC<Props> = ({
           <button
             className="w-full text-sm px-4 py-2 bg-[#7995f5] rounded-lg lg:w-auto disabled:bg-gray-700 disabled:cursor-not-allowed "
             onClick={handleSubmit}
-            disabled={statuss.toString() === "1"}
+            disabled={statuss === "1" || status === "2" || status === "-1"}
           >
             {pathname === "buy"
               ? "Paid "

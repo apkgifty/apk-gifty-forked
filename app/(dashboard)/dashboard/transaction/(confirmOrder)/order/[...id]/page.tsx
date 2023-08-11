@@ -1,5 +1,6 @@
 import axios from "axios";
 import { cookies } from "next/headers";
+import axiosInstance from "@/utils/axios";
 
 import AddSvg from "@/components/UI/SvgIcons/AddSvg";
 import EllipsesSvg from "@/components/UI/SvgIcons/EllipsesSvg";
@@ -20,32 +21,48 @@ const runAction = async () => {
   console.log("It happened");
 };
 
-const fetchOrder = async (id: string, token: string) => {
+const fetchOrder = async (id: string) => {
   try {
-    const response = await axios.get(
+    const response = await axiosInstance.get(
       `https://backend.apkxchange.com/api/order/${id}`,
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       }
     );
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const fetchPaymentMethods = async (token: string) => {
+const fetchPaymentMethods = async () => {
   try {
-    const response = await axios.get(
+    const response = await axiosInstance.get(
       "https://backend.apkxchange.com/api/paymentInstructions",
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       }
     );
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const fetchRate = async () => {
+  try {
+    const response = await axiosInstance.get(
+      "https://backend.apkxchange.com/api/setting"
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
@@ -55,10 +72,13 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
 
   if (!id) throw new Error("No order with that id");
 
-  const [orderData, paymentMethods] = await Promise.all([
-    fetchOrder(id, accessToken!),
-    fetchPaymentMethods(accessToken!),
+  const [orderData, paymentMethods, rate] = await Promise.all([
+    fetchOrder(id),
+    fetchPaymentMethods(),
+    fetchRate(),
   ]);
+
+  console.log(rate.data[0].rate);
 
   // console.log(orderData);
   // console.log(paymentMethods);
@@ -72,6 +92,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
         token={accessToken!}
         orderData={orderData.data}
         paymentMethods={paymentMethods.data}
+        rate={rate.data[0].rate}
       />
 
       {/* {orderData?.data.status === "2" ||

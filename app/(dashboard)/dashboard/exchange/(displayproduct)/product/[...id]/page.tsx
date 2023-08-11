@@ -26,10 +26,7 @@ const ProductDisplay = ({
   const pageType = params.id[0];
 
   return (
-    <div
-      className="flex w-full  
-     "
-    >
+    <div className="flex w-full">
       <div className="w-full flex  flex-col gap-y-12  justify-between text-white py-10 bg-secondary  lg:flex-row  lg:gap-y-0  ">
         <div className="flex lg:flex-[65%]  flex-col gap-y-6 px-12">
           <div className="flex gap-x-3">
