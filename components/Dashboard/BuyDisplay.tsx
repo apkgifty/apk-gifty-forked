@@ -122,7 +122,7 @@ const BuyDisplay: React.FC<Props> = ({
         <div>
           <p className="font-light">You have to pay</p>
           <p className="text-3xl font-semibold text-[#587BF2]">
-            ${Number(quantity) * Number(price)}
+            ${(Number(quantity) * Number(price)).toFixed(2)}
           </p>
         </div>
       </div>
