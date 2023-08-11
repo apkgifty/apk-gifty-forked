@@ -86,7 +86,7 @@ const KYCPage = async () => {
         </div>
       </div>
 
-      <KYC status={user.kyc.status} />
+      <KYC status={user?.kyc?.status} />
 
       <div className="w-full flex flex-col gap-y-4 justify-between items-center mt-10 py-8 border-t-2 border-black lg:flex-row lg:gap-y-0 ">
         <div className="w-full lg:w-[45%] space-y-1">

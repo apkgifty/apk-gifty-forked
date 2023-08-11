@@ -1,6 +1,5 @@
 "use client";
-
-import * as React from "react";
+import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { dashboardPageNavHandler } from "@/redux/features/mobileNavSlice";
 
@@ -25,6 +24,7 @@ import SideNavItems from "../Dashboard/Sidebar/SideNavItems";
 import TransactionSvg from "../UI/SvgIcons/TransactionSvg";
 import SettingsSvg from "../UI/SvgIcons/SettingsSvg";
 import SecondaryNavs from "../Dashboard/Sidebar/SecondaryNavs";
+import React from "react";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -44,6 +44,14 @@ const links = [
 
 const DashMobileSide = () => {
   // const [state, setState] = React.useState(false);
+
+  const [userInfo, setUserInfo] = useState<any>(null);
+
+  useEffect(() => {
+    const user: any = localStorage.getItem("userInfo");
+    console.log(JSON.parse(user));
+    setUserInfo(JSON.parse(user));
+  }, []);
 
   const openState = useAppSelector(
     (state) => state.mobileNavReducer.dashboardNavOpen
@@ -87,7 +95,7 @@ const DashMobileSide = () => {
       <div className="flex flex-col  justify-between flex-1  px-5 mt-6">
         <SideNavItems linkItems={links} />
         <div className="mt-8">
-          <SecondaryNavs />
+          <SecondaryNavs kycStatus={userInfo?.kyc === null} />
         </div>
       </div>
 

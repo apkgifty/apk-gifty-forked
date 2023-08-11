@@ -11,9 +11,7 @@ export async function POST(req: Request, res: Response) {
   //   cluster: "mt1",
   //   useTLS: true,
   // });
-  const { message, sender, userId } = await req.json();
-
-  console.log(message, sender);
+  const formData = await req.formData();
 
   // try {
   //   const response = await pusher.trigger(
@@ -52,8 +50,7 @@ export async function POST(req: Request, res: Response) {
       Accept: "application/json",
     },
     data: {
-      id: 1,
-      message: message,
+      formData,
     },
   };
 

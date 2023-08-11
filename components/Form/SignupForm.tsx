@@ -60,10 +60,11 @@ const SignupForm = () => {
   const router = useRouter();
 
   const afterSubmit = (data: any) => {
-    if (data?.data?.token) {
+    console.log(data?.token);
+    if (data?.token) {
       console.log(data);
-      console.log(data.data.token);
-      setCookie("access", data.data.token);
+      console.log(data.token);
+      setCookie("access", data.token);
       router.push("/dashboard/exchange/buy");
     }
   };

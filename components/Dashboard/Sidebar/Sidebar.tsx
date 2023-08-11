@@ -36,6 +36,8 @@ const Sidebar = () => {
     console.log(JSON.parse(user));
     setUserInfo(JSON.parse(user));
   }, []);
+
+  console.log(userInfo);
   return (
     <aside className="hidden  lg:flex flex-col w-64 h-screen py-8 overflow-y-auto bg-secondary  border-r rtl:border-r-0 rtl:border-l border-tertiary">
       <div className="w-full flex justify-center items-center cursor-pointer gap-x-1 border-b border-[#161D26] pb-8">
@@ -79,7 +81,7 @@ const Sidebar = () => {
       </div>
       <div className="flex flex-col justify-between flex-1  px-5 mt-6">
         <SideNavItems linkItems={links} />
-        <SecondaryNavs kycStatus={userInfo?.kyc.status === undefined} />
+        <SecondaryNavs kycStatus={userInfo?.kyc === null} />
       </div>
     </aside>
   );

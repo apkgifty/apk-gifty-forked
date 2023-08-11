@@ -134,6 +134,7 @@ const Chat = ({
     formData.append("sender", userInfo.firstname);
     formData.append("message", messageToSend);
     formData.append("file", fileToSend);
+    formData.append("id", "1");
 
     await axios.post("/api/pusher", {
       formData,
