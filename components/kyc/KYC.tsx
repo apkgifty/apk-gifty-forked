@@ -110,14 +110,14 @@ const KYC = ({ status }: { status: string }) => {
         </div>
       )}
 
-      {kycStatus === "0" && (
+      {kycStatus === "1" && (
         <div className="w-full flex justify-center mt-12">
           <p className="text-3xl text-orange-400 font-semibold">
             Verification Pending
           </p>
         </div>
       )}
-      {kycStatus === "1" && (
+      {kycStatus === "2" && (
         <div className="w-full flex justify-center mt-12">
           <p className="text-3xl text-green-400 font-semibold">
             Verification Completed
