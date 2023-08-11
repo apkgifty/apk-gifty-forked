@@ -91,6 +91,7 @@ const ConfirmOrder: React.FC<Props> = ({
     processing_end_time,
   } = orderData;
 
+  console.log(status);
   const [openDialog, setOpenDialog] = useState(false);
 
   const [statuss, setStatuss] = useState(status);

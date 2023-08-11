@@ -29,6 +29,8 @@ const fetchOrders = async () => {
 const TransactionHistory = async () => {
   const orders = await fetchOrders();
 
+  console.log(orders);
+
   return (
     <div className="w-full text-whitepy-10 py-4 px-2 lg:px-12 lg:py-20">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

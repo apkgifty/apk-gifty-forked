@@ -36,7 +36,12 @@ const ForgotPasswordForm = () => {
         >
           <img src="/watch-it.svg" />
         </motion.div>
-        <Form fields={fields} redirectUrl="/" endpoint="#" />
+        <Form
+          fields={fields}
+          redirectUrl="/"
+          endpoint="#"
+          afterSubmit={() => {}}
+        />
       </FormBody>
     </FormContainer>
   );

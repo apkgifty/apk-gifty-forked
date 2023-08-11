@@ -12,6 +12,8 @@ import PhoneSvg from "@/components/UI/SvgIcons/PhoneSvg";
 import Countdown from "@/components/Dashboard/DashUtils/Countdown";
 import Chat from "@/components/Dashboard/DashUtils/Chat";
 import ConfirmOrder from "@/components/Clients/ConfirmOrder";
+import EndedOrder from "@/components/Clients/EndedOrder";
+import { order } from "@/redux/features/orderSlice";
 
 const runAction = async () => {
   "use server";
@@ -60,8 +62,10 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
 
   // console.log(orderData);
   // console.log(paymentMethods);
-  const { price, processing_end_time, status } = orderData?.data;
-
+  // const { price, processing_end_time, status } = orderData?.data;
+  // console.log(orderData?.data.status);
+  // console.log(Number(orderData.data.status) < 2);
+  // const status = orderData.data.status;
   return (
     <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
       <ConfirmOrder
@@ -69,6 +73,11 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
         orderData={orderData.data}
         paymentMethods={paymentMethods.data}
       />
+
+      {/* {orderData?.data.status === "2" ||
+        (orderData?.data.status === "-1" && (
+          <EndedOrder orderData={orderData} />
+        ))} */}
     </div>
   );
 };

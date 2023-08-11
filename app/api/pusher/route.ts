@@ -59,7 +59,7 @@ export async function POST(req: Request, res: Response) {
 
   try {
     const response = await axiosInstance(config);
-
+    console.log(response);
     return NextResponse.json("sent");
   } catch (error) {
     console.log(error);

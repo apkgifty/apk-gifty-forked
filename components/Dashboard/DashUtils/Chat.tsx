@@ -31,7 +31,7 @@ const Chat = ({
   const [chats, setChats] = useState<any>([]);
   const [userInfo, setUserInfo] = useState<any>();
   const [messageToSend, setMessageToSend] = useState("");
-  const [fileToSend, setFileToSend] = useState<any>("");
+  const [fileToSend, setFileToSend] = useState<any>(null);
 
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
@@ -110,19 +110,39 @@ const Chat = ({
   };
   const handleReply = async (e: any) => {
     e.preventDefault();
+    const message = !fileToSend ? fileToSend : messageToSend;
+    let html: any;
+
+    if (!fileToSend) {
+      html = `<div className="px-4 py-2 bg-[#7995f5] rounded-xl">
+      <p
+        className="text-[14px]"
+        
+      ><span>${messageToSend}</span></p>
+    </div>`;
+    } else {
+      html = `<div className="w-full px-4">
+          <div className="w-[150px] h-[150px] bg-white rounded-xl relative">
+            <Image src=${fileToSend} alt="selected image" width=250px height=250px />
+          </div>
+        </div>`;
+    }
 
     await axios.post("/api/pusher", {
       sender: userInfo.firstname,
       message: messageToSend,
-      file: fileToSend,
+
       userId: userInfo.id,
     });
+
     setChats((prevState: any) => [
       ...prevState,
-      { message: `<span>${messageToSend}</span>`, userId: userInfo.id },
+      { message: `${html}`, userId: userInfo.id },
     ]);
+
+    // if (messageToSend === "") return;
     setMessageToSend("");
-    setFileToSend("");
+    setFileToSend(null);
   };
 
   return (
@@ -175,14 +195,11 @@ const Chat = ({
             ))} */}
             {chats.map((chat: any) =>
               chat.userId === userInfo.id ? (
-                <div key={chat.message} className="my-4 flex justify-end ">
-                  <div className="px-4 py-2 bg-[#7995f5] rounded-xl">
-                    <p
-                      className="text-[14px]"
-                      dangerouslySetInnerHTML={{ __html: chat.message }}
-                    ></p>
-                  </div>
-                </div>
+                <div
+                  key={chat.message}
+                  className="my-4 flex justify-end "
+                  dangerouslySetInnerHTML={{ __html: chat.message }}
+                ></div>
               ) : (
                 <div
                   key={chat.message}
@@ -191,7 +208,7 @@ const Chat = ({
               )
             )}
           </div>
-          {fileToSend !== "" && (
+          {fileToSend && (
             <div className="w-full px-4">
               <div className="w-full h-[280px] bg-white rounded-xl relative">
                 <Image src={fileToSend} alt="selected image" fill />
@@ -230,7 +247,9 @@ const Chat = ({
               <input
                 value={messageToSend}
                 placeholder="Type Something..."
-                className="bg-transparent text-white text-sm w-full outline-none"
+                className={`bg-transparent text-white text-sm w-full outline-none ${
+                  fileToSend && "sr-only"
+                }`}
                 onChange={handleMessage}
               />
             </div>

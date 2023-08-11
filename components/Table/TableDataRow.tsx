@@ -28,12 +28,42 @@ const TableDataRow: React.FC<Props> = ({
   const formatedDate = `${
     parseDate.getUTCMonth() + 1
   }/${parseDate.getUTCDate()}/${parseDate.getUTCFullYear()}`;
+
+  ("bg-red-900 text-red-300");
+  let stateBadge: any;
+
+  if (status === "1") {
+    stateBadge = (
+      <span className="bg-gray-600 text-gray-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">
+        Pending
+      </span>
+    );
+  } else if (status == "-1") {
+    stateBadge = (
+      <span className="bg-red-900 text-red-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">
+        Cancelled
+      </span>
+    );
+  } else if (status === "2") {
+    stateBadge = (
+      <span className="bg-green-900 text-green-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">
+        Completed
+      </span>
+    );
+  } else if (status === "0") {
+    stateBadge = (
+      <span className="bg-gray-600 text-gray-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">
+        Pending
+      </span>
+    );
+  }
   return (
     <tr
       className="bg-tertiary cursor-pointer hover:bg-secondary "
-      //   onClick={() => {
-      //     router.push(`/dashboard/transaction/order/order?pid=${product_id}`);
-      //   }}
+      onClick={() => {
+        if (product_id === "2" || product_id === "-1") return;
+        router.push(`/dashboard/transaction/order/${type}?pid=${product_id}`);
+      }}
     >
       <th
         scope="row"
@@ -44,19 +74,7 @@ const TableDataRow: React.FC<Props> = ({
       <td className="px-6 py-4">{type}</td>
       <td className="px-6 py-4">${price}</td>
       <td className="px-6 py-4">{formatedDate}</td>
-      <td className="px-6 py-4 ">
-        <span
-          className={`${
-            status === "0"
-              ? "bg-red-900 text-red-300"
-              : status === "1"
-              ? "bg-green-900 text-green-300"
-              : ""
-          }  text-xs font-medium mr-2 px-2.5 py-0.5 rounded `}
-        >
-          {status === "0" ? "Pending" : status === "1" ? "Completed" : ""}
-        </span>
-      </td>
+      <td className="px-6 py-4 ">{stateBadge}</td>
     </tr>
   );
 };

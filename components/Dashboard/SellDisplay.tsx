@@ -110,7 +110,9 @@ const SellDisplay: React.FC<Props> = ({
         </div>
         <div>
           <p className="font-light">You will get cash value</p>
-          <p className="text-3xl font-semibold text-[#587BF2]">${amount}</p>
+          <p className="text-3xl font-semibold text-[#587BF2]">
+            ${Number(amount) * Number(price)}
+          </p>
         </div>
       </div>
       <div className="flex gap-x-3 items-center">
