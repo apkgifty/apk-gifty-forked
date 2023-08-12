@@ -40,7 +40,7 @@ const TransactionHistory = async () => {
             {orders.data.map((order: any) => (
               <TableDataRow
                 key={order.id}
-                description={order.description}
+                description={order.name}
                 quantity={order.quantity}
                 price={order.price}
                 date={order.created_at}
