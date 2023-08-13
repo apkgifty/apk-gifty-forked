@@ -16,7 +16,12 @@ const LanguageSelect = () => {
           setOpen(!open);
         }}
       >
-        <img src="/united-kingdom.svg" width={20} className="mr-2" />
+        <img
+          src="/united-kingdom.svg"
+          width={20}
+          className="mr-2"
+          alt="english flagS"
+        />
         English
         <svg
           className="w-2.5 h-2.5 ml-2.5"
