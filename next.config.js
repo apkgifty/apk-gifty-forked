@@ -6,6 +6,7 @@ const nextConfig = {
       "placehold.co",
       "backend.apkxchange.com",
       "plus.unsplash.com",
+      "s3-alpha-sig.figma.com",
     ],
     dangerouslyAllowSVG: true,
   },
