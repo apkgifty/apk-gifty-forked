@@ -295,6 +295,11 @@ const ConfirmOrder: React.FC<Props> = ({
             section of this trade. Make sure to use the card within the
             timeframe provided for you.
           </li>
+          <li>
+            You can always CONFIRM with us in the chat always when Buying or
+            Selling A Gift Card incase you want clearance or have to make
+            enquiries before making payment to us.
+          </li>
         </ol>
       </DisplayDialog>
       <CancelOrderDialog

@@ -41,6 +41,7 @@ const PageFooter = () => {
             items={[
               { title: "Terms & Conditions", url: "/terms-of-service" },
               { title: "Privacy Policy", url: "/privacy-policy" },
+              { title: "Refund Policy", url: "/refund-policy" },
             ]}
           />
         </div>
