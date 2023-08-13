@@ -33,7 +33,7 @@ const links = [
     url: "/dashboard/exchange/buy",
     icon: <ExchangeSvg />,
   },
-  { title: "News", url: "#", icon: <NewsSvg /> },
+  // { title: "News", url: "#", icon: <NewsSvg /> },
 ];
 const MainMobileSide = () => {
   // const [state, setState] = React.useState(false);
