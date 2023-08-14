@@ -1,6 +1,7 @@
 import "../globals.css";
 import { Inter } from "next/font/google";
 import { Providers } from "@/redux/provider";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 import Navbar from "@/components/Nav/Navbar";
@@ -28,6 +29,7 @@ export default function RootLayout({
           {/* </div> */}
           <MainMobileSide />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
