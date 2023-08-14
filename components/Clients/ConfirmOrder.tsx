@@ -247,7 +247,8 @@ const ConfirmOrder: React.FC<Props> = ({
         )}
         <div className="mt-12">
           <p className="text-sm lg:text-base">
-            After Transfering the amount, click on the Transfered button
+            Kindly begin your transaction by clicking 'Start Trade' before
+            proceeding with your payment. Your cooperation is appreciated.
           </p>
         </div>
         <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
