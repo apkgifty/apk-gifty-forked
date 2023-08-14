@@ -15,15 +15,21 @@ const PageFooter = () => {
               { title: "Create an Account", url: "/signup" },
               { title: "How to Buy Gift Cards", url: "#" },
               { title: "How to Sell Gift Cards", url: "#" },
-              { title: "FAQ", url: "#" },
-              { title: "Contact Us", url: "#" },
+              // { title: "FAQ", url: "#" },
+              {
+                title: "Contact Us",
+                url: "https://twitter.com/apkxchange?s=11&t=x2jDIhTvNHUvLS9lc9m2Gg",
+              },
             ]}
           />
           <FooterBlock
             headerTitle="Company"
             items={[
               { title: "About", url: "/about" },
-              { title: "Support", url: "#" },
+              {
+                title: "Support",
+                url: "https://twitter.com/apkxchange?s=11&t=x2jDIhTvNHUvLS9lc9m2Gg",
+              },
               { title: "Buy", url: "/dashboard/exchange/buy" },
               { title: "Sell", url: "/dashboard/exchange/sell" },
             ]}
@@ -32,7 +38,10 @@ const PageFooter = () => {
             headerTitle="Social"
             items={[
               { title: "Facebook", url: "#" },
-              { title: "Twitter", url: "#" },
+              {
+                title: "Twitter",
+                url: "https://twitter.com/apkxchange?s=11&t=x2jDIhTvNHUvLS9lc9m2Gg",
+              },
               { title: "Instagram", url: "#" },
             ]}
           />

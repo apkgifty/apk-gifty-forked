@@ -59,7 +59,7 @@ const Product: React.FC<Props> = ({
                 Qty: {productInfo.quantity}
               </span>
             ) : (
-              <span className="text-white text-xs text-red-600">Sold Out</span>
+              <span className="text-xs text-red-600">Sold Out</span>
             )}
           </div>
         </div>
