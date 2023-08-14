@@ -248,8 +248,7 @@ const ConfirmOrder: React.FC<Props> = ({
         <div className="mt-12">
           <p className="text-sm lg:text-base">
             Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
-            before proceeding with your payment. Your cooperation is
-            appreciated.
+            before proceeding with your payment.
           </p>
         </div>
         <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
