@@ -217,7 +217,7 @@ const ConfirmOrder: React.FC<Props> = ({
               reference. This ensures accurate processing. Thank you for your
               cooperation.
             </p>
-            <ul className=" mt-6 flex flex-col gap-y-8 lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
+            <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
               {paymentMethods.map((method: any) => (
                 // <li key={method.id} className="cursor-pointer">
                 //   <div className="space-y-3">
