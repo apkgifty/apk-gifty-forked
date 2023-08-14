@@ -35,33 +35,33 @@ export async function POST(req: Request, res: Response) {
   }
 }
 
-export async function GET(req: Request, res: Response) {
-  const body = await req.json();
+// export async function GET(req: Request, res: Response) {
+//   const body = await req.json();
 
-  const { id } = body;
+//   const { id } = body;
 
-  console.log(id);
+//   console.log(id);
 
-  let config = {
-    method: "GET",
-    maxBodyLength: Infinity,
-    url: `/api/order/${id}`,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      // Authorization: accessToken,
-    },
-  };
+//   let config = {
+//     method: "GET",
+//     maxBodyLength: Infinity,
+//     url: `/api/order/${id}`,
+//     headers: {
+//       "Content-Type": "application/json",
+//       Accept: "application/json",
+//       // Authorization: accessToken,
+//     },
+//   };
 
-  try {
-    const response = await axiosInstance(config);
-    console.log(response);
-    return NextResponse.json(response.data);
-  } catch (error: any) {
-    console.log(error);
-    return new Response(JSON.stringify(error.response.data), {
-      status: error.response.status,
-      headers: error.response.header,
-    });
-  }
-}
+//   try {
+//     const response = await axiosInstance(config);
+//     console.log(response);
+//     return NextResponse.json(response.data);
+//   } catch (error: any) {
+//     console.log(error);
+//     return new Response(JSON.stringify(error.response.data), {
+//       status: error.response.status,
+//       headers: error.response.header,
+//     });
+//   }
+// }

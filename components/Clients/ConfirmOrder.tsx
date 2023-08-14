@@ -11,6 +11,8 @@ import Lottie from "lottie-react";
 import loadingAnimation from "@/components/Animations/Lottie/blueloading.json";
 import CancelOrderDialog from "../UI/Dialog/CancelOrderDialog";
 import Payment from "./Payment";
+import PurchaseButton from "./PurchaseButton";
+import CancelButton from "./CancelButton";
 
 interface Props {
   paymentMethods: any;
@@ -19,23 +21,9 @@ interface Props {
   rate: string;
 }
 
-// const sendRequest = async (id: string) => {
-//   let data = JSON.stringify({ id });
-
-//   let config = {
-//     method: "POST",
-//     maxBodyLength: Infinity,
-//     url: "/api/notify-seller",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//     },
-//     data: data,
-//   };
-
+// const getOrder = async (id: string) => {
 //   try {
-//     const response = await axios(config);
-//     console.log(response.data);
+//     const response = await axios.get("/api/get-order", { params: { id: id } });
 //     return response.data;
 //   } catch (error) {
 //     console.log(error);
@@ -59,11 +47,13 @@ const ConfirmOrder: React.FC<Props> = ({
     processing_end_time,
   } = orderData;
 
+  console.log(token);
+
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
 
-  const [statuss, setStatuss] = useState(status);
-  const [stop, setStop] = useState(processing_end_time);
+  const [statuss, setStatuss] = useState("");
+  const [stop, setStop] = useState("");
 
   const [chat, setChat] = useState(null);
 
@@ -105,7 +95,35 @@ const ConfirmOrder: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    router.refresh();
+    const updateStatus = async () => {
+      // const response = await getOrder(id);
+      // console.log(response.data);
+      setLoading(true);
+      const getOrder = async (id: string) => {
+        try {
+          const response = await axios.get(
+            `https://backend.apkxchange.com/api/order/${id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          console.log(response.data.data);
+          setLoading(false);
+          setStatuss(response.data.data.status);
+          setStop(response.data.data.processing_end_time);
+          return response.data;
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getOrder(id);
+    };
+
+    updateStatus();
+
     return () => setLoading(false);
   }, []);
 
@@ -223,28 +241,25 @@ const ConfirmOrder: React.FC<Props> = ({
           </p>
         </div>
         <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
-          <button
-            className="w-full text-sm px-4 py-2 bg-[#7995f5] rounded-lg lg:w-auto disabled:bg-gray-700 disabled:cursor-not-allowed "
-            onClick={handleSubmit}
-            disabled={statuss === "1" || status === "2" || status === "-1"}
-          >
-            {pathname === "buy"
-              ? "Paid "
-              : pathname === "sell"
-              ? "Start Trade"
-              : null}
-          </button>
-
-          {Number(statuss) === -1 ? null : Number(statuss) === 2 ? null : (
-            <button
-              className="w-full text-sm px-4 py-2 lg:w-auto"
-              onClick={() => setOpenCancelDialog(true)}
-            >
-              Cancel Transfer
-            </button>
+          {loading ? (
+            <div className="w-full flex justify-center">
+              <div className="w-[100px] h-[100px] ">
+                <Lottie animationData={loadingAnimation} />
+              </div>
+            </div>
+          ) : (
+            <>
+              {" "}
+              <PurchaseButton
+                pathname={pathname}
+                handleSubmit={handleSubmit}
+                status={statuss}
+              />
+              <CancelButton status={statuss} openDialog={setOpenCancelDialog} />
+            </>
           )}
         </div>
-        {loading && (
+        {loading && status === "" && (
           <div className="w-full flex justify-center">
             <div className="w-[100px] h-[100px] ">
               <Lottie animationData={loadingAnimation} />
@@ -289,10 +304,6 @@ const ConfirmOrder: React.FC<Props> = ({
             on it.
           </li>
           <li>
-            Before you proceed Kindly make sure you’ve read through our Trade
-            Guidelines before proceeding.
-          </li>
-          <li>
             The card or the code of your order will be uploaded in the chat
             section of this trade. Make sure to use the card within the
             timeframe provided for you.
@@ -301,6 +312,14 @@ const ConfirmOrder: React.FC<Props> = ({
             You can always CONFIRM with us in the chat always when Buying or
             Selling A Gift Card incase you want clearance or have to make
             enquiries before making payment to us.
+          </li>
+          <li>
+            Calculating the Ghana Cedis equivalent for payment through Mobile
+            Money is as follows, applicable to Local Users in Ghana only:
+            Multiply the Rate by the Amount to Pay. For instance, when
+            purchasing a "$100 iTunes gift card" with an amount due of $72, the
+            computation would be "72 x 11.5 = GHC 828 + Fees ($1)", resulting in
+            a total of GHC 839.
           </li>
         </ol>
       </DisplayDialog>
