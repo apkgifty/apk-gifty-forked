@@ -95,19 +95,19 @@ const ConfirmOrder: React.FC<Props> = ({
     try {
       setLoading(true);
       const response = await axios(config);
-      console.log(response.data);
+
       return response.data;
     } catch (error) {
       setLoading(false);
-      console.log(error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    () => setLoading(false);
-  });
+    router.refresh();
+    return () => setLoading(false);
+  }, []);
 
   // Submit notify-seller request
   const handleSubmit = async () => {
