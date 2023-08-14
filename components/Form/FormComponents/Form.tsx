@@ -79,9 +79,7 @@ const Form: React.FC<Props> = ({
           autoHideDuration={6000}
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         >
-          <Alert sx={{ backgroundColor: "red" }} severity="error">
-            {error?.message}
-          </Alert>
+          <Alert severity="error">{error?.message}</Alert>
         </Snackbar>
       )}
     </>
