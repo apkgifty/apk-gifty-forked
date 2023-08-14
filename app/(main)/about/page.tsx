@@ -13,8 +13,25 @@ const AboutPage = () => {
       <Banner />
       <div className="px-10 lg:px-24 xl:max-w-[1270px] 2xl:max-w-[1450px] lg:mx-auto">
         <div className="w-full flex flex-col gap-y-4 lg:flex-row lg:gap-y-0 ">
-          <div className="flex-1">Image</div>
-          <div className="flex-1 pt-8">
+          <div className="flex-1 flex w-full">
+            <div className="w-[70%] h-[200px] lg:h-[300px] -mt-10 relative border-2 border-blue-600 rounded-lg">
+              <Image
+                src={"/images/aboutdesk.webp"}
+                fill
+                alt="preview of apkxchange on desktop"
+                className="rounded-lg"
+              />
+            </div>
+            <div className="w-[30%] h-[230px] lg:h-[350px] mt-8 -ml-10 relative border-2 border-blue-600 rounded-lg">
+              <Image
+                src={"/images/aboutmobile.webp"}
+                fill
+                alt="preview of apkxchange on desktop"
+                className="rounded-lg"
+              />
+            </div>
+          </div>
+          <div className="flex-1 pt-8 lg:pt-32">
             <AboutBlock title="What is APK Xchange">
               <p className="text-xs lg:text-sm">
                 ApkXchange is the ultimate destination for savvy shoppers

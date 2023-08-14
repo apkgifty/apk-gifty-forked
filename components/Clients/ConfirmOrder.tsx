@@ -13,6 +13,7 @@ import CancelOrderDialog from "../UI/Dialog/CancelOrderDialog";
 import Payment from "./Payment";
 import PurchaseButton from "./PurchaseButton";
 import CancelButton from "./CancelButton";
+import ReportIcon from "@mui/icons-material/Report";
 
 interface Props {
   paymentMethods: any;
@@ -207,6 +208,15 @@ const ConfirmOrder: React.FC<Props> = ({
             <h4 className="text-sm lg:text-lg font-semibold">
               Payment Instructions{" "}
             </h4>
+            <p className="mt-10">
+              <span className="mr-2 text-orange-600">
+                <ReportIcon />
+              </span>{" "}
+              Kindly note that when sending payments for transactions, it's
+              essential to use your registered account username as the payment
+              reference. This ensures accurate processing. Thank you for your
+              cooperation.
+            </p>
             <ul className=" mt-6 flex flex-col gap-y-8 lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
               {paymentMethods.map((method: any) => (
                 // <li key={method.id} className="cursor-pointer">
