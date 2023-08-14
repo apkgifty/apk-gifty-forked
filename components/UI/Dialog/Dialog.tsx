@@ -13,6 +13,7 @@ interface Props {
   buttonText: string;
   open: boolean;
   handleClose: () => void;
+  sx?: any;
 }
 
 const DisplayDialog: React.FC<Props> = ({
@@ -21,6 +22,7 @@ const DisplayDialog: React.FC<Props> = ({
   title,
   children,
   buttonText,
+  sx,
 }) => {
   return (
     <Dialog
@@ -29,13 +31,15 @@ const DisplayDialog: React.FC<Props> = ({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
-      <DialogContent>
+      <DialogTitle id="alert-dialog-title" sx={sx}>
+        {title}
+      </DialogTitle>
+      <DialogContent sx={sx}>
         <DialogContentText id="alert-dialog-description">
           {children}
         </DialogContentText>
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={sx}>
         {/* <Button onClick={handleClose}>Disagree</Button> */}
         <Button onClick={handleClose} autoFocus>
           {buttonText}

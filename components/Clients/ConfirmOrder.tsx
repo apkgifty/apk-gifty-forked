@@ -10,6 +10,7 @@ import Chat from "../Dashboard/DashUtils/Chat";
 import Lottie from "lottie-react";
 import loadingAnimation from "@/components/Animations/Lottie/blueloading.json";
 import CancelOrderDialog from "../UI/Dialog/CancelOrderDialog";
+import Payment from "./Payment";
 
 interface Props {
   paymentMethods: any;
@@ -188,29 +189,30 @@ const ConfirmOrder: React.FC<Props> = ({
             <h4 className="text-sm lg:text-lg font-semibold">
               Payment Instructions{" "}
             </h4>
-            <ul className=" mt-6 flex flex-col gap-y-8 lg:flex-row lg:justify-between lg:gap-y-0">
+            <ul className=" mt-6 flex flex-col gap-y-8 lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
               {paymentMethods.map((method: any) => (
-                <li key={method.id}>
-                  <div className="space-y-3">
-                    <div>
-                      <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
-                        {method.channel}
-                      </h5>
-                    </div>
+                // <li key={method.id} className="cursor-pointer">
+                //   <div className="space-y-3">
+                //     <div>
+                //       <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
+                //         {method.channel}
+                //       </h5>
+                //     </div>
 
-                    <div>
-                      <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
-                        <span></span> {method.body}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
-                        <span className="text-white">Name:</span>{" "}
-                        {method.sub_text}
-                      </p>
-                    </div>
-                  </div>
-                </li>
+                //     {/* <div>
+                //       <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
+                //         <span></span> {method.body}
+                //       </p>
+                //     </div> */}
+                //     {/* <div>
+                //       <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
+                //         <span className="text-white">Name:</span>{" "}
+                //         {method.sub_text}
+                //       </p>
+                //     </div> */}
+                //   </div>
+                // </li>
+                <Payment method={method} />
               ))}
             </ul>
           </div>
