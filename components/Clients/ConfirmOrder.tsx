@@ -212,7 +212,7 @@ const ConfirmOrder: React.FC<Props> = ({
               <span className="mr-2 text-orange-600">
                 <ReportIcon />
               </span>{" "}
-              Kindly note that when sending payments for transactions, it's
+              Kindly note that when sending payments for transactions, it&#x27;s
               essential to use your registered account username as the payment
               reference. This ensures accurate processing. Thank you for your
               cooperation.
