@@ -11,11 +11,7 @@ const Payment = ({ method }: { method: any }) => {
   return (
     <>
       {" "}
-      <li
-        key={method.id}
-        className="cursor-pointer"
-        onClick={() => setOpen(true)}
-      >
+      <li className="cursor-pointer" onClick={() => setOpen(true)}>
         <div className="space-y-3">
           <div>
             <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">

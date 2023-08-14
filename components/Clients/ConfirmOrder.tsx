@@ -212,7 +212,7 @@ const ConfirmOrder: React.FC<Props> = ({
                 //     </div> */}
                 //   </div>
                 // </li>
-                <Payment method={method} />
+                <Payment method={method} key={method.id} />
               ))}
             </ul>
           </div>
