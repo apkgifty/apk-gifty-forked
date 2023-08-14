@@ -317,9 +317,9 @@ const ConfirmOrder: React.FC<Props> = ({
             Calculating the Ghana Cedis equivalent for payment through Mobile
             Money is as follows, applicable to Local Users in Ghana only:
             Multiply the Rate by the Amount to Pay. For instance, when
-            purchasing a "$100 iTunes gift card" with an amount due of $72, the
-            computation would be "72 x 11.5 = GHC 828 + Fees ($1)", resulting in
-            a total of GHC 839.
+            purchasing a &quot;$100 iTunes gift card&quot; with an amount due of
+            $72, the computation would be &quot;72 x 11.5 = GHC 828 + Fees
+            ($1)&quot;, resulting in a total of GHC 839.
           </li>
         </ol>
       </DisplayDialog>
