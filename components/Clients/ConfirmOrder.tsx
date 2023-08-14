@@ -198,7 +198,7 @@ const ConfirmOrder: React.FC<Props> = ({
           <p className="text-xs lg:text-base text-gray-400">
             Rate{" "}
             <span className=" font-semi-bold text-orange-400">
-              :- GHC {rate}
+              :- 1$ / GHC {rate}
             </span>
           </p>
         </div>
