@@ -12,7 +12,7 @@ export async function POST(req: Request, res: Response) {
   //   useTLS: true,
   // });
   const formData = await req.formData();
-  console.log(formData);
+  // console.log(formData);
 
   // try {
   //   const response = await pusher.trigger(
@@ -55,7 +55,7 @@ export async function POST(req: Request, res: Response) {
 
   try {
     const response = await axiosInstance(config);
-    console.log(response);
+    // console.log(response);
     return NextResponse.json("sent");
   } catch (error) {
     console.log(error);

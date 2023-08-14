@@ -69,7 +69,7 @@ const BuyDisplay: React.FC<Props> = ({
     try {
       setLoading(true);
       const response = await axios(config);
-      console.log(response.data);
+      // console.log(response.data);
       router.push(
         `/dashboard/transaction/order/${pathname}?pid=${response.data.data.id}`
       );

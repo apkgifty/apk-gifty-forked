@@ -39,8 +39,8 @@ const LoginForm = () => {
 
   const afterSubmit = (data: any) => {
     if (data?.token) {
-      console.log(data);
-      console.log(data.token);
+      // console.log(data);
+      // console.log(data.token);
       setCookie("access", data.token);
       router.push("/dashboard/exchange/buy");
     }

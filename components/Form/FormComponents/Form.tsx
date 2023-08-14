@@ -49,7 +49,7 @@ const Form: React.FC<Props> = ({
   const onSubmit = (data: any) => submitRequest(data, endpoint);
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     afterSubmit(data);
   }, [data]);
 

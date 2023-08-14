@@ -23,7 +23,7 @@ const useAuth = () => {
     try {
       setLoading(true);
       const response = await axios(config);
-      console.log(response.data);
+      // console.log(response.data);
 
       if (data?.token) {
         setCookie("access", data.cookie);

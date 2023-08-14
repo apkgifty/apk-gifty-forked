@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: Response) {
   const { id } = await req.json();
-  console.log(id);
+  //   console.log(id);
 
   //   let config = {
   //     method: "GET",

@@ -57,9 +57,9 @@ const CountdownTimer: React.FC<Props> = ({ stopTime }) => {
 
   function handleCountdownEnd() {
     // Add your code here to handle the action when the countdown ends
-    console.log("Countdown has ended. Do something here.");
+    // console.log("Countdown has ended. Do something here.");
   }
-  console.log(stopTime);
+  // console.log(stopTime);
 
   return (
     <div>

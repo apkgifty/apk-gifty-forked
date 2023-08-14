@@ -33,11 +33,11 @@ const Sidebar = () => {
   const [userInfo, setUserInfo] = useState<any>(null);
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
-    console.log(JSON.parse(user));
+    // console.log(JSON.parse(user));
     setUserInfo(JSON.parse(user));
   }, []);
 
-  console.log(userInfo);
+  // console.log(userInfo);
   return (
     <aside className="hidden  lg:flex flex-col w-64 h-screen py-8 overflow-y-auto bg-secondary  border-r rtl:border-r-0 rtl:border-l border-tertiary">
       <div className="w-full flex justify-center items-center cursor-pointer gap-x-1 border-b border-[#161D26] pb-8">

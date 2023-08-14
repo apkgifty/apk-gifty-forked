@@ -53,12 +53,12 @@ const NotificationListener = ({ token }: { token: string }) => {
         console.log(err);
       }
     });
-    console.log(userInfo?.id);
+    // console.log(userInfo?.id);
     const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
-    console.log(channel);
+    // console.log(channel);
 
     channel.bind("completed", (data: any) => {
-      console.log(data);
+      // console.log(data);
       setNotifications((prevState: any) => {
         return [...prevState, data];
       });

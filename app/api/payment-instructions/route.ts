@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request, res: Response) {
   const body = await req.json();
 
-  console.log(body);
+  // console.log(body);
 
   const { id } = await body;
 
-  console.log(body);
+  // console.log(body);
 
   let config = {
     method: "GET",
@@ -23,10 +23,10 @@ export async function GET(req: Request, res: Response) {
 
   try {
     const response = await axiosInstance(config);
-    console.log(response);
+    // console.log(response);
     return NextResponse.json(response.data);
   } catch (error: any) {
-    console.log(error);
+    // console.log(error);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,

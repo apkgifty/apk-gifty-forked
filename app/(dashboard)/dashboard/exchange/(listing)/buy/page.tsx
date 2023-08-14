@@ -73,7 +73,7 @@ const fetchProducts = async (accessToken: any) => {
       },
     }
   );
-  console.log(response.data.data);
+  // console.log(response.data.data);
 
   return response.data.data;
 };

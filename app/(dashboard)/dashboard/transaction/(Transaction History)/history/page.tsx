@@ -22,14 +22,14 @@ const fetchOrders = async () => {
 
     return response.data;
   } catch (error: any) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
 const TransactionHistory = async () => {
   const orders = await fetchOrders();
 
-  console.log(orders);
+  // console.log(orders);
 
   return (
     <div className="w-full text-whitepy-10 py-4 px-2 lg:px-12 lg:py-20">

@@ -13,8 +13,8 @@ interface Props {
 
 const SideNavItem: React.FC<Props> = ({ url, title, icon, badgeData }) => {
   const pathname = usePathname();
-  console.log(pathname);
-  console.log(pathname.split("/")[2]);
+  // console.log(pathname);
+  // console.log(pathname.split("/")[2]);
   return (
     <Link
       className={`flex items-center px-3 py-2 ${

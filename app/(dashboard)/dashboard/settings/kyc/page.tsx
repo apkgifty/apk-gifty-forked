@@ -25,10 +25,10 @@ const KYCPage = async () => {
         },
       }
     );
-    console.log(res.data);
+    // console.log(res.data);
     user = res.data.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 
   return (

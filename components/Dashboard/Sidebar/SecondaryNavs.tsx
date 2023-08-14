@@ -11,12 +11,12 @@ import UserIconSvg from "@/components/UI/SvgIcons/UserIconSvg";
 // const links = [{ title: "Inbox", url: "#", icon: <InboxSvg />, data: "8" }];
 
 const SecondaryNavs = ({ kycStatus }: { kycStatus: boolean }) => {
-  console.log(kycStatus);
+  // console.log(kycStatus);
   const router = useRouter();
 
   const [cookies, setCookie, removeCookie] = useCookies(["access"]);
 
-  console.log(cookies);
+  // console.log(cookies);
 
   const logoutHandler = () => {
     removeCookie("access", { path: "/" });

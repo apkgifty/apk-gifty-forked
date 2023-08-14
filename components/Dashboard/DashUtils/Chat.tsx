@@ -25,9 +25,9 @@ const Chat = ({
   chat: any;
   token: any;
 }) => {
-  console.log(chat);
+  // console.log(chat);
   //   console.log(pusherKey, cluster);
-  console.log(status);
+  // console.log(status);
   const [chats, setChats] = useState<any>([]);
   const [userInfo, setUserInfo] = useState<any>();
   const [messageToSend, setMessageToSend] = useState("");
@@ -69,13 +69,13 @@ const Chat = ({
       }
     });
 
-    console.log(userInfo);
+    // console.log(userInfo);
 
     const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
-    console.log(channel);
+    // console.log(channel);
 
     channel.bind("messaging", (data: any) => {
-      console.log(data);
+      // console.log(data);
       setChats((prevState: any) => [
         ...prevState,
         { sender: data.sender, message: data.message },
@@ -83,13 +83,13 @@ const Chat = ({
     });
 
     channel.bind("completed", (data: any) => {
-      console.log(data);
+      // console.log(data);
     });
 
     return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
   }, [userInfo]);
 
-  console.log(chats);
+  // console.log(chats);
 
   const handleMessage = (e: any) => {
     setMessageToSend(e.target.value);
@@ -102,7 +102,6 @@ const Chat = ({
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        console.log(typeof e.target?.result);
         setbase64Image(e.target?.result);
       };
       reader.readAsDataURL(file);
@@ -134,7 +133,7 @@ const Chat = ({
     formData.append("message", messageToSend);
     formData.append("file", fileToSend);
     formData.append("id", "1");
-    console.log(formData);
+    // console.log(formData);
 
     try {
       await axios.post("/api/pusher", formData, {

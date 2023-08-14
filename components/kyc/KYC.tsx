@@ -18,24 +18,24 @@ const KYC = ({ status }: { status: string }) => {
 
   const handleFrontImage = (e: any) => {
     const file = e.target.files[0];
-    console.log(frontImage);
+    // console.log(frontImage);
     setFrontImage(file);
   };
 
   const handleBackImage = (e: any) => {
     const file = e.target.files[0];
-    console.log(backImage);
+    // console.log(backImage);
     setBackImage(file);
   };
 
   const handleSelfieImage = (e: any) => {
     const file = e.target.files[0];
-    console.log(selfieImage);
+    // console.log(selfieImage);
     setSelfieImage(file);
   };
 
   const handleFilesSubmit = async () => {
-    console.log(frontImage, backImage, selfieImage);
+    // console.log(frontImage, backImage, selfieImage);
     const formData = new FormData();
 
     formData.append("front_image", frontImage);
@@ -59,11 +59,11 @@ const KYC = ({ status }: { status: string }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
 
       setKycStatus(response.data.data.kyc.status);
 
-      console.log(response.status);
+      // console.log(response.status);
       setLoading(false);
     } catch (error) {
       console.log(error);

@@ -19,15 +19,15 @@ export async function POST(req: Request, res: Response) {
     data: formData,
   };
 
-  console.log(front_image, back_image, face_image);
+  // console.log(front_image, back_image, face_image);
 
   try {
     const response = await axiosInstance(config);
-    console.log(response);
+    // console.log(response);
     return NextResponse.json(response.data);
   } catch (error: any) {
-    console.log(error.request);
-    console.log(error.response);
+    // console.log(error.request);
+    // console.log(error.response);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,

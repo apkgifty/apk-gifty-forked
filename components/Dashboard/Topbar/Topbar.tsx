@@ -18,7 +18,7 @@ const Topbar = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
-    console.log(JSON.parse(user));
+    // console.log(JSON.parse(user));
     setUserInfo(JSON.parse(user));
   }, []);
 

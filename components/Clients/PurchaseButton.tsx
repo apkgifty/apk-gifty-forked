@@ -22,7 +22,7 @@ const PurchaseButton: React.FC<Props> = ({
       disabled={status === "1" || status === "2" || status === "-1"}
     >
       {pathname === "buy"
-        ? "Paid "
+        ? "Start Trade "
         : pathname === "sell"
         ? "Start Trade"
         : null}

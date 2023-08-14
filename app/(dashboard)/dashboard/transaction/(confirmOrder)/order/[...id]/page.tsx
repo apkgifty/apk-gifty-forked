@@ -18,7 +18,7 @@ import { order } from "@/redux/features/orderSlice";
 
 const runAction = async () => {
   "use server";
-  console.log("It happened");
+  // console.log("It happened");
 };
 
 const fetchOrder = async (id: string) => {
@@ -49,7 +49,7 @@ const fetchPaymentMethods = async () => {
     );
     return response.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -61,7 +61,7 @@ const fetchRate = async () => {
 
     return response.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -78,7 +78,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
     fetchRate(),
   ]);
 
-  console.log(rate.data[0].rate);
+  // console.log(rate.data[0].rate);
 
   // console.log(orderData);
   // console.log(paymentMethods);

@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  console.log(body);
+  // console.log(body);
 
   let data = JSON.stringify({
     ...body,
@@ -24,10 +24,10 @@ export async function POST(req: Request, res: Response) {
 
   try {
     const response = await axiosInstance(config);
-    console.log(response.data);
+    // console.log(response.data);
     return NextResponse.json(response.data);
   } catch (error: any) {
-    console.log(error);
+    // console.log(error);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,

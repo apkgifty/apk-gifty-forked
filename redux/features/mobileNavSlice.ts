@@ -18,7 +18,7 @@ const mobile = createSlice({
       state.mainPageNavOpen = action.payload;
     },
     dashboardPageNavHandler: (state, action: PayloadAction<boolean>) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.dashboardNavOpen = action.payload;
     },
   },
