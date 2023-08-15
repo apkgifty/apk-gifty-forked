@@ -192,10 +192,7 @@ const ConfirmOrder: React.FC<Props> = ({
             <span className="text-white">:- ${fees}</span>
           </p>
           <p className="text-xs lg:text-base text-gray-400">
-            Amount To Pay{" "}
-            <span className="text-orange-400">
-              :- ${price} / GHC {Number(price) * Number(rate)}
-            </span>
+            Amount To Pay <span className="text-orange-400">:- ${price}</span>
           </p>
 
           <p className="text-xs lg:text-base text-gray-400">
@@ -252,6 +249,10 @@ const ConfirmOrder: React.FC<Props> = ({
           <p className="text-sm lg:text-base">
             Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
             before proceeding with your payment.
+          </p>
+          <p className="text-sm lg:text-base text-orange-400">
+            Amount to pay in Ghana Cedis - GHC{" "}
+            {(Number(price) * Number(rate)).toFixed(2)}
           </p>
         </div>
         <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
