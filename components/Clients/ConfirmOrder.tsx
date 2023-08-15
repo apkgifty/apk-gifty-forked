@@ -192,7 +192,7 @@ const ConfirmOrder: React.FC<Props> = ({
             <span className="text-white">:- ${fees}</span>
           </p>
           <p className="text-xs lg:text-base text-gray-400">
-            Amount To Pay <span className="text-orange-400">:- ${price}</span>
+            Amount To Pay <span className="text-white">:- ${price}</span>
           </p>
 
           <p className="text-xs lg:text-base text-gray-400">
