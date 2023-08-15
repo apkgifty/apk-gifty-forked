@@ -250,7 +250,7 @@ const ConfirmOrder: React.FC<Props> = ({
             Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
             before proceeding with your payment.
           </p>
-          <p className="text-sm lg:text-base text-orange-400">
+          <p className="text-sm lg:text-base text-orange-400 mt-4">
             Amount to pay in Ghana Cedis - GHC{" "}
             {(Number(price) * Number(rate)).toFixed(2)}
           </p>
