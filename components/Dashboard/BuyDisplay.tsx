@@ -20,6 +20,7 @@ interface Props {
   accessToken: string | undefined;
   pageType: string;
   pid: string;
+  stock: string;
 }
 
 const BuyDisplay: React.FC<Props> = ({
@@ -29,8 +30,10 @@ const BuyDisplay: React.FC<Props> = ({
   price,
   pageType,
   pid,
+  stock,
 }) => {
   const router = useRouter();
+  console.log(stock);
 
   const [quantity, setQuantity] = useState("1");
   const [loading, setLoading] = useState<boolean>(false);
@@ -139,9 +142,10 @@ const BuyDisplay: React.FC<Props> = ({
           </div>
           {/* <Link href={"/exchange/confirm-order"} className=" w-full"> */}
           <button
+            disabled={Number(stock) < 1}
             onClick={buyHandler}
             type="button"
-            className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7]"
+            className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7] disabled:bg-gray-500 disabled:cursor-not-allowed"
           >
             Buy Gift Card
           </button>

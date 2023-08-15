@@ -62,6 +62,7 @@ const ProductDisplay = ({
               price={searchParams.price}
               pageType={pageType}
               pid={searchParams.pid}
+              stock={searchParams.quantity}
             />
           )}
 
@@ -73,6 +74,7 @@ const ProductDisplay = ({
               price={searchParams.price}
               pageType={pageType}
               pid={searchParams.pid}
+              stock={searchParams.quantity}
             />
           )}
         </div>

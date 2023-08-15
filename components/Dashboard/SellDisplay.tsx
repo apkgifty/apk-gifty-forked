@@ -18,6 +18,7 @@ interface Props {
   accessToken: string | undefined;
   pageType: string;
   pid: string;
+  stock: string;
 }
 
 const SellDisplay: React.FC<Props> = ({
@@ -27,6 +28,7 @@ const SellDisplay: React.FC<Props> = ({
   price,
   pageType,
   pid,
+  stock,
 }) => {
   const router = useRouter();
 
@@ -121,11 +123,12 @@ const SellDisplay: React.FC<Props> = ({
         </div>
         {/* <Link href={"/exchange/confirm-order"} className=" w-full"> */}
         <button
+          disabled={Number(stock) < 1}
           onClick={() => {
             sellHandler(amount);
           }}
           type="button"
-          className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7]"
+          className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7] disabled:bg-gray-500 disabled:cursor-not-allowed"
         >
           Sell Gift Card
         </button>

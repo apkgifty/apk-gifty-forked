@@ -111,7 +111,7 @@ const ConfirmOrder: React.FC<Props> = ({
             }
           );
 
-          console.log(response.data.data);
+          // console.log(response.data.data);
           setLoading(false);
           setStatuss(response.data.data.status);
           setStop(response.data.data.processing_end_time);
@@ -132,7 +132,7 @@ const ConfirmOrder: React.FC<Props> = ({
   const handleSubmit = async () => {
     const res = await sendRequest(id);
 
-    console.log(res.data);
+    // console.log(res.data);
 
     setStatuss(String(res.data.status));
     setStop(res.data.processing_end_time);
@@ -155,7 +155,7 @@ const ConfirmOrder: React.FC<Props> = ({
     try {
       setLoading(true);
       const response = await axios(config);
-      console.log(response.data);
+      // console.log(response.data);
       setStatuss(response.data.data.status);
       setLoading(false);
       return response.data;
@@ -163,7 +163,7 @@ const ConfirmOrder: React.FC<Props> = ({
       console.log(error);
     }
   };
-  console.log(statuss);
+  // console.log(statuss);
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
@@ -192,7 +192,10 @@ const ConfirmOrder: React.FC<Props> = ({
             <span className="text-white">:- ${fees}</span>
           </p>
           <p className="text-xs lg:text-base text-gray-400">
-            Amount To Pay <span className="text-white">:- ${price}</span>
+            Amount To Pay{" "}
+            <span className="text-orange-400">
+              :- ${price} / GHC {Number(price) * Number(rate)}
+            </span>
           </p>
 
           <p className="text-xs lg:text-base text-gray-400">
