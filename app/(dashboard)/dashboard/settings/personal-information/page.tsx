@@ -27,10 +27,10 @@ const PersonalInformationPage: React.FC<Props> = async () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    console.log(res.data);
+    // console.log(res.data);
     user = res.data.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
   return (
     <div className="w-full text-white pb-32">

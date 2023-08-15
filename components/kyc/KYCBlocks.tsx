@@ -9,7 +9,7 @@ interface Props {
 }
 
 const KYCBlocks: React.FC<Props> = ({ label, handleFileUpload, file }) => {
-  console.log(file);
+  // console.log(file);
   return (
     <div className="relative flex flex-col items-center gap-y-10 px-8 py-8 border border-dashed border-gray-500 rounded-xl ">
       <p className="absolute top-0 -mt-3 text-sm text-gray-500 bg-tertiary">

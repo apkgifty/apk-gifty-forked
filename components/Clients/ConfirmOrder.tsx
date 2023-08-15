@@ -301,7 +301,7 @@ const ConfirmOrder: React.FC<Props> = ({
       </button>
     </div> */}
       </div>
-      <Chat status={statuss} chat={chat} token={token} />
+      <Chat status={statuss} chat={chat} token={token} id={id} />
       <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}

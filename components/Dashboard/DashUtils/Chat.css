@@ -5,6 +5,29 @@
   border-radius: 20px;
 } */
 
+.mc-sender {
+  margin: 10px 0;
+}
+
+.mc-sender > .message-card-content {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mc-sender > .message-card-content > .message {
+  background-color: #7995f5;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.mc-sender > .message-card-content > .message .message-time > .time {
+  color: #fff;
+}
+
 .message > span {
   font-size: 10px;
   color: gray;

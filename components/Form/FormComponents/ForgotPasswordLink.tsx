@@ -10,7 +10,7 @@ const ForgotPasswordLink = () => {
       transition={{ duration: 1 }}
     >
       <div>
-        <Link href={"/forgot-password"} className="text-blue-600">
+        <Link href={"/forgot-password"} className="text-blue-600 text-sm">
           Forgot Password
         </Link>
       </div>

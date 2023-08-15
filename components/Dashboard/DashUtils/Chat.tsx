@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Pusher from "pusher-js";
 import axios from "axios";
 import Image from "next/image";
@@ -16,26 +16,58 @@ import "./Chat.css";
 const pusherKey = process.env.NEXT_PUBLIC_PUSHER_APP_KEY;
 const cluster = process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER!;
 
+const getOldMessages = async (id: string, token: string) => {
+  try {
+    const response = await axios.get(
+      `https://backend.apkxchange.com/api/history/order/${id}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return response.data.messages;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const Chat = ({
   status,
   chat,
   token,
+  id,
 }: {
   status: string;
   chat: any;
   token: any;
+  id: string;
 }) => {
   // console.log(chat);
   //   console.log(pusherKey, cluster);
   // console.log(status);
   const [chats, setChats] = useState<any>([]);
+  const [oldChats, setOldChats] = useState<any>("");
   const [userInfo, setUserInfo] = useState<any>();
   const [messageToSend, setMessageToSend] = useState("");
   const [fileToSend, setFileToSend] = useState<any>(null);
   const [base64Image, setbase64Image] = useState<any>(null);
 
+  const chatBottomRef = useRef<HTMLDivElement>(null);
+
+  // useEffect(() => {
+  //   chatBottomRef.current?.scrollIntoView({
+  //     behavior: "smooth",
+  //     block: "end",
+  //   });
+  //   console.log(chatBottomRef.current);
+  // }, []);
+
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
+    const updateMessages = async () => {
+      const messages = await getOldMessages(id, token);
+      console.log(messages);
+      setOldChats(messages);
+    };
+
+    updateMessages();
 
     setUserInfo(JSON.parse(user));
   }, []);
@@ -75,7 +107,7 @@ const Chat = ({
     // console.log(channel);
 
     channel.bind("messaging", (data: any) => {
-      // console.log(data);
+      console.log(data);
       setChats((prevState: any) => [
         ...prevState,
         { sender: data.sender, message: data.message },
@@ -89,7 +121,7 @@ const Chat = ({
     return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
   }, [userInfo]);
 
-  // console.log(chats);
+  console.log(chats);
 
   const handleMessage = (e: any) => {
     setMessageToSend(e.target.value);
@@ -202,6 +234,7 @@ const Chat = ({
                 </div>
               </div>
             ))} */}
+            <div dangerouslySetInnerHTML={{ __html: oldChats }}></div>
             {chats.map((chat: any) =>
               chat.userId === userInfo.id ? (
                 <div
@@ -217,6 +250,9 @@ const Chat = ({
               )
             )}
           </div>
+
+          <div ref={chatBottomRef} />
+
           {fileToSend && (
             <div className="w-full px-4">
               <div className="w-full h-[280px] bg-white rounded-xl relative">
@@ -228,6 +264,7 @@ const Chat = ({
               </div>
             </div>
           )}
+
           <form
             onSubmit={handleReply}
             className="w-full  bg-secondary  flex flex-1 py-6 items-center justify-between px-4   "
