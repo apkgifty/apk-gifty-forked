@@ -30,8 +30,17 @@ const PersonalInformationPage: React.FC<Props> = async () => {
     // console.log(res.data);
     user = res.data.data;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   }
+
+  const date = new Date(user.created_at);
+  const day = date.toLocaleString("en-US", { weekday: "long" });
+  const fullFormattedDate = date.toLocaleDateString("en-US", {
+    year: "numeric",
+    day: "2-digit",
+    month: "long",
+  });
+
   return (
     <div className="w-full text-white pb-32">
       <div className="w-full flex items-center justify-between pb-6 border-b-2 border-black">
@@ -145,7 +154,9 @@ const PersonalInformationPage: React.FC<Props> = async () => {
       <div className="w-full flex flex-col gap-y-4 justify-between items-center mt-10 py-8 border-t-2 border-black lg:flex-row lg:gap-y-0 ">
         <div className="w-full lg:w-[45%] space-y-1">
           <p className="text-gray-500 text-sm">Account created at:</p>
-          <p className="font-light">Tuesday - 2022 31 July</p>
+          <p className="font-light">
+            {day} - {fullFormattedDate}
+          </p>
         </div>
         <div className="flex flex-col w-full lg:w-[45%] gap-y-2 lg:gap-x-4 lg:gap-y-0 lg:flex-row">
           <button className="w-full text-sm px-4 py-2 bg-secondary rounded-lg">

@@ -60,11 +60,9 @@ const SignupForm = () => {
   const router = useRouter();
 
   const afterSubmit = (data: any) => {
-    // console.log(data?.token);
     if (data?.token) {
-      // console.log(data);
-      // console.log(data.token);
-      setCookie("access", data.token);
+      const expiresInSeconds = 3 * 60 * 60;
+      setCookie("access", data.token, { maxAge: expiresInSeconds });
       router.push("/dashboard/exchange/buy");
     }
   };
