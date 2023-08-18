@@ -11,6 +11,7 @@ interface Props {
   quantity: string;
   date: string;
   description: string;
+  order_id: string;
 }
 
 const TableDataRow: React.FC<Props> = ({
@@ -21,6 +22,7 @@ const TableDataRow: React.FC<Props> = ({
   quantity,
   date,
   description,
+  order_id,
 }) => {
   const router = useRouter();
 
@@ -62,7 +64,7 @@ const TableDataRow: React.FC<Props> = ({
       className="bg-tertiary cursor-pointer hover:bg-secondary "
       onClick={() => {
         if (product_id === "2" || product_id === "-1") return;
-        router.push(`/dashboard/transaction/order/${type}?pid=${product_id}`);
+        router.push(`/dashboard/transaction/order/${type}?pid=${order_id}`);
       }}
     >
       <th

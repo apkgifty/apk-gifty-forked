@@ -80,7 +80,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
 
   // console.log(rate.data[0].rate);
 
-  // console.log(orderData);
+  console.log(orderData);
   // console.log(paymentMethods);
   // const { price, processing_end_time, status } = orderData?.data;
   // console.log(orderData?.data.status);
