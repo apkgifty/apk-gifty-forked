@@ -56,20 +56,29 @@ const Form: React.FC<Props> = ({
   return (
     <>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        {fields.map((field) => (
-          <FormInput
-            placeholder={field.placeholder}
-            type={field.type}
-            icon={field.icon}
-            name={field.name}
-            config={field.config}
-            key={field.name}
-            register={register}
-            errors={errors}
-            className="bg-tertiary"
-          />
-        ))}
-        {pathName === "/signup" && <TermsCheckBox register={register} />}
+        {fields.map((field) =>
+          field.type === "checkbox" ? (
+            <TermsCheckBox
+              register={register}
+              config={field.config}
+              name={field.name}
+              key={field.name}
+            />
+          ) : (
+            <FormInput
+              placeholder={field.placeholder}
+              type={field.type}
+              icon={field.icon}
+              name={field.name}
+              config={field.config}
+              key={field.name}
+              register={register}
+              errors={errors}
+              className="bg-tertiary"
+            />
+          )
+        )}
+        {/* {pathName === "/signup" && <TermsCheckBox register={register} />} */}
         {pathName === "/login" && <ForgotPasswordLink />}
         <ButtonIcon icon={<NextSvg />} type="submit" loading={loading} />
       </form>

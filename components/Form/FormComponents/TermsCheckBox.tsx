@@ -4,7 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const TermsCheckBox = ({ register }: { register: any }) => {
+interface Props {
+  register: any;
+  name: string;
+  config: any;
+}
+
+const TermsCheckBox: React.FC<Props> = ({ register, name, config }) => {
   return (
     <motion.div
       className="flex items-center"
@@ -17,7 +23,7 @@ const TermsCheckBox = ({ register }: { register: any }) => {
         type="checkbox"
         defaultValue=""
         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500   focus:ring-2  "
-        {...register("agree", { required: false })}
+        {...register(name, { ...config })}
       />
 
       <label

@@ -53,6 +53,13 @@ const fields: Fields[] = [
 
     name: "referral",
   },
+  {
+    type: "checkbox",
+    placeholder: "",
+    name: "agree",
+    icon: "",
+    config: { required: true },
+  },
 ];
 
 const SignupForm = () => {
