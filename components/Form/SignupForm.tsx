@@ -21,7 +21,7 @@ import ReferralSvg from "../UI/SvgIcons/ReferralSvg";
 const fields: Fields[] = [
   {
     type: "text",
-    placeholder: "username",
+    placeholder: "Username",
     icon: <PersonOutlineIcon />,
     config: {
       required: true,
@@ -33,7 +33,9 @@ const fields: Fields[] = [
     type: "email",
     placeholder: "Email",
     icon: <EmailAtSvg />,
-    config: { required: true },
+    config: {
+      required: true,
+    },
     name: "email",
   },
   {
