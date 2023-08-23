@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import DashMobileSide from "@/components/Mobile/DashMobileSide";
 import NotificationListener from "@/components/Dashboard/Data/NotificationListener";
 import Sidebar from "@/components/Dashboard/Sidebar/Sidebar";
+import GoogleAnalytics from "@/components/Analytics/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} w-screen bg-tertiary flex h-screen  overflow-hidden`}
       >
+        {process.env.GOOGLE_ANALYTICS_ID && <GoogleAnalytics />}
         <Providers>
           <Sidebar />
           <div className="w-full flex flex-col ">

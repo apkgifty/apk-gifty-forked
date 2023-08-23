@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 import Navbar from "@/components/Nav/Navbar";
 import PageFooter from "@/components/Main/Footer/PageFooter";
 import MainMobileSide from "@/components/Mobile/MainMobileSide";
+import GoogleAnalytics from "@/components/Analytics/GoogleAnalytics";
 
 export const metadata = {
   title: "APK Exchange",
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-tertiary`}>
+        {process.env.GOOGLE_ANALYTICS_ID && <GoogleAnalytics />}
         <Providers>
           <Navbar />
           <div className="w-full">{children}</div>

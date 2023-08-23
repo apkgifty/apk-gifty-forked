@@ -9,6 +9,7 @@ import ImagesCard from "@/components/UI/ImagesCard";
 import AuthLayoutText from "@/components/Card/CardTexts/AuthLayoutText";
 import FormCard from "@/components/Card/FormCard";
 import MainMobileSide from "@/components/Mobile/MainMobileSide";
+import GoogleAnalytics from "@/components/Analytics/GoogleAnalytics";
 
 export const metadata = {
   title: "APK Exchange",
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-tertiary`}>
+        {process.env.GOOGLE_ANALYTICS_ID && <GoogleAnalytics />}
         <Providers>
           <div className="w-full h-screen flex flex-col">
             <Navbar />
