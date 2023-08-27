@@ -163,7 +163,7 @@ const ConfirmOrder: React.FC<Props> = ({
       console.log(error);
     }
   };
-  // console.log(statuss);
+  console.log(pathname);
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
@@ -250,10 +250,12 @@ const ConfirmOrder: React.FC<Props> = ({
             Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
             before proceeding with your payment.
           </p>
-          <p className="text-sm lg:text-base text-orange-400 mt-4">
-            Amount to pay in Ghana Cedis - GHC{" "}
-            {(Number(price) * Number(rate)).toFixed(2)}
-          </p>
+          {pathname === "buy" && (
+            <p className="text-sm lg:text-base text-orange-400 mt-4">
+              Amount to pay in Ghana Cedis - GHC{" "}
+              {(Number(price) * Number(rate)).toFixed(2)}
+            </p>
+          )}
         </div>
         <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
           {loading ? (
