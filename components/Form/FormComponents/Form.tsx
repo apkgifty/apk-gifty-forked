@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import FormInput from "./FormInput";
 import ButtonIcon from "./ButtonIcon";
@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import ForgotPasswordLink from "./ForgotPasswordLink";
 import TermsCheckBox from "./TermsCheckBox";
+import ReCaptchaWrapper from "@/components/ReCaptcha/ReCaptchaWrapper";
 
 interface Props {
   fields: Fields[];
@@ -46,7 +47,20 @@ const Form: React.FC<Props> = ({
 
   const { data, loading, error, submitRequest } = useAuth();
 
-  const onSubmit = (data: any) => submitRequest(data, endpoint);
+  const [isBot, setIsBot] = useState(true);
+
+  const onCaptchaSuccess = () => {
+    setIsBot(false);
+  };
+
+  const onCaptchaExpired = () => {
+    setIsBot(true);
+  };
+
+  const onSubmit = (data: any) => {
+    if (isBot) return;
+    submitRequest(data, endpoint);
+  };
 
   useEffect(() => {
     // console.log(data);
@@ -80,7 +94,16 @@ const Form: React.FC<Props> = ({
         )}
         {/* {pathName === "/signup" && <TermsCheckBox register={register} />} */}
         {pathName === "/login" && <ForgotPasswordLink />}
-        <ButtonIcon icon={<NextSvg />} type="submit" loading={loading} />
+        <ReCaptchaWrapper
+          onChange={onCaptchaSuccess}
+          onExpired={onCaptchaExpired}
+        />
+        <ButtonIcon
+          icon={<NextSvg />}
+          type="submit"
+          loading={loading}
+          isBot={isBot}
+        />
       </form>
       {error && (
         <Snackbar

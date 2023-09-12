@@ -8,9 +8,10 @@ interface Props {
   icon?: React.ReactNode;
   type?: "button" | "submit" | "reset" | undefined;
   loading?: boolean;
+  isBot?: boolean;
 }
 
-const ButtonIcon: React.FC<Props> = ({ icon, type, loading }) => {
+const ButtonIcon: React.FC<Props> = ({ icon, type, loading, isBot }) => {
   return (
     <motion.button
       type={type ? type : "button"}
@@ -18,7 +19,7 @@ const ButtonIcon: React.FC<Props> = ({ icon, type, loading }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      disabled={loading}
+      disabled={isBot || loading}
     >
       Continue
       {loading ? (
@@ -27,7 +28,11 @@ const ButtonIcon: React.FC<Props> = ({ icon, type, loading }) => {
         </div>
       ) : (
         icon && (
-          <div className="w-[28px] h-[28px]  lg:w-[35px] lg:h-[35px] rounded-lg bg-[#7995f5] flex justify-center items-center absolute right-0 mr-10 ">
+          <div
+            className={`w-[28px] h-[28px]  lg:w-[35px] lg:h-[35px] rounded-lg bg-[#7995f5] flex justify-center items-center absolute right-0 mr-10 ${
+              isBot || loading ? "bg-gray-600 cursor-not-allowed" : ""
+            }`}
+          >
             {icon}
           </div>
         )
