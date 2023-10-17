@@ -24,7 +24,7 @@ const layout: React.FC<Props> = ({ children }) => {
           </div>
           <h3 className="text-2xl font-bold">Gift card collection</h3>
           <p className="text-sm text-gray-500">
-            APKexchange.com, Trade anything anywhere with APKexchange.com!
+            APKxchange.com, Trade anything anywhere with APKxchange.com!
           </p>
         </Card>
         <div className="w-full lg:max-w-[1150px] m-auto">

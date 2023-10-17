@@ -13,7 +13,7 @@ const AuthLayoutText = () => {
         Trade
       </p>
       <p className="font-semibold">
-        anything, anywhere with <br /> APKExchange!
+        anything, anywhere with <br /> APKXchange!
       </p>
     </motion.div>
   );
