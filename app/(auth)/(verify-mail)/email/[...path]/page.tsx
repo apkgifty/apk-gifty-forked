@@ -6,7 +6,7 @@ import axios from "axios";
 import Lottie from "lottie-react";
 import loadingAnimation from "@/components/Animations/Lottie/blueloading.json";
 
-const page = () => {
+const ConfirmEmailPage = () => {
   const router = useRouter();
   // const pathName = usePathname();
   // const searchParams = useSearchParams();
@@ -69,4 +69,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ConfirmEmailPage;
