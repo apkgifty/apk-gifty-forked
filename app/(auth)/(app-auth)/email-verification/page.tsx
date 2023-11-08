@@ -3,7 +3,7 @@ import axiosInstance from "@/utils/axios";
 
 import EmailVerificationForm from "@/components/Form/EmailVerificationForm";
 
-const page = async () => {
+const EmailVerificationPage = async () => {
   let userEmailVerificationStatus: any = null;
   try {
     const config = {
@@ -35,4 +35,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default EmailVerificationPage;
