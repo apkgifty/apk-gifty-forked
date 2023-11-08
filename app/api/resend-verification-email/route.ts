@@ -1,8 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axiosInstance from "@/utils/axios";
 import { NextResponse } from "next/server";
+import axios from "axios";
+import { cookies } from "next/headers";
 
 export async function GET(req: Request, res: Response) {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("access")?.value;
   //   const body = await req.json();
   //   console.log(body);
 
@@ -24,8 +28,9 @@ export async function GET(req: Request, res: Response) {
   };
 
   try {
-    // const response = await axiosInstance(config);
-    // return NextResponse.json(response.data);
+    const response = await axios(config);
+
+    return NextResponse.json(response.data);
   } catch (error: any) {
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
