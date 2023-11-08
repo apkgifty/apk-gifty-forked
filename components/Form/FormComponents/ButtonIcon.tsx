@@ -9,9 +9,10 @@ interface Props {
   type?: "button" | "submit" | "reset" | undefined;
   loading?: boolean;
   isBot?: boolean;
+  text?: string;
 }
 
-const ButtonIcon: React.FC<Props> = ({ icon, type, loading, isBot }) => {
+const ButtonIcon: React.FC<Props> = ({ icon, type, loading, isBot, text }) => {
   return (
     <motion.button
       type={type ? type : "button"}
@@ -21,7 +22,7 @@ const ButtonIcon: React.FC<Props> = ({ icon, type, loading, isBot }) => {
       transition={{ duration: 1 }}
       disabled={isBot || loading}
     >
-      Continue
+      {text ? text : "Continue"}
       {loading ? (
         <div className="w-[28px] h-[28px]  lg:w-[55px] lg:h-[55px] rounded-lg bg-transparent flex justify-center items-center absolute right-0 mr-10 ">
           <Lottie animationData={loadingAnimation} />

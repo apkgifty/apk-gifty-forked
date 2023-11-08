@@ -43,7 +43,11 @@ const LoginForm = () => {
       // console.log(data.token);
       const expiresInSeconds = 3 * 60 * 60;
       setCookie("access", data.token, { maxAge: expiresInSeconds });
-      router.push("/dashboard/exchange/buy");
+      if (data.user.email_verified_at !== null) {
+        router.push("/dashboard/exchange/buy");
+      } else {
+        router.push("/email-verification");
+      }
     }
   };
 
