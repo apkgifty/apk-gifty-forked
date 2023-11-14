@@ -2,7 +2,7 @@ import axios from "axios";
 import { cookies } from "next/headers";
 
 const axiosInstance = axios.create({
-  baseURL: "https://test.apkxchange.com/api",
+  baseURL: "https://backend.apkxchange.com/api",
 });
 
 axiosInstance.interceptors.request.use((config) => {

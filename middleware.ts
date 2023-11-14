@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
   const { url, nextUrl } = request;
   const { host, hostname, protocol } = nextUrl;
 
-  const response = await fetch("https://test.apkxchange.com/api/profile", {
+  const response = await fetch("https://backend.apkxchange.com/api/profile", {
     method: "GET",
     headers: { Authorization: `Bearer ${token?.value}` },
   });

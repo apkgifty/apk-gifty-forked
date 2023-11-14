@@ -14,7 +14,7 @@ export async function POST(req: Request, res: Response) {
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: "https://test.apkxchange.com/api/login",
+    url: "https://backend.apkxchange.com/api/login",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -27,7 +27,7 @@ export async function POST(req: Request, res: Response) {
     // console.log(response.data);
     return NextResponse.json(response.data);
   } catch (error: any) {
-    // console.log(error);
+    console.log(error);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,

@@ -5,7 +5,7 @@ import Image from "next/image";
 import DisplayDialog from "../UI/Dialog/Dialog";
 
 const Payment = ({ method }: { method: any }) => {
-  console.log(method);
+  // console.log(method);
   const [open, setOpen] = useState(false);
 
   return (

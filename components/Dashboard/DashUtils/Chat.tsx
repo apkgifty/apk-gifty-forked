@@ -63,7 +63,7 @@ const Chat = ({
     const user: any = localStorage.getItem("userInfo");
     const updateMessages = async () => {
       const messages = await getOldMessages(id, token);
-      console.log(messages);
+      // console.log(messages);
       setOldChats(messages);
     };
 
@@ -107,7 +107,7 @@ const Chat = ({
     // console.log(channel);
 
     channel.bind("messaging", (data: any) => {
-      console.log(data);
+      // console.log(data);
       setChats((prevState: any) => [
         ...prevState,
         { sender: data.sender, message: data.message },
@@ -121,7 +121,7 @@ const Chat = ({
     return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
   }, [userInfo]);
 
-  console.log(chats);
+  // console.log(chats);
 
   const handleMessage = (e: any) => {
     setMessageToSend(e.target.value);

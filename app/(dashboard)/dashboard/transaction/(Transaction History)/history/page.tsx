@@ -22,7 +22,7 @@ const fetchOrders = async () => {
 
     return response.data;
   } catch (error: any) {
-    // console.log(error);
+    console.log(error);
   }
 };
 

@@ -29,7 +29,7 @@ const EmailVerificationForm = () => {
 
     try {
       const response = await axios.get("/api/resend-verification-email");
-      console.log(response);
+      // console.log(response);
       setSuccess({ message: response.data.message });
     } catch (error: any) {
       console.log(error.response);

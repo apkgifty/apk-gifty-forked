@@ -50,7 +50,7 @@ const fetchPaymentMethods = async () => {
     );
     return response.data;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   }
 };
 
@@ -62,7 +62,7 @@ const fetchRate = async () => {
 
     return response.data;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   }
 };
 

@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 export async function GET(req: Request, res: Response) {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access")?.value;
+
   //   const body = await req.json();
   //   console.log(body);
 
@@ -19,10 +20,11 @@ export async function GET(req: Request, res: Response) {
   let config = {
     method: "GET",
     maxBodyLength: Infinity,
-    url: "https://test.apkxchange.com/api/email/resend",
+    url: "https://backend.apkxchange.com/api/email/resend",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      Authorization: `Bearer ${accessToken}`,
     },
     // data: data,
   };

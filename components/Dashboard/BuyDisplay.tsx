@@ -33,7 +33,7 @@ const BuyDisplay: React.FC<Props> = ({
   stock,
 }) => {
   const router = useRouter();
-  console.log(stock);
+  // console.log(stock);
 
   const [quantity, setQuantity] = useState("1");
   const [loading, setLoading] = useState<boolean>(false);

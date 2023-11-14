@@ -163,7 +163,7 @@ const ConfirmOrder: React.FC<Props> = ({
       console.log(error);
     }
   };
-  console.log(pathname);
+  // console.log(pathname);
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">

@@ -49,7 +49,7 @@ const DashMobileSide = () => {
 
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
-    console.log(JSON.parse(user));
+    // console.log(JSON.parse(user));
     setUserInfo(JSON.parse(user));
   }, []);
 
@@ -59,7 +59,7 @@ const DashMobileSide = () => {
 
   const dispatch = useAppDispatch();
 
-  console.log(openState);
+  // console.log(openState);
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
