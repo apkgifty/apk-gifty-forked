@@ -103,7 +103,8 @@ const Chat = ({
 
     // console.log(userInfo);
 
-    const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
+    // const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
+    const channel = pusher.subscribe(`private-order.${userInfo?.id}`);
     // console.log(channel);
 
     channel.bind("messaging", (data: any) => {
@@ -118,7 +119,8 @@ const Chat = ({
       // console.log(data);
     });
 
-    return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
+    // return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
+    return () => pusher.unsubscribe(`private-order.${userInfo?.id}`);
   }, [userInfo]);
 
   // console.log(chats);

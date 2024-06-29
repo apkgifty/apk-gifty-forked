@@ -22,8 +22,18 @@ const links = [
     icon: <TransactionSvg />,
   },
   {
+    title: "Other Services",
+    url: "/dashboard/other-services",
+    icon: <TransactionSvg />,
+  },
+  {
     title: "Settings",
     url: "/dashboard/settings/personal-information",
+    icon: <SettingsSvg />,
+  },
+  {
+    title: "FAQ",
+    url: "/dashboard/faq",
     icon: <SettingsSvg />,
   },
   // { title: "News", url: "#", icon: <NewsSvg /> },
