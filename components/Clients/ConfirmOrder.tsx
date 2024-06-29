@@ -49,6 +49,7 @@ const ConfirmOrder: React.FC<Props> = ({
   } = orderData;
 
   console.log(token);
+  console.log("Order data: ", orderData);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
