@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
     method: "GET",
     headers: { Authorization: `Bearer ${token?.value}` },
   });
-  const userData = await response.json();
+  // const userData = await response.json();
 
   // if (userData.data.email_verified_at === null) {
   //   return NextResponse.redirect(`${protocol}//${host}/email-verification`);
