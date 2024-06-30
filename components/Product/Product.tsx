@@ -16,7 +16,8 @@ const Product: React.FC<Props> = ({
   // imageUrl,
   productInfo,
 }) => {
-  const { name, price, category, icon, image_url, description } = productInfo;
+  const { name, price, category, icon, image_url, description, currency } =
+    productInfo;
 
   const pathname = usePathname();
 
@@ -45,7 +46,8 @@ const Product: React.FC<Props> = ({
         <div className="flex justify-between border-b border-gray-600 py-3">
           <p className="text-white text-sm">{name}</p>
           <p className="text-green-400 text-xs px-1 py-1 border-2 border-green-400 rounded-sm">
-            ${price}
+            {/* {`${symbol}${price}`} */}
+            {currency.symbol + price}
           </p>
         </div>
         <div className="py-2 flex justify-between items-center gap-x-2">
