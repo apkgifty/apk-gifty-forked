@@ -25,7 +25,7 @@ const OtherServicesPage = async () => {
 
   const dataProducts = await fetchProducts(accessToken?.value, "Bundle");
 
-  console.log(dataProducts);
+  //   console.log(dataProducts);
 
   return (
     <div className="w-full text-white">
@@ -36,7 +36,7 @@ const OtherServicesPage = async () => {
           <span className="cursor-pointer">View all</span>
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full mt-10 lg:px-14">
         <BankSlider />
         {/* <BankCard />
         <BankCard />
@@ -46,7 +46,7 @@ const OtherServicesPage = async () => {
 
       <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
         {/* Data bundles */}
-        <div className="w-full flex justify-between lg:px-14">
+        <div className="w-full flex justify-between lg:px-14 mt-8">
           <span>Data Bundles</span>
           <span className="cursor-pointer">View all</span>
         </div>
