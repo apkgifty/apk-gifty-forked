@@ -13,8 +13,8 @@ interface Props {
 const ReCaptchaWrapper: React.FC<Props> = ({ onChange, onExpired }) => {
   return (
     <ReCAPTCHA
-      sitekey="6LeYiB0oAAAAAKkfO-EPiqTPiIvwl2z3cBGub3V6"
-      // sitekey="6LeadQQqAAAAAI3_iPWr1B-8hnpDhIK1bDjpKxsM"
+      // sitekey="6LeYiB0oAAAAAKkfO-EPiqTPiIvwl2z3cBGub3V6"
+      sitekey={process.env.RECAPTCHA_SITE_KEY!}
       onChange={onChange}
       onExpired={onExpired}
     />
