@@ -3,6 +3,7 @@ import Product from "@/components/Product/Product";
 import BankCard from "@/components/Card/BankCards/BankCard";
 import BankSlider from "@/components/Card/BankCards/BankSlider";
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 const fetchProducts = async (accessToken: any, type: string) => {
   const response = await axios.get(
@@ -33,7 +34,9 @@ const OtherServicesPage = async () => {
       <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
         <div className="w-full flex justify-between lg:px-14">
           <span>Bank Services</span>
-          <span className="cursor-pointer">View all</span>
+          <Link href="/dashboard/other-services/Bank">
+            <span className="cursor-pointer">View all</span>
+          </Link>
         </div>
       </div>
       <div className="w-full mt-10 lg:px-14">
@@ -48,7 +51,10 @@ const OtherServicesPage = async () => {
         {/* Data bundles */}
         <div className="w-full flex justify-between lg:px-14 mt-8">
           <span>Data Bundles</span>
-          <span className="cursor-pointer">View all</span>
+          <Link href={"/dashboard/other-services/Bundle"}>
+            {" "}
+            <span className="cursor-pointer">View all</span>
+          </Link>
         </div>
         {dataProducts.map((product: any) => (
           <Product key={product.title} productInfo={product} />
