@@ -79,7 +79,7 @@ const FaqAccordion = () => {
       </div>
       <div className="mt-10">
         {faqs.map((faq: FAQ, index: number) => (
-          <Accordion defaultExpanded={index == 1} key={index}>
+          <Accordion defaultExpanded={index == 0} key={index}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
