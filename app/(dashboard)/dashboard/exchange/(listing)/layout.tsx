@@ -9,6 +9,20 @@ interface Props {
   children: React.ReactNode;
 }
 
+const currencies: string[] = ["USD", "GBP", "EUR", "INR", "GHS", "NGN"];
+
+const giftCards: string[] = [
+  "Playstation",
+  "Amazon",
+  "Steam",
+  "Target",
+  "Walmart",
+  "ITunes",
+  "Google Play",
+  "Best Buy",
+  "Target",
+];
+
 const layout: React.FC<Props> = ({ children }) => {
   return (
     <>
@@ -52,27 +66,27 @@ const layout: React.FC<Props> = ({ children }) => {
             Walmart
           </span> */}
           </div>
-          {/* <div className="flex gap-x-4 justify-center text-white mt-4">
-          <FilterSelectOutline
-            label="Category"
-            options={["Shopping", "Food", "Clothing"]}
-            border
-            borderColor="border-gray-500"
-          />
-          <FilterSelectOutline
-            label="Tags"
-            options={["GiftCards", "Food", "Clothing"]}
-            border
-            borderColor="border-gray-500"
-          />
-          <FilterSelectOutline
-            label="Gift Cards"
-            options={["GiftCards", "Food", "Clothing"]}
-            border
-            borderColor="border-gray-500"
-          />
-          <FilterRange />
-        </div> */}
+          <div className="flex gap-x-4 justify-center text-white mt-4">
+            <FilterSelectOutline
+              label="Category"
+              options={["Shopping", "Food", "Clothing"]}
+              border
+              borderColor="border-gray-500"
+            />
+            <FilterSelectOutline
+              label="Currency"
+              options={currencies}
+              border
+              borderColor="border-gray-500"
+            />
+            <FilterSelectOutline
+              label="Gift Cards"
+              options={giftCards}
+              border
+              borderColor="border-gray-500"
+            />
+            <FilterRange />
+          </div>
           <div className="pb-32 lg:pb-10">{children}</div>
         </div>
       </div>

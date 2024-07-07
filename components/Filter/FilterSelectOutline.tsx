@@ -62,7 +62,7 @@ const FilterSelectOutline: React.FC<Props> = ({
       </div>
 
       {showOptions && (
-        <div className="absolute top-13  bg-secondary w-36 flex rounded-sm shadow">
+        <div className="absolute top-13  bg-secondary w-36 flex rounded-sm shadow z-50">
           <ul className="w-full text-xs cursor-pointer ">
             {options.map((option: any) => (
               <li

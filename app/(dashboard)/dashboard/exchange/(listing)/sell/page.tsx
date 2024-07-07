@@ -3,9 +3,9 @@ import axios from "axios";
 import Product from "@/components/Product/Product";
 import { redirect } from "next/navigation";
 
-const fetchProducts = async (accessToken: any) => {
+const fetchProducts = async (accessToken: any, type: string) => {
   const response = await axios.get(
-    "https://backend.apkxchange.com/api/products",
+    `https://test.apkxchange.com/api/products?category=${type}`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -25,7 +25,7 @@ const SellPage = async () => {
     return redirect("/login");
   }
 
-  const products = await fetchProducts(accessToken?.value);
+  const products = await fetchProducts(accessToken?.value, "Card");
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
       {products.map(
