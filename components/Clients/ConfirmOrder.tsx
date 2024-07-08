@@ -104,7 +104,7 @@ const ConfirmOrder: React.FC<Props> = ({
       const getOrder = async (id: string) => {
         try {
           const response = await axios.get(
-            `https://backend.apkxchange.com/api/order/${id}`,
+            `https://test.apkxchange.com/api/order/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

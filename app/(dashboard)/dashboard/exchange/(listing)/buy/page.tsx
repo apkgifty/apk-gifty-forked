@@ -78,24 +78,32 @@ const fetchProducts = async (accessToken: any, type: string) => {
   return response.data.data;
 };
 
-const BuyPage = async () => {
+const BuyPage = async ({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access");
 
-  // if (accessToken === undefined) {
-  //   return redirect("/login");
-  // }
+  if (accessToken === undefined) {
+    return redirect("/login");
+  }
+
+  console.log(searchParams?.currency);
 
   const products = await fetchProducts(accessToken?.value, "Card");
 
+  const filteredProducts = products.filter(
+    (product: any) =>
+      product.currency.name === searchParams?.currency && product.type === "buy"
+  );
+
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
-      {products.map(
-        (product: any) =>
-          product.type === "buy" && (
-            <Product key={product.id} productInfo={product} />
-          )
-      )}
+      {filteredProducts.map((product: any) => (
+        <Product key={product.id} productInfo={product} />
+      ))}
     </div>
   );
 };

@@ -76,9 +76,9 @@ const BuyDisplay: React.FC<Props> = ({
       router.push(
         `/dashboard/transaction/order/${pathname}?pid=${response.data.data.id}`
       );
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
-      console.log(error);
+      console.log(error.response.data);
     }
   };
 

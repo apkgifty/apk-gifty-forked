@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type mobilNavStates = {
+type mobileNavStates = {
   mainPageNavOpen: boolean;
   dashboardNavOpen: boolean;
 };
@@ -8,7 +8,7 @@ type mobilNavStates = {
 const initialState = {
   mainPageNavOpen: false,
   dashboardNavOpen: false,
-} as mobilNavStates;
+} as mobileNavStates;
 
 const mobile = createSlice({
   name: "mobile",

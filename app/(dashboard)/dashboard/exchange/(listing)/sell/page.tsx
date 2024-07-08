@@ -17,7 +17,11 @@ const fetchProducts = async (accessToken: any, type: string) => {
   return response.data.data;
 };
 
-const SellPage = async () => {
+const SellPage = async ({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access");
 
@@ -26,14 +30,17 @@ const SellPage = async () => {
   }
 
   const products = await fetchProducts(accessToken?.value, "Card");
+
+  const filteredProducts = products.filter(
+    (product: any) =>
+      product.currency.name === searchParams?.currency &&
+      product.type === "sell"
+  );
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
-      {products.map(
-        (product: any) =>
-          product.type === "sell" && (
-            <Product key={product.imageUrl} productInfo={product} />
-          )
-      )}
+      {filteredProducts.map((product: any) => (
+        <Product key={product.imageUrl} productInfo={product} />
+      ))}
     </div>
   );
 };

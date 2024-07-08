@@ -2,20 +2,28 @@
 import { useEffect, useState } from "react";
 import ToggleButton from "./ToggleButton";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 interface Props {
-  items: { label: string; url: string }[];
+  items: { label: string; url: string; slug: string }[];
   backgroundColor: string;
 }
 
 const Switch: React.FC<Props> = ({ items, backgroundColor }) => {
   const [activeOption, setActiveOption] = useState("");
 
+  const pathName = usePathname();
   useEffect(() => {
-    const pathArray = window.location.href.split("/");
-    const path = pathArray[pathArray.length - 1];
-    setActiveOption(path);
+    // const pathArray = window.location.href.split("/");
+    // const path = pathArray[pathArray.length - 1];
+    // console.log("path", path);
+    // const path = pathName.split("/")[pathName.length - 1];
+    // setActiveOption(path);
   }, []);
+
+  const pathArray = pathName.split("/");
+  const pathSlug = pathArray[pathArray.length - 1];
+  // console.log(pathSlug);
 
   const handleSwitch = (option: string) => {
     setActiveOption(option);
@@ -33,9 +41,7 @@ const Switch: React.FC<Props> = ({ items, backgroundColor }) => {
           <ToggleButton
             key={item.label}
             title={item.label}
-            color={
-              activeOption === item.url ? "bg-[#587BF2]" : "bg-transparent"
-            }
+            color={pathSlug === item.slug ? "bg-[#587BF2]" : "bg-transparent"}
             handleSwitch={handleSwitch}
             url={item.url}
           />

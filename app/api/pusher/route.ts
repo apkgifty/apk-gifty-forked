@@ -45,7 +45,7 @@ export async function POST(req: Request, res: Response) {
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: `https://backend.apkxchange.com/api/chatApi`,
+    url: `https://test.apkxchange.com/api/chatApi`,
     headers: {
       "Content-Type": "multipart/form-data",
       Accept: "application/json",
