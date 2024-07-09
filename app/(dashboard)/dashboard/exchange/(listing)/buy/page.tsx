@@ -90,8 +90,6 @@ const BuyPage = async ({
     return redirect("/login");
   }
 
-  console.log(searchParams?.currency);
-
   const products = await fetchProducts(accessToken?.value, "Card");
 
   const filteredProducts = products.filter(

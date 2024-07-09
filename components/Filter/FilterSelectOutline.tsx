@@ -33,8 +33,6 @@ const FilterSelectOutline: React.FC<Props> = ({
 
   const router = useRouter();
 
-  console.log(selectedOption);
-
   useEffect(() => {
     // dispatch(dashboardPageNavHandler(selectedOption));
     let pageType;

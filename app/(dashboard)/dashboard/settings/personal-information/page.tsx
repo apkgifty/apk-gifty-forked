@@ -22,7 +22,7 @@ const PersonalInformationPage: React.FC<Props> = async () => {
   let user;
 
   try {
-    const res = await axios.get("https://backend.apkxchange.com/api/profile", {
+    const res = await axios.get("https://test.apkxchange.com/api/profile", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

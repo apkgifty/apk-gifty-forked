@@ -21,6 +21,7 @@ interface Props {
   pageType: string;
   pid: string;
   stock: string;
+  category: string;
 }
 
 const BuyDisplay: React.FC<Props> = ({
@@ -31,6 +32,7 @@ const BuyDisplay: React.FC<Props> = ({
   pageType,
   pid,
   stock,
+  category,
 }) => {
   const router = useRouter();
   // console.log(stock);
@@ -147,7 +149,7 @@ const BuyDisplay: React.FC<Props> = ({
             type="button"
             className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7] disabled:bg-gray-500 disabled:cursor-not-allowed"
           >
-            Buy Gift Card
+            {category === "Card" ? "Buy Gift Card" : "Buy Data Bundle"}
           </button>
           {/* </Link> */}
         </div>

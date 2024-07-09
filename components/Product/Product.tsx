@@ -27,11 +27,14 @@ const Product: React.FC<Props> = ({
   // Add pid to params so it can be picked from url
   const prod = { ...productInfo, pid: productInfo.id };
 
+  const pathEnd =
+    pathTag === "buy" || pathTag === "other-services" ? "buy" : "sell";
+
   return (
     <div className="w-full lg:w-[300px] ">
       <Link
         href={{
-          pathname: `/dashboard/exchange/product/${pathTag}`,
+          pathname: `/dashboard/exchange/product/${pathEnd}`,
           query: prod,
         }}
       >
