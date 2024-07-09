@@ -41,6 +41,7 @@ const Form: React.FC<Props> = ({
   const {
     register,
     handleSubmit,
+    getValues,
     watch,
     formState: { errors },
   } = useForm();
@@ -88,6 +89,7 @@ const Form: React.FC<Props> = ({
               key={field.name}
               register={register}
               errors={errors}
+              watch={watch}
               className="bg-tertiary"
               selectOptions={field.selectOptions}
             />

@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import Flag from "react-world-flags";
 
 interface Props {
   icon: React.ReactNode;
@@ -16,6 +18,7 @@ interface Props {
   defaultValue?: string;
   className?: string;
   readOnly?: boolean;
+  watch?: any;
   selectOptions?: any;
 }
 
@@ -36,9 +39,19 @@ const FormInput: React.FC<Props> = ({
   className,
   defaultValue,
   readOnly,
+  watch,
   selectOptions,
 }) => {
   const j = register ? { ...register(name, config) } : { ...{} };
+
+  // useEffect(() => {
+  //   const currentFlag = getValues();
+
+  //   console.log(currentFlag);
+  // }, [getValues]);
+
+  const countryCode = watch("country");
+
   return (
     <motion.div
       className={`w-full px-2 py-2  rounded-xl flex gap-2 lg:py-3 ${className} `}
@@ -51,7 +64,15 @@ const FormInput: React.FC<Props> = ({
           errors && errors[name] && "text-red-600"
         }`}
       >
-        {icon}
+        {type === "select" ? (
+          <Flag
+            code={countryCode ? countryCode.split("-")[1] : "GH"}
+            width={"25"}
+            height={"25"}
+          />
+        ) : (
+          icon
+        )}
       </div>
       {type === "select" ? (
         <select
@@ -59,10 +80,11 @@ const FormInput: React.FC<Props> = ({
           id="cars"
           form="carform"
           className="bg-transparent outline-none text-xs lg:text-sm w-full"
+          defaultValue={"Ghana-GH"}
           {...j}
         >
           {selectOptions?.map((option: CountriesData) => (
-            <option key={option.iso} value={option.country}>
+            <option key={option.iso} value={option.country + "-" + option.iso}>
               {option.country}
             </option>
           ))}

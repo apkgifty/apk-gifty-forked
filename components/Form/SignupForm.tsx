@@ -17,7 +17,13 @@ import { Fields } from "@/types/formTypes";
 import Form from "./FormComponents/Form";
 import EmailAtSvg from "../UI/SvgIcons/EmailAtSvg";
 import ReferralSvg from "../UI/SvgIcons/ReferralSvg";
+import Flag from "react-world-flags";
 import countries from "@/utils/countriesData";
+
+const countriesWithFlags = countries.map((country) => ({
+  ...country,
+  flag: <Flag code={country.iso} />,
+}));
 
 const fields: Fields[] = [
   {
@@ -55,7 +61,7 @@ const fields: Fields[] = [
     },
 
     name: "country",
-    selectOptions: countries,
+    selectOptions: countriesWithFlags,
   },
   {
     type: "number",
