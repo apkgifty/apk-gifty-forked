@@ -78,6 +78,7 @@ const Form: React.FC<Props> = ({
               config={field.config}
               name={field.name}
               key={field.name}
+              errors={errors}
             />
           ) : (
             <FormInput

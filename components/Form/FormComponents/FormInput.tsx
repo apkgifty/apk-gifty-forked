@@ -1,8 +1,10 @@
 "use client";
 
+import { error } from "console";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { ConfigOptions } from "@/types/formTypes";
 import Flag from "react-world-flags";
 
 interface Props {
@@ -11,7 +13,10 @@ interface Props {
   placeholder: string;
   name: string;
   config?: {
-    required: boolean;
+    required: boolean | ConfigOptions;
+    minLength?: number | ConfigOptions;
+    maxLength?: number | ConfigOptions;
+    pattern?: any;
   };
   register?: any;
   errors?: any;
@@ -51,6 +56,7 @@ const FormInput: React.FC<Props> = ({
   // }, [getValues]);
 
   const countryCode = watch("country");
+  console.log(errors);
 
   return (
     <motion.div
@@ -98,6 +104,7 @@ const FormInput: React.FC<Props> = ({
           autoComplete="off"
           defaultValue={defaultValue}
           readOnly={readOnly}
+          aria-invalid={errors[name] ? "true" : "false"}
           {...j}
         />
       )}

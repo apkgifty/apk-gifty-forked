@@ -8,6 +8,7 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ButtonIcon from "./FormComponents/ButtonIcon";
 import ExternalLogins from "./FormComponents/ExternalLogins";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import Switch from "./FormComponents/Switch";
 import FormHeader from "./FormComponents/FormHeader";
 import FormBody from "./FormComponents/FormBody";
@@ -25,13 +26,16 @@ const countriesWithFlags = countries.map((country) => ({
   flag: <Flag code={country.iso} />,
 }));
 
+const regex: RegExp =
+  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+
 const fields: Fields[] = [
   {
     type: "text",
     placeholder: "Username",
     icon: <PersonOutlineIcon />,
     config: {
-      required: true,
+      required: { value: true, message: "Username is required" },
     },
 
     name: "firstname",
@@ -39,9 +43,10 @@ const fields: Fields[] = [
   {
     type: "email",
     placeholder: "Email",
-    icon: <EmailAtSvg />,
+    icon: <AlternateEmailIcon />,
     config: {
-      required: true,
+      required: { value: true, message: "Email is required" },
+      pattern: { value: regex, message: "Invalid email address" },
     },
     name: "email",
   },
@@ -49,7 +54,10 @@ const fields: Fields[] = [
     type: "password",
     placeholder: "Password",
     icon: <LockOpenIcon />,
-    config: { required: true },
+    config: {
+      required: { value: true, message: "Password is required" },
+      minLength: { value: 8, message: "Minimum 8 characters" },
+    },
     name: "password",
   },
   {
@@ -57,7 +65,7 @@ const fields: Fields[] = [
     placeholder: "Referral (Optional)",
     icon: <ReferralSvg />,
     config: {
-      required: false,
+      required: { value: true, message: "Country is required" },
     },
 
     name: "country",
@@ -66,9 +74,11 @@ const fields: Fields[] = [
   {
     type: "number",
     placeholder: "+233 00 000 0000",
-    icon: <ReferralSvg />,
+    icon: <LocalPhoneIcon />,
     config: {
-      required: false,
+      required: { value: true, message: "Phone number is required" },
+      minLength: { value: 10, message: "Minimum 10 characters" },
+      maxLength: { value: 10, message: "Maximum 10 characters" },
     },
 
     name: "phone",
@@ -88,7 +98,12 @@ const fields: Fields[] = [
     placeholder: "",
     name: "agree",
     icon: "",
-    config: { required: true },
+    config: {
+      required: {
+        value: true,
+        message: "Please agree to our terms to continue",
+      },
+    },
   },
 ];
 
