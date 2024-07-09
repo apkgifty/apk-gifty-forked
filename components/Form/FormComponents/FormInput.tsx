@@ -16,6 +16,13 @@ interface Props {
   defaultValue?: string;
   className?: string;
   readOnly?: boolean;
+  selectOptions?: any;
+}
+
+interface CountriesData {
+  country: string;
+  code: string;
+  iso: string;
 }
 
 const FormInput: React.FC<Props> = ({
@@ -29,6 +36,7 @@ const FormInput: React.FC<Props> = ({
   className,
   defaultValue,
   readOnly,
+  selectOptions,
 }) => {
   const j = register ? { ...register(name, config) } : { ...{} };
   return (
@@ -45,16 +53,32 @@ const FormInput: React.FC<Props> = ({
       >
         {icon}
       </div>
-      <input
-        type={type}
-        className="bg-transparent outline-none text-xs lg:text-sm w-full"
-        placeholder={placeholder}
-        // name={name}
-        autoComplete="off"
-        defaultValue={defaultValue}
-        readOnly={readOnly}
-        {...j}
-      />
+      {type === "select" ? (
+        <select
+          name={name}
+          id="cars"
+          form="carform"
+          className="bg-transparent outline-none text-xs lg:text-sm w-full"
+          {...j}
+        >
+          {selectOptions?.map((option: CountriesData) => (
+            <option key={option.iso} value={option.country}>
+              {option.country}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <input
+          type={type}
+          className="bg-transparent outline-none text-xs lg:text-sm w-full"
+          placeholder={placeholder}
+          // name={name}
+          autoComplete="off"
+          defaultValue={defaultValue}
+          readOnly={readOnly}
+          {...j}
+        />
+      )}
     </motion.div>
   );
 };

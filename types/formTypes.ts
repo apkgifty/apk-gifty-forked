@@ -6,6 +6,7 @@ interface Fields {
   config: {
     required: boolean;
   };
+  selectOptions?: any;
 }
 
 export type { Fields };

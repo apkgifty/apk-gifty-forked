@@ -17,6 +17,7 @@ import { Fields } from "@/types/formTypes";
 import Form from "./FormComponents/Form";
 import EmailAtSvg from "../UI/SvgIcons/EmailAtSvg";
 import ReferralSvg from "../UI/SvgIcons/ReferralSvg";
+import countries from "@/utils/countriesData";
 
 const fields: Fields[] = [
   {
@@ -44,6 +45,27 @@ const fields: Fields[] = [
     icon: <LockOpenIcon />,
     config: { required: true },
     name: "password",
+  },
+  {
+    type: "select",
+    placeholder: "Referral (Optional)",
+    icon: <ReferralSvg />,
+    config: {
+      required: false,
+    },
+
+    name: "country",
+    selectOptions: countries,
+  },
+  {
+    type: "number",
+    placeholder: "+233 00 000 0000",
+    icon: <ReferralSvg />,
+    config: {
+      required: false,
+    },
+
+    name: "phone",
   },
   {
     type: "text",
