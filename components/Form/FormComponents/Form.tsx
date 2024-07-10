@@ -50,6 +50,14 @@ const Form: React.FC<Props> = ({
 
   const [isBot, setIsBot] = useState(true);
 
+  const [currentCountry, setCurrentCountry] = useState("Ghana-GH");
+
+  useEffect(() => {
+    const countryCode = watch("country");
+
+    setCurrentCountry(countryCode);
+  }, [watch("country")]);
+
   const onCaptchaSuccess = () => {
     setIsBot(false);
   };
@@ -92,6 +100,7 @@ const Form: React.FC<Props> = ({
               errors={errors}
               watch={watch}
               className="bg-tertiary"
+              currentCountry={currentCountry}
               selectOptions={field.selectOptions}
             />
           )

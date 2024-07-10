@@ -39,7 +39,7 @@
     "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-google-recaptcha": "^3.1.0",
-    "react-hook-form": "^7.45.2",
+    "react-hook-form": "^7.52.1",
     "react-multi-carousel": "^2.8.5",
     "react-redux": "9.1.2",
     "react-world-flags": "^1.6.0",

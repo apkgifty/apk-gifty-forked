@@ -2,7 +2,7 @@
 
 import { error } from "console";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ConfigOptions } from "@/types/formTypes";
 import Flag from "react-world-flags";
@@ -24,6 +24,7 @@ interface Props {
   className?: string;
   readOnly?: boolean;
   watch?: any;
+  currentCountry?: string;
   selectOptions?: any;
 }
 
@@ -45,18 +46,10 @@ const FormInput: React.FC<Props> = ({
   defaultValue,
   readOnly,
   watch,
+  currentCountry,
   selectOptions,
 }) => {
   const j = register ? { ...register(name, config) } : { ...{} };
-
-  // useEffect(() => {
-  //   const currentFlag = getValues();
-
-  //   console.log(currentFlag);
-  // }, [getValues]);
-
-  const countryCode = watch("country");
-  console.log(errors);
 
   return (
     <motion.div
@@ -72,7 +65,7 @@ const FormInput: React.FC<Props> = ({
       >
         {type === "select" ? (
           <Flag
-            code={countryCode ? countryCode.split("-")[1] : "GH"}
+            code={currentCountry ? currentCountry.split("-")[1] : "GH"}
             width={"25"}
             height={"25"}
           />
@@ -104,7 +97,6 @@ const FormInput: React.FC<Props> = ({
           autoComplete="off"
           defaultValue={defaultValue}
           readOnly={readOnly}
-          aria-invalid={errors[name] ? "true" : "false"}
           {...j}
         />
       )}
