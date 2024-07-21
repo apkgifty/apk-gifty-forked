@@ -49,12 +49,12 @@ const BankSlider = () => {
       <SplideSlide>
         <BankCard />
       </SplideSlide>
-      {/* <SplideSlide>
+      <SplideSlide>
         <BankCard />
-      </SplideSlide> */}
-      {/* <SplideSlide>
+      </SplideSlide>
+      <SplideSlide>
         <BankCard />
-      </SplideSlide> */}
+      </SplideSlide>
 
       {/* <BankCard /> */}
       {/* <BankCard />
