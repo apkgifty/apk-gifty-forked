@@ -15,6 +15,7 @@ export async function GET(req: Request, res: Response) {
 
   const verifyPath = refererArr?.join("/");
   // console.log(verifyPath);
+  // console.log(verifyPath);
 
   //   let data = JSON.stringify({
   //     ...body,
@@ -25,7 +26,7 @@ export async function GET(req: Request, res: Response) {
   let config = {
     method: "GET",
     maxBodyLength: Infinity,
-    url: `https://backend.apkxchange.com/api/${verifyPath}`,
+    url: `https://test.apkxchange.com/api/${verifyPath}`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -35,9 +36,11 @@ export async function GET(req: Request, res: Response) {
 
   try {
     const response = await axiosInstance(config);
+    // console.log(response.data);
 
     return NextResponse.json(response.data);
   } catch (error: any) {
+    console.log(error.response);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,
