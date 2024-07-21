@@ -51,7 +51,7 @@ const BankSlider: React.FC<Props> = ({ products }) => {
     >
       {products.length > 0 &&
         products.map((product: any) => (
-          <SplideSlide>
+          <SplideSlide key={product.id}>
             <BankCard productInfo={product} />
           </SplideSlide>
         ))}
