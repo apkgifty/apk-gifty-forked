@@ -32,7 +32,7 @@ const OtherServicesPage = async () => {
   return (
     <div className="w-full text-white">
       {/* <div className="w-full flex justify-center">Other Services</div> */}
-      <div className="bg-[#12181F] py-8">
+      <div className="bg-[#12181F] rounded-t-lg rounded-b-lg py-8">
         <div className="w-full flex flex-wrap gap-x-12 px-4 justify-center mx-auto xl:max-w-[1700px]">
           <div className="w-full flex justify-between mb-3 lg:px-14">
             <span>Bank Services</span>
@@ -42,7 +42,7 @@ const OtherServicesPage = async () => {
           </div>
         </div>
         <div className="w-full lg:px-14">
-          <BankSlider />
+          <BankSlider products={bankProducts} />
           {/* <BankCard />
         <BankCard />
         <BankCard />
