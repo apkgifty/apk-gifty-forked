@@ -13,9 +13,9 @@ const BankCard = () => {
           className="rounded-lg"
         />
       </div>
-      <div>
+      {/* <div>
         <span>Bank Name</span>
-      </div>
+      </div> */}
     </div>
   );
 };
