@@ -122,7 +122,7 @@ const BuyInstructions: React.FC<Props> = ({ type }) => {
           provided after clicking on MoMo.
         </p>
         <p>
-          Chargebacks: Once you've made a payment, you cannot request a
+          Chargebacks: Once you&apos;ve made a payment, you cannot request a
           chargeback through customer care. If you do, your account and order
           will be terminated.
         </p>

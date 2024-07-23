@@ -49,7 +49,7 @@ const ConfirmOrder: React.FC<Props> = ({
     category,
   } = orderData;
 
-  console.log(paymentMethods);
+  console.log(orderData);
 
   // console.log("Order data: ", orderData);
 
@@ -174,7 +174,6 @@ const ConfirmOrder: React.FC<Props> = ({
     }
   });
 
-  console.log(filteredPaymentMethods);
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
