@@ -50,6 +50,13 @@ const BuyDisplay: React.FC<Props> = ({
     setQuantity(value);
   };
 
+  const [amount, setAmount] = useState("");
+
+  const handleAmount = (e: any) => {
+    const val = e.target.value;
+    setAmount(val);
+  };
+
   const paths = usePathname().split("/");
 
   const pathname = paths[paths.length - 1];
@@ -93,41 +100,51 @@ const BuyDisplay: React.FC<Props> = ({
         <Toggle isChecked={Number(canCustom) === 0 ? false : true} />
       </div>
       <hr className="border-t border-gray-600 "></hr>
-      <div className="px-6 py-6 border-2 border-gray-600 rounded-lg space-y-2">
-        <div className="w-full  flex gap-x-2">
-          <div className="">
-            <CheckedSvg />
-          </div>
+      {category !== "Bank" && (
+        <div className="px-6 py-6 border-2 border-gray-600 rounded-lg space-y-2">
+          <div className="w-full  flex gap-x-2">
+            <div className="">
+              <CheckedSvg />
+            </div>
 
-          <p>Get all knowledge how to deal in gift cards</p>
-        </div>
-        <div className="w-full  flex gap-x-2">
-          <div>
-            <CheckedSvg />
+            <p>Get all knowledge how to deal in gift cards</p>
           </div>
+          <div className="w-full  flex gap-x-2">
+            <div>
+              <CheckedSvg />
+            </div>
 
-          <p>Best trading techniques</p>
-        </div>
-        <div className="flex gap-x-2">
-          <div>
-            <CheckedSvg />
+            <p>Best trading techniques</p>
           </div>
-          <p>Increase Profits</p>
+          <div className="flex gap-x-2">
+            <div>
+              <CheckedSvg />
+            </div>
+            <p>Increase Profits</p>
+          </div>
         </div>
-      </div>
+      )}
       <div className="px-12 py-8 bg-[#23262F] rounded-xl  text-center space-y-6">
         <div>
-          {pageType === "buy" && (
+          {pageType === "buy" && category === "Card" ? (
             <BasicSelect
               options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
               handleSelect={handleQuantity}
             />
-          )}
+          ) : pageType === "buy" && category === "Bank" ? (
+            <BuyAmountInput
+              isFixedPrice={Number(canCustom) === 0 ? false : true}
+              handleAmount={handleAmount}
+              amount={amount}
+            />
+          ) : null}
         </div>
         <div>
           <p className="font-light">You have to pay</p>
           <p className="text-3xl font-semibold text-[#587BF2]">
-            ${(Number(quantity) * Number(price)).toFixed(2)}
+            {category === "Bank"
+              ? `${amount.length === 0 ? "0.00" : Number(amount).toFixed(2)}`
+              : `${(Number(quantity) * Number(price)).toFixed(2)}`}
           </p>
         </div>
       </div>
@@ -149,7 +166,11 @@ const BuyDisplay: React.FC<Props> = ({
             type="button"
             className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7] disabled:bg-gray-500 disabled:cursor-not-allowed"
           >
-            {category === "Card" ? "Buy Gift Card" : "Buy Data Bundle"}
+            {category === "Card"
+              ? "Buy Gift Card"
+              : category === "Bundle"
+              ? "Buy Bundle"
+              : "Make deposit"}
           </button>
           {/* </Link> */}
         </div>

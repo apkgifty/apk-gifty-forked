@@ -27,15 +27,17 @@ const ProductDisplay = ({
 
   const { category } = searchParams;
 
-  console.log("Category: ", category);
-
   return (
     <div className="flex w-full">
       <div className="w-full flex  flex-col gap-y-12  justify-between text-white py-10 bg-secondary  lg:flex-row  lg:gap-y-0  ">
         <div className="flex lg:flex-[65%]  flex-col gap-y-6 px-12">
           <div className="flex gap-x-3">
             <span className="px-3 py-1 bg-red-400 rounded-lg text-sm">
-              {category === "Card" ? "Gift Cards" : "Data Bundles"}
+              {category === "Card"
+                ? "Gift Cards"
+                : category === "Bundle"
+                ? "Data Bundles"
+                : "Deposit"}
             </span>
             <span className="px-3 py-1 bg-green-400 rounded-lg text-sm">
               Popular
@@ -43,7 +45,7 @@ const ProductDisplay = ({
           </div>
           <div>
             <h4 className="text-2xl font-semibold">Order Instructions</h4>
-            {pageType === "buy" && <BuyInstructions />}
+            {pageType === "buy" && <BuyInstructions type={category} />}
             {pageType == "sell" && <SellInstructions />}
           </div>
 
