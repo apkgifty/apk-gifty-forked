@@ -70,6 +70,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access")?.value;
   const id = searchParams.pid;
+  const category = searchParams.category;
 
   if (!id) throw new Error("No order with that id");
 
@@ -79,7 +80,8 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
     fetchRate(),
   ]);
 
-  console.log(rate.data[0]);
+  const updatedOrderData = { ...orderData.data, category: category };
+  // console.log(rate.data[0]);
 
   // console.log(orderData);
   // console.log(paymentMethods);
@@ -95,7 +97,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
       {adminOnline === "1" && (
         <ConfirmOrder
           token={accessToken!}
-          orderData={orderData.data}
+          orderData={updatedOrderData}
           paymentMethods={paymentMethods.data}
           rate={rate.data[0].rate}
         />

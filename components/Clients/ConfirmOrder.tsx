@@ -46,10 +46,12 @@ const ConfirmOrder: React.FC<Props> = ({
     status,
     notify_seller,
     processing_end_time,
+    category,
   } = orderData;
 
-  console.log(token);
-  console.log("Order data: ", orderData);
+  console.log(paymentMethods);
+
+  // console.log("Order data: ", orderData);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
@@ -164,7 +166,15 @@ const ConfirmOrder: React.FC<Props> = ({
       console.log(error);
     }
   };
-  // console.log(pathname);
+  const filteredPaymentMethods = paymentMethods.filter((payment: any) => {
+    if (category === "Bank" || category === "Bundle") {
+      return payment.channel === "Momo";
+    } else {
+      return true;
+    }
+  });
+
+  console.log(filteredPaymentMethods);
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
@@ -219,28 +229,12 @@ const ConfirmOrder: React.FC<Props> = ({
               cooperation.
             </p>
             <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
-              {paymentMethods.map((method: any) => (
-                // <li key={method.id} className="cursor-pointer">
-                //   <div className="space-y-3">
-                //     <div>
-                //       <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
-                //         {method.channel}
-                //       </h5>
-                //     </div>
+              {/* {paymentMethods.map((method: any) => (
+            
+                <Payment method={method} key={method.id} />
+              ))} */}
 
-                //     {/* <div>
-                //       <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
-                //         <span></span> {method.body}
-                //       </p>
-                //     </div> */}
-                //     {/* <div>
-                //       <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
-                //         <span className="text-white">Name:</span>{" "}
-                //         {method.sub_text}
-                //       </p>
-                //     </div> */}
-                //   </div>
-                // </li>
+              {filteredPaymentMethods.map((method: any) => (
                 <Payment method={method} key={method.id} />
               ))}
             </ul>

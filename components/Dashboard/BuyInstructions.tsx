@@ -47,7 +47,7 @@ const BuyInstructions: React.FC<Props> = ({ type }) => {
     );
   } else if (type === "Bank") {
     content = (
-      <>
+      <div className="text-xs lg:text-sm text-gray-400 py-4">
         <h4 className=" text-sm lg:text-sm font-bold"> Availability</h4>
         <p> For users in Ghana 🇬🇭 and partially for Nigerians 🇳🇬.</p>{" "}
         <p>
@@ -106,11 +106,11 @@ const BuyInstructions: React.FC<Props> = ({ type }) => {
           Provide the account number or details in the chat section, and Admin
           will process your order.
         </p>
-      </>
+      </div>
     );
   } else if (type === "Bundle") {
     content = (
-      <>
+      <div className="text-xs lg:text-sm text-gray-400 py-4">
         <p>Availability</p>
         <p>
           This offer is for MTN, AirtelTigo, and Telecel users in Ghana 🇬🇭 only.
@@ -148,7 +148,7 @@ const BuyInstructions: React.FC<Props> = ({ type }) => {
           The Admin will respond to your order promptly, confirm it, and process
           it quickly.
         </p>
-      </>
+      </div>
     );
   }
 
