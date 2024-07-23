@@ -4,11 +4,16 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  console.log(body);
+  // console.log(body);
+
+  let { country } = body;
+
+  country = country.split("-")[0];
 
   let data = JSON.stringify({
     ...body,
     lastname: "",
+    country_name: country,
     password_confirmation: body.password,
   });
 

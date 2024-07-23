@@ -34,6 +34,19 @@ const fields: Fields[] = [
 ];
 
 const PasswordResetForm = () => {
+  const afterSubmit = (data: any) => {
+    if (data?.token) {
+      // console.log(data);
+      // console.log(data.token);
+      // const expiresInSeconds = 3 * 60 * 60;
+      // setCookie("access", data.token, { maxAge: expiresInSeconds });
+      // if (data.user.email_verified_at !== null) {
+      //   router.push("/dashboard/exchange/buy");
+      // } else {
+      //   router.push("/email-verification");
+      // }
+    }
+  };
   return (
     <FormContainer>
       <FormHeader
@@ -49,7 +62,12 @@ const PasswordResetForm = () => {
         >
           <img src="/watch-it.svg" />
         </motion.div>
-        <Form fields={fields} redirectUrl="/" endpoint="#" />
+        <Form
+          fields={fields}
+          redirectUrl="/"
+          endpoint="#"
+          afterSubmit={afterSubmit}
+        />
       </FormBody>
     </FormContainer>
   );
