@@ -19,7 +19,7 @@ const cluster = process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER!;
 const getOldMessages = async (id: string, token: string) => {
   try {
     const response = await axios.get(
-      `https://backend.apkxchange.com/api/history/order/${id}`,
+      `https://test.apkxchange.com/api/history/order/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     return response.data.messages;
@@ -76,7 +76,7 @@ const Chat = ({
     const pusher = new Pusher("e597b63b0a16d6c4a2c6", {
       cluster: "mt1",
       channelAuthorization: {
-        endpoint: "https://backend.apkxchange.com/api/chat/auth",
+        endpoint: "https://test.apkxchange.com/api/chat/auth",
         transport: "ajax",
         headers: {
           Accept: "application/json",
@@ -84,7 +84,7 @@ const Chat = ({
         },
       },
       userAuthentication: {
-        endpoint: "https://backend.apkxchange.com/api/chat/auth",
+        endpoint: "https://test.apkxchange.com/api/chat/auth",
         transport: "ajax",
         headers: {
           Accept: "application/json",
@@ -103,8 +103,8 @@ const Chat = ({
 
     // console.log(userInfo);
 
-    // const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
-    const channel = pusher.subscribe(`private-order.${userInfo?.id}`);
+    const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
+    // const channel = pusher.subscribe(`private-order.${userInfo?.id}`);
     // console.log(channel);
 
     channel.bind("messaging", (data: any) => {
@@ -119,8 +119,8 @@ const Chat = ({
       // console.log(data);
     });
 
-    // return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
-    return () => pusher.unsubscribe(`private-order.${userInfo?.id}`);
+    return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
+    // return () => pusher.unsubscribe(`private-order.${userInfo?.id}`);
   }, [userInfo]);
 
   // console.log(chats);

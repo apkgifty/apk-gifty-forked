@@ -60,8 +60,8 @@ const LoginForm = () => {
       <FormBody>
         <Switch
           items={[
-            { label: "Login", url: "login" },
-            { label: "Signup", url: "signup" },
+            { label: "Login", url: "login", slug: "login" },
+            { label: "Signup", url: "signup", slug: "signup" },
           ]}
           backgroundColor="bg-tertiary"
         />

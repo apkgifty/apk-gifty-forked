@@ -14,6 +14,7 @@ export async function GET(req: Request, res: Response) {
   refererArr?.splice(0, 3);
 
   const verifyPath = refererArr?.join("/");
+  console.log(verifyPath);
   // console.log(verifyPath);
 
   //   let data = JSON.stringify({
@@ -21,11 +22,11 @@ export async function GET(req: Request, res: Response) {
   //     lastname: "",
   //     password_confirmation: body.password,
   //   });
-
+  // https://test.apkxchange.com/api/email/verify/1054/6f410fc743a52863a701f3a73bd1520afa760936?expires=1721690906&signature=def4aa4d8f23c50890ad2ce887cc6726aaf6f8bb2ec98b24cb9cba07d2b99a5
   let config = {
     method: "GET",
     maxBodyLength: Infinity,
-    url: `https://backend.apkxchange.com/api/${verifyPath}`,
+    url: `https://test.apkxchange.com/api/${verifyPath}`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -35,9 +36,11 @@ export async function GET(req: Request, res: Response) {
 
   try {
     const response = await axiosInstance(config);
+    // console.log(response.data);
 
     return NextResponse.json(response.data);
   } catch (error: any) {
+    console.log(error.response);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,

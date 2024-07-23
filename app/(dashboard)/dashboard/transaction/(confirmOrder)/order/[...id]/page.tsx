@@ -25,7 +25,7 @@ const runAction = async () => {
 const fetchOrder = async (id: string) => {
   try {
     const response = await axiosInstance.get(
-      `https://backend.apkxchange.com/api/order/${id}`,
+      `https://test.apkxchange.com/api/order/${id}`,
       {
         headers: {
           // Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ const fetchOrder = async (id: string) => {
 const fetchPaymentMethods = async () => {
   try {
     const response = await axiosInstance.get(
-      "https://backend.apkxchange.com/api/paymentInstructions",
+      "https://test.apkxchange.com/api/paymentInstructions",
       {
         headers: {
           // Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const fetchPaymentMethods = async () => {
 const fetchRate = async () => {
   try {
     const response = await axiosInstance.get(
-      "https://backend.apkxchange.com/api/setting"
+      "https://test.apkxchange.com/api/setting"
     );
 
     return response.data;
@@ -70,6 +70,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access")?.value;
   const id = searchParams.pid;
+  const category = searchParams.category;
 
   if (!id) throw new Error("No order with that id");
 
@@ -79,7 +80,8 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
     fetchRate(),
   ]);
 
-  console.log(rate.data[0]);
+  const updatedOrderData = { ...orderData.data, category: category };
+  // console.log(rate.data[0]);
 
   // console.log(orderData);
   // console.log(paymentMethods);
@@ -95,7 +97,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
       {adminOnline === "1" && (
         <ConfirmOrder
           token={accessToken!}
-          orderData={orderData.data}
+          orderData={updatedOrderData}
           paymentMethods={paymentMethods.data}
           rate={rate.data[0].rate}
         />

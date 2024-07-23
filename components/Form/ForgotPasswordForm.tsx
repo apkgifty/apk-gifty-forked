@@ -7,6 +7,7 @@ import Form from "./FormComponents/Form";
 import { Fields } from "@/types/formTypes";
 import { motion } from "framer-motion";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import { useRouter } from "next/navigation";
 
 const fields: Fields[] = [
   {
@@ -21,6 +22,21 @@ const fields: Fields[] = [
 ];
 
 const ForgotPasswordForm = () => {
+  const router = useRouter();
+
+  const afterSubmit = (data: any) => {
+    if (data?.token) {
+      // console.log(data);
+      // console.log(data.token);
+      // const expiresInSeconds = 3 * 60 * 60;
+      // setCookie("access", data.token, { maxAge: expiresInSeconds });
+      // if (data.user.email_verified_at !== null) {
+      //   router.push("/dashboard/exchange/buy");
+      // } else {
+      //   router.push("/email-verification");
+      // }
+    }
+  };
   return (
     <FormContainer>
       <FormHeader

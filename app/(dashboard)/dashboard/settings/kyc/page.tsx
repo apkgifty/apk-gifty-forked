@@ -18,7 +18,7 @@ const KYCPage = async () => {
 
   try {
     const res = await axiosInstance.get(
-      "https://backend.apkxchange.com/api/profile",
+      "https://test.apkxchange.com/api/profile",
       {
         headers: {
           //   Authorization: `Bearer ${accessToken}`,

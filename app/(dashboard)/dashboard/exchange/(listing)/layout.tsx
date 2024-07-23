@@ -9,6 +9,20 @@ interface Props {
   children: React.ReactNode;
 }
 
+const currencies: string[] = ["USD", "GBP", "EUR", "INR", "GHS", "NGN"];
+
+const giftCards: string[] = [
+  "Playstation",
+  "Amazon",
+  "Steam",
+  "Target",
+  "Walmart",
+  "ITunes",
+  "Google Play",
+  "Best Buy",
+  "Target",
+];
+
 const layout: React.FC<Props> = ({ children }) => {
   return (
     <>
@@ -31,8 +45,16 @@ const layout: React.FC<Props> = ({ children }) => {
           <div className="w-full text-white flex justify-center mt-4">
             <Switch
               items={[
-                { label: "Buy Gift Cards", url: "buy" },
-                { label: "Sell Gift Cards", url: "sell" },
+                {
+                  label: "Buy Gift Cards",
+                  url: "buy",
+                  slug: "buy",
+                },
+                {
+                  label: "Sell Gift Cards",
+                  url: "sell",
+                  slug: "sell",
+                },
               ]}
               backgroundColor="bg-secondary"
             />
@@ -52,27 +74,30 @@ const layout: React.FC<Props> = ({ children }) => {
             Walmart
           </span> */}
           </div>
-          {/* <div className="flex gap-x-4 justify-center text-white mt-4">
-          <FilterSelectOutline
-            label="Category"
-            options={["Shopping", "Food", "Clothing"]}
-            border
-            borderColor="border-gray-500"
-          />
-          <FilterSelectOutline
-            label="Tags"
-            options={["GiftCards", "Food", "Clothing"]}
-            border
-            borderColor="border-gray-500"
-          />
-          <FilterSelectOutline
-            label="Gift Cards"
-            options={["GiftCards", "Food", "Clothing"]}
-            border
-            borderColor="border-gray-500"
-          />
-          <FilterRange />
-        </div> */}
+          <div className="flex gap-x-4 justify-end text-white mt-4">
+            {/* <FilterSelectOutline
+              label="Category"
+              options={["Shopping", "Food", "Clothing"]}
+              filterType="category"
+              border
+              borderColor="border-gray-500"
+            /> */}
+            <FilterSelectOutline
+              label="Currency"
+              options={currencies}
+              filterType="currencies"
+              border
+              borderColor="border-gray-500"
+            />
+            {/* <FilterSelectOutline
+              label="Gift Cards"
+              options={giftCards}
+              filterType="giftCards"
+              border
+              borderColor="border-gray-500"
+            /> */}
+            {/* <FilterRange /> */}
+          </div>
           <div className="pb-32 lg:pb-10">{children}</div>
         </div>
       </div>

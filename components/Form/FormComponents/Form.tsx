@@ -41,6 +41,7 @@ const Form: React.FC<Props> = ({
   const {
     register,
     handleSubmit,
+    getValues,
     watch,
     formState: { errors },
   } = useForm();
@@ -48,6 +49,14 @@ const Form: React.FC<Props> = ({
   const { data, loading, error, submitRequest } = useAuth();
 
   const [isBot, setIsBot] = useState(true);
+
+  const [currentCountry, setCurrentCountry] = useState("Ghana-GH");
+
+  useEffect(() => {
+    const countryCode = watch("country");
+
+    setCurrentCountry(countryCode);
+  }, [watch("country")]);
 
   const onCaptchaSuccess = () => {
     setIsBot(false);
@@ -77,6 +86,7 @@ const Form: React.FC<Props> = ({
               config={field.config}
               name={field.name}
               key={field.name}
+              errors={errors}
             />
           ) : (
             <FormInput
@@ -88,7 +98,10 @@ const Form: React.FC<Props> = ({
               key={field.name}
               register={register}
               errors={errors}
+              watch={watch}
               className="bg-tertiary"
+              currentCountry={currentCountry}
+              selectOptions={field.selectOptions}
             />
           )
         )}

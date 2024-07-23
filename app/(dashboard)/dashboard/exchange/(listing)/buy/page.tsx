@@ -64,9 +64,9 @@ import Product from "@/components/Product/Product";
 //   },
 // ];
 
-const fetchProducts = async (accessToken: any) => {
+const fetchProducts = async (accessToken: any, type: string) => {
   const response = await axios.get(
-    "https://backend.apkxchange.com/api/products",
+    `https://test.apkxchange.com/api/products?category=${type}`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -78,24 +78,30 @@ const fetchProducts = async (accessToken: any) => {
   return response.data.data;
 };
 
-const BuyPage = async () => {
+const BuyPage = async ({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access");
 
-  // if (accessToken === undefined) {
-  //   return redirect("/login");
-  // }
+  if (accessToken === undefined) {
+    return redirect("/login");
+  }
 
-  const products = await fetchProducts(accessToken?.value);
+  const products = await fetchProducts(accessToken?.value, "Card");
+
+  const filteredProducts = products.filter(
+    (product: any) =>
+      product.currency.name === searchParams?.currency && product.type === "buy"
+  );
 
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
-      {products.map(
-        (product: any) =>
-          product.type === "buy" && (
-            <Product key={product.id} productInfo={product} />
-          )
-      )}
+      {filteredProducts.map((product: any) => (
+        <Product key={product.id} productInfo={product} />
+      ))}
     </div>
   );
 };

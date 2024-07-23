@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Lottie from "lottie-react";
 import loadingAnimation from "@/components/Animations/Lottie/blueloading.json";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const ConfirmEmailPage = () => {
   const router = useRouter();
@@ -36,6 +37,8 @@ const ConfirmEmailPage = () => {
   //   console.log(error);
   // }
 
+  const [emailVerified, setEmailVerified] = useState(false);
+
   useEffect(() => {
     verifyEmailFunc();
   }, []);
@@ -53,9 +56,8 @@ const ConfirmEmailPage = () => {
 
     try {
       const response = await axios(config);
-      console.log(response);
       if (response.status === 200) {
-        router.replace("/dashboard/exchange/buy");
+        router.replace("/login");
       }
     } catch (error) {
       console.log(error);
@@ -64,7 +66,7 @@ const ConfirmEmailPage = () => {
 
   return (
     <div className="w-[250px]">
-      <Lottie animationData={loadingAnimation} />
+      {!emailVerified && <Lottie animationData={loadingAnimation} />}
     </div>
   );
 };
