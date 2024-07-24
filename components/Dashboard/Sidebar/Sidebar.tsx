@@ -43,7 +43,7 @@ const Sidebar = () => {
   const [userInfo, setUserInfo] = useState<any>(null);
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
-    // console.log(JSON.parse(user));
+    console.log(JSON.parse(user));
     setUserInfo(JSON.parse(user));
   }, []);
 

@@ -115,7 +115,7 @@ const SignupForm = () => {
     if (data?.token) {
       const expiresInSeconds = 3 * 60 * 60;
       setCookie("access", data.token, { maxAge: expiresInSeconds });
-
+      localStorage.setItem("userInfo", JSON.stringify(data.user));
       if (data.user.email_verified_at !== null) {
         router.push("/dashboard/exchange/buy");
       } else {

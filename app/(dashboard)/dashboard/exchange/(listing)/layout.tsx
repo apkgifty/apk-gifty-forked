@@ -47,12 +47,12 @@ const layout: React.FC<Props> = ({ children }) => {
               items={[
                 {
                   label: "Buy Gift Cards",
-                  url: "buy",
+                  url: "buy?currency=USD",
                   slug: "buy",
                 },
                 {
                   label: "Sell Gift Cards",
-                  url: "sell",
+                  url: "sell?currency=USD",
                   slug: "sell",
                 },
               ]}
