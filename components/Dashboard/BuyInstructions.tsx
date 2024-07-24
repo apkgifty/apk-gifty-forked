@@ -49,14 +49,18 @@ const BuyInstructions: React.FC<Props> = ({ type }) => {
   } else if (type === "Bank") {
     content = (
       <div className="text-xs lg:text-sm text-gray-400 py-4">
-        <h4 className=" text-sm lg:text-sm font-bold"> Availability</h4>
+        <h4 className=" text-sm lg:text-sm font-bold text-white">
+          {" "}
+          Availability
+        </h4>
         <p> For users in Ghana 🇬🇭 and partially for Nigerians 🇳🇬.</p>{" "}
         <p className="font-bold mt-2 text-white"> Payment Instructions </p>{" "}
         <p>Use Mobile Money (MoMo) for bank deposits.</p>
-        <p className="font-bold mt-2 text-white">
+        <p className="font-bold mt-2 text-white"> Deposit Limits</p>
+        <p>
           {" "}
-          Deposit Limits: Minimum GHC 500, Maximum GHC 1,000,000. For higher
-          amounts, contact Admin.
+          Minimum GHC 500, Maximum GHC 1,000,000. For higher amounts, contact
+          Admin.
         </p>
         <p className="font-bold mt-2 text-white">Processing Time</p>
         <p>
@@ -97,7 +101,7 @@ const BuyInstructions: React.FC<Props> = ({ type }) => {
           Number, Name and any ID(optional) - ⁠Admin will verify and process
           your Bank Deposit
         </p>
-        <p> Payment to Nigerian Bank</p>
+        <p className="font-bold mt-2 text-white"> Payment to Nigerian Bank</p>
         <p>Select “Naira Payment” from Bank Services.</p>
         <p> Follow the same procedure.</p>{" "}
         <p>
@@ -136,7 +140,7 @@ const BuyInstructions: React.FC<Props> = ({ type }) => {
         </p>
         <Link href={"/refund-policy"}>
           {" "}
-          <p className="font-bold mt-2 text-white"> Refund Policy</p>
+          <p className="font-bold mt-2 text-blue-600"> Refund Policy</p>
         </Link>
         <p>
           For refunds, do not request a chargeback. Instead, contact the Admin
