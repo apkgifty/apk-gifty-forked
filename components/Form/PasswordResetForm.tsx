@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import FormInput from "./FormComponents/FormInput";
 
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
@@ -21,20 +22,27 @@ const fields: Fields[] = [
     name: "password",
     icon: <LockOpenIcon />,
     config: {
-      required: true,
+      required: { value: true, message: "Password is required" },
+      minLength: { value: 8, message: "Minimum 8 characters" },
     },
   },
   {
     type: "password",
     placeholder: "Confirm Password",
-    name: "confirm_password",
+    name: "password_confirmation",
     icon: <LockOpenIcon />,
-    config: { required: true },
+    config: {
+      required: { value: true, message: "Confirm password is required" },
+      minLength: { value: 8, message: "Minimum 8 characters" },
+    },
   },
 ];
 
 const PasswordResetForm = () => {
+  const [succefulReset, setSuccessfulReset] = useState(false);
+
   const afterSubmit = (data: any) => {
+    console.log(data);
     if (data?.token) {
       // console.log(data);
       // console.log(data.token);
@@ -64,8 +72,8 @@ const PasswordResetForm = () => {
         </motion.div>
         <Form
           fields={fields}
-          redirectUrl="/"
-          endpoint="#"
+          redirectUrl="#"
+          endpoint="/api/reset-password"
           afterSubmit={afterSubmit}
         />
       </FormBody>

@@ -19,6 +19,7 @@ interface Props {
   pageType: string;
   pid: string;
   stock: string;
+  currencySymbol: string;
 }
 
 const SellDisplay: React.FC<Props> = ({
@@ -29,6 +30,7 @@ const SellDisplay: React.FC<Props> = ({
   pageType,
   pid,
   stock,
+  currencySymbol,
 }) => {
   const router = useRouter();
 
@@ -108,6 +110,7 @@ const SellDisplay: React.FC<Props> = ({
             isFixedPrice={Number(canCustom) === 0 ? false : true}
             handleAmount={handleAmount}
             amount={amount}
+            currencySymbol={currencySymbol}
           />
         </div>
         <div>

@@ -10,7 +10,7 @@ import { Fields } from "@/types/formTypes";
 import NextSvg from "@/components/UI/SvgIcons/NextSvg";
 import { useAuth } from "@/hooks/useAuth";
 import { Snackbar, Alert } from "@mui/material";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import ForgotPasswordLink from "./ForgotPasswordLink";
 import TermsCheckBox from "./TermsCheckBox";
@@ -37,6 +37,7 @@ const Form: React.FC<Props> = ({
   afterSubmit,
 }) => {
   const pathName = usePathname();
+  const searchParams = useSearchParams();
 
   const {
     register,
@@ -68,6 +69,14 @@ const Form: React.FC<Props> = ({
 
   const onSubmit = (data: any) => {
     if (isBot) return;
+    if (pathName.includes("password-reset")) {
+      const token = pathName.split("/")[2];
+      const email = searchParams.get("email");
+      const changePasswordData = { ...data, token, email };
+      submitRequest(changePasswordData, endpoint);
+      return;
+    }
+
     submitRequest(data, endpoint);
   };
 
