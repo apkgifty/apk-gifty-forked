@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 interface Props {
   type: string;
@@ -50,30 +51,35 @@ const BuyInstructions: React.FC<Props> = ({ type }) => {
       <div className="text-xs lg:text-sm text-gray-400 py-4">
         <h4 className=" text-sm lg:text-sm font-bold"> Availability</h4>
         <p> For users in Ghana 🇬🇭 and partially for Nigerians 🇳🇬.</p>{" "}
-        <p>
-          {" "}
-          Payment Instructions: - Use Mobile Money (MoMo) for bank deposits.
-        </p>
-        <p>
+        <p className="font-bold mt-2 text-white"> Payment Instructions </p>{" "}
+        <p>Use Mobile Money (MoMo) for bank deposits.</p>
+        <p className="font-bold mt-2 text-white">
           {" "}
           Deposit Limits: Minimum GHC 500, Maximum GHC 1,000,000. For higher
           amounts, contact Admin.
         </p>
+        <p className="font-bold mt-2 text-white">Processing Time</p>
         <p>
-          Processing Time: Deposits are processed within 10 to 30 minutes. If
-          busy, it may take up to 1 hour.
+          {" "}
+          Deposits are processed within 10 to 30 minutes. If busy, it may take
+          up to 1 hour.
         </p>{" "}
+        <p className="font-bold mt-2 text-white">Crypto Conversion</p>
         <p>
-          Crypto Conversion: For converting crypto (USDT, Bitcoin, ETH) to bank
-          payment, contact Admin.
+          {" "}
+          For converting crypto (USDT, Bitcoin, ETH) to bank payment, contact
+          Admin.
         </p>
-        <p> Refund Policy </p>
+        <Link href="/refund-policy">
+          {" "}
+          <p className="font-bold mt-2 text-blue-600"> Refund Policy </p>{" "}
+        </Link>
         <p>
           No reversals or chargebacks allowed after payment. For refunds,
           contact Admin and file a ticket. Refunds are processed within 30
           minutes to 3 hours.
         </p>
-        <p>Verification</p>
+        <p className="font-bold mt-2 text-white">Verification</p>
         <p>
           {" "}
           For deposits over GHC 5,000, ensure your account is verified (KYC
@@ -111,39 +117,44 @@ const BuyInstructions: React.FC<Props> = ({ type }) => {
   } else if (type === "Bundle") {
     content = (
       <div className="text-xs lg:text-sm text-gray-400 py-4">
-        <p>Availability</p>
+        <p className="font-bold mt-2 text-white">Availability</p>
         <p>
           This offer is for MTN, AirtelTigo, and Telecel users in Ghana 🇬🇭 only.
         </p>
         <p>Agreement: If you agree to these terms, click on Next/Proceed.</p>
-        <p>Payment Process</p>
+        <p className="font-bold mt-2 text-white">Payment Process</p>
         <p>
           Use Mobile Money (MoMo) to make your payment. Follow the instructions
           provided after clicking on MoMo.
         </p>
+        <p className="font-bold mt-2 text-white">Chargebacks</p>{" "}
         <p>
-          Chargebacks: Once you&apos;ve made a payment, you cannot request a
-          chargeback through customer care. If you do, your account and order
-          will be terminated.
+          {" "}
+          Once you&apos;ve made a payment, you cannot request a chargeback
+          through customer care. If you do, your account and order will be
+          terminated.
         </p>
-        <p> Refund Policy</p>
+        <Link href={"/refund-policy"}>
+          {" "}
+          <p className="font-bold mt-2 text-white"> Refund Policy</p>
+        </Link>
         <p>
           For refunds, do not request a chargeback. Instead, contact the Admin
           through the chat section. Notify them that you no longer wish to
           proceed, and your refund will be processed within 30 minutes to 3
           hours. If there’s a delay, it means admins are busy with other orders.
         </p>
-        <p>Payment</p>{" "}
+        <p className="font-bold mt-2 text-white">Payment</p>{" "}
         <p>
           {" "}
           Make the payment as per the provided details and click on Start Trade.
         </p>{" "}
-        <p> Provide Phone Number</p>{" "}
+        <p className="font-bold mt-2 text-white"> Provide Phone Number</p>{" "}
         <p>
           In the chat section, enter the phone number that you want the bundle
           to be sent to.
         </p>{" "}
-        <p> Admin Response</p>
+        <p className="font-bold mt-2 text-white"> Admin Response</p>
         <p>
           The Admin will respond to your order promptly, confirm it, and process
           it quickly.

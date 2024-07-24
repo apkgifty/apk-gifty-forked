@@ -25,7 +25,11 @@ const Product: React.FC<Props> = ({
   const pathTag = splitPathname[splitPathname.length - 1];
 
   // Add pid to params so it can be picked from url
-  const prod = { ...productInfo, pid: productInfo.id };
+  const prod = {
+    ...productInfo,
+    pid: productInfo.id,
+    currency: currency.symbol,
+  };
 
   const pathEnd =
     pathTag === "buy" || pathTag === "other-services" ? "buy" : "sell";

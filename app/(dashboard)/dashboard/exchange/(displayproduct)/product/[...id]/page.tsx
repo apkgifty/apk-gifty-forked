@@ -25,7 +25,9 @@ const ProductDisplay = ({
   const accessToken = cookieStore.get("access")?.value;
   const pageType = params.id[0];
 
-  const { category } = searchParams;
+  const { category, currency } = searchParams;
+
+  // console.log(searchParams);
 
   return (
     <div className="flex w-full">
@@ -70,6 +72,7 @@ const ProductDisplay = ({
               pid={searchParams.pid}
               stock={searchParams.quantity}
               category={category}
+              currencySymbol={currency}
             />
           )}
 

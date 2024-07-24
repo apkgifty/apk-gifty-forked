@@ -188,30 +188,32 @@ const ConfirmOrder: React.FC<Props> = ({
             Read order info
           </p>
         </div>
-        <div className="flex gap-x-6">
-          <p className="text-xs lg:text-base text-gray-400">
-            {pathname === "buy"
-              ? "Quantity"
-              : pathname === "sell"
-              ? "Value "
-              : null}
-            <span className="text-white">:- {quantity}</span>
-          </p>
-          <p className="text-xs lg:text-base text-gray-400">
-            Fees
-            <span className="text-white">:- ${fees}</span>
-          </p>
-          <p className="text-xs lg:text-base text-gray-400">
-            Amount To Pay <span className="text-white">:- ${price}</span>
-          </p>
+        {category === "Card" && (
+          <div className="flex gap-x-6">
+            <p className="text-xs lg:text-base text-gray-400">
+              {pathname === "buy"
+                ? "Quantity"
+                : pathname === "sell"
+                ? "Value "
+                : null}
+              <span className="text-white">:- {quantity}</span>
+            </p>
+            <p className="text-xs lg:text-base text-gray-400">
+              Fees
+              <span className="text-white">:- ${fees}</span>
+            </p>
+            <p className="text-xs lg:text-base text-gray-400">
+              Amount To Pay <span className="text-white">:- ${price}</span>
+            </p>
 
-          <p className="text-xs lg:text-base text-gray-400">
-            Rate{" "}
-            <span className=" font-semi-bold text-orange-400">
-              :- 1$ / GHC {rate}
-            </span>
-          </p>
-        </div>
+            <p className="text-xs lg:text-base text-gray-400">
+              Rate{" "}
+              <span className=" font-semi-bold text-orange-400">
+                :- 1$ / GHC {rate}
+              </span>
+            </p>
+          </div>
+        )}
 
         {pathname == "buy" && (
           <div className="mt-14">
@@ -247,7 +249,11 @@ const ConfirmOrder: React.FC<Props> = ({
           {pathname === "buy" && (
             <p className="text-sm lg:text-base text-orange-400 mt-4">
               Amount to pay in Ghana Cedis - GHC{" "}
-              {(Number(price) * Number(rate)).toFixed(2)}
+              {category === "Card"
+                ? (Number(price) * Number(rate)).toFixed(2)
+                : category === "Bank"
+                ? Number(quantity).toFixed(2)
+                : Number(price).toFixed(2)}
             </p>
           )}
         </div>

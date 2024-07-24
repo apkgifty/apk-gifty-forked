@@ -22,6 +22,7 @@ interface Props {
   pid: string;
   stock: string;
   category: string;
+  currencySymbol: string;
 }
 
 const BuyDisplay: React.FC<Props> = ({
@@ -33,11 +34,13 @@ const BuyDisplay: React.FC<Props> = ({
   pid,
   stock,
   category,
+  currencySymbol,
 }) => {
   const router = useRouter();
   // console.log(stock);
 
-  const [quantity, setQuantity] = useState("1");
+  const [quantity, setQuantity] = useState(category === "Bank" ? "" : "1");
+  const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -50,11 +53,9 @@ const BuyDisplay: React.FC<Props> = ({
     setQuantity(value);
   };
 
-  const [amount, setAmount] = useState("");
-
   const handleAmount = (e: any) => {
     const val = e.target.value;
-    setAmount(val);
+    setQuantity(val);
   };
 
   const paths = usePathname().split("/");
@@ -135,7 +136,8 @@ const BuyDisplay: React.FC<Props> = ({
             <BuyAmountInput
               isFixedPrice={Number(canCustom) === 0 ? false : true}
               handleAmount={handleAmount}
-              amount={amount}
+              amount={quantity}
+              currencySymbol={currencySymbol}
             />
           ) : null}
         </div>
@@ -143,8 +145,12 @@ const BuyDisplay: React.FC<Props> = ({
           <p className="font-light">You have to pay</p>
           <p className="text-3xl font-semibold text-[#587BF2]">
             {category === "Bank"
-              ? `${amount.length === 0 ? "0.00" : Number(amount).toFixed(2)}`
-              : `${(Number(quantity) * Number(price)).toFixed(2)}`}
+              ? `${currencySymbol} ${
+                  quantity.length === 0 ? "0.00" : Number(quantity).toFixed(2)
+                }`
+              : `${currencySymbol} ${(Number(quantity) * Number(price)).toFixed(
+                  2
+                )}`}
           </p>
         </div>
       </div>
