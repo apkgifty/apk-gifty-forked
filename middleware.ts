@@ -12,18 +12,29 @@ export async function middleware(request: NextRequest) {
   const { url, nextUrl } = request;
   const { host, hostname, protocol } = nextUrl;
 
-  const response = await fetch("https://test.apkxchange.com/api/profile", {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token?.value}` },
-  });
-
-  const userData = await response.json();
-
-  if (userData.data.email_verified_at === null) {
-    return NextResponse.redirect(`${protocol}//${host}/email-verification`);
+  if (!token) {
+    const loginUrl = new URL("/login", request.url);
+    return NextResponse.redirect(loginUrl);
   }
 
-  if (!token) {
+  try {
+    const response = await fetch("https://test.apkxchange.com/api/profile", {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token?.value}` },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch profile");
+    }
+
+    const userData = await response.json();
+
+    if (userData.data.email_verified_at === null) {
+      return NextResponse.redirect(`${protocol}//${host}/email-verification`);
+    }
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+    // You might want to handle the error by redirecting to an error page or login page
     const loginUrl = new URL("/login", request.url);
     return NextResponse.redirect(loginUrl);
   }
