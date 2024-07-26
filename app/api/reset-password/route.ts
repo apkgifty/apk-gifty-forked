@@ -30,7 +30,6 @@ export async function POST(req: Request, res: Response) {
 
   try {
     const response = await axios(config);
-    console.log(response);
     return NextResponse.json(response.data);
   } catch (error: any) {
     console.log(error.response);
