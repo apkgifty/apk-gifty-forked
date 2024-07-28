@@ -33,6 +33,7 @@ export async function POST(req: Request, res: Response) {
 
     return NextResponse.json(response.data);
   } catch (error: any) {
+    console.log("from register:", error.response);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,
