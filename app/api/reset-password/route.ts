@@ -19,7 +19,7 @@ export async function POST(req: Request, res: Response) {
   let config = {
     method: "PATCH",
     maxBodyLength: Infinity,
-    url: "https://test.apkxchange.com/api/reset-password",
+    url: `${process.env.API_ENDPOINT}/reset-password`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

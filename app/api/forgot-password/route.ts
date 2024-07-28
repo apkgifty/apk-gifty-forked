@@ -17,7 +17,7 @@ export async function POST(req: Request, res: Response) {
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: "https://test.apkxchange.com/api/forgot-password",
+    url: `${process.env.API_ENDPOINT}/forgot-password`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

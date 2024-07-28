@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
   }
 
   try {
-    const response = await fetch("https://test.apkxchange.com/api/profile", {
+    const response = await fetch(`${process.env.API_ENDPOINT}/profile`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token?.value}` },
     });

@@ -17,14 +17,11 @@ const KYCPage = async () => {
   let user;
 
   try {
-    const res = await axiosInstance.get(
-      "https://test.apkxchange.com/api/profile",
-      {
-        headers: {
-          //   Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const res = await axiosInstance.get(`${process.env.API_ENDPOINT}/profile`, {
+      headers: {
+        //   Authorization: `Bearer ${accessToken}`,
+      },
+    });
     // console.log(res.data);
     user = res.data.data;
   } catch (error) {

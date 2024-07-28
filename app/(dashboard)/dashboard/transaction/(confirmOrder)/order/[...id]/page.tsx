@@ -25,7 +25,7 @@ const runAction = async () => {
 const fetchOrder = async (id: string) => {
   try {
     const response = await axiosInstance.get(
-      `https://test.apkxchange.com/api/order/${id}`,
+      `${process.env.API_ENDPOINT}/order/${id}`,
       {
         headers: {
           // Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ const fetchOrder = async (id: string) => {
 const fetchPaymentMethods = async () => {
   try {
     const response = await axiosInstance.get(
-      "https://test.apkxchange.com/api/paymentInstructions",
+      `${process.env.API_ENDPOINT}/paymentInstructions`,
       {
         headers: {
           // Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const fetchPaymentMethods = async () => {
 const fetchRate = async () => {
   try {
     const response = await axiosInstance.get(
-      "https://test.apkxchange.com/api/setting"
+      `${process.env.API_ENDPOINT}/setting`
     );
 
     return response.data;

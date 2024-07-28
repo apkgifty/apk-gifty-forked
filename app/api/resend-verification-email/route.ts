@@ -20,7 +20,7 @@ export async function GET(req: Request, res: Response) {
   let config = {
     method: "GET",
     maxBodyLength: Infinity,
-    url: "https://backend.apkxchange.com/api/email/resend",
+    url: `${process.env.API_ENDPOINT}/email/resend`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

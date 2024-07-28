@@ -26,7 +26,7 @@ export async function GET(req: Request, res: Response) {
   let config = {
     method: "GET",
     maxBodyLength: Infinity,
-    url: `https://test.apkxchange.com/api/${verifyPath}`,
+    url: `${process.env.API_ENDPOINT}/${verifyPath}`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

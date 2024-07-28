@@ -8,7 +8,7 @@ import DataBundle from "@/components/Product/DataBundle";
 
 const fetchProducts = async (accessToken: any, type: string) => {
   const response = await axios.get(
-    `https://test.apkxchange.com/api/products?category=${type}`,
+    `${process.env.API_ENDPOINT}/products?category=${type}`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,

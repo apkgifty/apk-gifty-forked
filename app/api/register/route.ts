@@ -20,7 +20,7 @@ export async function POST(req: Request, res: Response) {
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: "https://test.apkxchange.com/api/register",
+    url: `${process.env.API_ENDPOINT}/register`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

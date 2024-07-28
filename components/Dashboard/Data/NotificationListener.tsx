@@ -29,7 +29,7 @@ const NotificationListener = ({ token }: { token: string }) => {
     const pusher = new Pusher("e597b63b0a16d6c4a2c6", {
       cluster: "mt1",
       channelAuthorization: {
-        endpoint: "https://test.apkxchange.com/api/api/chat/auth",
+        endpoint: `${process.env.API_ENDPOINT}/api/chat/auth`,
         transport: "ajax",
         headers: {
           Accept: "application/json",
@@ -37,7 +37,7 @@ const NotificationListener = ({ token }: { token: string }) => {
         },
       },
       userAuthentication: {
-        endpoint: "https://test.apkxchange.com/api/chat/auth",
+        endpoint: `${process.env.API_ENDPOINT}/chat/auth`,
         transport: "ajax",
         headers: {
           Accept: "application/json",
