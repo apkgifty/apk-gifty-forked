@@ -45,6 +45,7 @@ const LoginForm = () => {
       setCookie("access", data.token, { maxAge: expiresInSeconds });
       localStorage.setItem("userInfo", JSON.stringify(data.user));
       if (data.user.email_verified_at !== null) {
+        console.log("verified");
         router.push("/dashboard/exchange/buy");
       } else {
         router.push("/email-verification");
