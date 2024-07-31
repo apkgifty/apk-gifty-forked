@@ -37,7 +37,7 @@ const BuyDisplay: React.FC<Props> = ({
   currencySymbol,
 }) => {
   const router = useRouter();
-  // console.log(stock);
+  console.log(canCustom);
 
   const [quantity, setQuantity] = useState(category === "Bank" ? "" : "1");
   const [amount, setAmount] = useState("");
@@ -49,13 +49,12 @@ const BuyDisplay: React.FC<Props> = ({
 
   const handleQuantity = (e: any) => {
     const value = e.target.value;
-
     setQuantity(value);
   };
 
   const handleAmount = (e: any) => {
     const val = e.target.value;
-    setQuantity(val);
+    setAmount(val);
   };
 
   const paths = usePathname().split("/");
@@ -63,11 +62,25 @@ const BuyDisplay: React.FC<Props> = ({
   const pathname = paths[paths.length - 1];
 
   const buyHandler = async () => {
-    const data = {
-      quantity: quantity,
-      product_id: pid,
-      type: "buyorder",
-    };
+    let data;
+
+    if (canCustom) {
+      console.log("with amount");
+      data = {
+        quantity: 1,
+        product_id: pid,
+        type: "buyorder",
+        amount: amount,
+      };
+    } else {
+      console.log("without amount");
+      data = {
+        quantity: quantity,
+        product_id: pid,
+        type: "buyorder",
+      };
+    }
+
     const config = {
       method: "POST",
       maxBodyLength: Infinity,
@@ -136,7 +149,7 @@ const BuyDisplay: React.FC<Props> = ({
             <BuyAmountInput
               isFixedPrice={Number(canCustom) === 0 ? false : true}
               handleAmount={handleAmount}
-              amount={quantity}
+              amount={amount}
               currencySymbol={currencySymbol}
             />
           ) : null}
@@ -145,9 +158,7 @@ const BuyDisplay: React.FC<Props> = ({
           <p className="font-light">You have to pay</p>
           <p className="text-3xl font-semibold text-[#587BF2]">
             {category === "Bank"
-              ? `${currencySymbol} ${
-                  quantity.length === 0 ? "0.00" : Number(quantity).toFixed(2)
-                }`
+              ? `${currencySymbol} ${Number(amount).toFixed(2)}`
               : `${currencySymbol} ${(Number(quantity) * Number(price)).toFixed(
                   2
                 )}`}

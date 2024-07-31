@@ -24,14 +24,12 @@ const runAction = async () => {
 
 const fetchOrder = async (id: string) => {
   try {
-    const response = await axiosInstance.get(
-      `${process.env.API_ENDPOINT}/order/${id}`,
-      {
-        headers: {
-          // Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axiosInstance.get(`/order/${id}`, {
+      headers: {
+        // Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log("order", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -59,7 +57,7 @@ const fetchRate = async () => {
     const response = await axiosInstance.get(
       `${process.env.API_ENDPOINT}/setting`
     );
-
+    console.log("rate", response.data);
     return response.data;
   } catch (error) {
     console.log(error);

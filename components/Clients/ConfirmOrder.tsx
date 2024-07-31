@@ -252,7 +252,7 @@ const ConfirmOrder: React.FC<Props> = ({
               {category === "Card"
                 ? (Number(price) * Number(rate)).toFixed(2)
                 : category === "Bank"
-                ? Number(quantity).toFixed(2)
+                ? Number(price).toFixed(2)
                 : Number(price).toFixed(2)}
             </p>
           )}
