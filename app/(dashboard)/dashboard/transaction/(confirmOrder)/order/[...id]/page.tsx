@@ -17,11 +17,6 @@ import EndedOrder from "@/components/Clients/EndedOrder";
 import { order } from "@/redux/features/orderSlice";
 import AdminOffline from "@/components/Clients/AdminOffline";
 
-const runAction = async () => {
-  "use server";
-  // console.log("It happened");
-};
-
 const fetchOrder = async (id: string) => {
   try {
     const response = await axiosInstance.get(`/order/${id}`, {
@@ -29,7 +24,7 @@ const fetchOrder = async (id: string) => {
         // Authorization: `Bearer ${token}`,
       },
     });
-    console.log("order", response.data);
+    // console.log("order", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -57,7 +52,7 @@ const fetchRate = async () => {
     const response = await axiosInstance.get(
       `${process.env.API_ENDPOINT}/setting`
     );
-    console.log("rate", response.data);
+    // console.log("rate", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -68,17 +63,25 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access")?.value;
   const id = searchParams.pid;
-  const category = searchParams.category;
+  let orderData, paymentMethods, rate, updatedOrderData;
+  // const category = searchParams.category;
+  console.log("Full searchParams object:", searchParams);
+  console.log("searchParams id:", id);
 
-  if (!id) throw new Error("No order with that id");
+  if (!id) {
+    throw new Error("No order with that id");
+  }
 
-  const [orderData, paymentMethods, rate] = await Promise.all([
-    fetchOrder(id),
-    fetchPaymentMethods(),
-    fetchRate(),
-  ]);
+  if (id) {
+    [orderData, paymentMethods, rate] = await Promise.all([
+      fetchOrder(id),
+      fetchPaymentMethods(),
+      fetchRate(),
+    ]);
 
-  const updatedOrderData = { ...orderData.data, category: category };
+    updatedOrderData = { ...orderData.data };
+  }
+
   // console.log(rate.data[0]);
 
   // console.log(orderData);
@@ -88,7 +91,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   // console.log(Number(orderData.data.status) < 2);
   // const status = orderData.data.status;
 
-  const adminOnline = rate.data[0].admin_online;
+  const adminOnline = rate.data[0]?.admin_online;
 
   return (
     <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">

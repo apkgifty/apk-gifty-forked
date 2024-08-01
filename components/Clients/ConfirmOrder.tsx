@@ -49,8 +49,6 @@ const ConfirmOrder: React.FC<Props> = ({
     category,
   } = orderData;
 
-  console.log(orderData);
-
   // console.log("Order data: ", orderData);
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -98,38 +96,40 @@ const ConfirmOrder: React.FC<Props> = ({
     }
   };
 
-  useEffect(() => {
-    const updateStatus = async () => {
-      // const response = await getOrder(id);
-      // console.log(response.data);
-      setLoading(true);
-      const getOrder = async (id: string) => {
-        try {
-          const response = await axios.get(
-            `${process.env.API_ENDPOINT}/order/${id}`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+  // useEffect(() => {
+  //   const updateStatus = async () => {
+  //     // const response = await getOrder(id);
+  //     // console.log(response.data);
+  //     setLoading(true);
+  //     const getOrder = async (id: string) => {
+  //       try {
+  //         const response = await axios.get(
+  //           `${process.env.API_ENDPOINT}/order/${id}`,
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${token}`,
+  //             },
+  //           }
+  //         );
 
-          // console.log(response.data.data);
-          setLoading(false);
-          setStatuss(response.data.data.status);
-          setStop(response.data.data.processing_end_time);
-          return response.data;
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      getOrder(id);
-    };
+  //         // console.log(response.data.data);
+  //         setLoading(false);
+  //         setStatuss(response.data.data.status);
+  //         setStop(response.data.data.processing_end_time);
+  //         return response.data;
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     };
+  //     getOrder(id);
+  //   };
 
-    updateStatus();
+  //   updateStatus();
 
-    return () => setLoading(false);
-  }, []);
+  //   return () => setLoading(false);
+  // }, []);
+
+  // console.log(status, statuss);
 
   // Submit notify-seller request
   const handleSubmit = async () => {
@@ -161,6 +161,7 @@ const ConfirmOrder: React.FC<Props> = ({
       // console.log(response.data);
       setStatuss(response.data.data.status);
       setLoading(false);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -270,9 +271,9 @@ const ConfirmOrder: React.FC<Props> = ({
               <PurchaseButton
                 pathname={pathname}
                 handleSubmit={handleSubmit}
-                status={statuss}
+                status={status}
               />
-              <CancelButton status={statuss} openDialog={setOpenCancelDialog} />
+              <CancelButton status={status} openDialog={setOpenCancelDialog} />
             </>
           )}
         </div>
@@ -284,7 +285,7 @@ const ConfirmOrder: React.FC<Props> = ({
           </div>
         )}
         <div className="mt-10 flex items-center gap-x-4">
-          {Number(statuss) === -1 ? null : Number(statuss) === 2 ? null : (
+          {Number(status) === -1 ? null : Number(status) === 2 ? null : (
             <Countdown
               stopTime={stop}
               // action={runAction}
@@ -307,7 +308,7 @@ const ConfirmOrder: React.FC<Props> = ({
       </button>
     </div> */}
       </div>
-      <Chat status={statuss} chat={chat} token={token} id={id} />
+      <Chat status={status} chat={chat} token={token} id={id} />
       <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}

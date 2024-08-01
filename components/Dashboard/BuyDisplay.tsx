@@ -37,7 +37,6 @@ const BuyDisplay: React.FC<Props> = ({
   currencySymbol,
 }) => {
   const router = useRouter();
-  console.log(canCustom);
 
   const [quantity, setQuantity] = useState(category === "Bank" ? "" : "1");
   const [amount, setAmount] = useState("");
@@ -65,8 +64,6 @@ const BuyDisplay: React.FC<Props> = ({
     let data;
 
     if (canCustom == "true") {
-      console.log("with amount");
-      console.log(canCustom);
       data = {
         quantity: 1,
         product_id: pid,
@@ -74,7 +71,6 @@ const BuyDisplay: React.FC<Props> = ({
         amount: amount,
       };
     } else {
-      console.log("without amount");
       data = {
         quantity: quantity,
         product_id: pid,
@@ -98,7 +94,7 @@ const BuyDisplay: React.FC<Props> = ({
       const response = await axios(config);
       // console.log(response.data);
       router.push(
-        `/dashboard/transaction/order/${pathname}?pid=${response.data.data.id}&category=${category}`
+        `/dashboard/transaction/order/${pathname}?pid=${response.data.data.id}`
       );
     } catch (error: any) {
       setLoading(false);
