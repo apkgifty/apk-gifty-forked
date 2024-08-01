@@ -64,8 +64,9 @@ const BuyDisplay: React.FC<Props> = ({
   const buyHandler = async () => {
     let data;
 
-    if (canCustom) {
+    if (canCustom == "true") {
       console.log("with amount");
+      console.log(canCustom);
       data = {
         quantity: 1,
         product_id: pid,
