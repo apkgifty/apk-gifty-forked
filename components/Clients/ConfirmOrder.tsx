@@ -294,18 +294,26 @@ const ConfirmOrder: React.FC<Props> = ({
                   : Number(price).toFixed(2)}
               </p>
 
-              <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
-                {makePayment &&
-                  filteredPaymentMethods.map((method: any) => (
-                    <Payment
-                      method={method}
-                      key={method.id}
-                      id={id}
-                      makePayment={sendPayment}
-                      loadingFunc={setLoading}
-                    />
-                  ))}
-              </ul>
+              {loading ? (
+                <div className="w-full flex justify-center">
+                  <div className="w-[100px] h-[100px] ">
+                    <Lottie animationData={loadingAnimation} />
+                  </div>
+                </div>
+              ) : (
+                <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
+                  {makePayment &&
+                    filteredPaymentMethods.map((method: any) => (
+                      <Payment
+                        method={method}
+                        key={method.id}
+                        id={id}
+                        makePayment={sendPayment}
+                        loadingFunc={setLoading}
+                      />
+                    ))}
+                </ul>
+              )}
             </>
           )}
         </div>
