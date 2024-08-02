@@ -17,21 +17,14 @@ import EndedOrder from "@/components/Clients/EndedOrder";
 import { order } from "@/redux/features/orderSlice";
 import AdminOffline from "@/components/Clients/AdminOffline";
 
-const runAction = async () => {
-  "use server";
-  // console.log("It happened");
-};
-
 const fetchOrder = async (id: string) => {
   try {
-    const response = await axiosInstance.get(
-      `https://backend.apkxchange.com/api/order/${id}`,
-      {
-        headers: {
-          // Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axiosInstance.get(`/order/${id}`, {
+      headers: {
+        // Authorization: `Bearer ${token}`,
+      },
+    });
+    // console.log("order", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -41,7 +34,7 @@ const fetchOrder = async (id: string) => {
 const fetchPaymentMethods = async () => {
   try {
     const response = await axiosInstance.get(
-      "https://backend.apkxchange.com/api/paymentInstructions",
+      `${process.env.API_ENDPOINT}/paymentInstructions`,
       {
         headers: {
           // Authorization: `Bearer ${token}`,
@@ -57,9 +50,9 @@ const fetchPaymentMethods = async () => {
 const fetchRate = async () => {
   try {
     const response = await axiosInstance.get(
-      "https://backend.apkxchange.com/api/setting"
+      `${process.env.API_ENDPOINT}/setting`
     );
-
+    // console.log("rate", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -70,16 +63,26 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("access")?.value;
   const id = searchParams.pid;
+  let orderData, paymentMethods, rate, updatedOrderData;
+  const category = searchParams.category;
+  // console.log("Full searchParams object:", searchParams);
+  // console.log("searchParams id:", id);
 
-  if (!id) throw new Error("No order with that id");
+  if (!id) {
+    throw new Error("No order with that id");
+  }
 
-  const [orderData, paymentMethods, rate] = await Promise.all([
-    fetchOrder(id),
-    fetchPaymentMethods(),
-    fetchRate(),
-  ]);
+  if (id) {
+    [orderData, paymentMethods, rate] = await Promise.all([
+      fetchOrder(id),
+      fetchPaymentMethods(),
+      fetchRate(),
+    ]);
 
-  console.log(rate.data[0]);
+    updatedOrderData = { ...orderData.data, category: category };
+  }
+
+  // console.log(rate.data[0]);
 
   // console.log(orderData);
   // console.log(paymentMethods);
@@ -88,14 +91,14 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   // console.log(Number(orderData.data.status) < 2);
   // const status = orderData.data.status;
 
-  const adminOnline = rate.data[0].admin_online;
+  const adminOnline = rate.data[0]?.admin_online;
 
   return (
     <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
       {adminOnline === "1" && (
         <ConfirmOrder
           token={accessToken!}
-          orderData={orderData.data}
+          orderData={updatedOrderData}
           paymentMethods={paymentMethods.data}
           rate={rate.data[0].rate}
         />

@@ -7,6 +7,7 @@ const nextConfig = {
       "backend.apkxchange.com",
       "plus.unsplash.com",
       "s3-alpha-sig.figma.com",
+      "test.apkxchange.com",
     ],
     dangerouslyAllowSVG: true,
   },

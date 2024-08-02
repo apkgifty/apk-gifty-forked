@@ -42,7 +42,7 @@ const useFetch = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://backend.apkxchange.com/api/register",
+      url: `${process.env.API_ENDPOINT}/register`,
       headers: {
         Accept: "application/json",
       },

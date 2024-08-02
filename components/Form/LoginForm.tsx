@@ -4,6 +4,7 @@ import FormInput from "./FormComponents/FormInput";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 
+import { toast } from "react-toastify";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import ButtonIcon from "./FormComponents/ButtonIcon";
@@ -43,7 +44,10 @@ const LoginForm = () => {
       // console.log(data.token);
       const expiresInSeconds = 3 * 60 * 60;
       setCookie("access", data.token, { maxAge: expiresInSeconds });
+      localStorage.setItem("userInfo", JSON.stringify(data.user));
       if (data.user.email_verified_at !== null) {
+        toast.success("Login Successful");
+        router.refresh();
         router.push("/dashboard/exchange/buy");
       } else {
         router.push("/email-verification");
@@ -60,8 +64,8 @@ const LoginForm = () => {
       <FormBody>
         <Switch
           items={[
-            { label: "Login", url: "login" },
-            { label: "Signup", url: "signup" },
+            { label: "Login", url: "login", slug: "login" },
+            { label: "Signup", url: "signup", slug: "signup" },
           ]}
           backgroundColor="bg-tertiary"
         />

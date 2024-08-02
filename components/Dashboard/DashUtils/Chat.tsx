@@ -19,7 +19,7 @@ const cluster = process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER!;
 const getOldMessages = async (id: string, token: string) => {
   try {
     const response = await axios.get(
-      `https://backend.apkxchange.com/api/history/order/${id}`,
+      `${process.env.API_ENDPOINT}/history/order/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     return response.data.messages;
@@ -30,11 +30,13 @@ const getOldMessages = async (id: string, token: string) => {
 
 const Chat = ({
   status,
+  is_paid,
   chat,
   token,
   id,
 }: {
   status: string;
+  is_paid?: string;
   chat: any;
   token: any;
   id: string;
@@ -76,7 +78,7 @@ const Chat = ({
     const pusher = new Pusher("e597b63b0a16d6c4a2c6", {
       cluster: "mt1",
       channelAuthorization: {
-        endpoint: "https://backend.apkxchange.com/api/chat/auth",
+        endpoint: `${process.env.API_ENDPOINT}/chat/auth`,
         transport: "ajax",
         headers: {
           Accept: "application/json",
@@ -84,7 +86,7 @@ const Chat = ({
         },
       },
       userAuthentication: {
-        endpoint: "https://backend.apkxchange.com/api/chat/auth",
+        endpoint: `${process.env.API_ENDPOINT}/chat/auth`,
         transport: "ajax",
         headers: {
           Accept: "application/json",
@@ -104,6 +106,7 @@ const Chat = ({
     // console.log(userInfo);
 
     const channel = pusher.subscribe(`private-chatify.${userInfo?.id}`);
+    // const channel = pusher.subscribe(`private-order.${userInfo?.id}`);
     // console.log(channel);
 
     channel.bind("messaging", (data: any) => {
@@ -119,6 +122,7 @@ const Chat = ({
     });
 
     return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
+    // return () => pusher.unsubscribe(`private-order.${userInfo?.id}`);
   }, [userInfo]);
 
   // console.log(chats);
@@ -188,7 +192,7 @@ const Chat = ({
 
   return (
     <>
-      {status.toString() === "1" ? (
+      {status.toString() === "1" || is_paid === "1" ? (
         <div className="w-full   flex-grow flex flex-col  h-[750px] relative mt-20 py-4  lg:border-l-2 lg:border-tertiary lg:w-[35%] lg:mt-0 lg:h-full shadow-2xl ">
           <div className="w-full flex flex-1 justify-between px-4  ">
             <div className="flex gap-x-3">

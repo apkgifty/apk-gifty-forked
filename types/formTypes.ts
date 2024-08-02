@@ -4,8 +4,17 @@ interface Fields {
   icon: React.ReactNode;
   placeholder: string;
   config: {
-    required: boolean;
+    required: boolean | ConfigOptions;
+    minLength?: number | ConfigOptions;
+    maxLength?: number | ConfigOptions;
+    pattern?: any;
   };
+  selectOptions?: any;
 }
 
-export type { Fields };
+interface ConfigOptions {
+  value: string | number | boolean;
+  message: string;
+}
+
+export type { Fields, ConfigOptions };
