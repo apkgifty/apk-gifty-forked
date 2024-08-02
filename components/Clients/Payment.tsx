@@ -10,13 +10,14 @@ const Payment = ({
   makePayment,
   id,
   loadingFunc,
+  notifySeller,
 }: {
   method: any;
   makePayment?: any;
   id: number;
   loadingFunc?: any;
+  notifySeller?: any;
 }) => {
-  console.log(method);
   const [open, setOpen] = useState(false);
   const [paymentInitiated, setPaymentInitiated] = useState(false);
 
@@ -25,6 +26,15 @@ const Payment = ({
       setPaymentInitiated(true);
     } else {
       setOpen(true);
+    }
+  };
+
+  const handleNotifySeller = async () => {
+    try {
+      notifySeller(id);
+      setOpen(false);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -64,13 +74,23 @@ const Payment = ({
         )}
         <div>
           <p className="inline-block px-3 py-1 text-white rounded-lg">
-            <span></span> {method.body}
+            <span>{method.body}</span>
           </p>
         </div>
         <div>
           <p className="inline-block px-3 py-1 text-blue-600  rounded-lg">
             <span className="text-white">Name:</span> {method.sub_text}
           </p>
+          {method.channel !== "Momo" && (
+            <div className="w-full flex justify-center mt-3">
+              <span
+                className="text-white text-xs lg:text-sm px-4 py-1 bg-blue-500 cursor-pointer hover:bg-blue-900"
+                onClick={handleNotifySeller}
+              >
+                Payment Sent
+              </span>
+            </div>
+          )}
         </div>
       </DisplayDialog>
     </>

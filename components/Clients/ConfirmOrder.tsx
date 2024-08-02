@@ -50,6 +50,7 @@ const ConfirmOrder: React.FC<Props> = ({
     category,
     type,
     is_paid,
+    payment_transaction_id,
   } = orderData;
 
   // console.log("Order data: ", orderData);
@@ -138,6 +139,12 @@ const ConfirmOrder: React.FC<Props> = ({
     }
   };
 
+  useEffect(() => {
+    if (!processing_end_time && payment_transaction_id && is_paid == "1") {
+      notifySeller(id);
+    }
+  }, [payment_transaction_id]);
+
   // useEffect(() => {
   //   const updateStatus = async () => {
   //     // const response = await getOrder(id);
@@ -181,10 +188,14 @@ const ConfirmOrder: React.FC<Props> = ({
   const notifySellerHandler = async () => {
     const res = await notifySeller(id);
 
-    console.log(res.data.processing_end_time);
-
     setStatuss(String(res.data.status));
     setStop(res.data.processing_end_time);
+  };
+
+  const notifySellerHandlerNoTimer = async () => {
+    const res = await notifySeller(id);
+
+    setStatuss(String(res.data.status));
   };
 
   const cancelOrder = async (id: string) => {
@@ -294,13 +305,7 @@ const ConfirmOrder: React.FC<Props> = ({
                   : Number(price).toFixed(2)}
               </p>
 
-              {loading ? (
-                <div className="w-full flex justify-center">
-                  <div className="w-[100px] h-[100px] ">
-                    <Lottie animationData={loadingAnimation} />
-                  </div>
-                </div>
-              ) : (
+              {loading ? null : (
                 <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
                   {makePayment &&
                     filteredPaymentMethods.map((method: any) => (
@@ -310,6 +315,7 @@ const ConfirmOrder: React.FC<Props> = ({
                         id={id}
                         makePayment={sendPayment}
                         loadingFunc={setLoading}
+                        notifySeller={notifySellerHandlerNoTimer}
                       />
                     ))}
                 </ul>
