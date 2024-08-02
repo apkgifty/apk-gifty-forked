@@ -171,14 +171,16 @@ const ConfirmOrder: React.FC<Props> = ({
   // }, []);
 
   const requestPayment = () => {
+    const dateNow = new Date();
     setMakePayment(true);
+    setStop(dateNow.toISOString());
   };
 
   // Submit notify-seller request
   const handleSubmit = async () => {
     const res = await sendRequest(id);
 
-    // console.log(res.data);
+    console.log(res.data.processing_end_time);
 
     setStatuss(String(res.data.status));
     setStop(res.data.processing_end_time);
@@ -316,11 +318,16 @@ const ConfirmOrder: React.FC<Props> = ({
           ) : (
             <>
               {" "}
-              <PurchaseButton
-                pathname={pathname}
-                handleSubmit={type === "buy" ? requestPayment : handleSubmit}
-                status={statuss}
-              />
+              {(is_paid === "0" ||
+                statuss === "0" ||
+                statuss === "2" ||
+                statuss === "-1") && (
+                <PurchaseButton
+                  pathname={pathname}
+                  handleSubmit={type === "buy" ? requestPayment : handleSubmit}
+                  status={statuss}
+                />
+              )}
               <CancelButton status={statuss} openDialog={setOpenCancelDialog} />
             </>
           )}
@@ -334,6 +341,12 @@ const ConfirmOrder: React.FC<Props> = ({
         )}
         <div className="mt-10 flex items-center gap-x-4">
           {Number(statuss) === -1 ? null : Number(statuss) === 2 ? null : (
+            <Countdown
+              stopTime={stop}
+              // action={runAction}
+            />
+          )}
+          {type === "buy" && makePayment && is_paid === "0" && (
             <Countdown
               stopTime={stop}
               // action={runAction}
