@@ -8,6 +8,7 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ButtonIcon from "./FormComponents/ButtonIcon";
 import ExternalLogins from "./FormComponents/ExternalLogins";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import Switch from "./FormComponents/Switch";
 import FormHeader from "./FormComponents/FormHeader";
 import FormBody from "./FormComponents/FormBody";
@@ -17,6 +18,16 @@ import { Fields } from "@/types/formTypes";
 import Form from "./FormComponents/Form";
 import EmailAtSvg from "../UI/SvgIcons/EmailAtSvg";
 import ReferralSvg from "../UI/SvgIcons/ReferralSvg";
+import Flag from "react-world-flags";
+import countries from "@/utils/countriesData";
+
+const countriesWithFlags = countries.map((country) => ({
+  ...country,
+  flag: <Flag code={country.iso} />,
+}));
+
+const regex: RegExp =
+  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
 
 const fields: Fields[] = [
   {
@@ -24,7 +35,7 @@ const fields: Fields[] = [
     placeholder: "Username",
     icon: <PersonOutlineIcon />,
     config: {
-      required: true,
+      required: { value: true, message: "Username is required" },
     },
 
     name: "firstname",
@@ -32,9 +43,10 @@ const fields: Fields[] = [
   {
     type: "email",
     placeholder: "Email",
-    icon: <EmailAtSvg />,
+    icon: <AlternateEmailIcon />,
     config: {
-      required: true,
+      required: { value: true, message: "Email is required" },
+      pattern: { value: regex, message: "Invalid email address" },
     },
     name: "email",
   },
@@ -42,8 +54,34 @@ const fields: Fields[] = [
     type: "password",
     placeholder: "Password",
     icon: <LockOpenIcon />,
-    config: { required: true },
+    config: {
+      required: { value: true, message: "Password is required" },
+      minLength: { value: 8, message: "Minimum 8 characters" },
+    },
     name: "password",
+  },
+  {
+    type: "select",
+    placeholder: "Referral (Optional)",
+    icon: <ReferralSvg />,
+    config: {
+      required: { value: true, message: "Country is required" },
+    },
+
+    name: "country",
+    selectOptions: countriesWithFlags,
+  },
+  {
+    type: "number",
+    placeholder: "+233 00 000 0000",
+    icon: <LocalPhoneIcon />,
+    config: {
+      required: { value: true, message: "Phone number is required" },
+      minLength: { value: 10, message: "Minimum 10 characters" },
+      maxLength: { value: 10, message: "Maximum 10 characters" },
+    },
+
+    name: "phone",
   },
   {
     type: "text",
@@ -60,7 +98,12 @@ const fields: Fields[] = [
     placeholder: "",
     name: "agree",
     icon: "",
-    config: { required: true },
+    config: {
+      required: {
+        value: true,
+        message: "Please agree to our terms to continue",
+      },
+    },
   },
 ];
 
@@ -72,7 +115,7 @@ const SignupForm = () => {
     if (data?.token) {
       const expiresInSeconds = 3 * 60 * 60;
       setCookie("access", data.token, { maxAge: expiresInSeconds });
-
+      localStorage.setItem("userInfo", JSON.stringify(data.user));
       if (data.user.email_verified_at !== null) {
         router.push("/dashboard/exchange/buy");
       } else {
@@ -89,8 +132,8 @@ const SignupForm = () => {
       <FormBody>
         <Switch
           items={[
-            { label: "Login", url: "login" },
-            { label: "Signup", url: "signup" },
+            { label: "Login", url: "login", slug: "login" },
+            { label: "Signup", url: "signup", slug: "signup" },
           ]}
           backgroundColor="bg-tertiary"
         />

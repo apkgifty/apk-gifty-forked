@@ -4,18 +4,23 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  console.log(body);
+  // console.log(body);
+
+  let { country } = body;
+
+  country = country.split("-")[0];
 
   let data = JSON.stringify({
     ...body,
     lastname: "",
+    country_name: country,
     password_confirmation: body.password,
   });
 
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: "https://backend.apkxchange.com/api/register",
+    url: `${process.env.API_ENDPOINT}/register`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -28,6 +33,7 @@ export async function POST(req: Request, res: Response) {
 
     return NextResponse.json(response.data);
   } catch (error: any) {
+    console.log("from register:", error.response);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,

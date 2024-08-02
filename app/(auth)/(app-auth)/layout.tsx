@@ -10,6 +10,7 @@ import AuthLayoutText from "@/components/Card/CardTexts/AuthLayoutText";
 import FormCard from "@/components/Card/FormCard";
 import MainMobileSide from "@/components/Mobile/MainMobileSide";
 import GoogleAnalytics from "@/components/Analytics/GoogleAnalytics";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "APK Exchange",
@@ -45,6 +46,7 @@ export default function RootLayout({
           <MainMobileSide />
         </Providers>
         <Analytics />
+        <ToastContainer />
       </body>
     </html>
   );

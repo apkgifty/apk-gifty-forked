@@ -23,12 +23,12 @@ const useAuth = () => {
     try {
       setLoading(true);
       const response = await axios(config);
-      // console.log(response.data);
 
       if (data?.token) {
         setCookie("access", data.cookie);
+        localStorage.setItem("userInfo", JSON.stringify(response.data.user));
       }
-      localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+
       setData(response.data);
     } catch (error: any) {
       setError(error.response.data);

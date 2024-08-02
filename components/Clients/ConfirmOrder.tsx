@@ -14,6 +14,7 @@ import Payment from "./Payment";
 import PurchaseButton from "./PurchaseButton";
 import CancelButton from "./CancelButton";
 import ReportIcon from "@mui/icons-material/Report";
+import { toast } from "react-toastify";
 
 interface Props {
   paymentMethods: any;
@@ -46,20 +47,29 @@ const ConfirmOrder: React.FC<Props> = ({
     status,
     notify_seller,
     processing_end_time,
+    category,
+    type,
+    is_paid,
+    payment_transaction_id,
   } = orderData;
 
-  console.log(token);
-  console.log("Order data: ", orderData);
+  // console.log("Order data: ", orderData);
+
+  console.log(orderData);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
 
-  const [statuss, setStatuss] = useState("");
+  const [makePayment, setMakePayment] = useState(false);
+
+  const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState("");
 
   const [chat, setChat] = useState(null);
 
   const [loading, setLoading] = useState<boolean>(false);
+
+  const [paymentInitiated, setPaymentInitiated] = useState(false);
 
   // Truncing price to show 0.00
   const fees = Math.trunc(0.01 * price * 100) / 100;
@@ -70,7 +80,7 @@ const ConfirmOrder: React.FC<Props> = ({
 
   const router = useRouter();
 
-  const sendRequest = async (id: string) => {
+  const notifySeller = async (id: string) => {
     let data = JSON.stringify({ id });
 
     let config = {
@@ -90,53 +100,105 @@ const ConfirmOrder: React.FC<Props> = ({
 
       return response.data;
     } catch (error) {
+      console.log(error);
       setLoading(false);
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    const updateStatus = async () => {
-      // const response = await getOrder(id);
-      // console.log(response.data);
-      setLoading(true);
-      const getOrder = async (id: string) => {
-        try {
-          const response = await axios.get(
-            `https://backend.apkxchange.com/api/order/${id}`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-
-          // console.log(response.data.data);
-          setLoading(false);
-          setStatuss(response.data.data.status);
-          setStop(response.data.data.processing_end_time);
-          return response.data;
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      getOrder(id);
+  const makeMomoPayment = async (id: number, loadingFunc: any) => {
+    let config = {
+      method: "POST",
+      maxBodyLength: Infinity,
+      url: `/api/momo-payment/`,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      data: { id },
     };
+    try {
+      loadingFunc(true);
+      const response = await axios(config);
 
-    updateStatus();
+      console.log(response.data);
+      if (response.data.status) {
+        window.open(`${response.data.data.authorization_url}`, "_blank");
+      }
+    } catch (error: any) {
+      toast.error("Payment issue, please try again later");
+      console.log(error);
+    } finally {
+      loadingFunc(false);
+    }
+  };
 
-    return () => setLoading(false);
-  }, []);
+  const sendPayment = (id: number, loadingFunc: any, type: string) => {
+    if (type == "Momo") {
+      makeMomoPayment(id, loadingFunc);
+    }
+  };
+
+  useEffect(() => {
+    if (!processing_end_time && payment_transaction_id && is_paid == "1") {
+      notifySeller(id);
+    }
+  }, [payment_transaction_id]);
+
+  // useEffect(() => {
+  //   const updateStatus = async () => {
+  //     // const response = await getOrder(id);
+  //     // console.log(response.data);
+  //     setLoading(true);
+  //     const getOrder = async (id: string) => {
+  //       try {
+  //         const response = await axios.get(
+  //           `${process.env.API_ENDPOINT}/order/${id}`,
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${token}`,
+  //             },
+  //           }
+  //         );
+
+  //         // console.log(response.data.data);
+  //         setLoading(false);
+  //         setStatuss(response.data.data.status);
+  //         setStop(response.data.data.processing_end_time);
+  //         return response.data;
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     };
+  //     getOrder(id);
+  //   };
+
+  //   updateStatus();
+
+  //   return () => setLoading(false);
+  // }, []);
+
+  const requestPayment = () => {
+    const dateNow = new Date();
+    setMakePayment(true);
+    setStop(dateNow.toISOString());
+  };
 
   // Submit notify-seller request
-  const handleSubmit = async () => {
-    const res = await sendRequest(id);
-
-    // console.log(res.data);
+  const notifySellerHandler = async () => {
+    const res = await notifySeller(id);
 
     setStatuss(String(res.data.status));
     setStop(res.data.processing_end_time);
+  };
+
+  const notifySellerHandlerNoTimer = async () => {
+    console.log("is running");
+    const res = await notifySeller(id);
+    console.log("notifysellernotimer,", res.data.status);
+
+    setStatuss(String(res.data.status));
   };
 
   const cancelOrder = async (id: string) => {
@@ -164,7 +226,14 @@ const ConfirmOrder: React.FC<Props> = ({
       console.log(error);
     }
   };
-  // console.log(pathname);
+  const filteredPaymentMethods = paymentMethods.filter((payment: any) => {
+    if (category === "Bank" || category === "Bundle") {
+      return payment.channel === "Momo";
+    } else {
+      return true;
+    }
+  });
+
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
@@ -179,30 +248,32 @@ const ConfirmOrder: React.FC<Props> = ({
             Read order info
           </p>
         </div>
-        <div className="flex gap-x-6">
-          <p className="text-xs lg:text-base text-gray-400">
-            {pathname === "buy"
-              ? "Quantity"
-              : pathname === "sell"
-              ? "Value "
-              : null}
-            <span className="text-white">:- {quantity}</span>
-          </p>
-          <p className="text-xs lg:text-base text-gray-400">
-            Fees
-            <span className="text-white">:- ${fees}</span>
-          </p>
-          <p className="text-xs lg:text-base text-gray-400">
-            Amount To Pay <span className="text-white">:- ${price}</span>
-          </p>
+        {category === "Card" && (
+          <div className="flex gap-x-6">
+            <p className="text-xs lg:text-base text-gray-400">
+              {pathname === "buy"
+                ? "Quantity"
+                : pathname === "sell"
+                ? "Value "
+                : null}
+              <span className="text-white">:- {quantity}</span>
+            </p>
+            <p className="text-xs lg:text-base text-gray-400">
+              Fees
+              <span className="text-white">:- ${fees}</span>
+            </p>
+            <p className="text-xs lg:text-base text-gray-400">
+              Amount To Pay <span className="text-white">:- ${price}</span>
+            </p>
 
-          <p className="text-xs lg:text-base text-gray-400">
-            Rate{" "}
-            <span className=" font-semi-bold text-orange-400">
-              :- 1$ / GHC {rate}
-            </span>
-          </p>
-        </div>
+            <p className="text-xs lg:text-base text-gray-400">
+              Rate{" "}
+              <span className=" font-semi-bold text-orange-400">
+                :- 1$ / GHC {rate}
+              </span>
+            </p>
+          </div>
+        )}
 
         {pathname == "buy" && (
           <div className="mt-14">
@@ -211,39 +282,13 @@ const ConfirmOrder: React.FC<Props> = ({
             </h4>
             <p className="mt-10">
               <span className="mr-2 text-orange-600">
-                <ReportIcon />
+                {/* <ReportIcon /> */}
               </span>{" "}
               Kindly note that when sending payments for transactions, it&#x27;s
               essential to use your registered account username as the payment
               reference. This ensures accurate processing. Thank you for your
               cooperation.
             </p>
-            <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
-              {paymentMethods.map((method: any) => (
-                // <li key={method.id} className="cursor-pointer">
-                //   <div className="space-y-3">
-                //     <div>
-                //       <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
-                //         {method.channel}
-                //       </h5>
-                //     </div>
-
-                //     {/* <div>
-                //       <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
-                //         <span></span> {method.body}
-                //       </p>
-                //     </div> */}
-                //     {/* <div>
-                //       <p className="inline-block px-3 py-1 text-green-600 border-2 border-green-600 rounded-lg">
-                //         <span className="text-white">Name:</span>{" "}
-                //         {method.sub_text}
-                //       </p>
-                //     </div> */}
-                //   </div>
-                // </li>
-                <Payment method={method} key={method.id} />
-              ))}
-            </ul>
           </div>
         )}
         <div className="mt-12">
@@ -251,11 +296,34 @@ const ConfirmOrder: React.FC<Props> = ({
             Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
             before proceeding with your payment.
           </p>
+
           {pathname === "buy" && (
-            <p className="text-sm lg:text-base text-orange-400 mt-4">
-              Amount to pay in Ghana Cedis - GHC{" "}
-              {(Number(price) * Number(rate)).toFixed(2)}
-            </p>
+            <>
+              <p className="text-sm lg:text-base text-orange-400 mt-4">
+                Amount to pay in Ghana Cedis - GHC{" "}
+                {category === "Card"
+                  ? (Number(price) * Number(rate)).toFixed(2)
+                  : category === "Bank"
+                  ? Number(price).toFixed(2)
+                  : Number(price).toFixed(2)}
+              </p>
+
+              {loading ? null : (
+                <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
+                  {makePayment &&
+                    filteredPaymentMethods.map((method: any) => (
+                      <Payment
+                        method={method}
+                        key={method.id}
+                        id={id}
+                        makePayment={sendPayment}
+                        loadingFunc={setLoading}
+                        notifySeller={notifySellerHandlerNoTimer}
+                      />
+                    ))}
+                </ul>
+              )}
+            </>
           )}
         </div>
         <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
@@ -267,13 +335,22 @@ const ConfirmOrder: React.FC<Props> = ({
             </div>
           ) : (
             <>
-              {" "}
-              <PurchaseButton
-                pathname={pathname}
-                handleSubmit={handleSubmit}
-                status={statuss}
-              />
-              <CancelButton status={statuss} openDialog={setOpenCancelDialog} />
+              {is_paid === "0" && (
+                <PurchaseButton
+                  pathname={pathname}
+                  handleSubmit={
+                    type === "buy" ? requestPayment : notifySellerHandler
+                  }
+                  status={statuss}
+                />
+              )}
+
+              {is_paid === "0" && (
+                <CancelButton
+                  status={statuss}
+                  openDialog={setOpenCancelDialog}
+                />
+              )}
             </>
           )}
         </div>
@@ -291,6 +368,12 @@ const ConfirmOrder: React.FC<Props> = ({
               // action={runAction}
             />
           )}
+          {/* {type === "buy" && makePayment && is_paid === "0" && (
+            <Countdown
+              stopTime={stop}
+              // action={runAction}
+            />
+          )} */}
         </div>
 
         {/* <div className="flex mt-10 flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 ">
@@ -308,7 +391,13 @@ const ConfirmOrder: React.FC<Props> = ({
       </button>
     </div> */}
       </div>
-      <Chat status={statuss} chat={chat} token={token} id={id} />
+      <Chat
+        status={statuss}
+        chat={chat}
+        token={token}
+        is_paid={type === "buy" ? is_paid : null}
+        id={id}
+      />
       <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}

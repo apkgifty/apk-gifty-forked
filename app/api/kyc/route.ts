@@ -12,7 +12,7 @@ export async function POST(req: Request, res: Response) {
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: `https://backend.apkxchange.com/api/kyc`,
+    url: `${process.env.API_ENDPOINT}/kyc`,
     headers: {
       "Content-Type": "multipart/form-data",
     },

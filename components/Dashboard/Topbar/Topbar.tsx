@@ -48,7 +48,7 @@ const Topbar = () => {
           </div>
         </div>
         <div>
-          <p className="text-xs font-bold">{userInfo?.firstname}</p>
+          <p className="text-xs font-bold capitalize">{userInfo?.firstname}</p>
           {/* <div className="flex justify-center items-center gap-x-1">
             <p className="text-xs text-white font-light ">Verified </p>
             <VerifiedSvg />

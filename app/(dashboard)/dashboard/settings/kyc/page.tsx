@@ -17,14 +17,11 @@ const KYCPage = async () => {
   let user;
 
   try {
-    const res = await axiosInstance.get(
-      "https://backend.apkxchange.com/api/profile",
-      {
-        headers: {
-          //   Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const res = await axiosInstance.get(`${process.env.API_ENDPOINT}/profile`, {
+      headers: {
+        //   Authorization: `Bearer ${accessToken}`,
+      },
+    });
     // console.log(res.data);
     user = res.data.data;
   } catch (error) {
@@ -89,10 +86,10 @@ const KYCPage = async () => {
       <KYC status={user?.kyc?.status} />
 
       <div className="w-full flex flex-col gap-y-4 justify-between items-center mt-10 py-8 border-t-2 border-black lg:flex-row lg:gap-y-0 ">
-        <div className="w-full lg:w-[45%] space-y-1">
+        {/* <div className="w-full lg:w-[45%] space-y-1">
           <p className="text-gray-500 text-sm">Account created at:</p>
           <p className="font-light">Tuesday - 2022 31 July</p>
-        </div>
+        </div> */}
         {/* <div className="flex flex-col w-full lg:w-[45%] gap-y-2 lg:gap-x-4 lg:gap-y-0 lg:flex-row">
           <button className="w-full text-sm px-4 py-2 bg-secondary rounded-lg">
             Cancel
