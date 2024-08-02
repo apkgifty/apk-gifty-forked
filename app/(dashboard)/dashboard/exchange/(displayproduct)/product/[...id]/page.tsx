@@ -85,6 +85,7 @@ const ProductDisplay = ({
               pageType={pageType}
               pid={searchParams.pid}
               stock={searchParams.quantity}
+              category={category}
               currencySymbol={currency}
             />
           )}

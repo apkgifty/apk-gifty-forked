@@ -64,9 +64,9 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const accessToken = cookieStore.get("access")?.value;
   const id = searchParams.pid;
   let orderData, paymentMethods, rate, updatedOrderData;
-  // const category = searchParams.category;
-  console.log("Full searchParams object:", searchParams);
-  console.log("searchParams id:", id);
+  const category = searchParams.category;
+  // console.log("Full searchParams object:", searchParams);
+  // console.log("searchParams id:", id);
 
   if (!id) {
     throw new Error("No order with that id");
@@ -79,7 +79,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
       fetchRate(),
     ]);
 
-    updatedOrderData = { ...orderData.data };
+    updatedOrderData = { ...orderData.data, category: category };
   }
 
   // console.log(rate.data[0]);

@@ -1,17 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import axios from "axios";
 import DisplayDialog from "../UI/Dialog/Dialog";
 
-const Payment = ({ method }: { method: any }) => {
-  // console.log(method);
+const Payment = ({
+  method,
+  makePayment,
+  id,
+  loadingFunc,
+}: {
+  method: any;
+  makePayment?: any;
+  id: number;
+  loadingFunc?: any;
+}) => {
+  console.log(method);
   const [open, setOpen] = useState(false);
+  const [paymentInitiated, setPaymentInitiated] = useState(false);
+
+  const handleClick = (e: any) => {
+    if (method.channel === "Momo") {
+      setPaymentInitiated(true);
+    } else {
+      setOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    if (paymentInitiated) {
+      makePayment(id, loadingFunc, method.channel);
+    }
+  }, [paymentInitiated]);
 
   return (
     <>
       {" "}
-      <li className="cursor-pointer" onClick={() => setOpen(true)}>
+      <li className="cursor-pointer" onClick={handleClick}>
         <div className="space-y-3">
           <div>
             <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">

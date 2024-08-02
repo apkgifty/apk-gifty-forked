@@ -47,12 +47,18 @@ const ConfirmOrder: React.FC<Props> = ({
     notify_seller,
     processing_end_time,
     category,
+    type,
+    is_paid,
   } = orderData;
 
   // console.log("Order data: ", orderData);
 
+  console.log(orderData);
+
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
+
+  const [makePayment, setMakePayment] = useState(false);
 
   const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState("");
@@ -60,6 +66,8 @@ const ConfirmOrder: React.FC<Props> = ({
   const [chat, setChat] = useState(null);
 
   const [loading, setLoading] = useState<boolean>(false);
+
+  const [paymentInitiated, setPaymentInitiated] = useState(false);
 
   // Truncing price to show 0.00
   const fees = Math.trunc(0.01 * price * 100) / 100;
@@ -96,40 +104,75 @@ const ConfirmOrder: React.FC<Props> = ({
     }
   };
 
-  useEffect(() => {
-    const updateStatus = async () => {
-      // const response = await getOrder(id);
-      // console.log(response.data);
-      setLoading(true);
-      const getOrder = async (id: string) => {
-        try {
-          const response = await axios.get(
-            `${process.env.API_ENDPOINT}/order/${id}`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-
-          // console.log(response.data.data);
-          setLoading(false);
-          setStatuss(response.data.data.status);
-          setStop(response.data.data.processing_end_time);
-          return response.data;
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      getOrder(id);
+  const makeMomoPayment = async (id: number, loadingFunc: any) => {
+    let config = {
+      method: "POST",
+      maxBodyLength: Infinity,
+      url: `/api/momo-payment/`,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      data: { id },
     };
+    try {
+      loadingFunc(true);
+      console.log(id);
+      const response = await axios(config);
 
-    updateStatus();
+      console.log(response.data);
+      if (response.data.status) {
+        window.open(`${response.data.data.authorization_url}`, "_blank");
+      }
+    } catch (error: any) {
+      console.log(error);
+    } finally {
+      loadingFunc(false);
+    }
+  };
 
-    return () => setLoading(false);
-  }, []);
+  const sendPayment = (id: number, loadingFunc: any, type: string) => {
+    if (type == "Momo") {
+      makeMomoPayment(id, loadingFunc);
+    }
+  };
 
-  console.log(status, statuss);
+  // useEffect(() => {
+  //   const updateStatus = async () => {
+  //     // const response = await getOrder(id);
+  //     // console.log(response.data);
+  //     setLoading(true);
+  //     const getOrder = async (id: string) => {
+  //       try {
+  //         const response = await axios.get(
+  //           `${process.env.API_ENDPOINT}/order/${id}`,
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${token}`,
+  //             },
+  //           }
+  //         );
+
+  //         // console.log(response.data.data);
+  //         setLoading(false);
+  //         setStatuss(response.data.data.status);
+  //         setStop(response.data.data.processing_end_time);
+  //         return response.data;
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     };
+  //     getOrder(id);
+  //   };
+
+  //   updateStatus();
+
+  //   return () => setLoading(false);
+  // }, []);
+
+  const requestPayment = () => {
+    setMakePayment(true);
+  };
 
   // Submit notify-seller request
   const handleSubmit = async () => {
@@ -229,16 +272,6 @@ const ConfirmOrder: React.FC<Props> = ({
               reference. This ensures accurate processing. Thank you for your
               cooperation.
             </p>
-            <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
-              {/* {paymentMethods.map((method: any) => (
-            
-                <Payment method={method} key={method.id} />
-              ))} */}
-
-              {filteredPaymentMethods.map((method: any) => (
-                <Payment method={method} key={method.id} />
-              ))}
-            </ul>
           </div>
         )}
         <div className="mt-12">
@@ -246,15 +279,31 @@ const ConfirmOrder: React.FC<Props> = ({
             Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
             before proceeding with your payment.
           </p>
+
           {pathname === "buy" && (
-            <p className="text-sm lg:text-base text-orange-400 mt-4">
-              Amount to pay in Ghana Cedis - GHC{" "}
-              {category === "Card"
-                ? (Number(price) * Number(rate)).toFixed(2)
-                : category === "Bank"
-                ? Number(price).toFixed(2)
-                : Number(price).toFixed(2)}
-            </p>
+            <>
+              <p className="text-sm lg:text-base text-orange-400 mt-4">
+                Amount to pay in Ghana Cedis - GHC{" "}
+                {category === "Card"
+                  ? (Number(price) * Number(rate)).toFixed(2)
+                  : category === "Bank"
+                  ? Number(price).toFixed(2)
+                  : Number(price).toFixed(2)}
+              </p>
+
+              <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
+                {makePayment &&
+                  filteredPaymentMethods.map((method: any) => (
+                    <Payment
+                      method={method}
+                      key={method.id}
+                      id={id}
+                      makePayment={sendPayment}
+                      loadingFunc={setLoading}
+                    />
+                  ))}
+              </ul>
+            </>
           )}
         </div>
         <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
@@ -269,7 +318,7 @@ const ConfirmOrder: React.FC<Props> = ({
               {" "}
               <PurchaseButton
                 pathname={pathname}
-                handleSubmit={handleSubmit}
+                handleSubmit={requestPayment}
                 status={statuss}
               />
               <CancelButton status={statuss} openDialog={setOpenCancelDialog} />
@@ -307,7 +356,12 @@ const ConfirmOrder: React.FC<Props> = ({
       </button>
     </div> */}
       </div>
-      <Chat status={statuss} chat={chat} token={token} id={id} />
+      <Chat
+        status={type === "buy" ? is_paid : statuss}
+        chat={chat}
+        token={token}
+        id={id}
+      />
       <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}

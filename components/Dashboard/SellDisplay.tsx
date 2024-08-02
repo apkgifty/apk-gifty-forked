@@ -19,6 +19,7 @@ interface Props {
   pageType: string;
   pid: string;
   stock: string;
+  category: string;
   currencySymbol: string;
 }
 
@@ -30,6 +31,7 @@ const SellDisplay: React.FC<Props> = ({
   pageType,
   pid,
   stock,
+  category,
   currencySymbol,
 }) => {
   const router = useRouter();
@@ -59,7 +61,7 @@ const SellDisplay: React.FC<Props> = ({
       const response = await axios(config);
       // console.log(response.data);
       router.push(
-        `/dashboard/transaction/order/${pathname}?pid=${response.data.data.id}`
+        `/dashboard/transaction/order/${pathname}?category=${category}&pid=${response.data.data.id}`
       );
     } catch (error) {
       console.log(error);
