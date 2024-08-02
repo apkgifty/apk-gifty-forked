@@ -55,7 +55,7 @@ const ConfirmOrder: React.FC<Props> = ({
 
   // console.log("Order data: ", orderData);
 
-  console.log(orderData);
+  // console.log(orderData);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
@@ -122,7 +122,7 @@ const ConfirmOrder: React.FC<Props> = ({
       loadingFunc(true);
       const response = await axios(config);
 
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.status) {
         window.open(`${response.data.data.authorization_url}`, "_blank");
       }
@@ -194,9 +194,9 @@ const ConfirmOrder: React.FC<Props> = ({
   };
 
   const notifySellerHandlerNoTimer = async () => {
-    console.log("is running");
+    // console.log("is running");
     const res = await notifySeller(id);
-    console.log("notifysellernotimer,", res.data.status);
+    // console.log("notifysellernotimer,", res.data.status);
 
     setStatuss(String(res.data.status));
   };

@@ -10,7 +10,7 @@ export async function POST(req: Request, res: Response) {
 
   const body = await req.json();
 
-  console.log(body);
+  // console.log(body);
 
   let data = JSON.stringify({
     ...body,
@@ -32,7 +32,7 @@ export async function POST(req: Request, res: Response) {
     const response = await axios(config);
     return NextResponse.json(response.data);
   } catch (error: any) {
-    console.log(error.response);
+    // console.log(error.response);
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
       headers: error.response.header,
