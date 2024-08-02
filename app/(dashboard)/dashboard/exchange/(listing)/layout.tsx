@@ -2,6 +2,7 @@ import Image from "next/image";
 import Card from "@/components/Card/Card";
 import Switch from "@/components/Form/FormComponents/Switch";
 import FilterSelectOutline from "@/components/Filter/FilterSelectOutline";
+import { ToastContainer } from "react-toastify";
 import FilterRange from "@/components/Filter/FilterRange";
 import NotificationListener from "@/components/Dashboard/Data/NotificationListener";
 
@@ -101,6 +102,7 @@ const layout: React.FC<Props> = ({ children }) => {
           <div className="pb-32 lg:pb-10">{children}</div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

@@ -4,6 +4,7 @@ import FormInput from "./FormComponents/FormInput";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 
+import { toast } from "react-toastify";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import ButtonIcon from "./FormComponents/ButtonIcon";
@@ -45,7 +46,7 @@ const LoginForm = () => {
       setCookie("access", data.token, { maxAge: expiresInSeconds });
       localStorage.setItem("userInfo", JSON.stringify(data.user));
       if (data.user.email_verified_at !== null) {
-        console.log("verified");
+        toast.success("Login Successful");
         router.refresh();
         router.push("/dashboard/exchange/buy");
       } else {

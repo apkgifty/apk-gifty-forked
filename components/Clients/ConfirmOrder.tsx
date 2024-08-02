@@ -14,6 +14,7 @@ import Payment from "./Payment";
 import PurchaseButton from "./PurchaseButton";
 import CancelButton from "./CancelButton";
 import ReportIcon from "@mui/icons-material/Report";
+import { toast } from "react-toastify";
 
 interface Props {
   paymentMethods: any;
@@ -78,7 +79,7 @@ const ConfirmOrder: React.FC<Props> = ({
 
   const router = useRouter();
 
-  const sendRequest = async (id: string) => {
+  const notifySeller = async (id: string) => {
     let data = JSON.stringify({ id });
 
     let config = {
@@ -117,7 +118,6 @@ const ConfirmOrder: React.FC<Props> = ({
     };
     try {
       loadingFunc(true);
-      console.log(id);
       const response = await axios(config);
 
       console.log(response.data);
@@ -125,6 +125,7 @@ const ConfirmOrder: React.FC<Props> = ({
         window.open(`${response.data.data.authorization_url}`, "_blank");
       }
     } catch (error: any) {
+      toast.error("Payment issue, please try again later");
       console.log(error);
     } finally {
       loadingFunc(false);
@@ -177,8 +178,8 @@ const ConfirmOrder: React.FC<Props> = ({
   };
 
   // Submit notify-seller request
-  const handleSubmit = async () => {
-    const res = await sendRequest(id);
+  const notifySellerHandler = async () => {
+    const res = await notifySeller(id);
 
     console.log(res.data.processing_end_time);
 
@@ -317,18 +318,22 @@ const ConfirmOrder: React.FC<Props> = ({
             </div>
           ) : (
             <>
-              {" "}
-              {(is_paid === "0" ||
-                statuss === "0" ||
-                statuss === "2" ||
-                statuss === "-1") && (
+              {is_paid === "0" && (
                 <PurchaseButton
                   pathname={pathname}
-                  handleSubmit={type === "buy" ? requestPayment : handleSubmit}
+                  handleSubmit={
+                    type === "buy" ? requestPayment : notifySellerHandler
+                  }
                   status={statuss}
                 />
               )}
-              <CancelButton status={statuss} openDialog={setOpenCancelDialog} />
+
+              {is_paid === "0" && (
+                <CancelButton
+                  status={statuss}
+                  openDialog={setOpenCancelDialog}
+                />
+              )}
             </>
           )}
         </div>
