@@ -318,7 +318,7 @@ const ConfirmOrder: React.FC<Props> = ({
               {" "}
               <PurchaseButton
                 pathname={pathname}
-                handleSubmit={requestPayment}
+                handleSubmit={type === "buy" ? requestPayment : handleSubmit}
                 status={statuss}
               />
               <CancelButton status={statuss} openDialog={setOpenCancelDialog} />
