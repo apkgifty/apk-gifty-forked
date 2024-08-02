@@ -368,12 +368,12 @@ const ConfirmOrder: React.FC<Props> = ({
               // action={runAction}
             />
           )}
-          {type === "buy" && makePayment && is_paid === "0" && (
+          {/* {type === "buy" && makePayment && is_paid === "0" && (
             <Countdown
               stopTime={stop}
               // action={runAction}
             />
-          )}
+          )} */}
         </div>
 
         {/* <div className="flex mt-10 flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 ">
@@ -392,7 +392,7 @@ const ConfirmOrder: React.FC<Props> = ({
     </div> */}
       </div>
       <Chat
-        status={type === "buy" ? is_paid : statuss}
+        status={statuss}
         chat={chat}
         token={token}
         is_paid={type === "buy" ? is_paid : null}
