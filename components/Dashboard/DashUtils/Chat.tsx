@@ -30,11 +30,13 @@ const getOldMessages = async (id: string, token: string) => {
 
 const Chat = ({
   status,
+  is_paid,
   chat,
   token,
   id,
 }: {
   status: string;
+  is_paid?: string;
   chat: any;
   token: any;
   id: string;
@@ -190,7 +192,7 @@ const Chat = ({
 
   return (
     <>
-      {status.toString() === "1" ? (
+      {status.toString() === "1" || is_paid === "1" ? (
         <div className="w-full   flex-grow flex flex-col  h-[750px] relative mt-20 py-4  lg:border-l-2 lg:border-tertiary lg:w-[35%] lg:mt-0 lg:h-full shadow-2xl ">
           <div className="w-full flex flex-1 justify-between px-4  ">
             <div className="flex gap-x-3">

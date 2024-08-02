@@ -31,7 +31,7 @@ const Payment = ({
 
   const handleNotifySeller = async () => {
     try {
-      notifySeller(id);
+      notifySeller();
       setOpen(false);
     } catch (error) {
       console.log(error);

@@ -100,6 +100,7 @@ const ConfirmOrder: React.FC<Props> = ({
 
       return response.data;
     } catch (error) {
+      console.log(error);
       setLoading(false);
     } finally {
       setLoading(false);
@@ -193,7 +194,9 @@ const ConfirmOrder: React.FC<Props> = ({
   };
 
   const notifySellerHandlerNoTimer = async () => {
+    console.log("is running");
     const res = await notifySeller(id);
+    console.log("notifysellernotimer,", res.data.status);
 
     setStatuss(String(res.data.status));
   };
@@ -392,6 +395,7 @@ const ConfirmOrder: React.FC<Props> = ({
         status={type === "buy" ? is_paid : statuss}
         chat={chat}
         token={token}
+        is_paid={type === "buy" ? is_paid : null}
         id={id}
       />
       <DisplayDialog
