@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import axios from "axios";
 import Product from "@/components/Product/Product";
 import { redirect } from "next/navigation";
+import NoProducts from "@/components/Product/NoProducts";
 
 const fetchProducts = async (accessToken: any, type: string) => {
   const response = await axios.get(
@@ -38,9 +39,13 @@ const SellPage = async ({
   );
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
-      {filteredProducts.map((product: any) => (
-        <Product key={product.imageUrl} productInfo={product} />
-      ))}
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((product: any) => (
+          <Product key={product.imageUrl} productInfo={product} />
+        ))
+      ) : (
+        <NoProducts />
+      )}
     </div>
   );
 };

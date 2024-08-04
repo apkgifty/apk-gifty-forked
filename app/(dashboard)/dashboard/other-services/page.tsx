@@ -5,6 +5,7 @@ import BankSlider from "@/components/Card/BankCards/BankSlider";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import DataBundle from "@/components/Product/DataBundle";
+import NoProducts from "@/components/Product/NoProducts";
 
 const fetchProducts = async (accessToken: any, type: string) => {
   const response = await axios.get(
@@ -42,7 +43,11 @@ const OtherServicesPage = async () => {
           </div>
         </div>
         <div className="w-full lg:px-14">
-          <BankSlider products={bankProducts} />
+          {bankProducts.length > 0 ? (
+            <BankSlider products={bankProducts} />
+          ) : (
+            <NoProducts />
+          )}
           {/* <BankCard />
         <BankCard />
         <BankCard />
@@ -59,10 +64,14 @@ const OtherServicesPage = async () => {
             <span className="cursor-pointer">View all</span>
           </Link> */}
         </div>
-        {dataProducts.map((product: any) => (
-          // <Product key={product.title} productInfo={product} />
-          <DataBundle key={product.title} productInfo={product} />
-        ))}
+        {dataProducts.length > 0 ? (
+          dataProducts.map((product: any) => (
+            // <Product key={product.title} productInfo={product} />
+            <DataBundle key={product.title} productInfo={product} />
+          ))
+        ) : (
+          <NoProducts />
+        )}
         <div className="w-full bg-[#12181F] py-6 rounded-b-lg" />
       </div>
     </div>
