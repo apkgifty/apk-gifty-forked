@@ -4,6 +4,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 
 import Product from "@/components/Product/Product";
+import NoProducts from "@/components/Product/NoProducts";
 
 // const products = [
 //   {
@@ -99,9 +100,13 @@ const BuyPage = async ({
 
   return (
     <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
-      {filteredProducts.map((product: any) => (
-        <Product key={product.id} productInfo={product} />
-      ))}
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((product: any) => (
+          <Product key={product.id} productInfo={product} />
+        ))
+      ) : (
+        <NoProducts />
+      )}
     </div>
   );
 };

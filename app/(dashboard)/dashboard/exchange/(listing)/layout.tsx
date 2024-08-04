@@ -10,7 +10,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const currencies: string[] = ["USD", "GBP", "EUR", "INR", "GHS", "NGN"];
+const currencies: string[] = ["GHS", "USD", "CAD", "GBP", "EUR", "NGN"];
 
 const giftCards: string[] = [
   "Playstation",
@@ -48,12 +48,12 @@ const layout: React.FC<Props> = ({ children }) => {
               items={[
                 {
                   label: "Buy Gift Cards",
-                  url: "buy?currency=USD",
+                  url: "buy?currency=GHS",
                   slug: "buy",
                 },
                 {
                   label: "Sell Gift Cards",
-                  url: "sell?currency=USD",
+                  url: "sell?currency=GHS",
                   slug: "sell",
                 },
               ]}

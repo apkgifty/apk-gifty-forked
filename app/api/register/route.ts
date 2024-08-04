@@ -33,10 +33,15 @@ export async function POST(req: Request, res: Response) {
 
     return NextResponse.json(response.data);
   } catch (error: any) {
-    console.log("from register:", error.response);
-    return new Response(JSON.stringify(error.response.data), {
-      status: error.response.status,
-      headers: error.response.header,
+    console.log("from register:", error.requst);
+    const errorResponse = error.response?.data || {
+      message: "Unknown error occurred",
+    };
+    const statusCode = error.response?.status || 500;
+
+    return new Response(JSON.stringify(errorResponse), {
+      status: statusCode,
+      headers: { "Content-Type": "application/json" },
     });
   }
 }
