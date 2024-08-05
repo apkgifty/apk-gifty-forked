@@ -83,22 +83,7 @@ const KYCPage = async () => {
         </div>
       </div>
 
-      <KYC status={user?.kyc?.status} />
-
-      <div className="w-full flex flex-col gap-y-4 justify-between items-center mt-10 py-8 border-t-2 border-black lg:flex-row lg:gap-y-0 ">
-        {/* <div className="w-full lg:w-[45%] space-y-1">
-          <p className="text-gray-500 text-sm">Account created at:</p>
-          <p className="font-light">Tuesday - 2022 31 July</p>
-        </div> */}
-        {/* <div className="flex flex-col w-full lg:w-[45%] gap-y-2 lg:gap-x-4 lg:gap-y-0 lg:flex-row">
-          <button className="w-full text-sm px-4 py-2 bg-secondary rounded-lg">
-            Cancel
-          </button>
-          <button className="w-full text-sm px-4 py-2 bg-appviolet rounded-lg">
-            Save Changes
-          </button>
-        </div> */}
-      </div>
+      {/* <KYC status={user?.kyc?.status} /> */}
     </div>
   );
 };

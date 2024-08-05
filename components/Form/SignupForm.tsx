@@ -78,7 +78,7 @@ const fields: Fields[] = [
     config: {
       required: { value: true, message: "Phone number is required" },
       minLength: { value: 10, message: "Minimum 10 characters" },
-      maxLength: { value: 10, message: "Maximum 10 characters" },
+      maxLength: { value: 13, message: "Maximum 13 characters" },
     },
 
     name: "phone",
