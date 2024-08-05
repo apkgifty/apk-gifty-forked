@@ -45,7 +45,7 @@ const SecondaryNavs = ({ kycStatus }: { kycStatus: boolean }) => {
             className={
               "flex items-center px-3 py-2 bg-red-800 cursor-pointer text-white bg-transparent transition-colors duration-300 transform rounded-lg hover:bg-red-500 hover:text-white "
             }
-            onClick={() => router.push("/dashboard/settings/kyc")}
+            onClick={() => router.push("/kyc")}
           >
             <UserIconSvg />
             <span className="mx-2 text-sm font-medium">Please Verify</span>

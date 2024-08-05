@@ -5,9 +5,14 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request, res: Response) {
   const formData = await req.formData();
-  const front_image = formData.get("front_image");
-  const back_image = formData.get("back_image");
-  const face_image = formData.get("face_image");
+
+  // const key = formData.keys().next().value;
+
+  // console.log(key);
+
+  // const front_image = formData.get("front_image");
+  // const back_image = formData.get("back_image");
+  // const face_image = formData.get("face_image");
 
   let config = {
     method: "POST",
