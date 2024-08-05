@@ -8,7 +8,7 @@ const KycVerificationPage = () => {
       <div className="flex flex-col justify-center items-center text-white space-y-3 max-w-xl mx-auto">
         <h3 className="text-xl lg:text-3xl font-bold text-center mb-3">
           {" "}
-          Let's Begin Your KYC Process
+          Let&apos;s Begin Your KYC Process
         </h3>
         <div className="">
           <Image
@@ -18,7 +18,7 @@ const KycVerificationPage = () => {
             height={175}
           />
         </div>
-        <p className="text-xs lg:text-sm">First let's get to know you</p>{" "}
+        <p className="text-xs lg:text-sm">First let&apos;s get to know you</p>{" "}
         <div>
           <Image
             src={"/images/kycidpic.png"}

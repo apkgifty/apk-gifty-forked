@@ -103,7 +103,7 @@ const KycUpload = () => {
       <div className="flex flex-col justify-center items-center text-white space-y-3 max-w-xl mx-auto">
         <h3 className="text-xl lg:text-3xl font-bold text-center mb-3">
           {" "}
-          Let's Begin Your KYC Process
+          Let&apos;s Begin Your KYC Process
         </h3>
         <p className="text-xs lg:text-sm">Choose document type</p>{" "}
         <div className="mb-4">
