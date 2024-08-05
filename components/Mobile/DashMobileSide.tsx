@@ -24,7 +24,7 @@ import SideNavItems from "../Dashboard/Sidebar/SideNavItems";
 import TransactionSvg from "../UI/SvgIcons/TransactionSvg";
 import SettingsSvg from "../UI/SvgIcons/SettingsSvg";
 import SecondaryNavs from "../Dashboard/Sidebar/SecondaryNavs";
-import React from "react";
+import HelpIcon from "@mui/icons-material/Help";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -44,6 +44,11 @@ const links = [
     title: "Settings",
     url: "/dashboard/settings/personal-information",
     icon: <SettingsSvg />,
+  },
+  {
+    title: "Faqs",
+    url: "/dashboard/settings/faqs",
+    icon: <HelpIcon className="text-white" />,
   },
 ];
 
@@ -122,7 +127,7 @@ const DashMobileSide = () => {
 
   return (
     <div>
-      <React.Fragment>
+      <>
         {/* <Button onClick={toggleDrawer(true)}>{"left"}</Button> */}
         <SwipeableDrawer
           PaperProps={{
@@ -138,7 +143,7 @@ const DashMobileSide = () => {
         >
           {list("left")}
         </SwipeableDrawer>
-      </React.Fragment>
+      </>
     </div>
   );
 };

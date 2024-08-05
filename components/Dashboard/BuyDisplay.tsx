@@ -64,6 +64,8 @@ const BuyDisplay: React.FC<Props> = ({
     let data;
 
     if (canCustom == "true") {
+      console.log("this is custom");
+      console.log(typeof canCustom);
       data = {
         quantity: 1,
         product_id: pid,

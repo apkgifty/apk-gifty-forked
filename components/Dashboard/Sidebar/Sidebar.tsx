@@ -1,16 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import SideNavItem from "./SideNavItem";
+
 import SideNavItems from "./SideNavItems";
-import InboxSvg from "../../UI/SvgIcons/InboxSvg";
-import VerifiedSvg from "../../UI/SvgIcons/VerifiedSvg";
 import SecondaryNavs from "./SecondaryNavs";
 import ExchangeSvg from "@/components/UI/SvgIcons/ExchangeSvg";
 import TransactionSvg from "@/components/UI/SvgIcons/TransactionSvg";
 import SettingsSvg from "@/components/UI/SvgIcons/SettingsSvg";
+import HelpIcon from "@mui/icons-material/Help";
 
 const links = [
   // { title: "Dashboard", url: "/", icon: <DashboardSvg /> },
@@ -34,7 +31,7 @@ const links = [
   {
     title: "FAQ",
     url: "/dashboard/faq",
-    icon: <SettingsSvg />,
+    icon: <HelpIcon className="text-white" />,
   },
   // { title: "News", url: "#", icon: <NewsSvg /> },
 ];

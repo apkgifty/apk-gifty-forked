@@ -16,6 +16,7 @@ const mainNavigationLinks = [
   { title: "Home", link: "/" },
   { title: "About", link: "/about" },
   { title: "Buy GiftCards", link: "/dashboard/exchange/buy" },
+  { title: "FAQs", link: "/faqs" },
   // { title: "Contact", link: "#" },
   // { title: "Promotion", link: "#" },
   // { title: "Blog", link: "#" },

@@ -15,11 +15,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import Image from "next/image";
 
 import ExchangeSvg from "../UI/SvgIcons/ExchangeSvg";
 import DashboardSvg from "../UI/SvgIcons/DashboardSvg";
 import NewsSvg from "../UI/SvgIcons/NewsSvg";
+import HelpIcon from "@mui/icons-material/Help";
 
 import SideNavItems from "../Dashboard/Sidebar/SideNavItems";
 
@@ -32,6 +34,11 @@ const links = [
     title: "Buy GiftCards",
     url: "/dashboard/exchange/buy",
     icon: <ExchangeSvg />,
+  },
+  {
+    title: "FAQs",
+    url: "/faqs",
+    icon: <HelpIcon className="text-white" />,
   },
   // { title: "News", url: "#", icon: <NewsSvg /> },
 ];

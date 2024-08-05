@@ -24,10 +24,12 @@ export default function RootLayout({
       <body className={`${inter.className} bg-tertiary`}>
         {process.env.GOOGLE_ANALYTICS_ID && <GoogleAnalytics />}
         <Providers>
-          <Navbar />
-          <div className="w-full">{children}</div>
-          {/* <div className="hidden lg:block"> */}
-          <PageFooter />
+          <div className="w-full min-h-screen flex flex-col justify-between">
+            <Navbar />
+            <div className="w-full">{children}</div>
+            {/* <div className="hidden lg:block"> */}
+            <PageFooter />
+          </div>
           {/* </div> */}
           <MainMobileSide />
         </Providers>
