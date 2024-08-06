@@ -109,8 +109,8 @@ const KycUpload = () => {
         <div className="mb-4">
           <SwitchStatic
             items={[
-              { label: "Ghana Card", url: "id", slug: "ghana-card" },
-              { label: "Voters ID", url: "voters", slug: "voters" },
+              { label: "National ID", url: "id", slug: "national-card" },
+              { label: "Passport", url: "passport", slug: "passport" },
               {
                 label: "Driver's License",
                 url: "driver-license",

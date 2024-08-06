@@ -404,31 +404,58 @@ const ConfirmOrder: React.FC<Props> = ({
         title="Order Instructions"
         buttonText="Close"
       >
-        <ol className="text-xs lg:text-sm list-decimal pl-2 space-y-4 text-gray-700">
-          <li>
-            Remember every trade that occurs on our platform attracts a fee of
-            1% on every amount. All trades less than $100 will attract a $1 fee
-            on it.
-          </li>
-          <li>
-            The card or the code of your order will be uploaded in the chat
-            section of this trade. Make sure to use the card within the
-            timeframe provided for you.
-          </li>
-          <li>
-            You can always CONFIRM with us in the chat always when Buying or
-            Selling A Gift Card incase you want clearance or have to make
-            enquiries before making payment to us.
-          </li>
-          <li>
-            Calculating the Ghana Cedis equivalent for payment through Mobile
-            Money is as follows, applicable to Local Users in Ghana only:
-            Multiply the Rate by the Amount to Pay. For instance, when
-            purchasing a &quot;$100 iTunes gift card&quot; with an amount due of
-            $72, the computation would be &quot;72 x 11.5 = GHC 828 + Fees
-            ($1)&quot;, resulting in a total of GHC 839.
-          </li>
-        </ol>
+        {category === "Card" && (
+          <ol className="text-xs lg:text-sm list-decimal pl-2 space-y-4 text-gray-700">
+            <>
+              {" "}
+              <li>
+                Remember every trade that occurs on our platform attracts a fee
+                of 1% on every amount. All trades less than $100 will attract a
+                $1 fee on it.
+              </li>
+              <li>
+                The card or the code of your order will be uploaded in the chat
+                section of this trade. Make sure to use the card within the
+                timeframe provided for you.
+              </li>
+              <li>
+                You can always CONFIRM with us in the chat always when Buying or
+                Selling A Gift Card incase you want clearance or have to make
+                enquiries before making payment to us.
+              </li>
+              <li>
+                Calculating the Ghana Cedis equivalent for payment through
+                Mobile Money is as follows, applicable to Local Users in Ghana
+                only: Multiply the Rate by the Amount to Pay. For instance, when
+                purchasing a &quot;$100 iTunes gift card&quot; with an amount
+                due of $72, the computation would be &quot;72 x 11.5 = GHC 828 +
+                Fees ($1)&quot;, resulting in a total of GHC 839.
+              </li>
+            </>
+          </ol>
+        )}
+        {category === "Bundle" && (
+          <p>
+            Delivery Time: Normally, you'll receive your bundle within 15
+            minutes to 30mins max. However, sometimes the server may delay, and
+            it could take up to 1-4 hours. Don't panic; you will receive your
+            bundle. <br />
+            Note: Text the number you wish to receive the bundle to the Admin.
+            Order will be completed by Admin once bundle is served.
+          </p>
+        )}
+        {category === "Bank" && (
+          <p>
+            Delivery Time: Normally, you'll receive your Bank Deposit within
+            10minutes to An hour. <br />
+            However, sometimes with order surge may takes sometime for us to
+            process it for you.
+            <br /> Don't panic; you will receive your Bank Deposit ASAP.
+            <br /> Note: Paste your Account Number, Name you&apos;re depositing
+            with and Branch of the Bank.
+            <br /> Order will be Completed ✅ by Admin once bundle is served.
+          </p>
+        )}
       </DisplayDialog>
       <CancelOrderDialog
         cancelHandler={() => {
