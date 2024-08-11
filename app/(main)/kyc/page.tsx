@@ -35,8 +35,8 @@ const KycVerificationPage = () => {
         </Link>
         <p className="text-xs lg:text-sm text-center">
           When uploading KYC documents, you can provide any of the following:
-          National Identity Card, Passport, or Driver's License.Ensure each
-          detail is crystal clear. Opt for well-llt, high-resolution images or
+          National Identity Card, Passport, or Driver&apos;s License.Ensure each
+          detail is crystal clear. Opt for well-lit, high-resolution images or
           scans to guarantee smooth verification. Additionally, make sure all
           four corners of the card are visible in the image. Note:+For West
           Africa Users kindly+ use only Ecowas Identity Card for KYC
