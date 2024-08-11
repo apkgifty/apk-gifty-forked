@@ -3,7 +3,9 @@ import MainButton from "@/components/Main/MainButton";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-
+import DataCardMain from "@/components/Main/Section/DataCardMain";
+import BankCardMain from "@/components/Main/Section/BankCardMain";
+import DownloadApp from "@/components/Main/Section/DownloadApp";
 const HomePage = () => {
   return (
     <div className="w-full text-white">
@@ -14,10 +16,11 @@ const HomePage = () => {
         // }}
       >
         <Image
-          src={"/images/home-banner.webp"}
+          src={"/images/apkhero.webp"}
           fill
           alt="apx home banner image"
-          objectPosition="left"
+          objectFit="cover"
+          objectPosition="center"
           priority
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 lg:opacity-40"></div>
@@ -40,50 +43,96 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col items-center gap-y-10 py-24 lg:gap-y-32 lg:pt-32 lg:pb-56 ">
-        <div className="w-full flex flex-col items-center">
-          <div className="relative bg-white  px-6 w-[90%] lg:px-12 lg:w-[700px] py-4 text-black rounded-full inline-flex  gap-x-2">
-            <div className="flex flex-col">
-              <p className="w-[110] lg:w-auto text-sm lg:text-2xl font-bold">
-                Need Gift Cards?
-              </p>
-              <MainButton
-                buttonText="BUY NOW"
-                link="/dashboard/exchange/buy"
-                className="text-xs lg:text-xl"
+      <div className="w-full flex flex-col items-center  py-24  lg:pt-32 lg:pb-20  bg-secondary">
+        <AppLayout>
+          <div className="w-full flex flex-col items-center justify-center space-y-4">
+            <h3 className="text-2xl lg:text-4xl font-bold text-center">
+              Affordable Bundle Offers With{" "}
+              <span className="text-[#1984FF]">No Expiry</span>
+            </h3>
+            <div className="flex flex-col lg:flex-row justify-center space-y-4 lg-space-y-0 lg:space-x-4">
+              <DataCardMain imagePath="/images/mtn.png" imageAlt="mtn logo" />
+              <DataCardMain
+                imagePath="/images/telecel.jpeg"
+                imageAlt="telecel logo"
+              />
+              <DataCardMain
+                imagePath="/images/at.jpeg"
+                imageAlt="airtel-tigo logo"
               />
             </div>
-            <div className="absolute -top-12 -right-10 lg:-top-32 lg:-right-20">
-              <div className="w-[170px] h-[170px]  lg:w-[320px] lg:h-[320px] relative">
-                <Image src={"/images/cards.webp"} fill alt="gift card images" />
+          </div>
+
+          <div className="w-full flex flex-col items-center justify-center mt-16 bg-tertiary roounded-md py-8 px-8 lg:px-0 space-y-6">
+            <h3 className="text-2xl lg:text-4xl font-bold text-center">
+              Bank Transactions <br />
+              <span className="text-[#1984FF]">With No Fees</span>.
+            </h3>
+            <div className="flex flex-col lg:flex-row justify-center space-y-4 lg:space-y-0 lg:space-x-4">
+              <BankCardMain
+                title="Bank transfer to local banks."
+                brief="Make bank transactions to your local banks
+instantly at 0 fees."
+              />
+              <BankCardMain
+                title="Bank transfer to nigerian banks."
+                brief="Make bank transfers to from local banks to 
+Nigerian banks swiftly with us."
+              />
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col items-start justify-center mt-16 bg-tertiary roounded-md py-16 space-y-6 rounded-lg relative">
+            <Image
+              src={"/images/main-mid.jpeg"}
+              alt="main mid banner"
+              fill
+              objectFit="cover"
+              objectPosition="center"
+              className="rounded-lg"
+            />
+            <div className="lg:pl-24 text-center z-10 ">
+              <div className="max-w-[250px] lg:max-w-[430px] space-y-3 ">
+                <h1 className="text-xl   lg:text-3xl font-bold ">
+                  Download the <br /> APK XCHANGE mobile app
+                </h1>
+                <DownloadApp />
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="w-full flex flex-col items-center">
-          <div className="relative bg-white px-6 w-[90%] lg:px-12 lg:w-[700px] py-4 text-black rounded-full inline-flex justify-end gap-x-2">
-            <div className="flex flex-col">
-              <p className="w-[160px] lg:w-auto text-sm lg:text-2xl font-semibold">
-                Need To Sell Your Gift Cards?
-              </p>
-              <MainButton
-                buttonText="SELL NOW"
-                link="/dashboard/exchange/buy"
-                className="text-xs lg:text-xl"
+          <div className="w-full flex flex-col lg:flex-row items-center justify-center mt-16 bg-tertiary roounded-md py-8 space-y-6 lg:space-x-12">
+            <div className="hidden lg:block">
+              <Image
+                src={"/images/telcosbundle-desktop.png"}
+                alt="mid telcos image"
+                width={175}
+                height={175}
               />
             </div>
-            <div className="absolute -top-10 -left-12 lg:-top-32 lg:-left-20">
-              <div className="w-[170px] h-[170px] lg:w-[320px] lg:h-[320px] relative">
-                <Image src={"/images/cards.webp"} fill alt="gift card images" />
-              </div>
+            <div className=" lg:hidden">
+              <Image
+                src={"/images/telcosbundle-mobile.png"}
+                alt="mid telcos image"
+                width={175}
+                height={175}
+              />
+            </div>
+            <div className="text-center ">
+              <h3 className="text-2xl lg:text-4xl font-bold text-center">
+                Best Bundle Offers.
+              </h3>
+              <p className="text-sm lg:text-base text-[#05F364]">
+                Affordable Non-expiry bundles.
+              </p>
+              <button className="bg-[#1984FF] text-white text-xs lg:text-sm px-2 py-1 rounded-lg mt-3">
+                view offers
+              </button>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="w-full -mt-28  lg:-mt-80">
-        {/* <Image
+          <div className="w-full lg:rounded-3xl">
+            {/* <Image
           src={"/images/midbanner.webp"}
           width={0}
           height={0}
@@ -91,8 +140,15 @@ const HomePage = () => {
           style={{ width: "100%", height: "auto" }}
           alt="mid banner"
         /> */}
-        <img src="/images/midbanner.webp" alt="mid banner" className="w-full" />
+            <img
+              src="/images/midbanner.webp"
+              alt="mid banner"
+              className="w-full lg:rounded-3xl"
+            />
+          </div>
+        </AppLayout>
       </div>
+
       <div
         className="w-full lg:h-[300px] flex items-center justify-center  py-20 relative"
         // style={{

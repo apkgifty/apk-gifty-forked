@@ -15,6 +15,7 @@ import PurchaseButton from "./PurchaseButton";
 import CancelButton from "./CancelButton";
 import ReportIcon from "@mui/icons-material/Report";
 import { toast } from "react-toastify";
+import MomoPaymentDialog from "../UI/Dialog/MomoPaymentDialog";
 
 interface Props {
   paymentMethods: any;
@@ -61,6 +62,8 @@ const ConfirmOrder: React.FC<Props> = ({
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
 
   const [makePayment, setMakePayment] = useState(false);
+  const [openMomoDialog, setOpenMomoDialog] = useState(false);
+  const [paystackLink, setPaystackLink] = useState("");
 
   const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState("");
@@ -124,7 +127,9 @@ const ConfirmOrder: React.FC<Props> = ({
 
       // console.log(response.data);
       if (response.data.status) {
-        window.open(`${response.data.data.authorization_url}`, "_blank");
+        setPaystackLink(response.data.data.authorization_url);
+        // window.open(`${response.data.data.authorization_url}`, "_blank");
+        setOpenMomoDialog(true);
       }
     } catch (error: any) {
       toast.error("Payment issue, please try again later");
@@ -467,6 +472,14 @@ const ConfirmOrder: React.FC<Props> = ({
         }}
         open={openCancelDialog}
       />
+
+      {openMomoDialog && (
+        <MomoPaymentDialog
+          open={openMomoDialog}
+          handleClose={() => setOpenMomoDialog(false)}
+          momoPaymentLink={paystackLink}
+        />
+      )}
     </>
   );
 };
