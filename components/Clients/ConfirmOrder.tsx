@@ -441,21 +441,21 @@ const ConfirmOrder: React.FC<Props> = ({
         )}
         {category === "Bundle" && (
           <p>
-            Delivery Time: Normally, you'll receive your bundle within 15
+            Delivery Time: Normally, you&apos;ll receive your bundle within 15
             minutes to 30mins max. However, sometimes the server may delay, and
-            it could take up to 1-4 hours. Don't panic; you will receive your
-            bundle. <br />
+            it could take up to 1-4 hours. Don&apos;t panic; you will receive
+            your bundle. <br />
             Note: Text the number you wish to receive the bundle to the Admin.
             Order will be completed by Admin once bundle is served.
           </p>
         )}
         {category === "Bank" && (
           <p>
-            Delivery Time: Normally, you'll receive your Bank Deposit within
-            10minutes to An hour. <br />
+            Delivery Time: Normally, you&apos;ll receive your Bank Deposit
+            within 10minutes to An hour. <br />
             However, sometimes with order surge may takes sometime for us to
             process it for you.
-            <br /> Don't panic; you will receive your Bank Deposit ASAP.
+            <br /> Don&apos;t panic; you will receive your Bank Deposit ASAP.
             <br /> Note: Paste your Account Number, Name you&apos;re depositing
             with and Branch of the Bank.
             <br /> Order will be Completed ✅ by Admin once bundle is served.
