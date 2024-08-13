@@ -6,11 +6,12 @@ import Link from "next/link";
 import DataCardMain from "@/components/Main/Section/DataCardMain";
 import BankCardMain from "@/components/Main/Section/BankCardMain";
 import DownloadApp from "@/components/Main/Section/DownloadApp";
+import HeaderActionCard from "@/components/Main/HeaderActionCard";
 const HomePage = () => {
   return (
     <div className="w-full text-white">
       <div
-        className="w-full py-[74px] lg:h-[580px] min-[1750px]:h-[900px]  flex justify-center items-center  lg:justify-start relative"
+        className="w-full px-4 py-[74px] lg:h-[580px] min-[1750px]:h-[900px]  flex justify-center items-center relative"
         // style={{
         //   backgroundImage: "url(/images/home-banner.webp)",
         // }}
@@ -25,22 +26,13 @@ const HomePage = () => {
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 lg:opacity-40"></div>
 
-        <div className="lg:pl-24 text-center z-10 ">
-          <div className="max-w-[250px] lg:max-w-[430px] space-y-3 ">
+        <div className="w-fulllg:pl-24 text-center z-10 ">
+          <div className="space-y-3 ">
             <h1 className="text-3xl   lg:text-5xl font-bold ">
-              Trade Gift Cards on APKXCHANGE
+              Trade Gift Cards with APKXCHANGE
             </h1>
-            <p className="text-center  ">
-              Join over 1 million users just like you on this platform to buy
-              and sell gift cards.
-            </p>
-
-            <MainButton
-              className="lg:text-xl mt-8 animate-bounce"
-              link="/signup"
-              buttonText="Get Started"
-            />
           </div>
+          <HeaderActionCard />
         </div>
       </div>
       <div className="w-full flex flex-col items-center  py-24  lg:pt-32 lg:pb-20  bg-secondary">
