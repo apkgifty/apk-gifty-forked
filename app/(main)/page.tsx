@@ -1,4 +1,3 @@
-"use client";
 import AppLayout from "@/components/Layout/AppLayout";
 import MainButton from "@/components/Main/MainButton";
 import Image from "next/image";
@@ -28,11 +27,11 @@ const HomePage = () => {
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 lg:opacity-40"></div> */}
 
         <div className="w-fulllg:pl-24 text-center z-10 ">
-          <div className="space-y-3 ">
+          {/* <div className="space-y-3 ">
             <h1 className="text-3xl   lg:text-5xl font-bold ">
               Trade Gift Cards with APKXCHANGE
             </h1>
-          </div>
+          </div> */}
           <HeaderActionCard />
         </div>
       </div>
