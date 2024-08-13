@@ -8,7 +8,7 @@ const HeaderActionCard = () => {
   const [serviceType, setServiceType] = useState("Buy");
 
   return (
-    <div className="max-w-lg mx-auto bg-white py-4 px-6 mt-4">
+    <div className="max-w-lg mx-auto bg-white py-4 px-6 mt-4 rounded-md">
       <div className="space-x-2">
         <button
           className={`${
