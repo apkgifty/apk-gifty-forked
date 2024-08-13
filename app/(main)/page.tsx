@@ -1,3 +1,4 @@
+"use client";
 import AppLayout from "@/components/Layout/AppLayout";
 import MainButton from "@/components/Main/MainButton";
 import Image from "next/image";

@@ -27,7 +27,7 @@ export default function RootLayout({
         <Providers>
           <div className="w-full min-h-screen flex flex-col justify-between">
             <Navbar />
-            {/* <Adbar /> */}
+            <Adbar />
             <div className="w-full">{children}</div>
             {/* <div className="hidden lg:block"> */}
             <Adbar />
