@@ -36,10 +36,10 @@ const HeaderActionCard = () => {
   console.log(currencies);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 2 }}
+    <div
+      //   initial={{ opacity: 0 }}
+      //   animate={{ opacity: 1 }}
+      //   transition={{ duration: 2 }}
       className="max-w-lg mx-auto bg-white py-4 px-6 mt-4 rounded-md"
     >
       <div className="space-x-2">
@@ -81,7 +81,7 @@ const HeaderActionCard = () => {
       <div className="mt-4 mb-6">
         <button className="bg-[#38C446] px-6 py-2 rounded-md">Buy Now</button>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

@@ -43,10 +43,10 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 3 }}
+    <div
+    // initial={{ opacity: 0 }}
+    // animate={{ opacity: 1 }}
+    // transition={{ duration: 3 }}
     >
       <p className="text-sm">{label}</p>
       <div className="w-full flex">
@@ -93,7 +93,7 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
