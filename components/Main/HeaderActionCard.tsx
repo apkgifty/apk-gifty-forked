@@ -12,28 +12,28 @@ const HeaderActionCard = () => {
   const [serviceType, setServiceType] = useState("Buy");
   const [currencies, setCurrencies] = useState<any>([]);
 
-  //   useEffect(() => {
-  //     const fetchCurrencies = async () => {
-  //       try {
-  //         const response = await axios.get(
-  //           process.env.NEXT_PUBLIC_API_ENDPOINT + "/currencies"
-  //         );
+  useEffect(() => {
+    const fetchCurrencies = async () => {
+      try {
+        const response = await axios.get(
+          process.env.NEXT_PUBLIC_API_ENDPOINT + "/currencies"
+        );
 
-  //         setCurrencies(response.data.data);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-  //     fetchCurrencies();
-  //   }, []);
+        setCurrencies(response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCurrencies();
+  }, []);
 
-  //   currencies.sort((a: any, b: any) => {
-  //     if (a.name === "USD") return -1; // "USA" should come first
-  //     if (b === "USD") return 1; // "USA" should come first
-  //     return a.name.localeCompare(b.name); // Alphabetical order for others
-  //   });
+  currencies.sort((a: any, b: any) => {
+    if (a.name === "USD") return -1; // "USA" should come first
+    if (b === "USD") return 1; // "USA" should come first
+    return a.name.localeCompare(b.name); // Alphabetical order for others
+  });
 
-  //   console.log(currencies);
+  console.log(currencies);
 
   return (
     <motion.div

@@ -16,14 +16,14 @@ const HomePage = () => {
         //   backgroundImage: "url(/images/home-banner.webp)",
         // }}
       >
-        <Image
+        {/* <Image
           src={"/images/apkhero.webp"}
           fill
           alt="apx home banner image"
           objectFit="cover"
           objectPosition="center"
           priority
-        />
+        /> */}
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 lg:opacity-40"></div> */}
 
         <div className="w-fulllg:pl-24 text-center z-10 ">
