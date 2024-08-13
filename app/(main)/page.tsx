@@ -42,7 +42,7 @@ const HomePage = () => {
               Affordable Bundle Offers With{" "}
               <span className="text-[#1984FF]">No Expiry</span>
             </h3>
-            <div className="flex flex-col lg:flex-row justify-center space-y-4 lg-space-y-0 lg:space-x-4">
+            <div className="flex flex-col lg:flex-row justify-center space-y-4 lg:space-y-0 lg:space-x-4">
               <DataCardMain imagePath="/images/mtn.png" imageAlt="mtn logo" />
               <DataCardMain
                 imagePath="/images/telecel.jpeg"
