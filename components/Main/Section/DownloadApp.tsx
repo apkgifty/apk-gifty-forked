@@ -10,6 +10,7 @@ const DownloadApp: React.FC = () => {
           alt="get app from app store"
           width={125}
           height={125}
+          priority
         />
       </div>
       <div className="p-2 bg-secondary cursor-pointer rounded-lg">
@@ -18,6 +19,7 @@ const DownloadApp: React.FC = () => {
           alt="get app from app store"
           width={125}
           height={125}
+          priority
         />
       </div>
     </div>
