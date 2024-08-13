@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <div className="w-full text-white">
       <div
-        className="w-full px-4 py-[74px] lg:h-[580px] min-[1750px]:h-[900px]  flex justify-center items-center relative"
+        className="w-full px-4 py-[74px] lg:h-[580px] min-[1750px]:h-[900px]  flex justify-center relative"
         // style={{
         //   backgroundImage: "url(/images/home-banner.webp)",
         // }}
