@@ -1,102 +1,87 @@
 "use client";
 
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import SelectButton from "../UI/SelectButton";
+import { motion } from "framer-motion";
+
+import TextInputWithButton from "../UI/TextInputWithButton";
 
 const HeaderActionCard = () => {
   const [serviceType, setServiceType] = useState("Buy");
+  const [currencies, setCurrencies] = useState<any>([]);
+
+  useEffect(() => {
+    const fetchCurrencies = async () => {
+      try {
+        const response = await axios.get(
+          process.env.NEXT_PUBLIC_API_ENDPOINT + "/currencies"
+        );
+
+        setCurrencies(response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCurrencies();
+  }, []);
+
+  currencies.sort((a: any, b: any) => {
+    if (a.name === "USD") return -1; // "USA" should come first
+    if (b === "USD") return 1; // "USA" should come first
+    return a.name.localeCompare(b.name); // Alphabetical order for others
+  });
+
+  console.log(currencies);
 
   return (
-    <div className="max-w-lg mx-auto bg-white py-4 px-6 mt-4 rounded-md">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2 }}
+      className="max-w-lg mx-auto bg-white py-4 px-6 mt-4 rounded-md"
+    >
       <div className="space-x-2">
-        <button
-          className={`${
-            serviceType === "Buy"
-              ? "bg-[#1984FF] text-white"
-              : "bg-white text-black border border-black"
-          } px-6 py-1 rounded-md`}
-          onClick={() => setServiceType("Buy")}
-        >
-          Buy
-        </button>
-        <button
-          className={`${
-            serviceType === "Sell"
-              ? "bg-[#1984FF] text-white"
-              : "bg-white text-black border border-black"
-          } px-6 py-1 rounded-md`}
-          onClick={() => setServiceType("Sell")}
-        >
-          Sell
-        </button>
+        <SelectButton
+          label="Buy"
+          serviceType={serviceType}
+          setServiceType={setServiceType}
+        />
+        <SelectButton
+          label="Sell"
+          serviceType={serviceType}
+          setServiceType={setServiceType}
+        />
       </div>
       <div className="mt-6 text-left text-black space-y-4">
-        <div>
-          <p className="text-sm">Select giftcard</p>
-          <div className="w-full flex">
-            <TextField
-              id="outlined-size-small"
-              defaultValue="Small"
-              hiddenLabel
-              size="small"
-              fullWidth
-              InputProps={{ sx: { borderRadius: 0 } }}
-              className="w-full"
-            />{" "}
-            <div>
-              <button className="bg-[#1984FF] text-white px-3 py-1 text-sm rounded-r-sm  h-full">
-                <KeyboardArrowDownIcon />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div>
-          <p className="text-sm">Amount you need</p>
-          <div className="w-full flex">
-            <TextField
-              id="outlined-size-small"
-              defaultValue="Small"
-              hiddenLabel
-              fullWidth
-              size="small"
-              InputProps={{ sx: { borderRadius: 0 } }}
-              className="w-full rounded-none"
-            />{" "}
-            <div>
-              <button className="bg-[#1984FF] text-white px-3 py-1 text-sm rounded-r-sm w-[100px] h-full">
-                USD
-                <span>
-                  <KeyboardArrowDownIcon />
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div>
-          <p className="text-sm">Amount you pay</p>
-          <div className="w-full flex">
-            <TextField
-              id="outlined-size-small"
-              defaultValue="Small"
-              hiddenLabel
-              fullWidth
-              size="small"
-              InputProps={{ sx: { borderRadius: 0 } }}
-              className="w-full"
-            />{" "}
-            <div>
-              <button className="bg-[#1984FF] text-white px-3 py-1 text-sm rounded-r-sm w-[100px] h-full">
-                GHC
-              </button>
-            </div>
-          </div>
-        </div>
+        <TextInputWithButton
+          label="Select giftcard"
+          name="giftcard"
+          type="text"
+          icon={<KeyboardArrowDownIcon />}
+        />
+
+        <TextInputWithButton
+          label="Amount you need"
+          name="amount-needed"
+          type="number"
+          defaultButtonText="USD"
+          buttonText={currencies[0]?.name}
+          menuOptions={currencies}
+          icon={<KeyboardArrowDownIcon />}
+        />
+        <TextInputWithButton
+          label="Amount you pay"
+          name="amount-payment"
+          type="number"
+          buttonText="GHS"
+        />
       </div>
       <div className="mt-4 mb-6">
         <button className="bg-[#38C446] px-6 py-2 rounded-md">Buy Now</button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
