@@ -14,6 +14,7 @@ const nextConfig = {
   experimental: {
     serverActions: true,
     mdxRs: true,
+    optimizePackageImports: ["framer-motion"],
   },
   webpack: (config, { defaultLoaders }) => {
     config.module.rules.push({
