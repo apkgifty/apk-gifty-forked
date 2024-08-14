@@ -10,7 +10,7 @@ import HeaderActionCard from "@/components/Main/HeaderActionCard";
 const HomePage = () => {
   return (
     <div className="w-full text-white">
-      //something here
+      {/* //something here */}
       <div className="w-full flex flex-col items-center  py-24  lg:pt-32 lg:pb-20  bg-secondary">
         <AppLayout>
           <div className="w-full flex flex-col items-center justify-center space-y-4">
