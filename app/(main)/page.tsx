@@ -24,7 +24,7 @@ const HomePage = () => {
           objectPosition="center"
           priority
           quality={100}
-          // placeholder="blur"
+          placeholder="blur"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 lg:opacity-40"></div>
 
