@@ -154,6 +154,9 @@ Nigerian banks swiftly with us."
           src={"/images/midbannerfoot.webp"}
           fill
           alt="apx mid image banner"
+          objectFit="cover"
+          placeholder="blur"
+          quality={100}
         />
         <div className="z-10 relative">
           <AppLayout>
