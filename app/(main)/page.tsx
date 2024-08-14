@@ -10,7 +10,32 @@ import HeaderActionCard from "@/components/Main/HeaderActionCard";
 const HomePage = () => {
   return (
     <div className="w-full text-white">
-      {/* //something here */}
+      <div
+        className="w-full px-4 py-[74px] lg:h-[580px] min-[1750px]:h-[900px]  flex justify-center relative"
+        // style={{
+        //   backgroundImage: "url(/images/home-banner.webp)",
+        // }}
+      >
+        <Image
+          src={"/images/apkhero.webp"}
+          fill
+          alt="apx home banner image"
+          objectFit="cover"
+          objectPosition="center"
+          priority
+          placeholder="blur"
+        />
+        {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 lg:opacity-40"></div> */}
+
+        <div className="w-fulllg:pl-24 text-center z-10 ">
+          {/* <div className="space-y-3 ">
+            <h1 className="text-3xl   lg:text-5xl font-bold ">
+              Trade Gift Cards with APKXCHANGE
+            </h1>
+          </div> */}
+          <HeaderActionCard />
+        </div>
+      </div>
       <div className="w-full flex flex-col items-center  py-24  lg:pt-32 lg:pb-20  bg-secondary">
         <AppLayout>
           <div className="w-full flex flex-col items-center justify-center space-y-4">
@@ -116,6 +141,7 @@ Nigerian banks swiftly with us."
           </div>
         </AppLayout>
       </div>
+
       <div
         className="w-full lg:h-[300px] flex items-center justify-center  py-20 relative"
         // style={{
