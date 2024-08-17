@@ -24,6 +24,7 @@ interface TextInputWithButtonProps {
   buttonText?: string;
   menuOptions?: any;
   defaultButtonText?: string;
+  readOnly?: boolean;
   onChangeHandler?: (selected: currenciesState) => void;
   inputHandler?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -39,6 +40,7 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
   defaultButtonText,
   onChangeHandler,
   inputHandler,
+  readOnly,
   placeholder,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -70,6 +72,7 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
           value={value}
           onChange={inputHandler}
           placeholder={placeholder && placeholder}
+          aria-readonly={readOnly}
         />{" "}
         <div>
           <button

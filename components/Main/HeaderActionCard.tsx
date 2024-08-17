@@ -55,15 +55,18 @@ const HeaderActionCard = ({
   }, [currencies]);
 
   useEffect(() => {
-    if (selectedCurrency === null) {
+    if (sortedArray.length > 0 && selectedCurrency === null) {
       setSelectedCurrency(sortedArray[0]);
     }
+    console.log(selectedCurrency);
   }, [sortedArray]);
 
   useEffect(() => {
     const total = (
       Number(paymentAmount) * Number(selectedCurrency?.rate)
     ).toFixed(2);
+
+    console.log(selectedCurrency);
     setTotalAmount(total.toString());
   }, [paymentAmount, selectedCurrency]);
 
@@ -107,6 +110,7 @@ const HeaderActionCard = ({
           menuOptions={[{ name: "PSN" }, { name: "AMAZON" }]}
           inputHandler={inputChangeHandler}
           value="PSN"
+          readOnly
         />
 
         <TextInputWithButton
