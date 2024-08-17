@@ -17,14 +17,22 @@ const RatesBar = () => {
           <div className="flex justify-center items-center space-x-4 lg:space-x-8 px-8 animate-marquee whitespace-nowrap">
             {currencies.length > 0 &&
               currencies.map((currency) => (
-                <RateItem currency={currency.name} rate={currency.rate} />
+                <RateItem
+                  key={currency.updated_at}
+                  currency={currency.name}
+                  rate={currency.rate}
+                />
               ))}
           </div>
 
           <div className="flex absolute top-0 justify-center items-center space-x-4 lg:space-x-8 px-8 animate-marquee2 whitespace-nowrap">
             {currencies.length > 0 &&
               currencies.map((currency) => (
-                <RateItem currency={currency.name} rate={currency.rate} />
+                <RateItem
+                  key={currency.created_at}
+                  currency={currency.name}
+                  rate={currency.rate}
+                />
               ))}
           </div>
         </div>
