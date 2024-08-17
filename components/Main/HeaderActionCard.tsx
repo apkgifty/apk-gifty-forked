@@ -5,35 +5,55 @@ import axios from "axios";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SelectButton from "../UI/SelectButton";
 import { motion } from "framer-motion";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {
+  currenciesState,
+  loadCurrenciesHandler,
+} from "@/redux/features/currenciesSlice";
 
 import TextInputWithButton from "../UI/TextInputWithButton";
+import { RootState } from "@/redux/store";
 
-const HeaderActionCard = () => {
+const HeaderActionCard = ({
+  loadedCurrencies,
+}: {
+  loadedCurrencies: currenciesState[];
+}) => {
   const [serviceType, setServiceType] = useState("Buy");
-  const [currencies, setCurrencies] = useState<any>([]);
+  // const [currencies, setCurrencies] = useState<any>([]);
+
+  // useEffect(() => {
+  //   const fetchCurrencies = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         process.env.NEXT_PUBLIC_API_ENDPOINT + "/currencies"
+  //       );
+
+  //       setCurrencies(response.data.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchCurrencies();
+  // }, []);
+
+  const currencies = useAppSelector(
+    (state: RootState) => state.currenciesReducer.currencies
+  );
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const fetchCurrencies = async () => {
-      try {
-        const response = await axios.get(
-          process.env.NEXT_PUBLIC_API_ENDPOINT + "/currencies"
-        );
+    dispatch(loadCurrenciesHandler(loadedCurrencies));
+  }, [currencies]);
 
-        setCurrencies(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchCurrencies();
-  }, []);
+  const sortedArray = [...currencies];
 
-  currencies.sort((a: any, b: any) => {
+  sortedArray.sort((a: currenciesState, b: currenciesState) => {
     if (a.name === "USD") return -1; // "USA" should come first
-    if (b === "USD") return 1; // "USA" should come first
-    return a.name.localeCompare(b.name); // Alphabetical order for others
+    if (b.name === "USD") return 1; // "USA" should come first
+    return a.name.localeCompare(b.name); // Alphabetical order for othes
   });
-
-  console.log(currencies);
 
   return (
     <motion.div
@@ -67,8 +87,8 @@ const HeaderActionCard = () => {
           name="amount-needed"
           type="number"
           defaultButtonText="USD"
-          buttonText={currencies[0]?.name}
-          menuOptions={currencies}
+          buttonText={sortedArray[0]?.name}
+          menuOptions={sortedArray}
           icon={<KeyboardArrowDownIcon />}
         />
         <TextInputWithButton

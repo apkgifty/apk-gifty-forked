@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import AppLayout from "@/components/Layout/AppLayout";
 import MainButton from "@/components/Main/MainButton";
 import Image from "next/image";
@@ -7,7 +9,12 @@ import DataCardMain from "@/components/Main/Section/DataCardMain";
 import BankCardMain from "@/components/Main/Section/BankCardMain";
 import DownloadApp from "@/components/Main/Section/DownloadApp";
 import HeaderActionCard from "@/components/Main/HeaderActionCard";
-const HomePage = () => {
+import { currenciesState } from "@/redux/features/currenciesSlice";
+const HomePage = async () => {
+  const response = await axios.get(`${process.env.API_ENDPOINT}/currencies`);
+
+  const currencies: currenciesState[] = response.data.data;
+
   return (
     <div className="w-full text-white">
       <div
@@ -33,7 +40,7 @@ const HomePage = () => {
               Trade Gift Cards with APKXCHANGE
             </h1>
           </div>
-          <HeaderActionCard />
+          <HeaderActionCard loadedCurrencies={currencies} />
         </div>
       </div>
       <div className="w-full flex flex-col items-center  py-24  lg:pt-32 lg:pb-20  bg-secondary">
