@@ -20,6 +20,11 @@ const HeaderActionCard = ({
   loadedCurrencies: currenciesState[];
 }) => {
   const [serviceType, setServiceType] = useState("Buy");
+  const [selectedCurrency, setSelectedCurrency] =
+    useState<currenciesState | null>(null);
+
+  const [paymentAmount, setPaymentAmount] = useState("0.00");
+  const [totalAmount, setTotalAmount] = useState("0.00");
   // const [currencies, setCurrencies] = useState<any>([]);
 
   // useEffect(() => {
@@ -43,17 +48,36 @@ const HeaderActionCard = ({
 
   const dispatch = useAppDispatch();
 
+  const sortedArray = [...currencies];
+
   useEffect(() => {
     dispatch(loadCurrenciesHandler(loadedCurrencies));
   }, [currencies]);
 
-  const sortedArray = [...currencies];
+  useEffect(() => {
+    if (selectedCurrency === null) {
+      setSelectedCurrency(sortedArray[0]);
+    }
+  }, [sortedArray]);
+
+  useEffect(() => {
+    const total = (
+      Number(paymentAmount) * Number(selectedCurrency?.rate)
+    ).toFixed(2);
+    setTotalAmount(total.toString());
+  }, [paymentAmount, selectedCurrency]);
 
   sortedArray.sort((a: currenciesState, b: currenciesState) => {
     if (a.name === "USD") return -1; // "USA" should come first
     if (b.name === "USD") return 1; // "USA" should come first
     return a.name.localeCompare(b.name); // Alphabetical order for othes
   });
+
+  const inputChangeHandler = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setPaymentAmount(e.target.value);
+  };
 
   return (
     <motion.div
@@ -80,22 +104,31 @@ const HeaderActionCard = ({
           name="giftcard"
           type="text"
           icon={<KeyboardArrowDownIcon />}
+          menuOptions={[{ name: "PSN" }, { name: "AMAZON" }]}
+          inputHandler={inputChangeHandler}
+          value="PSN"
         />
 
         <TextInputWithButton
           label="Amount you need"
-          name="amount-needed"
+          name="amount_needed"
           type="number"
           defaultButtonText="USD"
-          buttonText={sortedArray[0]?.name}
+          buttonText={selectedCurrency?.name}
           menuOptions={sortedArray}
           icon={<KeyboardArrowDownIcon />}
+          onChangeHandler={setSelectedCurrency}
+          inputHandler={inputChangeHandler}
+          value={paymentAmount == "0.00" ? "" : paymentAmount}
+          placeholder="0.00"
         />
         <TextInputWithButton
           label="Amount you pay"
-          name="amount-payment"
+          name="amount_payment"
           type="number"
           buttonText="GHS"
+          inputHandler={inputChangeHandler}
+          value={totalAmount}
         />
       </div>
       <div className="mt-4 mb-6">

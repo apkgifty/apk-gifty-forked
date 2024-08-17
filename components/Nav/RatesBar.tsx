@@ -4,6 +4,7 @@ import RateItem from "../UI/RateItem";
 import AppLayout from "../Layout/AppLayout";
 import { useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
+import { motion } from "framer-motion";
 
 const RatesBar = () => {
   const currencies = useAppSelector(
@@ -11,10 +12,15 @@ const RatesBar = () => {
   );
 
   return (
-    <div className="w-full py-2 bg-white">
+    <div className="w-full  py-2 bg-white">
       <AppLayout>
         <div className="relative flex overflow-x-hidden max-w-3xl mx-auto">
-          <div className="flex justify-center items-center space-x-4 lg:space-x-8 px-8 animate-marquee whitespace-nowrap">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="flex justify-center items-center space-x-4 lg:space-x-8 px-8 animate-marquee whitespace-nowrap"
+          >
             {currencies.length > 0 &&
               currencies.map((currency) => (
                 <RateItem
@@ -23,9 +29,14 @@ const RatesBar = () => {
                   rate={currency.rate}
                 />
               ))}
-          </div>
+          </motion.div>
 
-          <div className="flex absolute top-0 justify-center items-center space-x-4 lg:space-x-8 px-8 animate-marquee2 whitespace-nowrap">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="flex absolute top-0 justify-center items-center space-x-4 lg:space-x-8 px-8 animate-marquee2 whitespace-nowrap"
+          >
             {currencies.length > 0 &&
               currencies.map((currency) => (
                 <RateItem
@@ -34,7 +45,7 @@ const RatesBar = () => {
                   rate={currency.rate}
                 />
               ))}
-          </div>
+          </motion.div>
         </div>
       </AppLayout>
     </div>

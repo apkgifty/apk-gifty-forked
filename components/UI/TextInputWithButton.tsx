@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { currenciesState } from "@/redux/features/currenciesSlice";
 
 interface TextInputWithButtonProps {
   icon?: React.ReactNode;
   placeholder?: string;
   type: string;
   name: string;
+  value: string;
   config?: {
     required?: boolean;
     minLength?: number;
@@ -22,6 +24,8 @@ interface TextInputWithButtonProps {
   buttonText?: string;
   menuOptions?: any;
   defaultButtonText?: string;
+  onChangeHandler?: (selected: currenciesState) => void;
+  inputHandler?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
@@ -30,8 +34,12 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
   buttonText,
   type,
   name,
+  value,
   menuOptions,
   defaultButtonText,
+  onChangeHandler,
+  inputHandler,
+  placeholder,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -59,6 +67,9 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
           className="w-full"
           type={type}
           name={name}
+          value={value}
+          onChange={inputHandler}
+          placeholder={placeholder && placeholder}
         />{" "}
         <div>
           <button
@@ -71,7 +82,7 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            {buttonText ? buttonText : null}
+            {buttonText ? buttonText.toUpperCase() : null}
             {icon && <KeyboardArrowDownIcon />}
           </button>
           {menuOptions && menuOptions.length > 0 && (
@@ -83,9 +94,23 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
               MenuListProps={{
                 "aria-labelledby": "basic-button",
               }}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
             >
               {menuOptions.map((option: any) => (
-                <MenuItem key={option.name} onClick={handleClose}>
+                <MenuItem
+                  key={option.name}
+                  onClick={() => {
+                    onChangeHandler && onChangeHandler(option);
+                    handleClose();
+                  }}
+                >
                   {option.name.toUpperCase()}
                 </MenuItem>
               ))}
