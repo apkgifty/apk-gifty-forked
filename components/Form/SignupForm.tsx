@@ -73,7 +73,7 @@ const fields: Fields[] = [
   },
   {
     type: "number",
-    placeholder: "+233 00 000 0000",
+    placeholder: "Phone Number",
     icon: <LocalPhoneIcon />,
     config: {
       required: { value: true, message: "Phone number is required" },

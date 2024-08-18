@@ -49,10 +49,10 @@ const HomePage = async () => {
             <HeaderActionCard loadedCurrencies={currencies} />
           </div>
         </div>
-        <div className="w-full flex flex-col items-center  py-24  lg:pt-32 lg:pb-20  bg-secondary">
+        <div className="w-full flex flex-col items-center  py-24  lg:pt-32 lg:pb-20  lg:bg-secondary">
           <AppLayout>
             <div className="w-full flex flex-col items-center justify-center space-y-4">
-              <h3 className="text-2xl lg:text-4xl font-bold text-center">
+              <h3 className="text-2xl lg:text-4xl font-bold text-center px-8">
                 Affordable Bundle Offers With{" "}
                 <span className="text-[#1984FF]">No Expiry</span>
               </h3>
@@ -107,7 +107,7 @@ Nigerian banks swiftly with us."
               </div>
             </div>
 
-            <div className="w-full flex flex-col lg:flex-row items-center justify-center mt-16 bg-tertiary roounded-md py-8 space-y-6 lg:space-x-12">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-center mt-16 bg-tertiary rounded-md py-8 space-y-6 lg:space-x-12">
               <div className="hidden lg:block">
                 <Image
                   src={"/images/telcosbundle-desktop.png"}
