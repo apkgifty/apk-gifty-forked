@@ -10,6 +10,7 @@ import BankCardMain from "@/components/Main/Section/BankCardMain";
 import DownloadApp from "@/components/Main/Section/DownloadApp";
 import HeaderActionCard from "@/components/Main/HeaderActionCard";
 import { currenciesState } from "@/redux/features/currenciesSlice";
+
 const HomePage = async () => {
   const response = await axios.get(`${process.env.API_ENDPOINT}/currencies`);
 
@@ -125,9 +126,11 @@ Nigerian banks swiftly with us."
               <p className="text-sm lg:text-base text-[#05F364]">
                 Affordable Non-expiry bundles.
               </p>
-              <button className="bg-[#1984FF] text-white text-xs lg:text-sm px-2 py-1 rounded-lg mt-3">
-                view offers
-              </button>
+              <Link href={"/dashboard/other-services"}>
+                <button className="bg-[#1984FF] text-white text-xs lg:text-sm px-2 py-1 rounded-lg mt-3">
+                  view offers
+                </button>
+              </Link>
             </div>
           </div>
 

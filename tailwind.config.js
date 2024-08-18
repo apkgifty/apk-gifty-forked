@@ -32,6 +32,9 @@ module.exports = {
         tertiary: "#161D26",
         appviolet: "#7995f5",
       },
+      textColor: {
+        appviolet: "#7995f5",
+      },
       backgroundSize: {
         halfauto: "50% auto",
       },

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface DataCardProps {
   imagePath: string;
@@ -17,9 +18,11 @@ const DataCardMain: React.FC<DataCardProps> = ({ imagePath, imageAlt }) => {
         className="rounded-full"
       />
       <div>
-        <button className="bg-[#45B26B] text-white text-xs lg:text-sm px-2 py-1 rounded-lg">
-          view offers
-        </button>
+        <Link href="/dashboard/other-services">
+          <button className="bg-[#45B26B] text-white text-xs lg:text-sm px-2 py-1 rounded-lg">
+            view offers
+          </button>
+        </Link>
       </div>
     </div>
   );

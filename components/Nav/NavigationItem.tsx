@@ -14,9 +14,9 @@ const NavigationItem: React.FC<MainNav> = ({ title, link }) => {
       href={link}
       className={`${
         pathName === "/" && title.toLowerCase() === "home"
-          ? "text-violet-500"
+          ? "text-appviolet"
           : pathName.includes(title.toLowerCase())
-          ? "text-violet-500"
+          ? "text-appviolet"
           : "text-white"
       } hover:underline`}
     >

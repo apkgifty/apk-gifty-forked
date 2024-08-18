@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SelectButton from "../UI/SelectButton";
 import { motion } from "framer-motion";
@@ -13,6 +12,7 @@ import {
 
 import TextInputWithButton from "../UI/TextInputWithButton";
 import { RootState } from "@/redux/store";
+import Link from "next/link";
 
 const HeaderActionCard = ({
   loadedCurrencies,
@@ -136,7 +136,9 @@ const HeaderActionCard = ({
         />
       </div>
       <div className="mt-4 mb-6">
-        <button className="bg-[#38C446] px-6 py-2 rounded-md">Buy Now</button>
+        <Link href="/dashboard/exchange/buy">
+          <button className="bg-[#38C446] px-6 py-2 rounded-md">Buy Now</button>
+        </Link>
       </div>
     </motion.div>
   );
