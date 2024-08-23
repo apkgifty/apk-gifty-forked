@@ -318,7 +318,7 @@ const ConfirmOrder: React.FC<Props> = ({
             </h4>
             <p className="mt-10">
               <span className="mr-2 text-orange-600">
-                {/* <ReportIcon /> */}
+                <ReportIcon />
               </span>{" "}
               Kindly note that when sending payments for transactions, it&#x27;s
               essential to use your registered account username as the payment
