@@ -9,6 +9,7 @@ import KycIconSvg from "@/components/UI/SvgIcons/KycIconSvg";
 import MailIconSvg from "@/components/UI/SvgIcons/MailIconSvg";
 import MapIconSvg from "@/components/UI/SvgIcons/MapIconSvg";
 import PhoneSvg from "@/components/UI/SvgIcons/PhoneSvg";
+import Link from "next/link";
 
 // import axiosInstance from "@/utils/axios";
 import axios from "axios";
@@ -166,6 +167,13 @@ const PersonalInformationPage: React.FC<Props> = async () => {
             Save Changes
           </button>
         </div>
+      </div>
+      <div className="w-full flex justify-center mt-12">
+        <Link href="/kyc">
+          <button className="bg-red-600 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-red-800">
+            Delete Account
+          </button>
+        </Link>
       </div>
     </div>
   );

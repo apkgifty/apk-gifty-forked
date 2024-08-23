@@ -87,7 +87,7 @@ const KYCPage = async () => {
       {!user.kyc && (
         <div className="w-full flex justify-center mt-12">
           <Link href="/kyc">
-            <button className="bg-red-500 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-red-800">
+            <button className="bg-appviolet text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-#597cf3">
               Complete KYC
             </button>
           </Link>
