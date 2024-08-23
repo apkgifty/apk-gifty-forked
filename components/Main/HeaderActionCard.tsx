@@ -23,6 +23,8 @@ const HeaderActionCard = ({
   const [selectedCurrency, setSelectedCurrency] =
     useState<currenciesState | null>(null);
 
+  const [selectedGiftCard, setSelectedGiftCard] = useState({ name: "PSN" });
+
   const [paymentAmount, setPaymentAmount] = useState("0.00");
   const [totalAmount, setTotalAmount] = useState("0.00");
   // const [currencies, setCurrencies] = useState<any>([]);
@@ -107,9 +109,15 @@ const HeaderActionCard = ({
           name="giftcard"
           type="text"
           icon={<KeyboardArrowDownIcon />}
-          menuOptions={[{ name: "PSN" }, { name: "AMAZON" }]}
+          menuOptions={[
+            { name: "PSN" },
+            { name: "AMAZON" },
+            { name: "GOOGLE" },
+            { name: "APPLE" },
+          ]}
           inputHandler={inputChangeHandler}
-          value="PSN"
+          value={selectedGiftCard.name}
+          onChangeHandler={setSelectedGiftCard}
           readOnly
         />
 

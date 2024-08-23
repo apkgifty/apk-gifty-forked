@@ -49,6 +49,12 @@ const SellDisplay: React.FC<Props> = ({
         product_id: pid,
         type: "sellorder",
       };
+    } else {
+      data = {
+        price: amount,
+        product_id: pid,
+        type: "sellorder",
+      };
     }
     const config = {
       method: "POST",
@@ -78,6 +84,7 @@ const SellDisplay: React.FC<Props> = ({
     const val = e.target.value;
     setAmount(val);
   };
+
   return (
     <>
       <div className="flex justify-between">

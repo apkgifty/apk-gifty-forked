@@ -25,7 +25,7 @@ interface TextInputWithButtonProps {
   menuOptions?: any;
   defaultButtonText?: string;
   readOnly?: boolean;
-  onChangeHandler?: (selected: currenciesState) => void;
+  onChangeHandler?: (selected: any) => void;
   inputHandler?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
