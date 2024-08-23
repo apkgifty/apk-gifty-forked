@@ -4,6 +4,31 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import DisplayDialog from "../UI/Dialog/Dialog";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+
+const makeUSDTPayment = async (id: number, loadingFunc: any) => {
+  let config = {
+    method: "POST",
+    maxBodyLength: Infinity,
+    url: `/api/usdt-payment/`,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: { id },
+  };
+  try {
+    // loadingFunc(true);
+    const response = await axios(config);
+
+    if (response.status == 200) {
+      console.log(response.data);
+      return response.data;
+    }
+  } catch (error: any) {
+    console.log(error);
+  }
+};
 
 const Payment = ({
   method,
@@ -20,13 +45,16 @@ const Payment = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [paymentInitiated, setPaymentInitiated] = useState(false);
+  const [usdtPaymentDetails, setUsdtPaymentDetails] = useState<any>(null);
+
+  let dialog;
 
   const handleClick = (e: any) => {
-    if (method.channel === "Momo") {
+    if (method.channel.toLowerCase() === "usdt") {
       setPaymentInitiated(true);
-    } else {
       setOpen(true);
     }
+    setOpen(true);
   };
 
   const handleNotifySeller = async () => {
@@ -39,23 +67,63 @@ const Payment = ({
   };
 
   useEffect(() => {
-    if (paymentInitiated) {
-      makePayment(id, loadingFunc, method.channel);
+    if (paymentInitiated && method.channel.toLowerCase() === "usdt") {
+      (async () => {
+        const paymentDets = await makeUSDTPayment(id, loadingFunc);
+        console.log(paymentDets);
+
+        setUsdtPaymentDetails(paymentDets);
+      })();
     }
   }, [paymentInitiated]);
 
-  return (
-    <>
-      {" "}
-      <li className="cursor-pointer" onClick={handleClick}>
-        <div className="space-y-3">
+  if (method.channel.toLowerCase() === "usdt") {
+    dialog = usdtPaymentDetails && (
+      <DisplayDialog
+        title={method.channel}
+        buttonText="Continue"
+        open={open}
+        handleClose={() => setOpen(false)}
+        sx={{
+          backgroundColor: "#161D26",
+          borderColor: "black",
+          color: "white",
+        }}
+      >
+        <div>
           <div>
-            <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
-              {method.channel}
-            </h5>
+            <p className="text-orange-400">
+              {usdtPaymentDetails.payment_address}
+            </p>
+            <p className="text-white mt-2">
+              Network: {usdtPaymentDetails?.payment_type?.toUpperCase()}
+            </p>
+            <p className="text-white mt-2">
+              Amount: ${usdtPaymentDetails?.amount}
+            </p>
+            <div className="text-center mt-3">
+              <p className="py-2 px-3 bg-primary rounded-2xl text-white flex justify-center items-center gap-x-1 text-xs lg:text-sm">
+                <span>
+                  <ContentCopyIcon />
+                </span>
+                Copy Address
+              </p>
+            </div>
+          </div>
+
+          <div className="w-full flex justify-center mt-7">
+            <span
+              className="text-white text-xs lg:text-sm px-4 py-1 bg-blue-500 cursor-pointer hover:bg-blue-900"
+              onClick={handleNotifySeller}
+            >
+              Payment Sent
+            </span>
           </div>
         </div>
-      </li>
+      </DisplayDialog>
+    );
+  } else {
+    dialog = (
       <DisplayDialog
         title={method.channel}
         buttonText="Continue"
@@ -93,6 +161,22 @@ const Payment = ({
           )}
         </div>
       </DisplayDialog>
+    );
+  }
+
+  return (
+    <>
+      {" "}
+      <li className="cursor-pointer" onClick={handleClick}>
+        <div className="space-y-3">
+          <div>
+            <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
+              {method.channel}
+            </h5>
+          </div>
+        </div>
+      </li>
+      {dialog}
     </>
   );
 };

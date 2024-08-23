@@ -139,9 +139,40 @@ const ConfirmOrder: React.FC<Props> = ({
     }
   };
 
-  const sendPayment = (id: number, loadingFunc: any, type: string) => {
-    if (type == "Momo") {
-      makeMomoPayment(id, loadingFunc);
+  const makeUSDTPayment = async (id: number, loadingFunc: any) => {
+    let config = {
+      method: "POST",
+      maxBodyLength: Infinity,
+      url: `/api/usdt-payment/`,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      data: { id },
+    };
+    try {
+      loadingFunc(true);
+      const response = await axios(config);
+
+      if (response.status == 200) {
+        console.log(response.data);
+        return response.data;
+      }
+    } catch (error: any) {
+      toast.error("Payment issue, please try again later");
+      console.log(error);
+    } finally {
+      loadingFunc(false);
+    }
+  };
+
+  const sendPayment = async (id: number, loadingFunc: any, type: string) => {
+    // if (type.toLowerCase() == "momo") {
+    //   makeMomoPayment(id, loadingFunc);
+    // }
+    if (type.toLowerCase() == "usdt") {
+      const res = await makeUSDTPayment(id, loadingFunc);
+      return res;
     }
   };
 

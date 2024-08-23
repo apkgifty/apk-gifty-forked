@@ -9,17 +9,16 @@ export async function POST(req: Request, res: Response) {
   let config = {
     method: "POST",
     maxBodyLength: Infinity,
-    url: `pay/${id}`,
+    url: `crypto/payment/${id}`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      // Authorization: accessToken,
+      //   Authorization: accessToken,
     },
   };
 
   try {
     const response = await axiosInstance(config);
-    // console.log(response);
     return NextResponse.json(response.data);
   } catch (error: any) {
     // console.log(error);
