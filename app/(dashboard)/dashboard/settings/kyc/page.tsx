@@ -84,12 +84,14 @@ const KYCPage = async () => {
       </div>
 
       {/* <KYC status={user?.kyc?.status} /> */}
-      {user?.kyc?.status === "0" && (
-        <Link href="/kyc">
-          <button className="bg-red-800 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg">
-            Complete KYC
-          </button>
-        </Link>
+      {!user.kyc && (
+        <div className="w-full flex justify-center mt-12">
+          <Link href="/kyc">
+            <button className="bg-red-500 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-red-800">
+              Complete KYC
+            </button>
+          </Link>
+        </div>
       )}
     </div>
   );
