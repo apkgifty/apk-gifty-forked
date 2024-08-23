@@ -2,19 +2,7 @@ import axios from "axios";
 import { cookies } from "next/headers";
 import axiosInstance from "@/utils/axios";
 
-import AddSvg from "@/components/UI/SvgIcons/AddSvg";
-import EllipsesSvg from "@/components/UI/SvgIcons/EllipsesSvg";
-import EmotionSvg from "@/components/UI/SvgIcons/EmotionSvg";
-import EyeSvg from "@/components/UI/SvgIcons/EyeSvg";
-import HeadphoneSvg from "@/components/UI/SvgIcons/HeadphoneSvg";
-import InfoSvg from "@/components/UI/SvgIcons/InfoSvg";
-import PaperPlaneSvg from "@/components/UI/SvgIcons/PaperPlaneSvg";
-import PhoneSvg from "@/components/UI/SvgIcons/PhoneSvg";
-import Countdown from "@/components/Dashboard/DashUtils/Countdown";
-import Chat from "@/components/Dashboard/DashUtils/Chat";
 import ConfirmOrder from "@/components/Clients/ConfirmOrder";
-import EndedOrder from "@/components/Clients/EndedOrder";
-import { order } from "@/redux/features/orderSlice";
 import AdminOffline from "@/components/Clients/AdminOffline";
 
 const fetchOrder = async (id: string) => {
@@ -64,7 +52,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const accessToken = cookieStore.get("access")?.value;
   const id = searchParams.pid;
   let orderData, paymentMethods, rate, updatedOrderData;
-  const category = searchParams.category;
+  // const category = searchParams.category;
   // console.log("Full searchParams object:", searchParams);
   // console.log("searchParams id:", id);
 
@@ -79,7 +67,10 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
       fetchRate(),
     ]);
 
-    updatedOrderData = { ...orderData.data, category: category };
+    updatedOrderData = {
+      ...orderData.data,
+      category: orderData.data.category_name,
+    };
   }
 
   // console.log(rate.data[0]);

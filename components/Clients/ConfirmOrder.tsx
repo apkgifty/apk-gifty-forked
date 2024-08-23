@@ -54,7 +54,7 @@ const ConfirmOrder: React.FC<Props> = ({
     payment_transaction_id,
   } = orderData;
 
-  // console.log("Order data: ", orderData);
+  console.log("Order data: ", orderData);
 
   // console.log(orderData);
 

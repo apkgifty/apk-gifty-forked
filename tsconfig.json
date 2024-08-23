@@ -30,7 +30,9 @@
     ".next/types/**/*.ts",
     "public/service-worker.js",
     ".next/types/app/(auth)/(verify-mail)/email/page.tsx",
-    ".next/types/app/(auth)/(verify-mail)/layout.tsx"
+    ".next/types/app/(auth)/(verify-mail)/layout.tsx",
+    "next.config.js",
+    "next.config.js"
   ],
   "exclude": ["node_modules"]
 }
