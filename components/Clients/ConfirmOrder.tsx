@@ -347,6 +347,7 @@ const ConfirmOrder: React.FC<Props> = ({
               {loading ? null : (
                 <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
                   {makePayment &&
+                    is_paid === "0" &&
                     filteredPaymentMethods.map((method: any) => (
                       <Payment
                         method={method}
