@@ -13,7 +13,7 @@ const CancelButton: React.FC<Props> = ({ status, openDialog }) => {
     <>
       {Number(status) === -1 ? null : Number(status) === 2 ? null : (
         <button
-          className="w-full text-sm px-4 py-2 lg:w-auto hover:bg-red-600"
+          className="w-full text-sm px-4 py-2 lg:w-auto rounded-lg hover:bg-red-600"
           onClick={() => openDialog(true)}
         >
           Cancel Transfer
