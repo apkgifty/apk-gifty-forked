@@ -61,6 +61,20 @@ const Payment = ({
 
   const handleNotifySeller = async () => {
     try {
+      if (method.channel.toLowerCase() === "usdt") {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/crypto/status/${id}`
+        );
+        console.log("check status", response.data);
+        if (response.data.payment_status === "waiting") {
+          return alert(
+            "Payment still in progress. Please wait for confirmation..."
+          );
+        } else {
+          notifySeller();
+          setOpen(false);
+        }
+      }
       notifySeller();
       setOpen(false);
     } catch (error) {
