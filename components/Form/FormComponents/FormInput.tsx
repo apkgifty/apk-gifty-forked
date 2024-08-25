@@ -78,7 +78,7 @@ const FormInput: React.FC<Props> = ({
           name={name}
           id="cars"
           form="carform"
-          className="bg-transparent outline-none text-xs lg:text-sm w-full"
+          className="bg-tertiary outline-none text-xs lg:text-sm w-full"
           defaultValue={"Ghana-GH"}
           {...j}
         >
