@@ -8,6 +8,7 @@ import ExchangeSvg from "@/components/UI/SvgIcons/ExchangeSvg";
 import TransactionSvg from "@/components/UI/SvgIcons/TransactionSvg";
 import SettingsSvg from "@/components/UI/SvgIcons/SettingsSvg";
 import HelpIcon from "@mui/icons-material/Help";
+import Image from "next/image";
 
 const links = [
   // { title: "Dashboard", url: "/", icon: <DashboardSvg /> },
@@ -80,6 +81,17 @@ const Sidebar = () => {
           <h1 className="text-sm font-semibold text-white capitalize ">
             {userInfo?.firstname}
           </h1>
+          {userInfo?.kyc === null && (
+            <div className="flex justify-center items-center gap-x-1">
+              <p className="text-xs text-gray-300">Verified</p>
+              <Image
+                src={"/images/verified.png"}
+                width={20}
+                height={20}
+                alt="verified-badge"
+              />
+            </div>
+          )}
           {/* <div className="flex justify-center items-center gap-x-1">
             <p className="text-xs text-white font-light ">Verified </p>
             <VerifiedSvg />
