@@ -149,16 +149,15 @@ const Payment = ({
           <p className="inline-block px-3 py-1 text-blue-600  rounded-lg">
             <span className="text-white">Name:</span> {method.sub_text}
           </p>
-          {method.channel !== "Momo" && (
-            <div className="w-full flex justify-center mt-3">
-              <span
-                className="text-white text-xs lg:text-sm px-4 py-1 bg-blue-500 cursor-pointer hover:bg-blue-900"
-                onClick={handleNotifySeller}
-              >
-                Payment Sent
-              </span>
-            </div>
-          )}
+
+          <div className="w-full flex justify-center mt-3">
+            <span
+              className="text-white text-xs lg:text-sm px-4 py-1 bg-blue-500 cursor-pointer hover:bg-blue-900"
+              onClick={handleNotifySeller}
+            >
+              Payment Sent
+            </span>
+          </div>
         </div>
       </DisplayDialog>
     );
