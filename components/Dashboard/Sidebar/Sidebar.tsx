@@ -81,7 +81,7 @@ const Sidebar = () => {
           <h1 className="text-sm font-semibold text-white capitalize ">
             {userInfo?.firstname}
           </h1>
-          {userInfo?.kyc === null && (
+          {userInfo?.kyc && (
             <div className="flex justify-center items-center gap-x-1">
               <p className="text-xs text-gray-300">Verified</p>
               <Image
