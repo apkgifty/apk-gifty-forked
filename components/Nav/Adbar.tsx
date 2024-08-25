@@ -13,7 +13,7 @@ const Adbar = () => {
         transition={{ duration: 1 }}
         className="text-white font-light text-sm lg:text-lg"
       >
-        Trading made easy
+        <span className="hidden lg:inline-block"> Trading made easy </span>
       </motion.p>
       <DownloadApp />
     </div>
