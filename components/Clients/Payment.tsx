@@ -28,7 +28,6 @@ const makeUSDTPayment = async (id: number, loadingFunc: any) => {
   } catch (error: any) {
     console.log(error);
   } finally {
-    loadingFunc(false);
   }
 };
 
@@ -48,6 +47,7 @@ const Payment = ({
   const [open, setOpen] = useState(false);
   const [paymentInitiated, setPaymentInitiated] = useState(false);
   const [usdtPaymentDetails, setUsdtPaymentDetails] = useState<any>(null);
+  const [showUsdtDialog, setShowUsdtDialog] = useState(false);
 
   let dialog;
 
@@ -71,7 +71,7 @@ const Payment = ({
   useEffect(() => {
     if (paymentInitiated && method.channel.toLowerCase() === "usdt") {
       (async () => {
-        const paymentDets = await makeUSDTPayment(id, loadingFunc);
+        const paymentDets = await makeUSDTPayment(id, setShowUsdtDialog);
         console.log(paymentDets);
 
         setUsdtPaymentDetails(paymentDets);
@@ -84,7 +84,7 @@ const Payment = ({
       <DisplayDialog
         title={method.channel}
         buttonText="Continue"
-        open={open}
+        open={showUsdtDialog}
         handleClose={() => setOpen(false)}
         sx={{
           backgroundColor: "#161D26",
