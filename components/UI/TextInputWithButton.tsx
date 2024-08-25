@@ -114,7 +114,7 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
                     handleClose();
                   }}
                 >
-                  {option.name.toUpperCase()}
+                  {option.name}
                 </MenuItem>
               ))}
             </Menu>

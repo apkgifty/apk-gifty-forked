@@ -14,6 +14,18 @@ import TextInputWithButton from "../UI/TextInputWithButton";
 import { RootState } from "@/redux/store";
 import Link from "next/link";
 
+const giftcards = [
+  { name: "PlayStation Gift Card" },
+  { name: "Amazon Gift Card" },
+  { name: "iTunes Gift Card" },
+  { name: "Steam Gift Card" },
+  { name: "Spotify Gift Card" },
+  { name: "Nintendo eShop Gift Card" },
+  { name: "Walmart Gift Card" },
+  { name: "Xbox Gift Card" },
+  { name: "eBay Gift Card" },
+];
+
 const HeaderActionCard = ({
   loadedCurrencies,
 }: {
@@ -23,7 +35,7 @@ const HeaderActionCard = ({
   const [selectedCurrency, setSelectedCurrency] =
     useState<currenciesState | null>(null);
 
-  const [selectedGiftCard, setSelectedGiftCard] = useState({ name: "PSN" });
+  const [selectedGiftCard, setSelectedGiftCard] = useState(giftcards[0]);
 
   const [paymentAmount, setPaymentAmount] = useState("0.00");
   const [totalAmount, setTotalAmount] = useState("0.00");
@@ -109,17 +121,7 @@ const HeaderActionCard = ({
           name="giftcard"
           type="text"
           icon={<KeyboardArrowDownIcon />}
-          menuOptions={[
-            { name: "PlayStation Gift Card" },
-            { name: "Amazon Gift Card" },
-            { name: "iTunes Gift Card" },
-            { name: "Steam Gift Card" },
-            { name: "Spotify Gift Card" },
-            { name: "Nintendo eShop Gift Card" },
-            { name: "Walmart Gift Card" },
-            { name: "Xbox Gift Card" },
-            { name: "eBay Gift Card" },
-          ]}
+          menuOptions={giftcards}
           inputHandler={inputChangeHandler}
           value={selectedGiftCard.name}
           onChangeHandler={setSelectedGiftCard}
