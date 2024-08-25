@@ -3,7 +3,7 @@
 import axiosInstance from "@/utils/axios";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request, res: Response) {
+export async function DELETE(req: Request, res: Response) {
   let config = {
     method: "DELETE",
     maxBodyLength: Infinity,
