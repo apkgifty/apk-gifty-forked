@@ -110,10 +110,15 @@ const HeaderActionCard = ({
           type="text"
           icon={<KeyboardArrowDownIcon />}
           menuOptions={[
-            { name: "PSN" },
-            { name: "AMAZON" },
-            { name: "GOOGLE" },
-            { name: "APPLE" },
+            { name: "PlayStation Gift Card" },
+            { name: "Amazon Gift Card" },
+            { name: "iTunes Gift Card" },
+            { name: "Steam Gift Card" },
+            { name: "Spotify Gift Card" },
+            { name: "Nintendo eShop Gift Card" },
+            { name: "Walmart Gift Card" },
+            { name: "Xbox Gift Card" },
+            { name: "eBay Gift Card" },
           ]}
           inputHandler={inputChangeHandler}
           value={selectedGiftCard.name}
