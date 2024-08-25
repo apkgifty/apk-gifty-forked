@@ -73,6 +73,7 @@ const TextInputWithButton: React.FC<TextInputWithButtonProps> = ({
           onChange={inputHandler}
           placeholder={placeholder && placeholder}
           aria-readonly={readOnly}
+          tabIndex={readOnly ? -1 : 0}
         />{" "}
         <div>
           <button
