@@ -152,7 +152,9 @@ const HeaderActionCard = ({
       </div>
       <div className="mt-4 mb-6">
         <Link href="/dashboard/exchange/buy">
-          <button className="bg-[#38C446] px-6 py-2 rounded-md">Buy Now</button>
+          <button className="bg-[#38C446] px-6 py-2 rounded-md">
+            {serviceType.toLowerCase() === "buy" ? " Buy Now" : "Sell Now"}
+          </button>
         </Link>
       </div>
     </motion.div>
