@@ -105,7 +105,7 @@ const Payment = ({
             </p>
             <div className="text-center mt-3">
               <p
-                className="py-2 px-3 bg-primary rounded-2xl text-white flex justify-center items-center gap-x-1 text-xs lg:text-sm"
+                className="py-2 px-3 bg-primary rounded-2xl text-white flex justify-center items-center gap-x-1 text-xs lg:text-sm cursor-pointer"
                 onClick={() =>
                   navigator.clipboard.writeText(
                     usdtPaymentDetails.payment_address
