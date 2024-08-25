@@ -107,6 +107,7 @@ const ConfirmOrder: React.FC<Props> = ({
       setLoading(false);
     } finally {
       setLoading(false);
+      setMakePayment(false);
     }
   };
 

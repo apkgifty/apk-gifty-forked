@@ -18,7 +18,7 @@ const makeUSDTPayment = async (id: number, loadingFunc: any) => {
     data: { id },
   };
   try {
-    // loadingFunc(true);
+    loadingFunc(true);
     const response = await axios(config);
 
     if (response.status == 200) {
@@ -27,6 +27,8 @@ const makeUSDTPayment = async (id: number, loadingFunc: any) => {
     }
   } catch (error: any) {
     console.log(error);
+  } finally {
+    loadingFunc(false);
   }
 };
 
