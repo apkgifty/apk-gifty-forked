@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import Link from "next/link";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -39,14 +38,12 @@ const DeleteAccount = () => {
     <>
       {" "}
       <div className="w-full flex justify-center mt-12">
-        <Link href="/kyc">
-          <button
-            className="bg-red-600 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-red-800"
-            onClick={() => setOpen(true)}
-          >
-            Delete Account
-          </button>
-        </Link>
+        <button
+          className="bg-red-600 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-red-800"
+          onClick={() => setOpen(true)}
+        >
+          Delete Account
+        </button>
       </div>
       <Dialog
         open={open}
@@ -57,13 +54,21 @@ const DeleteAccount = () => {
         <DialogTitle id="alert-dialog-title">Delete</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete this item?
+            Are you sure you want to delete your account?
+            <p>
+              Deleting your account will remove all of your information from our
+              database. This cannot be undone.
+            </p>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={deleteAccount} autoFocus>
-            Agree
+          <Button
+            onClick={deleteAccount}
+            autoFocus
+            className="text-white bg-red-600 hover:bg-red-800"
+          >
+            Delete
           </Button>
         </DialogActions>
       </Dialog>
