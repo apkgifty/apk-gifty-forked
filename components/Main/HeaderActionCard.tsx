@@ -126,7 +126,11 @@ const HeaderActionCard = ({
         />
 
         <TextInputWithButton
-          label="Amount you need"
+          label={
+            serviceType.toLowerCase() === "buy"
+              ? "Amount you need"
+              : "Amount to sell"
+          }
           name="amount_needed"
           type="number"
           defaultButtonText="USD"
