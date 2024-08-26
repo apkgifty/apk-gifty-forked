@@ -141,14 +141,14 @@ const HeaderActionCard = ({
           value={paymentAmount == "0.00" ? "" : paymentAmount}
           placeholder="0.00"
         />
-        <TextInputWithButton
+        {/* <TextInputWithButton
           label="Amount you pay"
           name="amount_payment"
           type="number"
           buttonText="GHS"
           inputHandler={inputChangeHandler}
           value={totalAmount}
-        />
+        /> */}
       </div>
       <div className="mt-4 mb-6">
         <Link href="/dashboard/exchange/buy">
