@@ -82,7 +82,7 @@ const Sidebar = () => {
             {userInfo?.firstname}
           </h1>
           {userInfo?.kyc && (
-            <div className="flex justify-center items-center gap-x-1">
+            <div className="flex justify-center items-center gap-x-1 ">
               <p className="text-xs text-gray-300">Verified</p>
               <Image
                 src={"/images/verified.png"}
