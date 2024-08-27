@@ -83,9 +83,6 @@ const EmailVerificationForm = () => {
             <img src="/watch-it.svg" />
           </motion.div>
 
-          {/* <p>
-          Didn't recieve email ? <span>Resend Verification Link</span>
-        </p> */}
           <form onSubmit={resendLinkHandler}>
             {showLinkButton && <ButtonIcon text="Resend Link" type="submit" />}
           </form>

@@ -2,12 +2,12 @@ import React from "react";
 import { cookies } from "next/headers";
 
 import FormInput from "@/components/Form/FormComponents/FormInput";
-import EditIconSvg from "@/components/UI/SvgIcons/EditIconSvg";
+
 import KycIconSvg from "@/components/UI/SvgIcons/KycIconSvg";
 import EyeIconSvg from "@/components/UI/SvgIcons/EyeIconSvg";
 import EmailAtSvg from "@/components/UI/SvgIcons/EmailAtSvg";
-import KYCBlocks from "@/components/kyc/KYCBlocks";
-import KYC from "@/components/kyc/KYC";
+
+import Link from "next/link";
 import axiosInstance from "@/utils/axios";
 
 const KYCPage = async () => {
@@ -84,6 +84,15 @@ const KYCPage = async () => {
       </div>
 
       {/* <KYC status={user?.kyc?.status} /> */}
+      {!user.kyc && (
+        <div className="w-full flex justify-center mt-12">
+          <Link href="/kyc">
+            <button className="bg-appviolet text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-[#597cf3]">
+              Complete KYC
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

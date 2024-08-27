@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
     domains: [
@@ -14,6 +15,7 @@ const nextConfig = {
   experimental: {
     serverActions: true,
     mdxRs: true,
+    optimizePackageImports: ["framer-motion"],
   },
   webpack: (config, { defaultLoaders }) => {
     config.module.rules.push({

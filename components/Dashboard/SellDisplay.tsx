@@ -41,11 +41,21 @@ const SellDisplay: React.FC<Props> = ({
   const pathname = paths[paths.length - 1];
 
   const sellHandler = async (amount: string) => {
-    const data = {
-      price: amount,
-      product_id: pid,
-      type: "sellorder",
-    };
+    let data;
+
+    if (canCustom == "true") {
+      data = {
+        price: amount,
+        product_id: pid,
+        type: "sellorder",
+      };
+    } else {
+      data = {
+        price: amount,
+        product_id: pid,
+        type: "sellorder",
+      };
+    }
     const config = {
       method: "POST",
       maxBodyLength: Infinity,
@@ -74,6 +84,7 @@ const SellDisplay: React.FC<Props> = ({
     const val = e.target.value;
     setAmount(val);
   };
+
   return (
     <>
       <div className="flex justify-between">

@@ -15,6 +15,7 @@ import PurchaseButton from "./PurchaseButton";
 import CancelButton from "./CancelButton";
 import ReportIcon from "@mui/icons-material/Report";
 import { toast } from "react-toastify";
+import MomoPaymentDialog from "../UI/Dialog/MomoPaymentDialog";
 
 interface Props {
   paymentMethods: any;
@@ -53,7 +54,7 @@ const ConfirmOrder: React.FC<Props> = ({
     payment_transaction_id,
   } = orderData;
 
-  // console.log("Order data: ", orderData);
+  console.log("Order data: ", orderData);
 
   // console.log(orderData);
 
@@ -61,6 +62,8 @@ const ConfirmOrder: React.FC<Props> = ({
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
 
   const [makePayment, setMakePayment] = useState(false);
+  const [openMomoDialog, setOpenMomoDialog] = useState(false);
+  const [paystackLink, setPaystackLink] = useState("");
 
   const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState("");
@@ -104,6 +107,7 @@ const ConfirmOrder: React.FC<Props> = ({
       setLoading(false);
     } finally {
       setLoading(false);
+      setMakePayment(false);
     }
   };
 
@@ -124,7 +128,9 @@ const ConfirmOrder: React.FC<Props> = ({
 
       // console.log(response.data);
       if (response.data.status) {
-        window.open(`${response.data.data.authorization_url}`, "_blank");
+        setPaystackLink(response.data.data.authorization_url);
+        // window.open(`${response.data.data.authorization_url}`, "_blank");
+        setOpenMomoDialog(true);
       }
     } catch (error: any) {
       toast.error("Payment issue, please try again later");
@@ -134,9 +140,40 @@ const ConfirmOrder: React.FC<Props> = ({
     }
   };
 
-  const sendPayment = (id: number, loadingFunc: any, type: string) => {
-    if (type == "Momo") {
-      makeMomoPayment(id, loadingFunc);
+  const makeUSDTPayment = async (id: number, loadingFunc: any) => {
+    let config = {
+      method: "POST",
+      maxBodyLength: Infinity,
+      url: `/api/usdt-payment/`,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      data: { id },
+    };
+    try {
+      loadingFunc(true);
+      const response = await axios(config);
+
+      if (response.status == 200) {
+        console.log(response.data);
+        return response.data;
+      }
+    } catch (error: any) {
+      toast.error("Payment issue, please try again later");
+      console.log(error);
+    } finally {
+      loadingFunc(false);
+    }
+  };
+
+  const sendPayment = async (id: number, loadingFunc: any, type: string) => {
+    // if (type.toLowerCase() == "momo") {
+    //   makeMomoPayment(id, loadingFunc);
+    // }
+    if (type.toLowerCase() == "usdt") {
+      const res = await makeUSDTPayment(id, loadingFunc);
+      return res;
     }
   };
 
@@ -282,7 +319,7 @@ const ConfirmOrder: React.FC<Props> = ({
             </h4>
             <p className="mt-10">
               <span className="mr-2 text-orange-600">
-                {/* <ReportIcon /> */}
+                <ReportIcon />
               </span>{" "}
               Kindly note that when sending payments for transactions, it&#x27;s
               essential to use your registered account username as the payment
@@ -311,6 +348,7 @@ const ConfirmOrder: React.FC<Props> = ({
               {loading ? null : (
                 <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
                   {makePayment &&
+                    is_paid === "0" &&
                     filteredPaymentMethods.map((method: any) => (
                       <Payment
                         method={method}
@@ -404,31 +442,63 @@ const ConfirmOrder: React.FC<Props> = ({
         title="Order Instructions"
         buttonText="Close"
       >
-        <ol className="text-xs lg:text-sm list-decimal pl-2 space-y-4 text-gray-700">
-          <li>
-            Remember every trade that occurs on our platform attracts a fee of
-            1% on every amount. All trades less than $100 will attract a $1 fee
-            on it.
-          </li>
-          <li>
-            The card or the code of your order will be uploaded in the chat
-            section of this trade. Make sure to use the card within the
-            timeframe provided for you.
-          </li>
-          <li>
-            You can always CONFIRM with us in the chat always when Buying or
-            Selling A Gift Card incase you want clearance or have to make
-            enquiries before making payment to us.
-          </li>
-          <li>
-            Calculating the Ghana Cedis equivalent for payment through Mobile
-            Money is as follows, applicable to Local Users in Ghana only:
-            Multiply the Rate by the Amount to Pay. For instance, when
-            purchasing a &quot;$100 iTunes gift card&quot; with an amount due of
-            $72, the computation would be &quot;72 x 11.5 = GHC 828 + Fees
-            ($1)&quot;, resulting in a total of GHC 839.
-          </li>
-        </ol>
+        {/* {instructions.map((instruction: any) => (
+          <p key={instruction.id} className="text-sm lg:text-base">
+            {instruction.body}
+          </p>
+        ))} */}
+        {category === "Card" && (
+          <ol className="text-xs lg:text-sm list-decimal pl-2 space-y-4 text-gray-700">
+            <>
+              {" "}
+              <li>
+                Remember every trade that occurs on our platform attracts a fee
+                of 1% on every amount. All trades less than $100 will attract a
+                $1 fee on it.
+              </li>
+              <li>
+                The card or the code of your order will be uploaded in the chat
+                section of this trade. Make sure to use the card within the
+                timeframe provided for you.
+              </li>
+              <li>
+                You can always CONFIRM with us in the chat always when Buying or
+                Selling A Gift Card incase you want clearance or have to make
+                enquiries before making payment to us.
+              </li>
+              <li>
+                Calculating the Ghana Cedis equivalent for payment through
+                Mobile Money is as follows, applicable to Local Users in Ghana
+                only: Multiply the Rate by the Amount to Pay. For instance, when
+                purchasing a &quot;$100 iTunes gift card&quot; with an amount
+                due of $72, the computation would be &quot;72 x 11.5 = GHC 828 +
+                Fees ($1)&quot;, resulting in a total of GHC 839.
+              </li>
+            </>
+          </ol>
+        )}
+        {category === "Bundle" && (
+          <p>
+            Delivery Time: Normally, you&apos;ll receive your bundle within 15
+            minutes to 30mins max. However, sometimes the server may delay, and
+            it could take up to 1-4 hours. Don&apos;t panic; you will receive
+            your bundle. <br />
+            Note: Text the number you wish to receive the bundle to the Admin.
+            Order will be completed by Admin once bundle is served.
+          </p>
+        )}
+        {category === "Bank" && (
+          <p>
+            Delivery Time: Normally, you&apos;ll receive your Bank Deposit
+            within 10minutes to An hour. <br />
+            However, sometimes with order surge may takes sometime for us to
+            process it for you.
+            <br /> Don&apos;t panic; you will receive your Bank Deposit ASAP.
+            <br /> Note: Paste your Account Number, Name you&apos;re depositing
+            with and Branch of the Bank.
+            <br /> Order will be Completed ✅ by Admin once bundle is served.
+          </p>
+        )}
       </DisplayDialog>
       <CancelOrderDialog
         cancelHandler={() => {
@@ -440,6 +510,14 @@ const ConfirmOrder: React.FC<Props> = ({
         }}
         open={openCancelDialog}
       />
+
+      {openMomoDialog && (
+        <MomoPaymentDialog
+          open={openMomoDialog}
+          handleClose={() => setOpenMomoDialog(false)}
+          momoPaymentLink={paystackLink}
+        />
+      )}
     </>
   );
 };

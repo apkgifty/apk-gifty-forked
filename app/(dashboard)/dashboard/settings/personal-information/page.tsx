@@ -9,9 +9,11 @@ import KycIconSvg from "@/components/UI/SvgIcons/KycIconSvg";
 import MailIconSvg from "@/components/UI/SvgIcons/MailIconSvg";
 import MapIconSvg from "@/components/UI/SvgIcons/MapIconSvg";
 import PhoneSvg from "@/components/UI/SvgIcons/PhoneSvg";
+import DeleteAccount from "@/components/UI/Dialog/DeleteAccount";
 
 // import axiosInstance from "@/utils/axios";
 import axios from "axios";
+import DeleteDialog from "@/components/UI/Dialog/DeleteAccount";
 
 interface Props {}
 
@@ -167,6 +169,7 @@ const PersonalInformationPage: React.FC<Props> = async () => {
           </button>
         </div>
       </div>
+      <DeleteAccount />
     </div>
   );
 };

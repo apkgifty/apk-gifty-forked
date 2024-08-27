@@ -8,6 +8,8 @@ import Navbar from "@/components/Nav/Navbar";
 import PageFooter from "@/components/Main/Footer/PageFooter";
 import MainMobileSide from "@/components/Mobile/MainMobileSide";
 import GoogleAnalytics from "@/components/Analytics/GoogleAnalytics";
+import Adbar from "@/components/Nav/Adbar";
+import RatesBar from "@/components/Nav/RatesBar";
 
 export const metadata = {
   title: "APK Exchange",
@@ -28,6 +30,7 @@ export default function RootLayout({
             <Navbar />
             <div className="w-full">{children}</div>
             {/* <div className="hidden lg:block"> */}
+            <Adbar />
             <PageFooter />
           </div>
           {/* </div> */}

@@ -42,5 +42,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/kyc", "/dashboard/:path*"],
+  matcher: ["/kyc/:path*", "/dashboard/:path*"],
 };

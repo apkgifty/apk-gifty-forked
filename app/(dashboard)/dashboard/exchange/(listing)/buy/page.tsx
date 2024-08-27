@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 
 import Product from "@/components/Product/Product";
 import NoProducts from "@/components/Product/NoProducts";
-
 // const products = [
 //   {
 //     title: "Amazon Gift Card",

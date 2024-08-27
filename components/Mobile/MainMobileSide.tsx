@@ -36,6 +36,11 @@ const links = [
     icon: <ExchangeSvg />,
   },
   {
+    title: "Sell GiftCards",
+    url: "/dashboard/exchange/sell",
+    icon: <ExchangeSvg />,
+  },
+  {
     title: "FAQs",
     url: "/faqs",
     icon: <HelpIcon className="text-white" />,

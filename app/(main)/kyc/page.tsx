@@ -34,10 +34,13 @@ const KycVerificationPage = () => {
           </p>
         </Link>
         <p className="text-xs lg:text-sm text-center">
-          When uploading KYC document, ensure each detail is crystal clear. Opt
-          for well-lit, high-resolution images or scans to guarantee smooth
-          verification. Additionally, makes sure all four corners on the card
-          are visible in the image.
+          When uploading KYC documents, you can provide any of the following:
+          National Identity Card, Passport, or Driver&apos;s License.Ensure each
+          detail is crystal clear. Opt for well-lit, high-resolution images or
+          scans to guarantee smooth verification. Additionally, make sure all
+          four corners of the card are visible in the image. Note:+For West
+          Africa Users kindly+ use only Ecowas Identity Card for KYC
+          verifications
         </p>
       </div>
     </div>

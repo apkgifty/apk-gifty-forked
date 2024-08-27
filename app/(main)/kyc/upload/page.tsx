@@ -109,8 +109,8 @@ const KycUpload = () => {
         <div className="mb-4">
           <SwitchStatic
             items={[
-              { label: "Ghana Card", url: "id", slug: "ghana-card" },
-              { label: "Voters ID", url: "voters", slug: "voters" },
+              { label: "National ID", url: "id", slug: "national-card" },
+              { label: "Passport", url: "passport", slug: "passport" },
               {
                 label: "Driver's License",
                 url: "driver-license",
@@ -132,9 +132,9 @@ const KycUpload = () => {
         ))}
         {kycStatus && (
           <div className="py-8">
-            <Link href="/dashboard/exchange/buy">
-              <button className="bg-orange-500 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg">
-                Complete KYC
+            <Link href="/kyc/upload/selfie">
+              <button className="bg-orange-500 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-orange-700">
+                Continue
               </button>
             </Link>
           </div>

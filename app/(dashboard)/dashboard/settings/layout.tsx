@@ -28,7 +28,7 @@ const layout: React.FC<Props> = ({ children }) => {
           title="Personal Information"
           subtitle="Profile Settings"
           icon={<UserIconSvg />}
-          isSelected
+          // isSelected
           link="/dashboard/settings/personal-information"
         />
         {/* <SettingsMenuItem
@@ -65,7 +65,7 @@ const layout: React.FC<Props> = ({ children }) => {
           title="KYC Verification"
           subtitle="Authenticate your identity"
           icon={<KycIconSvg />}
-          isSelected={false}
+          // isSelected={false}
           link="/dashboard/settings/kyc"
         />
       </div>
