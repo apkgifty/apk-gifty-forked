@@ -442,6 +442,11 @@ const ConfirmOrder: React.FC<Props> = ({
         title="Order Instructions"
         buttonText="Close"
       >
+        {/* {instructions.map((instruction: any) => (
+          <p key={instruction.id} className="text-sm lg:text-base">
+            {instruction.body}
+          </p>
+        ))} */}
         {category === "Card" && (
           <ol className="text-xs lg:text-sm list-decimal pl-2 space-y-4 text-gray-700">
             <>
