@@ -66,7 +66,7 @@ const SelfieCapturePage = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center px-8 mt-5">
       {!loading && !uploaded ? (
         <div className="w-full flex flex-col items-center justify-center">
           {cameraGranted ? (
