@@ -51,6 +51,7 @@ const ConfirmOrder: React.FC<Props> = ({
     category,
     type,
     is_paid,
+    product,
     payment_transaction_id,
   } = orderData;
 
@@ -297,16 +298,21 @@ const ConfirmOrder: React.FC<Props> = ({
             </p>
             <p className="text-xs lg:text-base text-gray-400">
               Fees
-              <span className="text-white">:- ${fees}</span>
+              <span className="text-white">
+                :- {product.currency.symbol + fees}
+              </span>
             </p>
             <p className="text-xs lg:text-base text-gray-400">
-              Amount To Pay <span className="text-white">:- ${price}</span>
+              Amount To Pay{" "}
+              <span className="text-white">
+                :- {product.currency.symbol + price}
+              </span>
             </p>
 
             <p className="text-xs lg:text-base text-gray-400">
               Rate{" "}
               <span className=" font-semi-bold text-orange-400">
-                :- 1$ / GHC {rate}
+                :- {product.currency.symbol}1 / GHC {rate}
               </span>
             </p>
           </div>
@@ -442,12 +448,14 @@ const ConfirmOrder: React.FC<Props> = ({
         title="Order Instructions"
         buttonText="Close"
       >
-        {/* {instructions.map((instruction: any) => (
-          <p key={instruction.id} className="text-sm lg:text-base">
-            {instruction.body}
-          </p>
-        ))} */}
-        {category === "Card" && (
+        <div className="space-y-8">
+          {product.instructions.map((instruction: any) => (
+            <p key={instruction.id} className="text-sm lg:text-base">
+              {instruction.body}
+            </p>
+          ))}
+        </div>
+        {/* {category === "Card" && (
           <ol className="text-xs lg:text-sm list-decimal pl-2 space-y-4 text-gray-700">
             <>
               {" "}
@@ -498,7 +506,7 @@ const ConfirmOrder: React.FC<Props> = ({
             with and Branch of the Bank.
             <br /> Order will be Completed ✅ by Admin once bundle is served.
           </p>
-        )}
+        )} */}
       </DisplayDialog>
       <CancelOrderDialog
         cancelHandler={() => {
