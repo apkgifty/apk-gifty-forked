@@ -55,9 +55,8 @@ const ConfirmOrder: React.FC<Props> = ({
     payment_transaction_id,
   } = orderData;
 
-  console.log("Order data: ", orderData);
-
   // console.log(orderData);
+  console.log(product.currency);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
@@ -448,7 +447,7 @@ const ConfirmOrder: React.FC<Props> = ({
         title="Order Instructions"
         buttonText="Close"
       >
-        <div className="space-y-8">
+        <div className="space-y-6">
           {product.instructions.map((instruction: any) => (
             <p key={instruction.id} className="text-sm lg:text-base">
               {instruction.body}
