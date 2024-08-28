@@ -56,7 +56,6 @@ const ConfirmOrder: React.FC<Props> = ({
   } = orderData;
 
   // console.log(orderData);
-  console.log(product.currency);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
@@ -298,20 +297,20 @@ const ConfirmOrder: React.FC<Props> = ({
             <p className="text-xs lg:text-base text-gray-400">
               Fees
               <span className="text-white">
-                :- {product.currency.symbol + fees}
+                {/* :- {product.currency.symbol + fees} */}
               </span>
             </p>
             <p className="text-xs lg:text-base text-gray-400">
               Amount To Pay{" "}
               <span className="text-white">
-                :- {product.currency.symbol + price}
+                {/* :- {product.currency.symbol + price} */}
               </span>
             </p>
 
             <p className="text-xs lg:text-base text-gray-400">
               Rate{" "}
               <span className=" font-semi-bold text-orange-400">
-                :- {product.currency.symbol}1 / GHC {rate}
+                {/* :- {product.currency.symbol}1 / GHC {rate} */}
               </span>
             </p>
           </div>
