@@ -55,7 +55,7 @@ const ConfirmOrder: React.FC<Props> = ({
     payment_transaction_id,
   } = orderData;
 
-  // console.log(orderData);
+  console.log("ispaid", is_paid);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
