@@ -7,7 +7,7 @@ const HowToPage = () => {
     <div className="">
       <AppLayout>
         <div className="w-full pb-32 bg-secondary h-full">
-          <div className="w-full h-[260px] relative">
+          <div className="w-full h-[160px] lg:h-[260px] relative">
             <Image
               src={"/images/howto.png"}
               fill
