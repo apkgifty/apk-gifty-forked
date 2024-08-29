@@ -1,6 +1,7 @@
 import AppLayout from "@/components/Layout/AppLayout";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const HowToPage = () => {
   return (
@@ -68,9 +69,11 @@ const HowToPage = () => {
               />
             </div>
             <div className="inline-block px-1 py-2  bg-white rounded-lg ml-6 mt-12 cursor-pointer">
-              <p className="text-sm text-blue-400  font-semibold">
-                Frequently Asked Questions
-              </p>
+              <Link href="/faq">
+                <p className="text-sm text-blue-400  font-semibold">
+                  Frequently Asked Questions
+                </p>
+              </Link>
             </div>
           </div>
         </div>

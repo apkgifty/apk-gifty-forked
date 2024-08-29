@@ -6,6 +6,7 @@ import NotificationSvg from "@/components/UI/SvgIcons/NotificationSvg";
 import PaymentIconSvg from "@/components/UI/SvgIcons/PaymentIconSvg";
 import SecurityIconSvg from "@/components/UI/SvgIcons/SecurityIconSvg";
 import UserIconSvg from "@/components/UI/SvgIcons/UserIconSvg";
+import IdeaSvg from "@/components/UI/SvgIcons/IdeaSvg";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -67,6 +68,14 @@ const layout: React.FC<Props> = ({ children }) => {
           icon={<KycIconSvg />}
           // isSelected={false}
           link="/dashboard/settings/kyc"
+        />
+
+        <SettingsMenuItem
+          title="Tutorials"
+          subtitle="How to Trade on ApkXchange"
+          icon={<IdeaSvg />}
+          // isSelected={false}
+          link="/dashboard/settings/tutorials"
         />
       </div>
       <div className="px-8  pt-10 w-full lg:w-[65%]"> {children}</div>
