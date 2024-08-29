@@ -38,8 +38,8 @@ const HowToPage = () => {
                 your Dashboard.
               </li>
               <li>
-                Tap the share button at the bottom and choose "Add to Home
-                Screen".
+                Tap the share button at the bottom and choose &quot;Add to Home
+                Screen&quot;.
               </li>
               <li>
                 Tap Add to confirm. The ApkXchange icon will now be on your Home
