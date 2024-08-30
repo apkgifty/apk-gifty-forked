@@ -85,7 +85,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const adminOnline = rate.data[0]?.admin_online;
 
   const currentHour = new Date().getUTCHours();
-  const startHour = 13; // 6am
+  const startHour = 6; // 6am
   const endHour = 19; // 7pm
 
   if (
