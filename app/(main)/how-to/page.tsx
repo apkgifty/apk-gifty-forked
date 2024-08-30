@@ -50,11 +50,12 @@ const HowToPage = () => {
 
             <div className="flex flex-col items-center space-y-6 lg:space-y-0 lg:flex-row mt-12">
               <Image
-                src={"/images/phone1.webp"}
+                src={"/images/phone3.webp"}
                 alt="how to get started"
                 width={256}
                 height={256}
               />
+
               <Image
                 src={"/images/phone2.webp"}
                 alt="how to get started"
@@ -62,7 +63,7 @@ const HowToPage = () => {
                 height={256}
               />
               <Image
-                src={"/images/phone3.webp"}
+                src={"/images/phone1.webp"}
                 alt="how to get started"
                 width={256}
                 height={256}
