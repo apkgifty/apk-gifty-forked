@@ -24,7 +24,7 @@ const DownloadApp: React.FC = () => {
           />
         </motion.div>
       </Link>
-      <Link href="https://play.google.com/store/apps/details?id=com.support.apk_xchange&hl=en">
+      <Link href="/how-to">
         <motion.div
           className="p-2 bg-secondary cursor-pointer rounded-lg"
           initial={{ opacity: 0 }}
