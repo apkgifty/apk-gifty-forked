@@ -8,7 +8,7 @@ import Link from "next/link";
 const DownloadApp: React.FC = () => {
   return (
     <div className="flex space-x-3">
-      <Link href="#">
+      <Link href="/how-to">
         <motion.div
           className="p-2 bg-secondary cursor-pointer rounded-lg"
           initial={{ opacity: 0 }}
@@ -24,7 +24,7 @@ const DownloadApp: React.FC = () => {
           />
         </motion.div>
       </Link>
-      <Link href="/how-to">
+      <Link href="https://play.google.com/store/apps/details?id=com.support.apk_xchange&hl=en">
         <motion.div
           className="p-2 bg-secondary cursor-pointer rounded-lg"
           initial={{ opacity: 0 }}
