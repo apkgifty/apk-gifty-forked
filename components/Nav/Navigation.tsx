@@ -58,7 +58,7 @@ const Navigation: React.FC<Props> = ({ isLoggedIn }) => {
           ))}
         </div>
       </div>
-      <div className="hidden lg:flex lg:gap-x-3">
+      <div className="lg:flex ml-24 lg:ml-0 lg:gap-x-3">
         {!isLoggedIn && (
           <div className="space-x-1">
             <Link href={"/login"}>
@@ -66,7 +66,7 @@ const Navigation: React.FC<Props> = ({ isLoggedIn }) => {
                 Login
               </button>
             </Link>
-            <Link href={"/signup"}>
+            <Link href={"/signup"} className="hidden lg:inline-block">
               <button className="bg-appviolet px-3 py-2 text-sm font-medium rounded-lg">
                 Signup
               </button>

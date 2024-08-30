@@ -6,7 +6,7 @@ const LanguageSelect = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative hidden lg:block">
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
