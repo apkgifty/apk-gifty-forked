@@ -50,7 +50,7 @@ const MobileSettingsMenuSlider: React.FC<Props> = ({ menuItems }) => {
           </SplideSlide>
         ))} */}
       <SplideSlide>
-        <div className="text-white">
+        <div className="text-white px-4">
           <SettingsMenuItem
             title="Personal Information"
             subtitle="Profile Settings"
