@@ -65,6 +65,14 @@ const TutorialsPage = () => {
             </p>
           </div>
         </Link>
+
+        <div className="inline-block px-1 py-2  bg-white rounded-lg ml-6 mt-12 cursor-pointer">
+          <Link href="/faqs">
+            <p className="text-sm text-blue-400  font-semibold">
+              Frequently Asked Questions
+            </p>
+          </Link>
+        </div>
       </div>
     </div>
   );
