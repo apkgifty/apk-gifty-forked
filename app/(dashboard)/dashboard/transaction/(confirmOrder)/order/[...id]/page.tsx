@@ -84,6 +84,23 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
 
   const adminOnline = rate.data[0]?.admin_online;
 
+  const currentHour = new Date().getUTCHours();
+  const startHour = 1; // 6am
+  const endHour = 19; // 7pm
+
+  if (
+    updatedOrderData.category === "Bundle" &&
+    (currentHour < startHour || currentHour > endHour)
+  ) {
+    return (
+      <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
+        <p className="text-center text-xl lg:text-2xl text-appviolet font-semibold">
+          We are Closed Come Back In the Morning
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
       {adminOnline === "1" && (
