@@ -42,7 +42,7 @@ const links = [
   },
   {
     title: "FAQs",
-    url: "/faqs",
+    url: "/faq",
     icon: <HelpIcon className="text-white" />,
   },
   // { title: "News", url: "#", icon: <NewsSvg /> },
