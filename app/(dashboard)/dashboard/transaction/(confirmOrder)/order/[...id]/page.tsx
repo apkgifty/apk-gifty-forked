@@ -89,8 +89,9 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const endHour = 19; // 7pm
 
   if (
-    updatedOrderData.category === "Bundle" &&
-    (currentHour < startHour || currentHour >= endHour)
+    updatedOrderData.category === "Bundle" ||
+    (updatedOrderData.category === "Bank" &&
+      (currentHour < startHour || currentHour >= endHour))
   ) {
     return (
       <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row items-center justify-center lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
