@@ -93,7 +93,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
     (currentHour < startHour || currentHour > endHour)
   ) {
     return (
-      <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row items-centerjustify-center lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
+      <div className="w-full bg-secondary px-4 flex flex-col  text-white pb-32 lg:flex-row items-center justify-center lg:px-0 lg:h-screen lg:pb-0 lg:overflow-hidden">
         <p className="text-center text-xl lg:text-2xl text-appviolet font-semibold">
           We are Closed Now. Please Check Back at 6AM.
         </p>
