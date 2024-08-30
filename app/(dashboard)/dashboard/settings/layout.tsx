@@ -9,6 +9,7 @@ import UserIconSvg from "@/components/UI/SvgIcons/UserIconSvg";
 import IdeaSvg from "@/components/UI/SvgIcons/IdeaSvg";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import MobileSettingsMenuSlider from "@/components/Mobile/MobileSettingsMenuSlider";
 
 interface Props {
   children: React.ReactNode;
@@ -24,6 +25,9 @@ const layout: React.FC<Props> = ({ children }) => {
 
   return (
     <div className="w-full flex flex-col lg:flex-row ">
+      <div className="lg:hidden">
+        <MobileSettingsMenuSlider menuItems={[2]} />
+      </div>
       <div className="hidden lg:flex flex-col w-full lg:w-[35%] text-white gap-y-8 px-8 pt-10">
         <SettingsMenuItem
           title="Personal Information"
