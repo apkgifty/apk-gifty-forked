@@ -43,7 +43,7 @@ const FilterSelectOutline: React.FC<Props> = ({
       pageType = "sell";
     }
     const newPath = fullPath.splice(0, fullPath.length - 1);
-    console.log(newPath.join("/") + "/" + pageType);
+    // console.log(newPath.join("/") + "/" + pageType);
     router.push(
       newPath.join("/") + "/" + pageType + "?currency=" + selectedOption
     );

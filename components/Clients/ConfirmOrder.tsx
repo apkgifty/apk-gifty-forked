@@ -55,8 +55,6 @@ const ConfirmOrder: React.FC<Props> = ({
     payment_transaction_id,
   } = orderData;
 
-  console.log("ispaid", is_paid);
-
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
 
@@ -155,7 +153,7 @@ const ConfirmOrder: React.FC<Props> = ({
       const response = await axios(config);
 
       if (response.status == 200) {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
       }
     } catch (error: any) {

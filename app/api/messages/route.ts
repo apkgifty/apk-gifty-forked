@@ -13,7 +13,7 @@ export async function GET(req: Request, res: Response) {
   };
   try {
     const response = await axiosInstance(config);
-    console.log(response.data);
+    // console.log(response.data);
     return NextResponse.json(response.data);
   } catch (error) {
     console.log(error);

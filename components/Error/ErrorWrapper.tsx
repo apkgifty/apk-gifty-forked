@@ -12,7 +12,7 @@ const ErrorWrapper = ({ children }: { children: React.ReactNode }) => {
     };
     const handleOffline = () => {
       setIsOnline(false);
-      console.log("offline");
+      // console.log("offline");
     };
 
     window.addEventListener("online", handleOnline);

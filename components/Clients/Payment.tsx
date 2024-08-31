@@ -22,7 +22,7 @@ const makeUSDTPayment = async (id: number, loadingFunc: any) => {
     const response = await axios(config);
 
     if (response.status == 200) {
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     }
   } catch (error: any) {
@@ -65,7 +65,7 @@ const Payment = ({
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/crypto/status/${id}`
         );
-        console.log("check status", response.data);
+        // console.log("check status", response.data);
         if (response.data.payment_status === "waiting") {
           return alert(
             "Payment still in progress. Please wait for confirmation..."
@@ -86,7 +86,7 @@ const Payment = ({
     if (paymentInitiated && method.channel.toLowerCase() === "usdt") {
       (async () => {
         const paymentDets = await makeUSDTPayment(id, setShowUsdtDialog);
-        console.log(paymentDets);
+        // console.log(paymentDets);
 
         setUsdtPaymentDetails(paymentDets);
       })();
