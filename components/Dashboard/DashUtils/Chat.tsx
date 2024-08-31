@@ -147,6 +147,8 @@ const Chat = ({
   const handleReply = async (e: any) => {
     e.preventDefault();
     const message = !fileToSend ? fileToSend : messageToSend;
+    const userTextMessage = messageToSend;
+    setMessageToSend("");
     let html: any;
 
     if (!fileToSend) {
@@ -166,7 +168,7 @@ const Chat = ({
     const formData = new FormData();
 
     formData.append("sender", userInfo.firstname);
-    formData.append("message", messageToSend);
+    formData.append("message", userTextMessage);
     formData.append("file", fileToSend);
     formData.append("id", "1");
     // console.log(formData);
@@ -182,7 +184,7 @@ const Chat = ({
       ]);
 
       // if (messageToSend === "") return;
-      setMessageToSend("");
+      // setMessageToSend("");
       setFileToSend(null);
       setbase64Image(null);
     } catch (error) {
