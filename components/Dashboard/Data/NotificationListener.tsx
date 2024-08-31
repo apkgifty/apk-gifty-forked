@@ -88,7 +88,7 @@ const NotificationListener = ({ token }: { token: string }) => {
   };
 
   //   console.log(currentNotification?.message);
-  console.log(notifications);
+  //console.log(notifications);
 
   return (
     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>

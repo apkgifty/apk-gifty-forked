@@ -14,7 +14,7 @@ export async function GET(req: Request, res: Response) {
   refererArr?.splice(0, 3);
 
   const verifyPath = refererArr?.join("/");
-  console.log(verifyPath);
+  //console.log(verifyPath);
   // console.log(verifyPath);
 
   //   let data = JSON.stringify({

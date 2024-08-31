@@ -69,7 +69,7 @@ const HeaderActionCard = ({
     if (sortedArray.length > 0 && selectedCurrency === null) {
       setSelectedCurrency(sortedArray[0]);
     }
-    console.log(selectedCurrency);
+    // console.log(selectedCurrency);
   }, [sortedArray]);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const HeaderActionCard = ({
       Number(paymentAmount) * Number(selectedCurrency?.rate)
     ).toFixed(2);
 
-    console.log(selectedCurrency);
+    // console.log(selectedCurrency);
     setTotalAmount(total.toString());
   }, [paymentAmount, selectedCurrency]);
 

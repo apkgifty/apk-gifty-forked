@@ -19,7 +19,7 @@ const cluster = process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER!;
 const getOldMessages = async (id: string, token: string) => {
   try {
     const response = await axios.get(
-      `${process.env.API_ENDPOINT}/history/order/${id}`,
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/history/order/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     return response.data.messages;

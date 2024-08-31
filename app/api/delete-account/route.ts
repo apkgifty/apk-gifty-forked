@@ -15,7 +15,7 @@ export async function DELETE(req: Request, res: Response) {
 
   try {
     const response = await axiosInstance(config);
-    console.log(response);
+    //console.log(response);
     return NextResponse.json(response.data);
   } catch (error: any) {
     return new Response(JSON.stringify(error.response.data), {

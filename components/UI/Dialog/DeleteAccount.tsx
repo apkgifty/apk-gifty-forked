@@ -28,7 +28,7 @@ const DeleteAccount = () => {
     try {
       setLoading(true);
       const res = await axios.delete(`/api/delete-account`, {});
-      console.log(res.data);
+      // console.log(res.data);
       removeCookie("access", { path: "/" });
       localStorage.removeItem("userInfo");
 

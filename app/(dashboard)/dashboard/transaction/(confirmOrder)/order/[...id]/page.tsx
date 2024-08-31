@@ -88,10 +88,6 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
   const startHour = 6; // 6am
   const endHour = 19; // 7pm
 
-  console.log("currentHour", currentHour);
-  console.log("starthour", startHour);
-  console.log("endhour", endHour);
-
   if (
     (updatedOrderData.category === "Bundle" ||
       updatedOrderData.category === "Bank") &&

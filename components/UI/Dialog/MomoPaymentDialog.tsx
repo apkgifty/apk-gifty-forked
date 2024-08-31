@@ -97,9 +97,9 @@ const MomoPaymentDialog: React.FC<Props> = ({
           src={momoPaymentLink}
           ref={iframeRef}
           className="w-full h-[500px]"
-          onLoad={(event: any) =>
-            console.log(event?.current?.contentWindow?.location?.href)
-          }
+          // onLoad={(event: any) =>
+          //   console.log(event?.current?.contentWindow?.location?.href)
+          // }
         />
       </DialogContent>
       {/* <DialogActions sx={sx}>
