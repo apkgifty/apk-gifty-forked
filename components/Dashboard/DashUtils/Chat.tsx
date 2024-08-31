@@ -78,7 +78,7 @@ const Chat = ({
     const pusher = new Pusher("e597b63b0a16d6c4a2c6", {
       cluster: "mt1",
       channelAuthorization: {
-        endpoint: `${process.env.API_ENDPOINT}/chat/auth`,
+        endpoint: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/chat/auth`,
         transport: "ajax",
         headers: {
           Accept: "application/json",
@@ -86,7 +86,7 @@ const Chat = ({
         },
       },
       userAuthentication: {
-        endpoint: `${process.env.API_ENDPOINT}/chat/auth`,
+        endpoint: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/chat/auth`,
         transport: "ajax",
         headers: {
           Accept: "application/json",
