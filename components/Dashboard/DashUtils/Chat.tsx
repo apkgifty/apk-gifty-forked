@@ -150,7 +150,7 @@ const Chat = ({
     let html: any;
 
     if (!fileToSend) {
-      html = `<div class="px-4 py-2 bg-[#7995f5] rounded-xl">
+      html = `<div class="px-4 py-2 bg-[#7995f5] rounded-xl ">
       <p
         className="text-[14px]"
         
