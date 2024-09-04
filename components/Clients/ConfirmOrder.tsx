@@ -359,6 +359,7 @@ const ConfirmOrder: React.FC<Props> = ({
                         makePayment={sendPayment}
                         loadingFunc={setLoading}
                         notifySeller={notifySellerHandlerNoTimer}
+                        orderData={orderData}
                       />
                     ))}
                 </ul>
