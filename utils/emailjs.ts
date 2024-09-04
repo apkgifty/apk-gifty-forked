@@ -28,7 +28,7 @@ const sendAdminEmail = (orderDetails: any) => {
       templateParams
     )
     .then((response: any) => {
-      console.log("SUCCESS!", response.status, response.text);
+      //   console.log("SUCCESS!", response.status, response.text);
     }),
     (error: any) => {
       console.log("FAILED...", error);
