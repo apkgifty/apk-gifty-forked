@@ -86,7 +86,7 @@ const ConfirmOrderPage = async ({ searchParams }: { searchParams: any }) => {
 
   const currentHour = new Date().getUTCHours();
   const startHour = 6; // 6am
-  const endHour = 20; // 7pm
+  const endHour = 20; // 8pm
 
   if (
     (updatedOrderData.category === "Bundle" ||

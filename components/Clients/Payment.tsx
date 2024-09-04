@@ -5,6 +5,8 @@ import Image from "next/image";
 import axios from "axios";
 import DisplayDialog from "../UI/Dialog/Dialog";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { sendAdminEmail } from "@/utils/emailjs";
+import { order } from "@/redux/features/orderSlice";
 
 const makeUSDTPayment = async (id: number, loadingFunc: any) => {
   let config = {
@@ -37,12 +39,14 @@ const Payment = ({
   id,
   loadingFunc,
   notifySeller,
+  orderData,
 }: {
   method: any;
   makePayment?: any;
   id: number;
   loadingFunc?: any;
   notifySeller?: any;
+  orderData: any;
 }) => {
   const [open, setOpen] = useState(false);
   const [paymentInitiated, setPaymentInitiated] = useState(false);
@@ -73,10 +77,13 @@ const Payment = ({
         } else {
           notifySeller();
           setOpen(false);
+          sendAdminEmail(orderData);
+          return;
         }
       }
       notifySeller();
       setOpen(false);
+      sendAdminEmail(orderData);
     } catch (error) {
       console.log(error);
     }
