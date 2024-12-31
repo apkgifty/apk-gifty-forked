@@ -51,7 +51,7 @@ const EndedOrder: React.FC<Props> = ({ orderData }) => {
             className=" text-sm lg:text-base cursor-pointer text-red-400"
             onClick={() => setOpenDialog(true)}
           >
-            Read order info
+            Must Read Instructions
           </p>
         </div>
         <div className="flex gap-x-6">

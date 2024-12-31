@@ -279,7 +279,7 @@ const ConfirmOrder: React.FC<Props> = ({
             className=" text-sm lg:text-base cursor-pointer text-red-400"
             onClick={() => setOpenDialog(true)}
           >
-            Read order info
+            Must Read Instructions
           </p>
         </div>
         {category === "Card" && (
