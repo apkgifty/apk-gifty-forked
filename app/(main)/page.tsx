@@ -151,6 +151,17 @@ Nigerian banks swiftly with us."
                 </div>
               </div>
             </div>
+            <div className="w-full flex flex-col items-center justify-center mt-16  py-3 px-8 lg:px-0 space-y-2">
+              <p>Rate Us:</p>
+              <div className="bg-white">
+                <Image
+                  src="https://s3-alpha-sig.figma.com/img/87c5/33a0/9d1ebe4cb3185a3b4caa6ed49a600f25?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=LxFKquKiMd4KzQh8rEf-ZUAeJcNhorHDcR83PYq67MZaEkARSgUPBWZgqb0NGV-eC~eEEpNncYzOvx4ciMIo4t1Ny9itekYKiyFYH2ZLPLeRcZNj5xo5Wz3Cht6z2VQn-L0uY96yY6~3Cmc2Iam1cFPlTufNEdxvPw7HyDOH-JtkzKOVkUfX6Q4vOKGxQ~q9KLBrsMTDmTzeZMxfkr-Xe0AzXaNlc9cUwWc83V5gtBiCoChm90~H706Yz6B78fEJctAQ3OFyjW2L12R95IkqDVoxRq-o77A~78oksfzaZNBzfpTTT5YmMmb~GNE5ojyEwkTXDTaWHViU-oxaj5aWPQ__"
+                  width={120}
+                  height={120}
+                  alt="trust pilot"
+                />
+              </div>{" "}
+            </div>
           </AppLayout>
         </div>
       </div>
