@@ -87,7 +87,23 @@ const Topbar = () => {
         {/* <Iconcard icon={<WalletSvg />} animate /> */}
         {/* <Iconcard icon={<SettingsSvg />} animate /> */}
         {/* <Iconcard icon={<NotificationSvg />} badgeData="8" animate /> */}
-        <div className="lg:hidden">
+        <div className="lg:hidden flex items-center gap-x-4">
+          {/* <Link
+            href="/account"
+            className="p-1.5 rounded-full hover:bg-gray-800"
+          >
+            <User className="h-5 w-5" />
+          </Link> */}
+          <Link
+            href="/notifications"
+            className="p-1.5 rounded-full hover:bg-gray-800 relative"
+          >
+            <Bell className="h-5 w-5" />
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+              1
+            </span>
+          </Link>
+          <CartCountIcon />
           <MenuButton
             handleClick={() => dispatch(dashboardPageNavHandler(true))}
           />
