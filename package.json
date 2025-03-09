@@ -33,6 +33,7 @@
     "eslint-config-next": "13.4.8",
     "framer-motion": "^10.12.18",
     "lottie-react": "^2.4.0",
+    "lucide-react": "^0.479.0",
     "next": "13.4.8",
     "postcss": "8.4.24",
     "pusher": "^5.1.3",

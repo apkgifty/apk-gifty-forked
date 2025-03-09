@@ -6,11 +6,13 @@ import { useAppDispatch } from "@/redux/hooks";
 import { dashboardPageNavHandler } from "@/redux/features/mobileNavSlice";
 
 import Iconcard from "@/components/Card/Iconcard";
+import { User, Bell, ShoppingCart } from "lucide-react";
 import LanguageSelect from "@/components/UI/LanguageSelect";
 import NotificationSvg from "@/components/UI/SvgIcons/NotificationSvg";
 import SettingsSvg from "@/components/UI/SvgIcons/SettingsSvg";
 import WalletSvg from "@/components/UI/SvgIcons/WalletSvg";
 import MenuButton from "@/components/UI/MenuButton";
+import CartCountIcon from "./CartCountIcon";
 
 const Topbar = () => {
   const [userInfo, setUserInfo] = useState<any>(null);
@@ -63,8 +65,24 @@ const Topbar = () => {
         </div>
       </div>
       <div className="flex gap-x-2">
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center gap-x-4">
           <LanguageSelect />
+          <Link
+            href="/account"
+            className="p-1.5 rounded-full hover:bg-gray-800"
+          >
+            <User className="h-5 w-5" />
+          </Link>
+          <Link
+            href="/notifications"
+            className="p-1.5 rounded-full hover:bg-gray-800 relative"
+          >
+            <Bell className="h-5 w-5" />
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+              1
+            </span>
+          </Link>
+          <CartCountIcon />
         </div>
         {/* <Iconcard icon={<WalletSvg />} animate /> */}
         {/* <Iconcard icon={<SettingsSvg />} animate /> */}
