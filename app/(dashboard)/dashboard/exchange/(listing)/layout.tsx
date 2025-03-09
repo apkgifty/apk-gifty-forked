@@ -66,10 +66,10 @@ const giftCards: string[] = [
 ];
 
 const layout: React.FC<Props> = ({ children }) => {
-  const router = useRouter();
-  const pathname = usePathname();
+  // const router = useRouter();
+  // const pathname = usePathname();
 
-  const isDeals = pathname.includes("deals");
+  // const isDeals = pathname.includes("deals");
 
   return (
     <>
@@ -102,25 +102,24 @@ const layout: React.FC<Props> = ({ children }) => {
           </div>
         </section>
         <div className="w-full lg:max-w-[1150px] m-auto">
-          {!isDeals && (
-            <div className="w-full text-white flex justify-center mt-4">
-              <Switch
-                items={[
-                  {
-                    label: "Buy Gift Cards",
-                    url: "buy?currency=USD",
-                    slug: "buy",
-                  },
-                  {
-                    label: "Sell Gift Cards",
-                    url: "sell?currency=USD",
-                    slug: "sell",
-                  },
-                ]}
-                backgroundColor="bg-secondary"
-              />
-            </div>
-          )}
+          <div className="w-full text-white flex justify-center mt-4">
+            <Switch
+              items={[
+                {
+                  label: "Buy Gift Cards",
+                  url: "buy?currency=USD",
+                  slug: "buy",
+                },
+                {
+                  label: "Sell Gift Cards",
+                  url: "sell?currency=USD",
+                  slug: "sell",
+                },
+              ]}
+              backgroundColor="bg-secondary"
+            />
+          </div>
+
           <div className="flex justify-center items-center gap-x-4 mt-3 py-6 border-b border-gray-700">
             {/* <span className="py-2 px-3 bg-secondary rounded-lg text-white text-xs hover:cursor-pointer">
             All Products
