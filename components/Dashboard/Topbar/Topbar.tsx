@@ -13,6 +13,8 @@ import SettingsSvg from "@/components/UI/SvgIcons/SettingsSvg";
 import WalletSvg from "@/components/UI/SvgIcons/WalletSvg";
 import MenuButton from "@/components/UI/MenuButton";
 import CartCountIcon from "./CartCountIcon";
+import NotificationsDropdown from "./NotificationsDropDown";
+import CartDropdown from "./CartDropDown";
 
 const Topbar = () => {
   const [userInfo, setUserInfo] = useState<any>(null);
@@ -73,7 +75,7 @@ const Topbar = () => {
           >
             <User className="h-5 w-5" />
           </Link>
-          <Link
+          {/* <Link
             href="/notifications"
             className="p-1.5 rounded-full hover:bg-gray-800 relative"
           >
@@ -81,8 +83,10 @@ const Topbar = () => {
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
               1
             </span>
-          </Link>
-          <CartCountIcon />
+          </Link> */}
+          <NotificationsDropdown />
+          <CartDropdown />
+          {/* <CartCountIcon /> */}
         </div>
         {/* <Iconcard icon={<WalletSvg />} animate /> */}
         {/* <Iconcard icon={<SettingsSvg />} animate /> */}
@@ -94,16 +98,9 @@ const Topbar = () => {
           >
             <User className="h-5 w-5" />
           </Link> */}
-          <Link
-            href="/notifications"
-            className="p-1.5 rounded-full hover:bg-gray-800 relative"
-          >
-            <Bell className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-              1
-            </span>
-          </Link>
-          <CartCountIcon />
+          <NotificationsDropdown />
+          <CartDropdown />
+          {/* <CartCountIcon /> */}
           <MenuButton
             handleClick={() => dispatch(dashboardPageNavHandler(true))}
           />
