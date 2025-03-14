@@ -271,46 +271,49 @@ const ConfirmOrder: React.FC<Props> = ({
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
-        <div className="mt-10 pb-8 flex justify-between">
-          <h3 className="text-sm lg:text-lg font-semibold">
-            Confirm order information
-          </h3>
-          <p
-            className=" text-sm lg:text-base cursor-pointer text-red-400"
-            onClick={() => setOpenDialog(true)}
-          >
-            Must Read Instructions
-          </p>
+        <div className="mt-10 pb-8 flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
+            <div className="w-5 h-5 rounded-full bg-blue-500" />
+          </div>
+          <h1 className="text-2xl font-medium">Trade Processing</h1>
         </div>
         {category === "Card" && (
-          <div className="flex gap-x-6">
-            <p className="text-xs lg:text-base text-gray-400">
+          <div className="flex flex-col gap-y-2 pl-10">
+            <p>
+              Rate 1{product.currency.symbol} ={" "}
+              <span className="text-[#05F364]">₵{rate}</span>
+            </p>
+            {/* <p className="text-xs lg:text-base text-gray-400">
               {pathname === "buy"
                 ? "Quantity"
                 : pathname === "sell"
                 ? "Value "
                 : null}
               <span className="text-white">:- {quantity}</span>
-            </p>
-            <p className="text-xs lg:text-base text-gray-400">
+            </p> */}
+            {/* <p className="text-xs lg:text-base text-gray-400">
               Fees
               <span className="text-white">
                 :- {product.currency.symbol + fees}
               </span>
-            </p>
-            <p className="text-xs lg:text-base text-gray-400">
-              Amount To Pay{" "}
-              <span className="text-white">
-                :- {product.currency.symbol + price}
-              </span>
+            </p> */}
+            <p className="text-xs lg:text-base text-white">
+              {` Amount To ${
+                pathname === "buy"
+                  ? "pay"
+                  : pathname === "sell"
+                  ? "receive"
+                  : null
+              } in GHC: `}
+              <span className="text-[#05F364]">₵{price}</span>
             </p>
 
-            <p className="text-xs lg:text-base text-gray-400">
+            {/* <p className="text-xs lg:text-base text-gray-400">
               Rate{" "}
               <span className=" font-semi-bold text-orange-400">
                 :- {product.currency.symbol}1 / GHC {rate}
               </span>
-            </p>
+            </p> */}
           </div>
         )}
 
