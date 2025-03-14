@@ -24,12 +24,12 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
       {/* Fixed width container */}
       <div className="flex flex-col space-y-4">
         {/* Card */}
-        <div className="aspect-square rounded-t-xl overflow-hidden relative h-[280px] w-full">
+        <div className="aspect-square rounded-t-xl overflow-hidden relative w-full h-0 pb-[100%]">
           <Image
-            src="https://s3-alpha-sig.figma.com/img/02e2/d8ae/6dab05a57474da6ea9d20aebae27a65a?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=qKpyE3f0E3A93ZRKlGRhz77Rfr3hjl63DMbHGjynUb6QKs9p2jEyIJvPA5KdG3PAwi~~t3vQBR~oymD-dm7SFl03O4CQHPKqGAYGXRb-ZgxNbRpvB24xwKliIVjKMd1NGviCoFVCdcDEkmrC7XdzhzYIN2oY5UBfdGJTc7qS~xM3smMputS7YPBH0ssLMlDpXfNjGTUehYPxb37FmjN7UO1eWaPUTlnMEVyOQrvfoH3I68~TvnUEi3CUHjTYNxLKkp~Zgwgv99m8wtq2ztoDinLpDDZODMsP2J7-7~amHaRmUVX7nUH0Yde~naoFZ494vcUcH5bWLbEdS0bV~Ml8jw__"
-            alt="Mario"
+            src={image_url}
+            alt={name}
             fill
-            className="w-full h-auto object-cover"
+            className="w-full h-full object-cover bg-no-repeat"
           />
           {/* 45% OFF Tag */}
           <div className="absolute top-0 right-0 bg-red-600 text-white py-2 px-4 clip-path-tag">

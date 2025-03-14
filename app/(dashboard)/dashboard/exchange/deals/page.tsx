@@ -14,7 +14,7 @@ const bannerImageUrls = {
 
 const fetchProducts = async (accessToken: any, type: string) => {
   const response = await axios.get(
-    `${process.env.API_ENDPOINT}/products?category=${type}`,
+    `${process.env.API_ENDPOINT}/products?product_category=${type}`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -37,9 +37,12 @@ const DealsPage = async ({
     return redirect("/login");
   }
 
-  const products = await fetchProducts(accessToken?.value, "Card");
-
   const dealCategory = searchParams?.category;
+
+  const products = await fetchProducts(
+    accessToken?.value,
+    dealCategory as string
+  );
 
   const filteredProducts = products.filter(
     (product: any) =>
@@ -65,7 +68,7 @@ const DealsPage = async ({
           </p>
         </div>
       </section>
-      <div className="w-full flex flex-wrap gap-x-12 gap-y-12 justify-center mx-auto px-4 mt-8 xl:max-w-[1700px]">
+      <div className="w-full flex flex-wrap gap-x-12 gap-y-12 justify-center mx-auto px-4 mt-8 xl:max-w-[1700px] pb-12">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product: any) => (
             // <Product key={product.id} productInfo={product} />

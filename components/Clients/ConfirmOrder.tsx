@@ -305,7 +305,9 @@ const ConfirmOrder: React.FC<Props> = ({
                   ? "receive"
                   : null
               } in GHC: `}
-              <span className="text-[#05F364]">₵{price}</span>
+              <span className="text-[#05F364]">
+                ₵{(Number(price) * Number(rate)).toFixed(2)}
+              </span>
             </p>
 
             {/* <p className="text-xs lg:text-base text-gray-400">
@@ -317,7 +319,7 @@ const ConfirmOrder: React.FC<Props> = ({
           </div>
         )}
 
-        {pathname == "buy" && (
+        {/* {pathname == "buy" && (
           <div className="mt-14">
             <h4 className="text-sm lg:text-lg font-semibold">
               Payment Instructions{" "}
@@ -332,7 +334,7 @@ const ConfirmOrder: React.FC<Props> = ({
               cooperation.
             </p>
           </div>
-        )}
+        )} */}
         <div className="mt-12">
           <p className="text-sm lg:text-base">
             Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
@@ -341,14 +343,14 @@ const ConfirmOrder: React.FC<Props> = ({
 
           {pathname === "buy" && (
             <>
-              <p className="text-sm lg:text-base text-orange-400 mt-4">
+              {/* <p className="text-sm lg:text-base text-orange-400 mt-4">
                 Amount to pay in Ghana Cedis - GHC{" "}
                 {category === "Card"
                   ? (Number(price) * Number(rate)).toFixed(2)
                   : category === "Bank"
                   ? Number(price).toFixed(2)
                   : Number(price).toFixed(2)}
-              </p>
+              </p> */}
 
               {loading ? null : (
                 <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
