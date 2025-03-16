@@ -47,7 +47,8 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
             <h3 className="text-xs text-white font-medium">{name}</h3>
             <div className="flex items-center gap-2">
               <div className="bg-[#1e3a27] text-xs text-[#4ade80] px-3 py-1 rounded-full border border-[#4ade80]">
-                $179.55
+                {currency.symbol}
+                {price}
               </div>
               <span className="text-gray-500 text-xs line-through">
                 $399.00
