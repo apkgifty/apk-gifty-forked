@@ -3,6 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
+import axios from "axios";
+import { useSetAtom } from "jotai";
+import { cartAtom, CartState } from "@/atoms/cartAtom";
 
 interface Props {
   productInfo: any;
@@ -12,12 +15,48 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
   const { name, price, category, icon, image_url, description, currency } =
     productInfo;
 
-  const addToCart = () => {
-    const localStorageCart = localStorage.getItem("cart");
-    const parsedCart = localStorageCart ? JSON.parse(localStorageCart) : [];
-    parsedCart.push(productInfo);
-    localStorage.setItem("cart", JSON.stringify(parsedCart));
+  const setCart = useSetAtom(cartAtom);
+
+  const addToCart = async () => {
+    try {
+      const products = [
+        {
+          product_id: productInfo.id,
+          product_quantity: 1,
+          name: productInfo.name,
+          price: productInfo.price,
+          currency: productInfo.currency,
+          image_url: productInfo.image_url,
+          category: productInfo.category,
+        },
+      ];
+
+      const response = await axios.post("/api/cart", { products });
+      console.log("API Response:", response.data);
+
+      // Update cart state with the new item
+      setCart((prev: CartState) => {
+        const newState = {
+          ...prev,
+          items: [...prev.items, ...products],
+          total: prev.total + products[0].price * products[0].product_quantity,
+        };
+        console.log("New Cart State:", newState);
+        return newState;
+      });
+    } catch (error: any) {
+      console.error("Cart error:", {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+      });
+
+      if (error.response?.data) {
+        console.error("Server error details:", error.response.data);
+      }
+    }
   };
+
   return (
     <div className="w-full md:w-[280px]">
       {" "}
