@@ -1,10 +1,13 @@
-import { atom, Getter } from "jotai";
+import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import { Getter } from "jotai";
 
 export interface CartItem {
   product_id: string | number;
   product_quantity: number;
   name: string;
   price: number;
+  originalPrice?: number;
   currency: {
     symbol: string;
   };
@@ -17,10 +20,12 @@ export interface CartState {
   total: number;
 }
 
-export const cartAtom = atom<CartState>({
+const initialState: CartState = {
   items: [],
   total: 0,
-});
+};
+
+export const cartAtom = atomWithStorage<CartState>("cart", initialState);
 
 // Derived atom for cart count
 export const cartCountAtom = atom((get: Getter) => get(cartAtom).items.length);

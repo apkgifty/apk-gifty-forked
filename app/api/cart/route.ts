@@ -53,9 +53,10 @@ export async function POST(req: Request, res: Response) {
     );
   }
 }
+
 // Get cart items
 export async function GET(req: Request, res: Response) {
-  console.log("entered");
+  console.log("Fetching cart data...");
   try {
     const response = await axiosInstance({
       method: "GET",
@@ -66,13 +67,29 @@ export async function GET(req: Request, res: Response) {
       },
     });
 
-    console.log(response.data);
+    console.log("Cart data received:", response.data);
 
-    // return NextResponse.json(response.data);
+    // Return the cart data
+    return NextResponse.json(response.data);
   } catch (error: any) {
     console.error("Cart API Error:", {
       message: error.message,
       response: error.response?.data,
+      status: error.response?.status,
     });
+
+    // Return a proper error response
+    return new Response(
+      JSON.stringify({
+        error: "Failed to fetch cart data",
+        details: error.response?.data || error.message,
+      }),
+      {
+        status: error.response?.status || 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   }
 }

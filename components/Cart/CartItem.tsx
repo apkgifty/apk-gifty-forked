@@ -1,17 +1,25 @@
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 
+interface CartItemProps {
+  image: string;
+  title: string;
+  price: string | number;
+  originalPrice?: string | number;
+  quantity?: number;
+  currency?: {
+    symbol: string;
+  };
+}
+
 const CartItem = ({
   image,
   title,
   price,
   originalPrice,
-}: {
-  image: string;
-  title: string;
-  price: string;
-  originalPrice: string;
-}) => {
+  quantity = 1,
+  currency = { symbol: "$" },
+}: CartItemProps) => {
   return (
     <div className="flex bg-[#1e2328] rounded-lg overflow-hidden">
       {/* Full width image with no padding */}
@@ -34,10 +42,18 @@ const CartItem = ({
         <h3 className="text-lg mb-2 text-white font-light">{title}</h3>
 
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-green-500 text-sm font-light">${price}</span>
-          <span className="text-gray-500 text-sm font-light line-through">
-            ${originalPrice}
+          <span className="text-green-500 text-sm font-light">
+            {currency.symbol}
+            {typeof price === "number" ? price.toFixed(2) : price}
           </span>
+          {originalPrice && (
+            <span className="text-gray-500 text-sm font-light line-through">
+              {currency.symbol}
+              {typeof originalPrice === "number"
+                ? originalPrice.toFixed(2)
+                : originalPrice}
+            </span>
+          )}
         </div>
 
         <div className="flex items-center gap-4">
@@ -46,7 +62,7 @@ const CartItem = ({
             <button className="px-3 py-1 text-white hover:bg-blue-600 transition-colors">
               -
             </button>
-            <span className="px-4 py-1 text-white text-sm">1</span>
+            <span className="px-4 py-1 text-white text-sm">{quantity}</span>
             <button className="px-3 py-1 text-white hover:bg-blue-600 transition-colors">
               +
             </button>

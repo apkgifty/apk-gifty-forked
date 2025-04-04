@@ -16,31 +16,53 @@ export default function CartDropdown() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [cart, setCart] = useAtom(cartAtom);
   const [mounted, setMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Set mounted state
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Define fetchCart function
+  const fetchCart = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.get("/api/cart");
+
+      if (response.data) {
+        const items = response.data.data || [];
+        const total = items.reduce(
+          (acc: number, item: any) =>
+            acc + Number(item.product.price) * item.product_quantity,
+          0
+        );
+
+        console.log("items", items);
+        console.log("total", total);
+        setCart({
+          items: items,
+          total: total,
+        });
+      }
+    } catch (error: any) {
+      console.error("Error fetching cart:", error);
+      setError("Failed to load cart data. Please try again later.");
+
+      // If we have an error response with details, log them
+      if (error.response?.data) {
+        console.error("Error details:", error.response.data);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Fetch cart data on mount
   useEffect(() => {
     if (!mounted) return;
-
-    const fetchCart = async () => {
-      try {
-        const response = await axios.get("/api/cart");
-        console.log(response.data);
-        // if (response.data) {
-        //   setCart({
-        //     items: response.data.items || [],
-        //     total: response.data.total || 0,
-        //   });
-        // }
-      } catch (error) {
-        console.error("Error fetching cart:", error);
-      }
-    };
-
     fetchCart();
   }, [mounted, setCart]);
 
@@ -126,31 +148,51 @@ export default function CartDropdown() {
           </div>
 
           <div className="py-2 max-h-[400px] overflow-y-auto">
-            {cart.items.length === 0 ? (
+            {isLoading ? (
+              <div className="px-4 py-3 text-center text-gray-400">
+                Loading cart...
+              </div>
+            ) : error ? (
+              <div className="px-4 py-3 text-center text-red-400">
+                {error}
+                <button
+                  className="mt-2 text-xs text-blue-400 hover:underline"
+                  onClick={() => {
+                    setError(null);
+                    setIsLoading(true);
+                    fetchCart();
+                  }}
+                >
+                  Retry
+                </button>
+              </div>
+            ) : cart.items.length === 0 ? (
               <div className="px-4 py-3 text-center text-gray-400">
                 Your cart is empty
               </div>
             ) : (
-              cart.items.map((item: CartItem) => (
+              cart.items.map((item: any) => (
                 <div
-                  key={item.product_id}
+                  key={item.product.id}
                   className="px-4 py-3 hover:bg-gray-700 cursor-pointer"
                   role="menuitem"
                 >
                   <div className="flex items-center gap-3">
                     <div className="relative w-12 h-12">
                       <Image
-                        src={item.image_url}
-                        alt={item.name}
+                        src={item.product.image_url}
+                        alt={item.product.name}
                         fill
                         className="object-cover rounded"
                       />
                     </div>
                     <div className="flex-1">
-                      <div className="text-white text-sm">{item.name}</div>
+                      <div className="text-white text-sm">
+                        {item.product.name}
+                      </div>
                       <div className="text-gray-400 text-xs">
-                        {item.currency.symbol}
-                        {item.price} x {item.product_quantity}
+                        {item.product.currency.symbol}
+                        {item.product.price} x {item.product_quantity}
                       </div>
                     </div>
                   </div>
@@ -159,12 +201,12 @@ export default function CartDropdown() {
             )}
           </div>
 
-          {cart.items.length > 0 && (
+          {!isLoading && !error && cart.items.length > 0 && (
             <div className="p-3 border-t border-gray-700">
               <div className="flex justify-between items-center mb-3">
                 <span className="text-gray-400 text-sm">Total:</span>
                 <span className="text-white font-medium">
-                  {cart.items[0].currency.symbol}
+                  {/* {cart.items[0].currency.symbol} */}
                   {cart.total.toFixed(2)}
                 </span>
               </div>

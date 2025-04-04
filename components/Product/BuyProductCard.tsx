@@ -35,11 +35,19 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
       console.log("API Response:", response.data);
 
       // Update cart state with the new item
+
+      const newCart = response.data.data;
+      const total = newCart.reduce(
+        (acc: number, item: any) => acc + Number(item.product.price) * 1,
+        0
+      );
+
+      console.log("response data", newCart);
       setCart((prev: CartState) => {
         const newState = {
           ...prev,
-          items: [...prev.items, ...products],
-          total: prev.total + products[0].price * products[0].product_quantity,
+          items: newCart,
+          total: total,
         };
         console.log("New Cart State:", newState);
         return newState;
