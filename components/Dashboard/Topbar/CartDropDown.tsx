@@ -8,6 +8,7 @@ import { useAtom } from "jotai";
 import { cartAtom, CartItem } from "@/atoms/cartAtom";
 import Image from "next/image";
 import axios from "axios";
+import { usePathname } from "next/navigation";
 
 export default function CartDropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +19,10 @@ export default function CartDropdown() {
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const pathname = usePathname();
+
+  // Check if we're on the cart page
+  const isCartPage = pathname === "/dashboard/cart";
 
   // Set mounted state
   useEffect(() => {
@@ -31,6 +36,7 @@ export default function CartDropdown() {
 
     try {
       const response = await axios.get("/api/cart");
+      console.log("Cart data:", response.data);
 
       if (response.data) {
         const items = response.data.data || [];
@@ -110,6 +116,15 @@ export default function CartDropdown() {
     };
   }, [mounted]);
 
+  // Handle button click
+  const handleButtonClick = () => {
+    // If we're on the cart page, navigate to it instead of opening dropdown
+    if (isCartPage) {
+      return;
+    }
+    setIsOpen(!isOpen);
+  };
+
   if (!mounted) return null;
 
   return (
@@ -117,7 +132,7 @@ export default function CartDropdown() {
       <button
         ref={buttonRef}
         className="p-1.5 rounded-full hover:bg-gray-800 relative"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleButtonClick}
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Cart"
@@ -125,7 +140,7 @@ export default function CartDropdown() {
         <CartCountIcon />
       </button>
 
-      {isOpen && (
+      {isOpen && !isCartPage && (
         <div
           ref={dropdownRef}
           className="fixed z-50 w-80 bg-[#1e2328] rounded-md shadow-lg"
