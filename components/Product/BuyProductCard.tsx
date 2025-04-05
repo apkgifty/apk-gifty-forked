@@ -12,8 +12,16 @@ interface Props {
 }
 
 const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
-  const { name, price, category, icon, image_url, description, currency } =
-    productInfo;
+  const {
+    name,
+    price,
+    category,
+    icon,
+    image_url,
+    description,
+    currency,
+    quantity,
+  } = productInfo;
 
   const setCart = useSetAtom(cartAtom);
 
@@ -109,9 +117,9 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
               onClick={addToCart}
             >
               <ShoppingCart className="h-5 w-5" />
-              Buy Now
+              Add to Cart
             </button>
-            <span className="text-gray-400 text-xs">Qty: 100</span>
+            <span className="text-gray-400 text-xs">Qty: {quantity}</span>
           </div>
         </div>
       </div>

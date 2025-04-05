@@ -3,6 +3,7 @@ import { atomWithStorage } from "jotai/utils";
 import { Getter } from "jotai";
 
 export interface CartItem {
+  product: any;
   product_id: string | number;
   product_quantity: number;
   name: string;
@@ -16,7 +17,7 @@ export interface CartItem {
 }
 
 export interface CartState {
-  items: CartItem[];
+  items: any[];
   total: number;
 }
 
