@@ -127,11 +127,11 @@ const CartPage = () => {
     );
   }
 
-  const savings = cart.items.reduce((total, item) => {
-    const originalPrice = parseFloat(item.originalPrice?.toString() || "0");
-    const currentPrice = item.price;
-    return total + (originalPrice - currentPrice) * item.product_quantity;
-  }, 0);
+  // const savings = cart.items.reduce((total, item) => {
+  //   const originalPrice = parseFloat(item.originalPrice?.toString() || "0");
+  //   const currentPrice = item.product.price;
+  //   return total + (originalPrice - currentPrice) * item.product_quantity;
+  // }, 0);
 
   return (
     <main className="container mx-auto px-4 py-8">
@@ -174,27 +174,27 @@ const CartPage = () => {
                       ({cart.items.length} items)
                     </span>
                   </div>
-                  <div className="text-base text-white">
-                    {/* {cart.items[0]?.product?.currency.symbol} */}
+                  {/* <div className="text-base text-white">
+                    {cart.items[0]?.product?.currency.symbol}
                     {cart.total.toFixed(2)}
-                  </div>
+                  </div> */}
                 </div>
 
-                <div className="flex justify-between items-center">
+                {/* <div className="flex justify-between items-center">
                   <div className="text-gray-400">Savings</div>
                   <div className="text-green-500">
-                    {/* -{cart.items[0]?.product?.currency.symbol} */}
+                    -{cart.items[0]?.product?.currency.symbol}
                     {savings.toFixed(2)}
                   </div>
-                </div>
+                </div> */}
 
                 <div className="pt-4 border-t border-gray-700 flex justify-between items-center">
                   <div className="text-white">Estimated total</div>
                   <div className="text-green-500 text-lg">
                     <span className="text-white">
-                      {/* {cart.items[0]?.product?.currency.symbol} */}
+                      {cart.items[0]?.product?.currency.symbol}
                     </span>{" "}
-                    {(cart.total - savings).toFixed(2)}
+                    {cart.total.toFixed(2)}
                   </div>
                 </div>
               </div>

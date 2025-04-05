@@ -206,7 +206,7 @@ export default function CartDropdown() {
               <div className="flex justify-between items-center mb-3">
                 <span className="text-gray-400 text-sm">Total:</span>
                 <span className="text-white font-medium">
-                  {/* {cart.items[0].currency.symbol} */}
+                  {cart.items[0].product.currency.symbol}
                   {cart.total.toFixed(2)}
                 </span>
               </div>
@@ -215,7 +215,7 @@ export default function CartDropdown() {
                 className="block w-full py-2 text-center text-white text-sm bg-[#587BF2] hover:bg-[#4665D1] rounded-md transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Checkout
+                Go to Cart
               </Link>
             </div>
           )}
