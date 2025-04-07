@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "@/components/Cart/CartItem";
 import { useAtom } from "jotai";
-import { cartAtom } from "@/atoms/cartAtom";
+import { cartAtom, CartState } from "@/atoms/cartAtom";
 import axios from "axios";
-
+import { removeCartItem, updateCart } from "@/utils/cartHelpers";
 // Dummy data for demonstration
 const dummyCartData = {
   items: [
@@ -94,6 +94,94 @@ const CartPage = () => {
   //   fetchCart();
   // }, [mounted, setCart]);
 
+  const updateCartHandler = async (
+    productId: string,
+    productQuantity: number,
+    updateType: string
+  ) => {
+    if (updateType === "increment") {
+      productQuantity++;
+    } else if (updateType === "decrement") {
+      productQuantity--;
+    }
+
+    try {
+      const response = await updateCart(productId, productQuantity);
+      console.log("Cart update response:", response);
+
+      if (response && response.data) {
+        // Sort the cart items by creation date (newest first)
+        const sortedResponse = [...response.data].sort((a, b) => {
+          const dateA = new Date(a.created_at).getTime();
+          const dateB = new Date(b.created_at).getTime();
+          return dateB - dateA; // Descending order (newest first)
+        });
+
+        console.log("Sorted cart items:", sortedResponse);
+
+        // Calculate the new total
+        const newTotal = sortedResponse.reduce((sum, item) => {
+          return (
+            sum + Number(item.product.price) * Number(item.product_quantity)
+          );
+        }, 0);
+
+        // Update the cart state with sorted items and new total
+        setCart((prev: CartState) => {
+          const newState = {
+            ...prev,
+            items: sortedResponse,
+            total: newTotal,
+          };
+          console.log("Updated cart state:", newState);
+          return newState;
+        });
+      }
+    } catch (error) {
+      console.error("Error updating cart:", error);
+      setError("Failed to update cart. Please try again.");
+    }
+  };
+
+  const removeCartItemHandler = async (productId: string) => {
+    try {
+      const response = await removeCartItem(productId);
+      console.log("deleted cart item:", response);
+
+      if (response && response.data) {
+        // Sort the cart items by creation date (newest first)
+        const sortedResponse = [...response.data].sort((a, b) => {
+          const dateA = new Date(a.created_at).getTime();
+          const dateB = new Date(b.created_at).getTime();
+          return dateB - dateA; // Descending order (newest first)
+        });
+
+        console.log("deleted cart item:", sortedResponse);
+
+        // Calculate the new total
+        const newTotal = sortedResponse.reduce((sum, item) => {
+          return (
+            sum + Number(item.product.price) * Number(item.product_quantity)
+          );
+        }, 0);
+
+        // Update the cart state with sorted items and new total
+        setCart((prev: CartState) => {
+          const newState = {
+            ...prev,
+            items: sortedResponse,
+            total: newTotal,
+          };
+          console.log("Updated cart state:", newState);
+          return newState;
+        });
+      }
+    } catch (error) {
+      console.error("Error removing cart item:", error);
+      setError("Failed to remove cart item. Please try again.");
+    }
+  };
+
   // Don't render anything until after hydration
   if (!mounted) {
     return (
@@ -127,11 +215,16 @@ const CartPage = () => {
     );
   }
 
-  // const savings = cart.items.reduce((total, item) => {
-  //   const originalPrice = parseFloat(item.originalPrice?.toString() || "0");
-  //   const currentPrice = item.product.price;
-  //   return total + (originalPrice - currentPrice) * item.product_quantity;
-  // }, 0);
+  // Calculate savings
+  const savings = cart.items.reduce((total, item) => {
+    const originalPrice = parseFloat(
+      item.product.original_price?.toString() || item.product.price.toString()
+    );
+    const currentPrice = parseFloat(item.product.price.toString());
+    return (
+      total + (originalPrice - currentPrice) * Number(item.product_quantity)
+    );
+  }, 0);
 
   return (
     <main className="container mx-auto px-4 py-8">
@@ -149,12 +242,15 @@ const CartPage = () => {
             {cart.items.map((item: any) => (
               <CartItem
                 key={item.product.id}
+                id={item.product.id}
                 image={item.product.image_url}
                 title={item.product.name}
                 price={item.product.price.toString()}
-                originalPrice={item.product.originalPrice?.toString()}
+                originalPrice={item.product.original_price?.toString()}
                 quantity={item.product_quantity}
                 currency={item.product.currency}
+                updateCartHandler={updateCartHandler}
+                removeCartItemHandler={removeCartItemHandler}
               />
             ))}
           </div>
@@ -174,27 +270,27 @@ const CartPage = () => {
                       ({cart.items.length} items)
                     </span>
                   </div>
-                  {/* <div className="text-base text-white">
-                    {cart.items[0]?.product?.currency.symbol}
+                  <div className="text-base text-white">
+                    {cart.items[0]?.product?.currency?.symbol}
                     {cart.total.toFixed(2)}
-                  </div> */}
+                  </div>
                 </div>
 
-                {/* <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center">
                   <div className="text-gray-400">Savings</div>
                   <div className="text-green-500">
-                    -{cart.items[0]?.product?.currency.symbol}
+                    -{cart.items[0]?.product?.currency?.symbol}
                     {savings.toFixed(2)}
                   </div>
-                </div> */}
+                </div>
 
                 <div className="pt-4 border-t border-gray-700 flex justify-between items-center">
                   <div className="text-white">Estimated total</div>
                   <div className="text-green-500 text-lg">
                     <span className="text-white">
-                      {cart.items[0]?.product?.currency.symbol}
+                      {cart.items[0]?.product?.currency?.symbol}
                     </span>{" "}
-                    {cart.total.toFixed(2)}
+                    {(cart.total - savings).toFixed(2)}
                   </div>
                 </div>
               </div>

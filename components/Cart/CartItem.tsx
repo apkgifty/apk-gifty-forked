@@ -2,6 +2,7 @@ import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 
 interface CartItemProps {
+  id: string;
   image: string;
   title: string;
   price: string | number;
@@ -10,15 +11,24 @@ interface CartItemProps {
   currency?: {
     symbol: string;
   };
+  updateCartHandler: (
+    productId: string,
+    productQuantity: number,
+    updateType: string
+  ) => void;
+  removeCartItemHandler: (productId: string) => void;
 }
 
 const CartItem = ({
+  id,
   image,
   title,
   price,
   originalPrice,
-  quantity = 1,
+  quantity,
   currency = { symbol: "$" },
+  updateCartHandler,
+  removeCartItemHandler,
 }: CartItemProps) => {
   return (
     <div className="flex bg-[#1e2328] rounded-lg overflow-hidden">
@@ -59,15 +69,28 @@ const CartItem = ({
         <div className="flex items-center gap-4">
           {/* Quantity controls */}
           <div className="flex items-center bg-blue-500 rounded-md">
-            <button className="px-3 py-1 text-white hover:bg-blue-600 transition-colors">
+            <button
+              className="px-3 py-1 text-white hover:bg-blue-600 transition-colors"
+              onClick={() =>
+                updateCartHandler(id, quantity as number, "decrement")
+              }
+            >
               -
             </button>
             <span className="px-4 py-1 text-white text-sm">{quantity}</span>
-            <button className="px-3 py-1 text-white hover:bg-blue-600 transition-colors">
+            <button
+              className="px-3 py-1 text-white hover:bg-blue-600 transition-colors"
+              onClick={() =>
+                updateCartHandler(id, quantity as number, "increment")
+              }
+            >
               +
             </button>
           </div>
-          <button className="text-gray-400 hover:text-gray-300 text-xs">
+          <button
+            className="text-gray-400 hover:text-gray-300 text-xs"
+            onClick={() => removeCartItemHandler(id)}
+          >
             Remove
           </button>
         </div>

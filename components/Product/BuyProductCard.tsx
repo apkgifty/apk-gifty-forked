@@ -6,7 +6,7 @@ import { ShoppingCart } from "lucide-react";
 import axios from "axios";
 import { useSetAtom } from "jotai";
 import { cartAtom, CartState } from "@/atoms/cartAtom";
-
+import { updateCart } from "@/utils/cartHelpers";
 interface Props {
   productInfo: any;
 }
@@ -27,24 +27,11 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
 
   const addToCart = async () => {
     try {
-      const products = [
-        {
-          product_id: productInfo.id,
-          product_quantity: 1,
-          name: productInfo.name,
-          price: productInfo.price,
-          currency: productInfo.currency,
-          image_url: productInfo.image_url,
-          category: productInfo.category,
-        },
-      ];
-
-      const response = await axios.post("/api/cart", { products });
-      console.log("API Response:", response.data);
+      const response = await updateCart(productInfo.id, 1);
 
       // Update cart state with the new item
 
-      const newCart = response.data.data;
+      const newCart = response.data;
       const total = newCart.reduce(
         (acc: number, item: any) => acc + Number(item.product.price) * 1,
         0
