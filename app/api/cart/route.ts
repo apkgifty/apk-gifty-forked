@@ -146,7 +146,17 @@ export async function GET(req: Request, res: Response) {
 }
 
 export async function DELETE(req: Request, res: Response) {
-  const { productId } = await req.json();
+  const searchParams = new URL(req.url).searchParams;
+  const productId = searchParams.get("productId");
+
+  console.log("productId", productId);
+
+  if (!productId) {
+    return NextResponse.json(
+      { error: "Product ID is required" },
+      { status: 400 }
+    );
+  }
 
   const config = {
     method: "DELETE",
@@ -169,3 +179,5 @@ export async function DELETE(req: Request, res: Response) {
     });
   }
 }
+
+// fodif70022@jomspar.com

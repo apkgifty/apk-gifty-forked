@@ -2,7 +2,8 @@ import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 
 interface CartItemProps {
-  id: string;
+  productId: string;
+  cartId: string;
   image: string;
   title: string;
   price: string | number;
@@ -20,7 +21,8 @@ interface CartItemProps {
 }
 
 const CartItem = ({
-  id,
+  productId,
+  cartId,
   image,
   title,
   price,
@@ -72,7 +74,7 @@ const CartItem = ({
             <button
               className="px-3 py-1 text-white hover:bg-blue-600 transition-colors"
               onClick={() =>
-                updateCartHandler(id, quantity as number, "decrement")
+                updateCartHandler(productId, quantity as number, "decrement")
               }
             >
               -
@@ -81,7 +83,7 @@ const CartItem = ({
             <button
               className="px-3 py-1 text-white hover:bg-blue-600 transition-colors"
               onClick={() =>
-                updateCartHandler(id, quantity as number, "increment")
+                updateCartHandler(productId, quantity as number, "increment")
               }
             >
               +
@@ -89,7 +91,7 @@ const CartItem = ({
           </div>
           <button
             className="text-gray-400 hover:text-gray-300 text-xs"
-            onClick={() => removeCartItemHandler(id)}
+            onClick={() => removeCartItemHandler(cartId)}
           >
             Remove
           </button>

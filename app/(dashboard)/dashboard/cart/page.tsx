@@ -146,7 +146,6 @@ const CartPage = () => {
   const removeCartItemHandler = async (productId: string) => {
     try {
       const response = await removeCartItem(productId);
-      console.log("deleted cart item:", response);
 
       if (response && response.data) {
         // Sort the cart items by creation date (newest first)
@@ -155,8 +154,6 @@ const CartPage = () => {
           const dateB = new Date(b.created_at).getTime();
           return dateB - dateA; // Descending order (newest first)
         });
-
-        console.log("deleted cart item:", sortedResponse);
 
         // Calculate the new total
         const newTotal = sortedResponse.reduce((sum, item) => {
@@ -172,7 +169,6 @@ const CartPage = () => {
             items: sortedResponse,
             total: newTotal,
           };
-          console.log("Updated cart state:", newState);
           return newState;
         });
       }
@@ -242,7 +238,8 @@ const CartPage = () => {
             {cart.items.map((item: any) => (
               <CartItem
                 key={item.product.id}
-                id={item.product.id}
+                cartId={item.id}
+                productId={item.product.id}
                 image={item.product.image_url}
                 title={item.product.name}
                 price={item.product.price.toString()}

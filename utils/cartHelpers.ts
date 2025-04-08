@@ -22,10 +22,7 @@ const removeCartItem = async (productId: string) => {
   try {
     const config = {
       method: "DELETE",
-      url: `/api/cart`,
-      data: {
-        productId: productId,
-      },
+      url: `/api/cart?productId=${productId}`,
     };
 
     const response = await axios(config);
