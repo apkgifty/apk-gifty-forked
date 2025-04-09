@@ -213,13 +213,7 @@ const Payment = ({
           style={{
             backgroundImage: `url(${methodImage})`,
           }}
-        >
-          {/* <div>
-            <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
-              {method.channel}
-            </h5>
-          </div> */}
-        </div>
+        ></div>
       </li>
       {dialog}
     </>

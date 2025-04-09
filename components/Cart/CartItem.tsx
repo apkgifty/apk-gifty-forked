@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
+import { truncateText } from "@/utils/textUtils";
 
 interface CartItemProps {
   productId: string;
@@ -51,7 +52,9 @@ const CartItem = ({
           <span className="text-green-500 text-sm">Added to cart</span>
         </div>
 
-        <h3 className="text-lg mb-2 text-white font-light">{title}</h3>
+        <h3 className="text-lg mb-2 text-white font-light" title={title}>
+          {truncateText(title, 30)}
+        </h3>
 
         <div className="flex items-center gap-2 mb-4">
           <span className="text-green-500 text-sm font-light">
