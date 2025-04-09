@@ -53,7 +53,19 @@ const Payment = ({
   const [usdtPaymentDetails, setUsdtPaymentDetails] = useState<any>(null);
   const [showUsdtDialog, setShowUsdtDialog] = useState(false);
 
+  let methodImage;
   let dialog;
+
+  if (method.channel.toLowerCase() === "momo") {
+    methodImage =
+      "https://s3-alpha-sig.figma.com/img/d048/78e6/916ecbea95a7be394b8a4945011aade3?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=LomuXo~Xdjk5EO~W1iJuIK5C08LlOLbL1OGax~1UcSTg7UFVs4pnrm~28d0a9or3oiFtB-U7qykhUwiKjw6JZJ67QjGVbbXlsClq-6uEeCfiKYpWyaLjt96e2yx5weJJ~BVCcT80hH2MNSQa-RLoen9AGfI5gssWV2ECY0TTFxOw~yXuPdVHCNISVUpANzLKWWK~EBUdVljylc14MvB7Y8xgAg8OgNSlciqm5XYQzRHko0kvik8dPoi7RfhQceOUSZ0Y-~4NT9YHW86In4pwkVsVi5JtkmLKOr1jxCgYigKOEhb~-8iWjjpQX8It8eqUftc-baZAht7WrTghMaCFgg__";
+  } else if (method.channel.toLowerCase() === "bank") {
+    methodImage =
+      "https://s3-alpha-sig.figma.com/img/b2b7/a461/23f6dd7b90f234dede3198c3b7ba2b2d?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=sL7U6MCYD5WbgWtaj1QW-CFXF9uYiyXJ5Zf8lX1VmMTrUxnjdiBAzMm33hB5kNv~nE5JIgZGF4Y3IHypw0jG76zXtNa01ClgUHxj6Al72f1-BKywN3QcpyQfxAbbCNA3EN5MlYuV1PeS1OdF-XFAIYvXBOAaIf8kkZmKXpzgsF-WBR~FmVLKgpo5ep1QoS0LsOF7FrzuVoXrt17wjVv54YulKkYQiD9N6R21FAWo3~A~tE0-1xBBa0BIHZZHhz0mOc0m3~s5O5N9K0tZBlMtnCKG760H8wbKHeVClbzUKTQ4js7-G56GjyB5vW~i0V6z9nVmdaxX9OJ0GozChekH2w__";
+  } else if (method.channel.toLowerCase() === "usdt") {
+    methodImage =
+      "https://s3-alpha-sig.figma.com/img/a122/cdd4/cc46740a9fea1c775b5c3f84ad85185d?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=jwpnfod5Ki~Rz7D912AQRfepY0yykqL4IkJW~TXZl4eSnWD9yyaxXO1xD7Ny2O8mygdzFwECvxZqxhQWBEyT1Ckd7ys5AAPHIePE2W5vZiI8u~B9Q3Kmm08BXhVZ8FObtd75UkOhIeZdksQXZzRgU3Ho3Qykz1M7gKlFCSS5pMu9lP30rz4yDsWsfpPnpKH26wkwMZR7H48BcHPc9JGBfyfKx5iysEVeysLIEiCtqLg9tSD5po-GUylYs4NpA0oxJl-9Mkcte6suZMtNt49LiuiqFPzkCEmBClykljSZ-EsVL6U3nFlBtm7-AKZRzxeBpHiwa0a708t3f3eYyY2s9Q__";
+  }
 
   const handleClick = (e: any) => {
     if (method.channel.toLowerCase() === "usdt") {
@@ -195,14 +207,18 @@ const Payment = ({
 
   return (
     <>
-      {" "}
       <li className="cursor-pointer" onClick={handleClick}>
-        <div className="space-y-3">
-          <div>
+        <div
+          className="space-y-3 py-6 lg:py-8 w-[180px] lg:w-[220px] bg-cover bg-center rounded-lg bg-white"
+          style={{
+            backgroundImage: `url(${methodImage})`,
+          }}
+        >
+          {/* <div>
             <h5 className="inline-block text-blue-700 px-3 py-1 border-2 border-blue-700 rounded-lg">
               {method.channel}
             </h5>
-          </div>
+          </div> */}
         </div>
       </li>
       {dialog}

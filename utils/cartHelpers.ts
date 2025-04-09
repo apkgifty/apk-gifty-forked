@@ -33,4 +33,18 @@ const removeCartItem = async (productId: string) => {
   }
 };
 
-export { updateCart, removeCartItem };
+const checkoutCart = async () => {
+  try {
+    const config = {
+      method: "POST",
+      url: `/api/checkout-cart`,
+    };
+
+    const response = await axios(config);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+export { updateCart, removeCartItem, checkoutCart };

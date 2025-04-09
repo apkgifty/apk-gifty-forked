@@ -277,13 +277,15 @@ const ConfirmOrder: React.FC<Props> = ({
           </div>
           <h1 className="text-2xl font-medium">Trade Processing</h1>
         </div>
-        {category === "Card" && (
-          <div className="flex flex-col gap-y-2 pl-10">
+        {/* {category === "Card" && ( */}
+        <div className="flex flex-col gap-y-2 pl-10">
+          {pathname === "sell" && (
             <p>
               Rate 1{product.currency.symbol} ={" "}
               <span className="text-[#05F364]">₵{rate}</span>
             </p>
-            {/* <p className="text-xs lg:text-base text-gray-400">
+          )}
+          {/* <p className="text-xs lg:text-base text-gray-400">
               {pathname === "buy"
                 ? "Quantity"
                 : pathname === "sell"
@@ -291,33 +293,36 @@ const ConfirmOrder: React.FC<Props> = ({
                 : null}
               <span className="text-white">:- {quantity}</span>
             </p> */}
-            {/* <p className="text-xs lg:text-base text-gray-400">
+          {/* <p className="text-xs lg:text-base text-gray-400">
               Fees
               <span className="text-white">
                 :- {product.currency.symbol + fees}
               </span>
             </p> */}
-            <p className="text-xs lg:text-base text-white">
-              {` Amount To ${
-                pathname === "buy"
-                  ? "pay"
-                  : pathname === "sell"
-                  ? "receive"
-                  : null
-              } in GHC: `}
-              <span className="text-[#05F364]">
-                ₵{(Number(price) * Number(rate)).toFixed(2)}
-              </span>
-            </p>
+          <p className="text-xs lg:text-base text-white">
+            {` Amount To ${
+              pathname === "buy"
+                ? "pay"
+                : pathname === "sell"
+                ? "receive"
+                : null
+            } in GHC: `}
+            <span className="text-[#05F364]">
+              {pathname == "sell" &&
+                `₵${(Number(price) * Number(rate)).toFixed(2)}`}
+              {pathname == "buy" &&
+                `₵${(Number(price) * Number(rate)).toFixed(2)}`}
+            </span>
+          </p>
 
-            {/* <p className="text-xs lg:text-base text-gray-400">
+          {/* <p className="text-xs lg:text-base text-gray-400">
               Rate{" "}
               <span className=" font-semi-bold text-orange-400">
                 :- {product.currency.symbol}1 / GHC {rate}
               </span>
             </p> */}
-          </div>
-        )}
+        </div>
+        {/* // )} */}
 
         {/* {pathname == "buy" && (
           <div className="mt-14">
@@ -353,7 +358,7 @@ const ConfirmOrder: React.FC<Props> = ({
               </p> */}
 
               {loading ? null : (
-                <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
+                <ul className=" mt-6 flex flex-col items-center gap-y-4">
                   {makePayment &&
                     is_paid === "0" &&
                     filteredPaymentMethods.map((method: any) => (
@@ -444,20 +449,20 @@ const ConfirmOrder: React.FC<Props> = ({
         is_paid={type === "buy" ? is_paid : null}
         id={id}
       />
-      <DisplayDialog
+      {/* <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}
         title="Order Instructions"
         buttonText="Close"
-      >
-        <div className="space-y-6">
+      > */}
+      {/* <div className="space-y-6">
           {product.instructions.map((instruction: any) => (
             <p key={instruction.id} className="text-sm lg:text-base">
               {instruction.body}
             </p>
           ))}
-        </div>
-        {/* {category === "Card" && (
+        </div> */}
+      {/* {category === "Card" && (
           <ol className="text-xs lg:text-sm list-decimal pl-2 space-y-4 text-gray-700">
             <>
               {" "}
@@ -509,7 +514,7 @@ const ConfirmOrder: React.FC<Props> = ({
             <br /> Order will be Completed ✅ by Admin once bundle is served.
           </p>
         )} */}
-      </DisplayDialog>
+      {/* </DisplayDialog> */}
       <CancelOrderDialog
         cancelHandler={() => {
           cancelOrder(id);

@@ -5,59 +5,15 @@ import CartItem from "@/components/Cart/CartItem";
 import { useAtom } from "jotai";
 import { cartAtom, CartState } from "@/atoms/cartAtom";
 import axios from "axios";
-import { removeCartItem, updateCart } from "@/utils/cartHelpers";
-// Dummy data for demonstration
-const dummyCartData = {
-  items: [
-    {
-      product_id: 1,
-      product_quantity: 2,
-      name: "Xbox Gift Card",
-      price: 179.55,
-      originalPrice: 399.0,
-      currency: {
-        symbol: "$",
-      },
-      image_url:
-        "https://s3-alpha-sig.figma.com/img/85e5/5f0f/2b70e95783db0a996906b2e2ac729c33?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=r0wzt4e0RKDnz4XDi1jACKJTX6AizgRsYNZCpNV0zoi8KMI8KEtC6iooqAY-b2eZiyzrhHr6hfMfwNSQW1SYTRhHSf2hlyX4cjg8M~wlzvQhLYF1xjWuL7IALBsqrAG9bSPI6OcleQZybNxQmfXWxphnE8z0S-3Z~zOzQmJ-ZBFpqQ4xw5ugSHqeaeW3AbRAZxafuAuB5uGsz-cSnjufSBcgKsNjATbAWtX4ZcG-4NnwOJmXGZ3iYB1G23wBdThvCCQs2yutkL1AJBUpTN52LONlNhJ0sqBxV-uVxHRtXAl4KEVGx2gEov1LyUztR6TzhEvWKE90cN0Tndjqx2tsTw__",
-      category: "Gaming",
-    },
-    {
-      product_id: 2,
-      product_quantity: 1,
-      name: "PlayStation Gift Card",
-      price: 199.99,
-      originalPrice: 299.99,
-      currency: {
-        symbol: "$",
-      },
-      image_url:
-        "https://s3-alpha-sig.figma.com/img/adcd/d1a9/fb6e67294d8845b0ab1b5c592e6d0621?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ccM~4jY8Meuskq1yTsqafxzpyPWAOiDFEMObiFV2NSaVMhFXKgJE-t-bipbhPaCaneh-B0AoBXSOpBRhLQsfJ9iXuB3mRQmRcJW6t3caGiSmH6rXGHMhgsjb7i9t0EgRrdJ8JaSL-cc53VXn1b9XhCzZIb0gJeIzvUJQEZSWbZ8jo5vRMUjy-hKxTWfGju494CmZDL02LgD3PPEt6JKk-H2-Quqr2beg8-BGNbOSn7nDiqAk326k38H0eV6s0qqGFZACIHrEetSamNx8uQVbE1OpMjgLUzEF5qmWlJaahdZnoLTY93q6ObbcFhPwts3KIiAPfd7ssrATMjuQZexUHQ__",
-      category: "Gaming",
-    },
-    {
-      product_id: 3,
-      product_quantity: 3,
-      name: "Nintendo Gift Card",
-      price: 149.99,
-      originalPrice: 249.99,
-      currency: {
-        symbol: "$",
-      },
-      image_url:
-        "https://s3-alpha-sig.figma.com/img/02e2/d8ae/6dab05a57474da6ea9d20aebae27a65a?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=qKpyE3f0E3A93ZRKlGRhz77Rfr3hjl63DMbHGjynUb6QKs9p2jEyIJvPA5KdG3PAwi~~t3vQBR~oymD-dm7SFl03O4CQHPKqGAYGXRb-ZgxNbRpvB24xwKliIVjKMd1NGviCoFVCdcDEkmrC7XdzhzYIN2oY5UBfdGJTc7qS~xM3smMputS7YPBH0ssLMlDpXfNjGTUehYPxb37FmjN7UO1eWaPUTlnMEVyOQrvfoH3I68~TvnUEi3CUHjTYNxLKkp~Zgwgv99m8wtq2ztoDinLpDDZODMsP2J7-7~amHaRmUVX7nUH0Yde~naoFZ494vcUcH5bWLbEdS0bV~Ml8jw__",
-      category: "Gaming",
-    },
-  ],
-  total: 1008.51, // Sum of (price * quantity) for all items
-};
+import { removeCartItem, updateCart, checkoutCart } from "@/utils/cartHelpers";
+import { useRouter } from "next/navigation";
 
 const CartPage = () => {
   const [cart, setCart] = useAtom(cartAtom);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
-
+  const router = useRouter();
   // Set mounted state to handle hydration
   useEffect(() => {
     setMounted(true);
@@ -140,6 +96,20 @@ const CartPage = () => {
     } catch (error) {
       console.error("Error updating cart:", error);
       setError("Failed to update cart. Please try again.");
+    }
+  };
+
+  const checkoutCartHandler = async () => {
+    try {
+      const response = await checkoutCart();
+      console.log("Checkout cart response:", response);
+      if (response && response.data) {
+        router.push(
+          `transaction/order/buy?category=Card&pid=${response.data.id}`
+        );
+      }
+    } catch (error) {
+      console.error("Error checking out cart:", error);
     }
   };
 
@@ -255,7 +225,10 @@ const CartPage = () => {
           {/* Checkout Summary */}
           <div className="lg:col-span-1">
             <div className="bg-[#1e2328] rounded-lg p-6 lg:sticky lg:top-8">
-              <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg mb-6">
+              <button
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg mb-6"
+                onClick={checkoutCartHandler}
+              >
                 Checkout
               </button>
 
