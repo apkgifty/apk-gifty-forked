@@ -165,6 +165,11 @@ const Chat = ({
           </div>
         </div>`;
     }
+
+    setChats((prevState: any) => [
+      ...prevState,
+      { message: `${html}`, userId: userInfo.id },
+    ]);
     const formData = new FormData();
 
     formData.append("sender", userInfo.firstname);
@@ -178,10 +183,11 @@ const Chat = ({
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      setChats((prevState: any) => [
-        ...prevState,
-        { message: `${html}`, userId: userInfo.id },
-      ]);
+      //Was posting before adding to chat but now adding to chat before posting, optimistic update
+      // setChats((prevState: any) => [
+      //   ...prevState,
+      //   { message: `${html}`, userId: userInfo.id },
+      // ]);
 
       // if (messageToSend === "") return;
       // setMessageToSend("");
