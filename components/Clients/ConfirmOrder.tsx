@@ -276,7 +276,9 @@ const ConfirmOrder: React.FC<Props> = ({
           <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
             <div className="w-5 h-5 rounded-full bg-blue-500" />
           </div>
-          <h1 className="text-2xl font-medium">Trade Processing</h1>
+          <h1 className="text-2xl font-medium">
+            {`Trade ${status === "0" ? "Processing" : "Completed"}`}
+          </h1>
         </div>
         {/* {category === "Card" && ( */}
         <div className="flex flex-col gap-y-2 pl-10">
