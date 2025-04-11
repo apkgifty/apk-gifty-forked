@@ -52,7 +52,7 @@ const DealsPage = async ({
   return (
     <div>
       <section
-        className="py-12 lg:py-28 bg-black bg-contain lg:bg-cover bg-no-repeat"
+        className="py-12 lg:py-48 bg-black bg-contain lg:bg-cover bg-right bg-no-repeat"
         style={{
           // backgroundSize: "cover",
           backgroundImage: `url(${
