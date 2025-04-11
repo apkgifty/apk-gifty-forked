@@ -23,32 +23,24 @@ const deals = [
     dealName: "Xbox Deals",
     dealUrl: "/dashboard/exchange/deals?category=xbox&currency=USD",
     dealImageUrl: "/images/xbox.png",
-    dealBannerImageUrl:
-      "https://s3-alpha-sig.figma.com/img/4a07/69fc/159dd35aa477865a416bd6d97b52be0a?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=j1HROnA-RT9CvmmflsO3pBkEfIxC-wgZRBIxE814Wp6tDwHhZlG9umxUrN9B94N2Do-ocT0vaAN7Fe2Ym9r2iqxiUj-QLF0wUIVPhGKcbAxFkIu7RJbESYQ61pE62xMDk~IJIrz~5OdjQrZVtTYN3y4OHcIESrRWYNwSFfq4ueLMiroud23hJ20idg4mPWcjH3YMkL7VeCnjEQ7itAVdQsh~68AkUOFgtO5Y0P58omehPKrsGnoSIum6RWwXRF~3wIq8DfGcK8yd-aW9t6Nw-lUzd-d36zj-AtzHVLSnFkYMA6pSnpxX25cFBoWT9ADz8FoMRGLrTgJHgnUY09Joew__",
     btnColor: "bg-[#107c10] hover:bg-[#0b4b0b]",
   },
   {
     dealName: "Playstation Deals",
     dealUrl: "/dashboard/exchange/deals?category=psn&currency=USD",
     dealImageUrl: "/images/psn.png",
-    dealBannerImageUrl:
-      "https://s3-alpha-sig.figma.com/img/84b3/d099/89ce74c84b0456f18351e27c6d5728d3?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=PPz8Vwhuu7kjp2pPv4oAqGbswEfNZAtPH6M90E82yPdYamVgymMczT2pFrWG-ZqK7PQwqXLrdpnaVTlCkwgk4RfgUP-z9KEIOUK7KhKWuFqiazXIlTQTriqn99JvOGUqu3-NOEzNz5bhwZA40jDzBRtC49vzYTHTsZZiXgmq9c6AzfwJpdLOcIDVU4Z1Hn3Uu9jfcV8oPuGloa5yHAdqE-Bn3IE~F1dKlT3vUU4lySQQh3ETc7i10I8rJu~WouIHsgtYEHBDerrHrQ0~4Y~r4QEbj-NGgv7px4DeqXs5ozTiVGOu45yNJiPMJ~AP-Vaxk-de7HgD0VGUdNZTpQxu7w__",
     btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
   },
   {
     dealName: "Nintendo Deals",
     dealUrl: "/dashboard/exchange/deals?category=nintendo&currency=USD",
     dealImageUrl: "/images/nintendo.png",
-    dealBannerImageUrl:
-      "https://s3-alpha-sig.figma.com/img/2c9d/0239/130073954f53dd4c3659f3828b715c30?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=kaSoosFANLEIaHqAP5wdT58GdZ4MgSqPNhQJioNsPlm-rLkKmVfK0nAnD5CvJ0b9xu99Uttdj8Fjn~T5zFJEBKlDQDw1hSZ8ujz4xSzuSKuNd0omzsbyju3dDLO6vWlrI3ec6CjRAMCjy3e9JmiNl1DE7hy5TobSKGGgj1Dv6~hCAmdqPQagkQYtSN1Em0gb0f-8x5jK2Z4N9YjiLTz-bPsd5FaigMURgIvc-3SXufg4VbuJwQtTqiON0WdwpvcElJko1QIQGBT7KacfxZG0ZwFzr1xpzdj6zsFTCmnJeWAlwcFD8FRuU4nGeUpOdL-ftKpTIaG4Hb4TcgvAnYPFXg__",
     btnColor: "bg-[#e60012] hover:bg-[#a5000d]",
   },
   {
     dealName: "Daily Deals",
     dealUrl: "/dashboard/exchange/deals?category=daily&currency=USD",
     dealImageUrl: "/images/daily.png",
-    dealBannerImageUrl:
-      "https://s3-alpha-sig.figma.com/img/2c9d/0239/130073954f53dd4c3659f3828b715c30?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=kaSoosFANLEIaHqAP5wdT58GdZ4MgSqPNhQJioNsPlm-rLkKmVfK0nAnD5CvJ0b9xu99Uttdj8Fjn~T5zFJEBKlDQDw1hSZ8ujz4xSzuSKuNd0omzsbyju3dDLO6vWlrI3ec6CjRAMCjy3e9JmiNl1DE7hy5TobSKGGgj1Dv6~hCAmdqPQagkQYtSN1Em0gb0f-8x5jK2Z4N9YjiLTz-bPsd5FaigMURgIvc-3SXufg4VbuJwQtTqiON0WdwpvcElJko1QIQGBT7KacfxZG0ZwFzr1xpzdj6zsFTCmnJeWAlwcFD8FRuU4nGeUpOdL-ftKpTIaG4Hb4TcgvAnYPFXg__",
     btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
   },
 ];

@@ -277,7 +277,13 @@ const ConfirmOrder: React.FC<Props> = ({
             <div className="w-5 h-5 rounded-full bg-blue-500" />
           </div>
           <h1 className="text-2xl font-medium">
-            {`Trade ${status === "0" ? "Processing" : "Completed"}`}
+            {`Trade ${
+              statuss === "0" || statuss === "1"
+                ? "Processing"
+                : statuss === "2"
+                ? "Completed"
+                : "Cancelled"
+            }`}
           </h1>
         </div>
         {/* {category === "Card" && ( */}
@@ -344,10 +350,12 @@ const ConfirmOrder: React.FC<Props> = ({
           </div>
         )} */}
         <div className="mt-12">
-          <p className="text-sm lg:text-base">
-            Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
-            before proceeding with your payment.
-          </p>
+          {statuss === "0" && (
+            <p className="text-sm lg:text-base">
+              Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
+              before proceeding with your payment.
+            </p>
+          )}
 
           {pathname === "buy" && (
             <>
