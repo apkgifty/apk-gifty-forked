@@ -16,7 +16,7 @@ const Banner = () => {
         alt="apkxchange about banner image"
       />
       <p className="text-3xl max-w-[250px]  lg:text-6xl font-bold lg:max-w-md text-center z-10">
-        Crypto Trading Made Easy
+        Gift Cards Trading Made Easy
       </p>
     </div>
   );
