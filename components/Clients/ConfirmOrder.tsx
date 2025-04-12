@@ -294,6 +294,12 @@ const ConfirmOrder: React.FC<Props> = ({
               <span className="text-[#05F364]">₵{rate}</span>
             </p>
           )}
+          {pathname === "buy" && (
+            <p>
+              Rate 1 USD = <span className="text-[#05F364]">₵{rate}</span>
+            </p>
+          )}
+
           {/* <p className="text-xs lg:text-base text-gray-400">
               {pathname === "buy"
                 ? "Quantity"
