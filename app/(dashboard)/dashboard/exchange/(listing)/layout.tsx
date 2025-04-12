@@ -85,7 +85,7 @@ const layout: React.FC<Props> = ({ children }) => {
           className="py-8 bg-[#0a1030] bg-[url('/images/exploredeals.png')]"
           style={{ backgroundSize: "cover" }}
         >
-          <div className="container mx-auto px-4">
+          <div className="container max-w-5xl mx-auto ">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {deals.map((deal, index) => (
                 <DealCard key={index} deal={deal} />
