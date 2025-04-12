@@ -45,11 +45,14 @@ const Topbar = () => {
                   src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=faceare&facepad=3&w=688&h=688&q=100"
                   alt=""
                 /> */}
-          <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-pink-400 rounded-full ">
+          <Link
+            href="/dashboard/settings/personal-information"
+            className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-pink-400 rounded-full "
+          >
             <span className="font-medium text-white">
               {userInfo?.firstname[0].toUpperCase()}
             </span>
-          </div>
+          </Link>
         </div>
         <div>
           <p className="text-xs font-bold capitalize">{userInfo?.firstname}</p>
@@ -70,7 +73,7 @@ const Topbar = () => {
         <div className="hidden lg:flex items-center gap-x-4">
           <LanguageSelect />
           <Link
-            href="/account"
+            href="/dashboard/settings/personal-information"
             className="p-1.5 rounded-full hover:bg-gray-800"
           >
             <User className="h-5 w-5" />

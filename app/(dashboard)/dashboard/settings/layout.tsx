@@ -24,11 +24,11 @@ const layout: React.FC<Props> = ({ children }) => {
   }
 
   return (
-    <div className="w-full flex flex-col lg:flex-row ">
-      <div className="lg:hidden">
+    <div className="w-full lg:flex flex-col lg:flex-row ">
+      {/* <div className="hidden">
         <MobileSettingsMenuSlider menuItems={[2]} />
-      </div>
-      <div className="hidden lg:flex flex-col w-full lg:w-[35%] text-white gap-y-8 px-8 pt-10">
+      </div> */}
+      <div className="hidden lg:flex flex-col w-full lg:w-[35%] text-white lg:gap-y-8 lg:px-8 lg:pt-10">
         <SettingsMenuItem
           title="Personal Information"
           subtitle="Profile Settings"
@@ -82,7 +82,7 @@ const layout: React.FC<Props> = ({ children }) => {
           link="/dashboard/settings/tutorials"
         />
       </div>
-      <div className="px-8  pt-10 w-full lg:w-[65%]"> {children}</div>
+      <div className="lg:px-8  lg:pt-10 w-full lg:w-[65%]"> {children}</div>
     </div>
   );
 };

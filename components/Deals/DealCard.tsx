@@ -14,7 +14,7 @@ interface Props {
 const DealCard = ({ deal }: any) => {
   const router = useRouter();
   return (
-    <div className="rounded-lg overflow-hidden relative group w-48">
+    <div className="rounded-lg overflow-hidden relative group lg:w-48">
       <div className="relative aspect-[9/16] rounded-lg overflow-hidden">
         <Image
           src={deal.dealImageUrl}

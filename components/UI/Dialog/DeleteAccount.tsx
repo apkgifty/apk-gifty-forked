@@ -12,8 +12,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import Lottie from "lottie-react";
 import loadingAnimation from "@/components/Animations/Lottie/blueloading.json";
+import { Trash } from "lucide-react";
 
-const DeleteAccount = () => {
+interface Props {
+  email?: string;
+}
+
+const DeleteAccount = ({ email }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -46,13 +51,27 @@ const DeleteAccount = () => {
 
   return (
     <>
+      <div
+        className="bg-[#1a2133] rounded-lg p-4 flex items-center"
+        onClick={() => setOpen(true)}
+      >
+        <div className="bg-[#121620] p-3 rounded-full mr-4">
+          <Trash className="h-5 w-5" />
+        </div>
+        <div>
+          <h2 className="text-lg font-medium">Delete Account</h2>
+          <p className="text-gray-400">{email}</p>
+        </div>
+      </div>
       <div className="w-full flex justify-center mt-12">
-        <button
-          className="bg-red-600 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-red-800"
-          onClick={() => setOpen(true)}
-        >
-          Delete Account
-        </button>
+        <div className="hidden lg:inline-block">
+          <button
+            className="bg-red-600 text-white px-12 py-2 lg:px-16 lg:py-3 text-xs lg:text-sm rounded-lg hover:bg-red-800"
+            onClick={() => setOpen(true)}
+          >
+            Delete Account
+          </button>
+        </div>
       </div>
       <Dialog
         open={open}
