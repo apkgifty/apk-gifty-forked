@@ -108,3 +108,16 @@ input[type="number"] {
 * {
   scrollbar-width: thin;
 }
+
+.message {
+  background-color: #353945;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 10px;
+  margin: 6px 5px;
+  display: inline-block;
+}
+
+.time {
+  color: #fff;
+}
