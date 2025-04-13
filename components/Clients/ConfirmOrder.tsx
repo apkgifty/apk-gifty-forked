@@ -16,6 +16,7 @@ import CancelButton from "./CancelButton";
 import ReportIcon from "@mui/icons-material/Report";
 import { toast } from "react-toastify";
 import MomoPaymentDialog from "../UI/Dialog/MomoPaymentDialog";
+import { TradeCompletedDialog } from "../UI/Dialog/TradeCompletedDialog";
 
 interface Props {
   paymentMethods: any;
@@ -64,6 +65,7 @@ const ConfirmOrder: React.FC<Props> = ({
 
   const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState("");
+  const [tradeCompleted, setTradeCompleted] = useState(false);
 
   const [chat, setChat] = useState(null);
 
@@ -269,6 +271,15 @@ const ConfirmOrder: React.FC<Props> = ({
     }
   });
 
+  const handleTradeCompletion = () => {
+    setTradeCompleted(true);
+    setStatuss("2");
+  };
+
+  const closeTradeCompletionDialogHandler = () => {
+    setTradeCompleted(false);
+  };
+
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
@@ -459,13 +470,16 @@ const ConfirmOrder: React.FC<Props> = ({
       </button>
     </div> */}
       </div>
-      <Chat
-        status={statuss}
-        chat={chat}
-        token={token}
-        is_paid={type === "buy" ? is_paid : null}
-        id={id}
-      />
+      {statuss === "1" && (
+        <Chat
+          status={statuss}
+          chat={chat}
+          token={token}
+          is_paid={type === "buy" ? is_paid : null}
+          id={id}
+          handleTradeCompletion={handleTradeCompletion}
+        />
+      )}
       {/* <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}
@@ -550,6 +564,10 @@ const ConfirmOrder: React.FC<Props> = ({
           momoPaymentLink={paystackLink}
         />
       )}
+      <TradeCompletedDialog
+        onClose={closeTradeCompletionDialogHandler}
+        isOpen={tradeCompleted}
+      />
     </>
   );
 };

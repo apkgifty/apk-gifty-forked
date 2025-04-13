@@ -34,12 +34,14 @@ const Chat = ({
   chat,
   token,
   id,
+  handleTradeCompletion,
 }: {
   status: string;
   is_paid?: string;
   chat: any;
   token: any;
   id: string;
+  handleTradeCompletion: () => void;
 }) => {
   // console.log(chat);
   //   console.log(pusherKey, cluster);
@@ -118,7 +120,8 @@ const Chat = ({
     });
 
     channel.bind("completed", (data: any) => {
-      // console.log(data);
+      console.log("The order is completed", data);
+      handleTradeCompletion();
     });
 
     return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
