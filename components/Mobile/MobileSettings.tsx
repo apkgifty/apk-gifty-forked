@@ -111,7 +111,9 @@ export default async function MobileSettings() {
             </div>
             <div>
               <h2 className="text-lg font-medium">Account Verification</h2>
-              <p className="text-gray-400">Not verified</p>
+              <p className="text-gray-400">
+                {user.kyc ? "Verified" : "Not verified"}
+              </p>
             </div>
           </div>
           <ChevronRight className="h-5 w-5 text-gray-400" />

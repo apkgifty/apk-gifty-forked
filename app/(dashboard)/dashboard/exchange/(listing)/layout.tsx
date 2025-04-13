@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import path from "path";
 import DealCard from "@/components/Deals/DealCard";
+import DealsSlider from "@/components/Deals/DealsSlider";
 
 interface Props {
   children: React.ReactNode;
@@ -86,10 +87,13 @@ const layout: React.FC<Props> = ({ children }) => {
           style={{ backgroundSize: "cover" }}
         >
           <div className="container max-w-5xl mx-auto ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {deals.map((deal, index) => (
                 <DealCard key={index} deal={deal} />
               ))}
+            </div>
+            <div className="lg:hidden">
+              <DealsSlider />
             </div>
           </div>
         </section>
