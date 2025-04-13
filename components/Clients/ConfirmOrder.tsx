@@ -17,6 +17,7 @@ import ReportIcon from "@mui/icons-material/Report";
 import { toast } from "react-toastify";
 import MomoPaymentDialog from "../UI/Dialog/MomoPaymentDialog";
 import { TradeCompletedDialog } from "../UI/Dialog/TradeCompletedDialog";
+import { TradeSummary } from "./TradeSummary";
 
 interface Props {
   paymentMethods: any;
@@ -298,56 +299,37 @@ const ConfirmOrder: React.FC<Props> = ({
           </h1>
         </div>
         {/* {category === "Card" && ( */}
-        <div className="flex flex-col gap-y-2 pl-10">
-          {pathname === "sell" && (
-            <p>
-              Rate 1{product.currency.symbol} ={" "}
-              <span className="text-[#05F364]">₵{rate}</span>
-            </p>
-          )}
-          {pathname === "buy" && (
-            <p>
-              Rate 1 USD = <span className="text-[#05F364]">₵{rate}</span>
-            </p>
-          )}
+        {statuss === "0" || statuss === "1" ? (
+          <div className="flex flex-col gap-y-2 pl-10">
+            {pathname === "sell" && (
+              <p>
+                Rate 1{product.currency.symbol} ={" "}
+                <span className="text-[#05F364]">₵{rate}</span>
+              </p>
+            )}
+            {pathname === "buy" && (
+              <p>
+                Rate 1 USD = <span className="text-[#05F364]">₵{rate}</span>
+              </p>
+            )}
 
-          {/* <p className="text-xs lg:text-base text-gray-400">
-              {pathname === "buy"
-                ? "Quantity"
-                : pathname === "sell"
-                ? "Value "
-                : null}
-              <span className="text-white">:- {quantity}</span>
-            </p> */}
-          {/* <p className="text-xs lg:text-base text-gray-400">
-              Fees
-              <span className="text-white">
-                :- {product.currency.symbol + fees}
+            <p className="text-xs lg:text-base text-white">
+              {` Amount To ${
+                pathname === "buy"
+                  ? "pay"
+                  : pathname === "sell"
+                  ? "receive"
+                  : null
+              } in GHC: `}
+              <span className="text-[#05F364]">
+                {pathname == "sell" &&
+                  `₵${(Number(price) * Number(rate)).toFixed(2)}`}
+                {pathname == "buy" &&
+                  `₵${(Number(price) * Number(rate)).toFixed(2)}`}
               </span>
-            </p> */}
-          <p className="text-xs lg:text-base text-white">
-            {` Amount To ${
-              pathname === "buy"
-                ? "pay"
-                : pathname === "sell"
-                ? "receive"
-                : null
-            } in GHC: `}
-            <span className="text-[#05F364]">
-              {pathname == "sell" &&
-                `₵${(Number(price) * Number(rate)).toFixed(2)}`}
-              {pathname == "buy" &&
-                `₵${(Number(price) * Number(rate)).toFixed(2)}`}
-            </span>
-          </p>
-
-          {/* <p className="text-xs lg:text-base text-gray-400">
-              Rate{" "}
-              <span className=" font-semi-bold text-orange-400">
-                :- {product.currency.symbol}1 / GHC {rate}
-              </span>
-            </p> */}
-        </div>
+            </p>
+          </div>
+        ) : null}
         {/* // )} */}
 
         {/* {pathname == "buy" && (
@@ -366,17 +348,18 @@ const ConfirmOrder: React.FC<Props> = ({
             </p>
           </div>
         )} */}
-        <div className="mt-12">
-          {statuss === "0" && (
-            <p className="text-sm lg:text-base">
-              Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
-              before proceeding with your payment.
-            </p>
-          )}
+        {statuss === "0" || statuss === "1" ? (
+          <div className="mt-12">
+            {statuss === "0" && (
+              <p className="text-sm lg:text-base">
+                Kindly begin your transaction by clicking &#x27;Start
+                Trade&#x27; before proceeding with your payment.
+              </p>
+            )}
 
-          {pathname === "buy" && (
-            <>
-              {/* <p className="text-sm lg:text-base text-orange-400 mt-4">
+            {pathname === "buy" && (
+              <>
+                {/* <p className="text-sm lg:text-base text-orange-400 mt-4">
                 Amount to pay in Ghana Cedis - GHC{" "}
                 {category === "Card"
                   ? (Number(price) * Number(rate)).toFixed(2)
@@ -385,54 +368,62 @@ const ConfirmOrder: React.FC<Props> = ({
                   : Number(price).toFixed(2)}
               </p> */}
 
-              {loading ? null : (
-                <ul className=" mt-6 flex flex-col items-center gap-y-4">
-                  {makePayment &&
-                    is_paid === "0" &&
-                    filteredPaymentMethods.map((method: any) => (
-                      <Payment
-                        method={method}
-                        key={method.id}
-                        id={id}
-                        makePayment={sendPayment}
-                        loadingFunc={setLoading}
-                        notifySeller={notifySellerHandlerNoTimer}
-                        orderData={orderData}
-                      />
-                    ))}
-                </ul>
-              )}
-            </>
-          )}
-        </div>
-        <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
-          {loading ? (
-            <div className="w-full flex justify-center">
-              <div className="w-[100px] h-[100px] ">
-                <Lottie animationData={loadingAnimation} />
+                {loading ? null : (
+                  <ul className=" mt-6 flex flex-col items-center gap-y-4">
+                    {makePayment &&
+                      is_paid === "0" &&
+                      filteredPaymentMethods.map((method: any) => (
+                        <Payment
+                          method={method}
+                          key={method.id}
+                          id={id}
+                          makePayment={sendPayment}
+                          loadingFunc={setLoading}
+                          notifySeller={notifySellerHandlerNoTimer}
+                          orderData={orderData}
+                        />
+                      ))}
+                  </ul>
+                )}
+              </>
+            )}
+          </div>
+        ) : null}
+        {statuss === "2" && (
+          <div>
+            <TradeSummary amount={price} />
+          </div>
+        )}
+        {statuss === "0" || statuss === "1" ? (
+          <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
+            {loading ? (
+              <div className="w-full flex justify-center">
+                <div className="w-[100px] h-[100px] ">
+                  <Lottie animationData={loadingAnimation} />
+                </div>
               </div>
-            </div>
-          ) : (
-            <>
-              {is_paid === "0" && (
-                <PurchaseButton
-                  pathname={pathname}
-                  handleSubmit={
-                    type === "buy" ? requestPayment : notifySellerHandler
-                  }
-                  status={statuss}
-                />
-              )}
+            ) : (
+              <>
+                {is_paid === "0" && (
+                  <PurchaseButton
+                    pathname={pathname}
+                    handleSubmit={
+                      type === "buy" ? requestPayment : notifySellerHandler
+                    }
+                    status={statuss}
+                  />
+                )}
 
-              {is_paid === "0" && (
-                <CancelButton
-                  status={statuss}
-                  openDialog={setOpenCancelDialog}
-                />
-              )}
-            </>
-          )}
-        </div>
+                {is_paid === "0" && (
+                  <CancelButton
+                    status={statuss}
+                    openDialog={setOpenCancelDialog}
+                  />
+                )}
+              </>
+            )}
+          </div>
+        ) : null}
         {loading && status === "" && (
           <div className="w-full flex justify-center">
             <div className="w-[100px] h-[100px] ">
