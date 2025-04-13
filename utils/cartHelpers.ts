@@ -35,13 +35,24 @@ const removeCartItem = async (productId: string) => {
 
 const checkoutCart = async () => {
   try {
-    const config = {
+    const checkoutConfig = {
       method: "POST",
       url: `/api/checkout-cart`,
     };
 
-    const response = await axios(config);
-    return response.data;
+    const checkoutResponse = await axios(checkoutConfig);
+
+    // Only fetch cart after transaction is created
+    if (checkoutResponse?.data?.data?.id) {
+      const getCartConfig = {
+        method: "GET",
+        url: `/api/cart`,
+      };
+      const getCartResponse = await axios(getCartConfig);
+      return { checkoutResponse, getCartResponse };
+    }
+
+    return { checkoutResponse };
   } catch (error) {
     console.log(error);
     return error;

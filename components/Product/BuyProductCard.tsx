@@ -37,14 +37,14 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
         0
       );
 
-      console.log("response data", newCart);
+      // console.log("response data", newCart);
       setCart((prev: CartState) => {
         const newState = {
           ...prev,
           items: newCart,
           total: total,
         };
-        console.log("New Cart State:", newState);
+
         return newState;
       });
     } catch (error: any) {

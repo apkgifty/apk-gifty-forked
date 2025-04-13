@@ -102,11 +102,38 @@ const CartPage = () => {
   const checkoutCartHandler = async () => {
     try {
       const response = await checkoutCart();
-      console.log("Checkout cart response:", response);
-      if (response && response.data) {
-        router.push(
-          `transaction/order/buy?category=Card&pid=${response.data.id}`
-        );
+      if (
+        response &&
+        typeof response === "object" &&
+        "checkoutResponse" in response
+      ) {
+        const { checkoutResponse, getCartResponse } = response as {
+          checkoutResponse: { data: { data: { id: string } } };
+          getCartResponse: { data: { data: any[] } };
+        };
+
+        if (checkoutResponse?.data?.data?.id) {
+          // Update cart state with new cart data
+          console.log(getCartResponse.data.data);
+          const newCart = getCartResponse.data.data;
+          const total = newCart.reduce(
+            (acc: number, item: any) =>
+              acc + Number(item.product.price) * item.product_quantity,
+            0
+          );
+
+          router.push(
+            `transaction/order/buy?category=Card&pid=${checkoutResponse.data.data.id}`
+          );
+          setCart((prev: CartState) => {
+            const newState = {
+              ...prev,
+              items: newCart,
+              total: total,
+            };
+            return newState;
+          });
+        }
       }
     } catch (error) {
       console.error("Error checking out cart:", error);
