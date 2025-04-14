@@ -18,6 +18,12 @@ import FeaturesSection from "@/components/Main/Section/FeaturesSection";
 const HomePage = async () => {
   const response = await axios.get(`${process.env.API_ENDPOINT}/currencies`);
 
+  const tradesResponse = await axios.get(
+    `${process.env.API_ENDPOINT}/recent-trades`
+  );
+
+  // console.log("tradesResponse", tradesResponse.data);
+
   const currencies: currenciesState[] = response.data.data;
 
   return (
@@ -71,7 +77,7 @@ const HomePage = async () => {
               </div>
             </div> */}
 
-            <RecentTrades />
+            <RecentTrades trades={tradesResponse.data} />
 
             <div className="w-full flex flex-col items-start justify-center mt-16 bg-tertiary roounded-md py-32 space-y-6 rounded-lg relative">
               <Image

@@ -4,22 +4,22 @@ import { useEffect, useRef } from "react";
 import { User } from "lucide-react";
 
 interface Trade {
-  username: string;
-  type: "Purchased" | "Sold";
-  amount: number;
-  cardType: "PSN" | "Amazon";
+  user: string;
+  // type: "Purchased" | "Sold";
+  // amount: number;
+  name: string;
 }
 
-const trades: Trade[] = [
-  { username: "n****er", type: "Sold", amount: 300, cardType: "Amazon" },
-  { username: "g****jk", type: "Purchased", amount: 300, cardType: "PSN" },
-  { username: "n****er", type: "Sold", amount: 300, cardType: "Amazon" },
-  { username: "g****jk", type: "Purchased", amount: 300, cardType: "PSN" },
-  { username: "n****er", type: "Sold", amount: 300, cardType: "Amazon" },
-  { username: "g****jk", type: "Purchased", amount: 300, cardType: "PSN" },
-];
+// const trades: Trade[] = [
+//   { username: "n****er", type: "Sold", amount: 300, cardType: "Amazon" },
+//   { username: "g****jk", type: "Purchased", amount: 300, cardType: "PSN" },
+//   { username: "n****er", type: "Sold", amount: 300, cardType: "Amazon" },
+//   { username: "g****jk", type: "Purchased", amount: 300, cardType: "PSN" },
+//   { username: "n****er", type: "Sold", amount: 300, cardType: "Amazon" },
+//   { username: "g****jk", type: "Purchased", amount: 300, cardType: "PSN" },
+// ];
 
-export default function RecentTrades() {
+export default function RecentTrades({ trades }: { trades: Trade[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function RecentTrades() {
             className="flex space-x-6 overflow-x-hidden whitespace-nowrap"
           >
             {/* Duplicate trades for continuous scrolling */}
-            {[...trades, ...trades].map((trade, index) => (
+            {[...trades, ...trades, ...trades].map((trade, index) => (
               <div
                 key={index}
                 className="inline-flex items-center space-x-2 bg-[#1e2328] rounded-lg px-4 py-2"
@@ -69,10 +69,11 @@ export default function RecentTrades() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-sm font-medium text-blue-500">
-                    {trade.username}
+                    {trade.user}
                   </span>
                   <span className="text-xs text-gray-400">
-                    {trade.type}: ${trade.amount} {trade.cardType} giftcard
+                    {/* {trade.type}: ${trade.amount} {trade.cardType} giftcard */}
+                    {trade.name} traded
                   </span>
                 </div>
               </div>
