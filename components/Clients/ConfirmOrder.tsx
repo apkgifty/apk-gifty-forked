@@ -391,7 +391,7 @@ const ConfirmOrder: React.FC<Props> = ({
         ) : null}
         {statuss === "2" && (
           <div>
-            <TradeSummary amount={price} />
+            <TradeSummary amount={price} pathname={pathname} />
           </div>
         )}
         {statuss === "0" || statuss === "1" ? (

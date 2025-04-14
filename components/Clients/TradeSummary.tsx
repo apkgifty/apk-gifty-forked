@@ -3,9 +3,15 @@
 import type React from "react";
 
 import { useState } from "react";
-import { User } from "lucide-react";
+import { Link, User } from "lucide-react";
 
-export function TradeSummary({ amount }: { amount: number }) {
+export function TradeSummary({
+  amount,
+  pathname,
+}: {
+  amount: number;
+  pathname: string;
+}) {
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState("");
 
@@ -28,7 +34,8 @@ export function TradeSummary({ amount }: { amount: number }) {
         <div>
           <p className="text-base">Username</p>
           <p className="text-base">
-            Amount Paid: <span className="text-green-400">₵{amount}</span>
+            Amount {pathname === "buy" ? "Paid" : "Sold"}:{" "}
+            <span className="text-green-400">${amount}</span>
           </p>
         </div>
       </div>
@@ -63,7 +70,10 @@ export function TradeSummary({ amount }: { amount: number }) {
 
         {/* Trustpilot and X logos */}
         <div className="flex space-x-3 mb-8">
-          <div className="bg-white text-black rounded-md py-2 px-4 flex items-center">
+          <Link
+            className="bg-white text-black rounded-md py-2 px-4 flex items-center"
+            href="https://www.trustpilot.com/review/apkxchange.com"
+          >
             <svg
               className="w-5 h-5 text-[#00b67a] mr-1"
               viewBox="0 0 24 24"
@@ -72,12 +82,15 @@ export function TradeSummary({ amount }: { amount: number }) {
               <path d="M12 0l2.5 7.5H22L16 12.5l2.5 7.5L12 16l-6.5 4 2.5-7.5L2 7.5h7.5z" />
             </svg>
             <span className="font-bold">Trustpilot</span>
-          </div>
-          <div className="bg-white text-black rounded-md p-2 flex items-center justify-center w-10 h-10">
+          </Link>
+          <Link
+            className="bg-white text-black rounded-md p-2 flex items-center justify-center w-10 h-10"
+            href="https://x.com/apkxchangeapp?s=21"
+          >
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
-          </div>
+          </Link>
         </div>
       </div>
 

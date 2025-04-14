@@ -49,12 +49,12 @@ const PersonalInformationPage: React.FC<Props> = async () => {
       <div className="w-full text-white pb-32 hidden lg:block">
         <div className="w-full flex items-center justify-between pb-6 border-b-2 border-black">
           <p className="text-base font-semibold">My Profile</p>
-          <div className="px-3 py-2 bg-primary rounded-lg flex items-center gap-x-3 cursor-pointer">
+          {/* <div className="px-3 py-2 bg-primary rounded-lg flex items-center gap-x-3 cursor-pointer">
             <span>
               <EditIconSvg />
             </span>
             <span className="text-sm lg:text-base">Edit</span>
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-10">
@@ -78,10 +78,11 @@ const PersonalInformationPage: React.FC<Props> = async () => {
                 placeholder="Last Name"
                 name="lastname "
                 className="bg-primary"
+                defaultValue={user.lastname}
                 readOnly
               />
             </div>{" "}
-            <div className="w-full lg:w-[45%]">
+            {/* <div className="w-full lg:w-[45%]">
               <FormInput
                 icon={<EyeIconSvg />}
                 type="text"
@@ -91,8 +92,8 @@ const PersonalInformationPage: React.FC<Props> = async () => {
                 defaultValue={user.firstname}
                 readOnly
               />
-            </div>{" "}
-            <div className="w-full lg:w-[45%]">
+            </div>{" "} */}
+            {/* <div className="w-full lg:w-[45%]">
               <FormInput
                 icon={<EmailAtSvg />}
                 type="text"
@@ -102,7 +103,7 @@ const PersonalInformationPage: React.FC<Props> = async () => {
                 defaultValue={user.firstname}
                 readOnly
               />
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -120,7 +121,7 @@ const PersonalInformationPage: React.FC<Props> = async () => {
                 readOnly
               />
             </div>
-            <div className="w-full lg:w-[45%]">
+            {/* <div className="w-full lg:w-[45%]">
               <FormInput
                 icon={<CurrencyIconSvg />}
                 type="text"
@@ -129,8 +130,8 @@ const PersonalInformationPage: React.FC<Props> = async () => {
                 className="bg-primary"
                 readOnly
               />
-            </div>{" "}
-            <div className="w-full lg:w-[45%]">
+            </div>{" "} */}
+            {/* <div className="w-full lg:w-[45%]">
               <FormInput
                 icon={<MapIconSvg />}
                 type="text"
@@ -140,7 +141,7 @@ const PersonalInformationPage: React.FC<Props> = async () => {
                 defaultValue={user.nationality}
                 readOnly
               />
-            </div>{" "}
+            </div>{" "} */}
             <div className="w-full lg:w-[45%]">
               <FormInput
                 icon={<PhoneSvg />}
@@ -162,14 +163,14 @@ const PersonalInformationPage: React.FC<Props> = async () => {
               {day} - {fullFormattedDate}
             </p>
           </div>
-          <div className="flex flex-col w-full lg:w-[45%] gap-y-2 lg:gap-x-4 lg:gap-y-0 lg:flex-row">
+          {/* <div className="flex flex-col w-full lg:w-[45%] gap-y-2 lg:gap-x-4 lg:gap-y-0 lg:flex-row">
             <button className="w-full text-sm px-4 py-2 bg-secondary rounded-lg">
               Cancel
             </button>
             <button className="w-full text-sm px-4 py-2 bg-appviolet rounded-lg">
               Save Changes
             </button>
-          </div>
+          </div> */}
         </div>
         <DeleteAccount />
       </div>

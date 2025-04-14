@@ -52,7 +52,7 @@ const DeleteAccount = ({ email }: Props) => {
   return (
     <>
       <div
-        className="bg-[#1a2133] rounded-lg p-4 flex items-center"
+        className="bg-[#1a2133] lg:hidden rounded-lg p-4 flex items-center"
         onClick={() => setOpen(true)}
       >
         <div className="bg-[#121620] p-3 rounded-full mr-4">

@@ -87,7 +87,7 @@ const Topbar = () => {
               1
             </span>
           </Link> */}
-          <NotificationsDropdown />
+          {/* <NotificationsDropdown /> */}
           <CartDropdown />
           {/* <CartCountIcon /> */}
         </div>
