@@ -19,37 +19,6 @@ const CartPage = () => {
     setMounted(true);
   }, []);
 
-  // Load dummy data for demonstration
-  // useEffect(() => {
-  //   if (!mounted) return;
-
-  //   // // For demonstration, use dummy data instead of API call
-  //   // setCart(dummyCartData);
-  //   // setIsLoading(false);
-
-  //   // Comment out the actual API call for now
-
-  //   const fetchCart = async () => {
-  //     try {
-  //       const response = await axios.get("/api/cart");
-  //       if (response.data) {
-  //         console.log(response.data);
-  //         // setCart({
-  //         //   items: response.data.items || [],
-  //         //   total: response.data.total || 0,
-  //         // });
-  //       }
-  //     } catch (error: any) {
-  //       console.error("Error fetching cart:", error);
-  //       setError("Failed to load cart data. Please try again later.");
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchCart();
-  // }, [mounted, setCart]);
-
   const updateCartHandler = async (
     productId: string,
     productQuantity: number,
@@ -63,7 +32,6 @@ const CartPage = () => {
 
     try {
       const response = await updateCart(productId, productQuantity);
-      console.log("Cart update response:", response);
 
       if (response && response.data) {
         // Sort the cart items by creation date (newest first)
@@ -72,8 +40,6 @@ const CartPage = () => {
           const dateB = new Date(b.created_at).getTime();
           return dateB - dateA; // Descending order (newest first)
         });
-
-        console.log("Sorted cart items:", sortedResponse);
 
         // Calculate the new total
         const newTotal = sortedResponse.reduce((sum, item) => {
@@ -89,7 +55,6 @@ const CartPage = () => {
             items: sortedResponse,
             total: newTotal,
           };
-          console.log("Updated cart state:", newState);
           return newState;
         });
       }

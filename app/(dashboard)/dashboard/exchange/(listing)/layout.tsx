@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Card from "@/components/Card/Card";
 import Switch from "@/components/Form/FormComponents/Switch";
@@ -12,6 +10,8 @@ import { usePathname } from "next/navigation";
 import path from "path";
 import DealCard from "@/components/Deals/DealCard";
 import DealsSlider from "@/components/Deals/DealsSlider";
+import axios from "axios";
+import axiosInstance from "@/utils/axios";
 
 interface Props {
   children: React.ReactNode;
@@ -19,32 +19,51 @@ interface Props {
 
 const currencies: string[] = ["USD", "GHS", "CAD", "GBP", "EUR", "NGN"];
 
-const deals = [
-  {
-    dealName: "Xbox Deals",
-    dealUrl: "/dashboard/exchange/deals?category=xbox&currency=USD",
-    dealImageUrl: "/images/xbox.png",
-    btnColor: "bg-[#107c10] hover:bg-[#0b4b0b]",
-  },
-  {
-    dealName: "Playstation Deals",
-    dealUrl: "/dashboard/exchange/deals?category=psn&currency=USD",
-    dealImageUrl: "/images/psn.png",
-    btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
-  },
-  {
-    dealName: "Nintendo Deals",
-    dealUrl: "/dashboard/exchange/deals?category=nintendo&currency=USD",
-    dealImageUrl: "/images/nintendo.png",
-    btnColor: "bg-[#e60012] hover:bg-[#a5000d]",
-  },
-  {
-    dealName: "Daily Deals",
-    dealUrl: "/dashboard/exchange/deals?category=daily&currency=USD",
-    dealImageUrl: "/images/daily.png",
-    btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
-  },
-];
+// const deals = [
+//   {
+//     dealName: "Xbox Deals",
+//     dealUrl: "/dashboard/exchange/deals?category=xbox&currency=USD",
+//     dealImageUrl: "/images/xbox.png",
+//     btnColor: "bg-[#107c10] hover:bg-[#0b4b0b]",
+//   },
+//   {
+//     dealName: "Playstation Deals",
+//     dealUrl: "/dashboard/exchange/deals?category=psn&currency=USD",
+//     dealImageUrl: "/images/psn.png",
+//     btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
+//   },
+//   {
+//     dealName: "Nintendo Deals",
+//     dealUrl: "/dashboard/exchange/deals?category=nintendo&currency=USD",
+//     dealImageUrl: "/images/nintendo.png",
+//     btnColor: "bg-[#e60012] hover:bg-[#a5000d]",
+//   },
+//   {
+//     dealName: "Daily Deals",
+//     dealUrl: "/dashboard/exchange/deals?category=daily&currency=USD",
+//     dealImageUrl: "/images/daily.png",
+//     btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
+//   },
+// ];
+
+const fetchProductCategories = async () => {
+  const config = {
+    method: "GET",
+    url: `${process.env.API_ENDPOINT}/product-categories`,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  };
+  try {
+    const response = await axiosInstance(config);
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    console.error("Error fetching product categories:", error.request);
+    return [];
+  }
+};
 
 const giftCards: string[] = [
   "Playstation",
@@ -58,11 +77,14 @@ const giftCards: string[] = [
   "Target",
 ];
 
-const layout: React.FC<Props> = ({ children }) => {
+const layout: React.FC<Props> = async ({ children }) => {
   // const router = useRouter();
   // const pathname = usePathname();
 
   // const isDeals = pathname.includes("deals");
+
+  const productCategories = await fetchProductCategories();
+  const deals = productCategories.data;
 
   return (
     <>
@@ -88,12 +110,12 @@ const layout: React.FC<Props> = ({ children }) => {
         >
           <div className="container max-w-5xl mx-auto ">
             <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {deals.map((deal, index) => (
+              {deals.map((deal: any, index: any) => (
                 <DealCard key={index} deal={deal} />
               ))}
             </div>
             <div className="lg:hidden">
-              <DealsSlider />
+              <DealsSlider deals={deals} />
             </div>
           </div>
         </section>

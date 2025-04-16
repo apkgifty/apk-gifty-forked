@@ -6,9 +6,9 @@ import BuyProductCard from "@/components/Product/BuyProductCard";
 import NoProducts from "@/components/Product/NoProducts";
 
 const bannerImageUrls = {
-  xbox: "/images/xbox_cover.png",
-  psn: "/images/psn_cover.png",
-  nintendo: "/images/nintendo_cover.png",
+  Xbox: "/images/xbox_cover.png",
+  PSN: "/images/psn_cover.png",
+  Nintendo: "/images/nintendo_cover.png",
   daily: "/images/exploredeals.png",
 };
 
@@ -64,11 +64,11 @@ const DealsPage = async ({
         <div className="ml-24">
           <p className="lg:text-4xl font-bold text-white">
             Enjoy the <span className="">Best</span> <br />
-            {dealCategory === "psn"
+            {dealCategory === "PSN"
               ? "PSN DEALS"
-              : dealCategory === "xbox"
+              : dealCategory === "Xbox"
               ? "XBOX DEALS"
-              : dealCategory === "nintendo"
+              : dealCategory === "Nintendo"
               ? "NINTENDO DEALS"
               : "DEALS"}
           </p>

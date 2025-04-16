@@ -17,7 +17,7 @@ const DealCard = ({ deal }: any) => {
     <div className="rounded-lg overflow-hidden relative group lg:w-48">
       <div className="relative aspect-[9/16] rounded-lg overflow-hidden">
         <Image
-          src={deal.dealImageUrl}
+          src={deal.image_url}
           alt={deal.dealName}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -25,8 +25,8 @@ const DealCard = ({ deal }: any) => {
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 ease-in-out transform origin-bottom scale-y-0 group-hover:scale-y-100"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-between p-6 z-10">
           <Link
-            href={deal.dealUrl}
-            className={`${deal.btnColor} text-white px-4 py-2 rounded-md text-sm mt-auto`}
+            href={`/dashboard/exchange/deals?category=${deal.name}&currency=USD`}
+            className={`bg-[#0070d1] text-white px-4 py-2 rounded-md text-sm mt-auto`}
           >
             Explore Deals
           </Link>

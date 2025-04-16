@@ -5,34 +5,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import DealsCardMobile from "./DealsCardMobile";
 
-const deals = [
-  {
-    dealName: "Xbox Deals",
-    dealUrl: "/dashboard/exchange/deals?category=xbox&currency=USD",
-    dealImageUrl: "/images/xbox.png",
-    btnColor: "bg-[#107c10] hover:bg-[#0b4b0b]",
-  },
-  {
-    dealName: "Playstation Deals",
-    dealUrl: "/dashboard/exchange/deals?category=psn&currency=USD",
-    dealImageUrl: "/images/psn.png",
-    btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
-  },
-  {
-    dealName: "Nintendo Deals",
-    dealUrl: "/dashboard/exchange/deals?category=nintendo&currency=USD",
-    dealImageUrl: "/images/nintendo.png",
-    btnColor: "bg-[#e60012] hover:bg-[#a5000d]",
-  },
-  {
-    dealName: "Daily Deals",
-    dealUrl: "/dashboard/exchange/deals?category=daily&currency=USD",
-    dealImageUrl: "/images/daily.png",
-    btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
-  },
-];
-
-const DealsSlider = () => {
+const DealsSlider = ({ deals }: any) => {
   return (
     <div className="px-4 lg:px-8">
       <style jsx global>{`
@@ -74,11 +47,11 @@ const DealsSlider = () => {
           },
         }}
       >
-        {deals.map((deal) => (
+        {deals.map((deal: any) => (
           <SplideSlide key={deal.dealName} className="h-[220px] lg:h-[250px]">
             <DealsCardMobile
-              image_url={deal.dealImageUrl}
-              link={deal.dealUrl}
+              image_url={deal.image_url}
+              link={`/dashboard/exchange/deals?category=${deal.name}&currency=USD`}
             />
           </SplideSlide>
         ))}

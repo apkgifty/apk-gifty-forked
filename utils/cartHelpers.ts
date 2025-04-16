@@ -40,19 +40,17 @@ const checkoutCart = async () => {
       url: `/api/checkout-cart`,
     };
 
-    const checkoutResponse = await axios(checkoutConfig);
+    const getCartConfig = {
+      method: "GET",
+      url: `/api/cart`,
+    };
 
-    // Only fetch cart after transaction is created
-    if (checkoutResponse?.data?.data?.id) {
-      const getCartConfig = {
-        method: "GET",
-        url: `/api/cart`,
-      };
-      const getCartResponse = await axios(getCartConfig);
-      return { checkoutResponse, getCartResponse };
-    }
+    const [checkoutResponse, getCartResponse] = await Promise.all([
+      axios(checkoutConfig),
+      axios(getCartConfig),
+    ]);
 
-    return { checkoutResponse };
+    return { checkoutResponse, getCartResponse };
   } catch (error) {
     console.log(error);
     return error;

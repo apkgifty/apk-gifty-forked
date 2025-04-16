@@ -36,7 +36,6 @@ export default function CartDropdown() {
 
     try {
       const response = await axios.get("/api/cart");
-      console.log("Cart data:", response.data);
 
       if (response.data) {
         const items = response.data.data || [];
@@ -46,8 +45,6 @@ export default function CartDropdown() {
           0
         );
 
-        console.log("items", items);
-        console.log("total", total);
         setCart({
           items: items,
           total: total,
