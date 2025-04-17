@@ -70,9 +70,14 @@ export function TradeSummary({
 
         {/* Trustpilot and X logos */}
         <div className="flex space-x-3 mb-8">
-          <Link
-            className="bg-white text-black rounded-md py-2 px-4 flex items-center"
-            href="https://www.trustpilot.com/review/apkxchange.com"
+          <div
+            className="bg-white text-black rounded-md py-2 px-4 flex items-center cursor-pointer"
+            onClick={() => {
+              window.open(
+                "https://www.trustpilot.com/review/apkxchange.com",
+                "_blank"
+              );
+            }}
           >
             <svg
               className="w-5 h-5 text-[#00b67a] mr-1"
@@ -82,15 +87,17 @@ export function TradeSummary({
               <path d="M12 0l2.5 7.5H22L16 12.5l2.5 7.5L12 16l-6.5 4 2.5-7.5L2 7.5h7.5z" />
             </svg>
             <span className="font-bold">Trustpilot</span>
-          </Link>
-          <Link
-            className="bg-white text-black rounded-md p-2 flex items-center justify-center w-10 h-10"
-            href="https://x.com/apkxchangeapp?s=21"
+          </div>
+          <div
+            className="bg-white text-black rounded-md p-2 flex items-center justify-center w-10 h-10 cursor-pointer"
+            onClick={() => {
+              window.open("https://x.com/apkxchangeapp?s=21", "_blank");
+            }}
           >
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
-          </Link>
+          </div>
         </div>
       </div>
 

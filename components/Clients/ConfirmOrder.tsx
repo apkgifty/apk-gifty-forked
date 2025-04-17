@@ -461,16 +461,16 @@ const ConfirmOrder: React.FC<Props> = ({
       </button>
     </div> */}
       </div>
-      {statuss === "1" && (
-        <Chat
-          status={statuss}
-          chat={chat}
-          token={token}
-          is_paid={type === "buy" ? is_paid : null}
-          id={id}
-          handleTradeCompletion={handleTradeCompletion}
-        />
-      )}
+      {/* {statuss === "1" && ( */}
+      <Chat
+        status={statuss}
+        chat={chat}
+        token={token}
+        is_paid={type === "buy" ? is_paid : null}
+        id={id}
+        handleTradeCompletion={handleTradeCompletion}
+      />
+      {/* )} */}
       {/* <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}
