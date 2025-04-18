@@ -39,7 +39,7 @@ const ConfirmOrder: React.FC<Props> = ({
   paymentMethods,
   orderData,
   token,
-  rate,
+  // rate,
 }) => {
   const {
     price,
@@ -53,9 +53,12 @@ const ConfirmOrder: React.FC<Props> = ({
     category,
     type,
     is_paid,
+    rate,
     product,
     payment_transaction_id,
   } = orderData;
+
+  console.log(orderData);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
