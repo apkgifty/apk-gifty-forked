@@ -74,7 +74,7 @@ export function TradeSummary({
             className="bg-white text-black rounded-md py-2 px-4 flex items-center cursor-pointer"
             onClick={() => {
               window.open(
-                "https://www.trustpilot.com/review/apkxchange.com",
+                "https://www.trustpilot.com/evaluate/apkxchange.com",
                 "_blank"
               );
             }}
