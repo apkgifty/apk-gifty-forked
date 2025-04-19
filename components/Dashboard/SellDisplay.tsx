@@ -40,6 +40,8 @@ const SellDisplay: React.FC<Props> = ({
 
   const pathname = paths[paths.length - 1];
 
+  const [loading, setLoading] = useState(false);
+
   const sellHandler = async (amount: string) => {
     let data;
 
@@ -68,6 +70,7 @@ const SellDisplay: React.FC<Props> = ({
       data: JSON.stringify(data),
     };
     try {
+      setLoading(true);
       const response = await axios(config);
       // console.log(response.data);
       router.push(
@@ -75,6 +78,8 @@ const SellDisplay: React.FC<Props> = ({
       );
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -139,14 +144,14 @@ const SellDisplay: React.FC<Props> = ({
         </div>
         {/* <Link href={"/exchange/confirm-order"} className=" w-full"> */}
         <button
-          disabled={Number(stock) < 1}
+          disabled={Number(stock) < 1 || loading}
           onClick={() => {
             sellHandler(amount);
           }}
           type="button"
           className="w-full rounded-xl bg-[#587BF2] relative text-sm px-2 py-2  flex justify-center items-center lg:py-3 lg:text-base hover:bg-[#4366d7] disabled:bg-gray-500 disabled:cursor-not-allowed"
         >
-          Sell Gift Card
+          {loading ? "Processing..." : "Sell Gift Card"}
         </button>
         {/* </Link> */}
       </div>
