@@ -55,6 +55,7 @@ const ConfirmOrder: React.FC<Props> = ({
     is_paid,
     rate,
     product,
+    cash_value,
     payment_transaction_id,
   } = orderData;
 
@@ -326,7 +327,7 @@ const ConfirmOrder: React.FC<Props> = ({
               } in GHC: `}
               <span className="text-[#05F364]">
                 {pathname == "sell" &&
-                  `₵${(Number(price) * Number(rate)).toFixed(2)}`}
+                  `₵${(Number(cash_value) * Number(rate)).toFixed(2)}`}
                 {pathname == "buy" &&
                   `₵${(Number(price) * Number(rate)).toFixed(2)}`}
               </span>
