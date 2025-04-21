@@ -7,6 +7,8 @@ import { cartAtom, CartState } from "@/atoms/cartAtom";
 import axios from "axios";
 import { removeCartItem, updateCart, checkoutCart } from "@/utils/cartHelpers";
 import { useRouter } from "next/navigation";
+import Lottie from "lottie-react";
+import loadingAnimation from "@/components/Animations/Lottie/blueloading.json";
 
 const CartPage = () => {
   const [cart, setCart] = useAtom(cartAtom);
@@ -66,6 +68,7 @@ const CartPage = () => {
 
   const checkoutCartHandler = async () => {
     try {
+      setIsLoading(true);
       const response = await checkoutCart();
       if (
         response &&
@@ -102,6 +105,8 @@ const CartPage = () => {
       }
     } catch (error) {
       console.error("Error checking out cart:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -151,8 +156,12 @@ const CartPage = () => {
 
   if (isLoading) {
     return (
-      <main className="container mx-auto px-4 py-8">
-        <div className="text-center text-gray-400">Loading cart...</div>
+      <main className="container w-full h-full mx-auto px-4 py-8">
+        <div className="w-full flex justify-center items-center h-full">
+          <div className="w-[100px] h-[100px] ">
+            <Lottie animationData={loadingAnimation} />
+          </div>
+        </div>
       </main>
     );
   }

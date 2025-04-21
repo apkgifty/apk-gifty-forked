@@ -71,7 +71,7 @@ const Chat = ({
     const user: any = localStorage.getItem("userInfo");
     const updateMessages = async () => {
       const messages = await getOldMessages(id, token);
-      console.log(messages);
+      // console.log(messages);
       setOldChats(messages);
     };
 
