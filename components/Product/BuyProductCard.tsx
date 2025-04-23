@@ -66,14 +66,15 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
       {/* Fixed width container */}
       <div className="flex flex-col space-y-4">
         {/* Card */}
-        <div className="w-full h-[200px] rounded-t-xl overflow-hidden relative  pb-[100%]">
+        <div className="w-full h-[200px] rounded-t-xl overflow-hidden relative">
           <Image
             src={image_url}
             alt={name}
             fill
             sizes="(max-width: 768px) 100vw, 280px"
             quality={75}
-            className="w-full h-full object-cover bg-no-repeat"
+            objectFit="cover"
+            // className="w-full h-full object-cover bg-no-repeat"
           />
           {/* 45% OFF Tag */}
           {/* <div className="absolute top-0 right-0 bg-red-600 text-white py-2 px-4 clip-path-tag">
