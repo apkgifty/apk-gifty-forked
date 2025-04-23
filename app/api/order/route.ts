@@ -39,8 +39,6 @@ export async function POST(req: Request, res: Response) {
 
 //   const { id } = body;
 
-//   console.log(id);
-
 //   let config = {
 //     method: "GET",
 //     maxBodyLength: Infinity,
