@@ -235,8 +235,7 @@ const ConfirmOrder: React.FC<Props> = ({
   };
 
   const notifySellerHandlerNoTimer = async () => {
-    console.log("no timer", id);
-    // console.log("is running");
+    // console.log("no timer", id);
     const res = await notifySeller(id);
     // console.log("notifysellernotimer,", res.data.status);
 
