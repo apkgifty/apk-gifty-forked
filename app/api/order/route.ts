@@ -17,7 +17,6 @@ export async function POST(req: Request, res: Response) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      // Authorization: accessToken,
     },
     data: data,
   };
