@@ -71,6 +71,8 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
             src={image_url}
             alt={name}
             fill
+            sizes="(max-width: 768px) 100vw, 280px"
+            quality={75}
             className="w-full h-full object-cover bg-no-repeat"
           />
           {/* 45% OFF Tag */}
@@ -92,9 +94,9 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
                 {currency.symbol}
                 {price}
               </div>
-              <span className="text-gray-500 text-xs line-through">
+              {/* <span className="text-gray-500 text-xs line-through">
                 $399.00
-              </span>
+              </span> */}
             </div>
           </div>
 
