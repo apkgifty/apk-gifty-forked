@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import { truncateText } from "@/utils/textUtils";
 
 interface Props {
   status: string;
@@ -70,8 +71,9 @@ const TableDataRow: React.FC<Props> = ({
       <th
         scope="row"
         className="px-6 py-4 font-medium text-white whitespace-nowrap "
+        title={description}
       >
-        {description}
+        {truncateText(description, 25)}
       </th>
       <td className="px-6 py-4">{type}</td>
       <td className="px-6 py-4">${price}</td>

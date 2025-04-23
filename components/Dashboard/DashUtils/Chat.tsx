@@ -34,12 +34,14 @@ const Chat = ({
   chat,
   token,
   id,
+  handleTradeCompletion,
 }: {
   status: string;
   is_paid?: string;
   chat: any;
   token: any;
   id: string;
+  handleTradeCompletion: () => void;
 }) => {
   // console.log(chat);
   //   console.log(pusherKey, cluster);
@@ -52,14 +54,18 @@ const Chat = ({
   const [base64Image, setbase64Image] = useState<any>(null);
 
   const chatBottomRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   chatBottomRef.current?.scrollIntoView({
-  //     behavior: "smooth",
-  //     block: "end",
-  //   });
-  //   console.log(chatBottomRef.current);
-  // }, []);
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chats, oldChats]);
 
   useEffect(() => {
     const user: any = localStorage.getItem("userInfo");
@@ -118,7 +124,9 @@ const Chat = ({
     });
 
     channel.bind("completed", (data: any) => {
-      // console.log(data);
+      // console.log("The order is completed", data);
+      // handleReply(null, "completed");
+      handleTradeCompletion();
     });
 
     return () => pusher.unsubscribe(`private-chatify.${userInfo?.id}`);
@@ -144,20 +152,31 @@ const Chat = ({
     }
   };
 
-  const handleReply = async (e: any) => {
-    e.preventDefault();
+  const handleReply = async (e: any, type: string = "chat") => {
+    if (e) {
+      e.preventDefault();
+    }
     const message = !fileToSend ? fileToSend : messageToSend;
     const userTextMessage = messageToSend;
     setMessageToSend("");
     let html: any;
 
     if (!fileToSend) {
-      html = `<div class="px-4 py-2 bg-[#7995f5] rounded-xl ">
+      if (type === "completed") {
+        html = `<div class="px-4 py-2 bg-[#3bae58] rounded-xl ">
+      <p
+        className="text-[14px]"
+        
+      ><span className="font-semibold">🎉Success! </span> <br/><span className="text-sm">Your trade has been completed. Don't forget to leave your feedback.</span></p>
+    </div>`;
+      } else {
+        html = `<div class="px-4 py-2 bg-[#7995f5] rounded-xl ">
       <p
         className="text-[14px]"
         
       ><span>${messageToSend}</span></p>
     </div>`;
+      }
     } else {
       html = `<div className="w-full px-4">
           <div className="w-[150px] h-[150px] bg-white rounded-xl relative">
@@ -165,6 +184,11 @@ const Chat = ({
           </div>
         </div>`;
     }
+
+    setChats((prevState: any) => [
+      ...prevState,
+      { message: `${html}`, userId: userInfo.id },
+    ]);
     const formData = new FormData();
 
     formData.append("sender", userInfo.firstname);
@@ -178,10 +202,11 @@ const Chat = ({
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      setChats((prevState: any) => [
-        ...prevState,
-        { message: `${html}`, userId: userInfo.id },
-      ]);
+      //Was posting before adding to chat but now adding to chat before posting, optimistic update
+      // setChats((prevState: any) => [
+      //   ...prevState,
+      //   { message: `${html}`, userId: userInfo.id },
+      // ]);
 
       // if (messageToSend === "") return;
       // setMessageToSend("");
@@ -194,7 +219,9 @@ const Chat = ({
 
   return (
     <>
-      {status.toString() === "1" || is_paid === "1" ? (
+      {status.toString() === "1" ||
+      status.toString() === "2" ||
+      is_paid === "1" ? (
         <div className="w-full   flex-grow flex flex-col  h-[750px] relative mt-20 py-4  lg:border-l-2 lg:border-tertiary lg:w-[35%] lg:mt-0 lg:h-full shadow-2xl ">
           <div className="w-full flex flex-1 justify-between px-4  ">
             <div className="flex gap-x-3">
@@ -222,24 +249,10 @@ const Chat = ({
               </button>
             </div> */}
           </div>
-          <div className="px-4 pt-10 h-full flex-2 overflow-scroll ">
-            {/* <div className="w-full flex justify-center mt-10">
-              <p className="text-xs font-light">Today, 8:26 AM</p>
-            </div> */}
-            {/* <div className="my-10">
-              <p>Hello Linh!</p>
-            </div> */}
-            {/* <div className="my-10">
-              <p>I really love your work, great job</p>
-              <span className="text-gray-400 text-xs mt-6 block">03:49PM</span>
-            </div> */}
-            {/* {chats.map((chat: any) => (
-              <div key={chat.message} className="my-10 flex justify-end ">
-                <div className="px-4 py-3 bg-[#7995f5] rounded-xl">
-                  <p>{chat.message}</p>
-                </div>
-              </div>
-            ))} */}
+          <div
+            className="px-4 pt-10 h-full flex-2 overflow-y-auto chat-container"
+            ref={chatContainerRef}
+          >
             <div dangerouslySetInnerHTML={{ __html: oldChats }}></div>
             {chats.map((chat: any) =>
               chat.userId === userInfo.id ? (
@@ -255,9 +268,8 @@ const Chat = ({
                 ></div>
               )
             )}
+            <div ref={chatBottomRef} />
           </div>
-
-          <div ref={chatBottomRef} />
 
           {fileToSend && (
             <div className="w-full px-4">
@@ -295,6 +307,7 @@ const Chat = ({
                   id="fileInput"
                   accept=".jpg, .jpeg, .png"
                   onChange={handleFileupload}
+                  disabled={status.toString() === "2"}
                 />
               </div>
             </div>
@@ -315,6 +328,29 @@ const Chat = ({
           </form>
         </div>
       ) : null}
+      <style jsx global>{`
+        .splide__slide {
+          transition: transform 0.3s ease;
+          display: flex;
+          justify-content: center;
+        }
+        .splide__slide.is-active {
+          transform: scale(1.1);
+          z-index: 1;
+        }
+        .splide__track {
+          display: flex;
+          align-items: center;
+        }
+        .splide__list {
+          display: flex;
+          align-items: center;
+        }
+        .chat-container {
+          scroll-behavior: smooth;
+          transition: scroll-top 0.3s ease-in-out;
+        }
+      `}</style>
     </>
   );
 };

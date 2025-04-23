@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 import Product from "@/components/Product/Product";
 import NoProducts from "@/components/Product/NoProducts";
+import BuyProductCard from "@/components/Product/BuyProductCard";
 // const products = [
 //   {
 //     title: "Amazon Gift Card",
@@ -98,10 +99,11 @@ const BuyPage = async ({
   );
 
   return (
-    <div className="w-full flex flex-wrap gap-x-12 gap-y-12 px-4 justify-center mx-auto mt-8 xl:max-w-[1700px]">
+    <div className="w-full flex flex-wrap gap-x-12 gap-y-12 justify-center mx-auto px-4 mt-8 xl:max-w-[1700px]">
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product: any) => (
-          <Product key={product.id} productInfo={product} />
+          // <Product key={product.id} productInfo={product} />
+          <BuyProductCard key={product.id} productInfo={product} />
         ))
       ) : (
         <NoProducts />

@@ -19,11 +19,11 @@ const links = [
     url: "/dashboard/transaction/history",
     icon: <TransactionSvg />,
   },
-  {
-    title: "Other Services",
-    url: "/dashboard/other-services",
-    icon: <TransactionSvg />,
-  },
+  // {
+  //   title: "Other Services",
+  //   url: "/dashboard/other-services",
+  //   icon: <TransactionSvg />,
+  // },
   {
     title: "Settings",
     url: "/dashboard/settings/personal-information",

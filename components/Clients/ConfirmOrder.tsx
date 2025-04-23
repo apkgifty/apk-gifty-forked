@@ -16,6 +16,8 @@ import CancelButton from "./CancelButton";
 import ReportIcon from "@mui/icons-material/Report";
 import { toast } from "react-toastify";
 import MomoPaymentDialog from "../UI/Dialog/MomoPaymentDialog";
+import { TradeCompletedDialog } from "../UI/Dialog/TradeCompletedDialog";
+import { TradeSummary } from "./TradeSummary";
 
 interface Props {
   paymentMethods: any;
@@ -37,7 +39,7 @@ const ConfirmOrder: React.FC<Props> = ({
   paymentMethods,
   orderData,
   token,
-  rate,
+  // rate,
 }) => {
   const {
     price,
@@ -51,9 +53,13 @@ const ConfirmOrder: React.FC<Props> = ({
     category,
     type,
     is_paid,
+    rate,
     product,
+    cash_value,
     payment_transaction_id,
   } = orderData;
+
+  // console.log(orderData);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
@@ -64,6 +70,7 @@ const ConfirmOrder: React.FC<Props> = ({
 
   const [statuss, setStatuss] = useState(status);
   const [stop, setStop] = useState("");
+  const [tradeCompleted, setTradeCompleted] = useState(false);
 
   const [chat, setChat] = useState(null);
 
@@ -228,6 +235,7 @@ const ConfirmOrder: React.FC<Props> = ({
   };
 
   const notifySellerHandlerNoTimer = async () => {
+    console.log("no timer", id);
     // console.log("is running");
     const res = await notifySeller(id);
     // console.log("notifysellernotimer,", res.data.status);
@@ -268,53 +276,67 @@ const ConfirmOrder: React.FC<Props> = ({
     }
   });
 
+  const handleTradeCompletion = () => {
+    setTradeCompleted(true);
+    setStatuss("2");
+  };
+
+  const closeTradeCompletionDialogHandler = () => {
+    setTradeCompleted(false);
+  };
+
   return (
     <>
       <div className="px-2 lg:px-10 w-full lg:w-[60%] lg:overflow-y-auto">
-        <div className="mt-10 pb-8 flex justify-between">
-          <h3 className="text-sm lg:text-lg font-semibold">
-            Confirm order information
-          </h3>
-          <p
-            className=" text-sm lg:text-base cursor-pointer text-red-400"
-            onClick={() => setOpenDialog(true)}
-          >
-            Must Read Instructions
-          </p>
+        <div className="mt-10 pb-8 flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
+            <div className="w-5 h-5 rounded-full bg-blue-500" />
+          </div>
+          <h1 className="text-2xl font-medium">
+            {`Trade ${
+              statuss === "0" || statuss === "1"
+                ? "Processing"
+                : statuss === "2"
+                ? "Completed"
+                : "Cancelled"
+            }`}
+          </h1>
         </div>
-        {category === "Card" && (
-          <div className="flex gap-x-6">
-            <p className="text-xs lg:text-base text-gray-400">
-              {pathname === "buy"
-                ? "Quantity"
-                : pathname === "sell"
-                ? "Value "
-                : null}
-              <span className="text-white">:- {quantity}</span>
-            </p>
-            <p className="text-xs lg:text-base text-gray-400">
-              Fees
-              <span className="text-white">
-                :- {product.currency.symbol + fees}
-              </span>
-            </p>
-            <p className="text-xs lg:text-base text-gray-400">
-              Amount To Pay{" "}
-              <span className="text-white">
-                :- {product.currency.symbol + price}
-              </span>
-            </p>
+        {/* {category === "Card" && ( */}
+        {statuss === "0" || statuss === "1" ? (
+          <div className="flex flex-col gap-y-2 pl-10">
+            {pathname === "sell" && (
+              <p>
+                Rate 1{product.currency.symbol} ={" "}
+                <span className="text-[#05F364]">₵{rate}</span>
+              </p>
+            )}
+            {pathname === "buy" && (
+              <p>
+                Rate 1 USD = <span className="text-[#05F364]">₵{rate}</span>
+              </p>
+            )}
 
-            <p className="text-xs lg:text-base text-gray-400">
-              Rate{" "}
-              <span className=" font-semi-bold text-orange-400">
-                :- {product.currency.symbol}1 / GHC {rate}
+            <p className="text-xs lg:text-base text-white">
+              {` Amount To ${
+                pathname === "buy"
+                  ? "pay"
+                  : pathname === "sell"
+                  ? "receive"
+                  : null
+              } in GHC: `}
+              <span className="text-[#05F364]">
+                {pathname == "sell" &&
+                  `₵${(Number(cash_value) * Number(rate)).toFixed(2)}`}
+                {pathname == "buy" &&
+                  `₵${(Number(price) * Number(rate)).toFixed(2)}`}
               </span>
             </p>
           </div>
-        )}
+        ) : null}
+        {/* // )} */}
 
-        {pathname == "buy" && (
+        {/* {pathname == "buy" && (
           <div className="mt-14">
             <h4 className="text-sm lg:text-lg font-semibold">
               Payment Instructions{" "}
@@ -329,72 +351,83 @@ const ConfirmOrder: React.FC<Props> = ({
               cooperation.
             </p>
           </div>
-        )}
-        <div className="mt-12">
-          <p className="text-sm lg:text-base">
-            Kindly begin your transaction by clicking &#x27;Start Trade&#x27;
-            before proceeding with your payment.
-          </p>
+        )} */}
+        {statuss === "0" || statuss === "1" ? (
+          <div className="mt-12">
+            {statuss === "0" && (
+              <p className="text-sm lg:text-base">
+                Kindly begin your transaction by clicking &#x27;Start
+                Trade&#x27; before proceeding with your payment.
+              </p>
+            )}
 
-          {pathname === "buy" && (
-            <>
-              <p className="text-sm lg:text-base text-orange-400 mt-4">
+            {pathname === "buy" && (
+              <>
+                {/* <p className="text-sm lg:text-base text-orange-400 mt-4">
                 Amount to pay in Ghana Cedis - GHC{" "}
                 {category === "Card"
                   ? (Number(price) * Number(rate)).toFixed(2)
                   : category === "Bank"
                   ? Number(price).toFixed(2)
                   : Number(price).toFixed(2)}
-              </p>
+              </p> */}
 
-              {loading ? null : (
-                <ul className=" mt-6 flex justify-between lg:flex-row lg:justify-between lg:gap-y-0 flex-wrap">
-                  {makePayment &&
-                    is_paid === "0" &&
-                    filteredPaymentMethods.map((method: any) => (
-                      <Payment
-                        method={method}
-                        key={method.id}
-                        id={id}
-                        makePayment={sendPayment}
-                        loadingFunc={setLoading}
-                        notifySeller={notifySellerHandlerNoTimer}
-                        orderData={orderData}
-                      />
-                    ))}
-                </ul>
-              )}
-            </>
-          )}
-        </div>
-        <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
-          {loading ? (
-            <div className="w-full flex justify-center">
-              <div className="w-[100px] h-[100px] ">
-                <Lottie animationData={loadingAnimation} />
+                {loading ? null : (
+                  <ul className=" mt-6 flex flex-col items-center gap-y-4">
+                    {makePayment &&
+                      is_paid === "0" &&
+                      filteredPaymentMethods.map((method: any) => (
+                        <Payment
+                          method={method}
+                          key={method.id}
+                          id={id}
+                          makePayment={sendPayment}
+                          loadingFunc={setLoading}
+                          notifySeller={notifySellerHandlerNoTimer}
+                          orderData={orderData}
+                        />
+                      ))}
+                  </ul>
+                )}
+              </>
+            )}
+          </div>
+        ) : null}
+        {statuss === "2" && (
+          <div>
+            <TradeSummary amount={price} pathname={pathname} />
+          </div>
+        )}
+        {statuss === "0" || statuss === "1" ? (
+          <div className="mt-8 space-y-4 flex flex-col lg:flex-row lg:space-x-6 lg:space-y-0">
+            {loading ? (
+              <div className="w-full flex justify-center">
+                <div className="w-[100px] h-[100px] ">
+                  <Lottie animationData={loadingAnimation} />
+                </div>
               </div>
-            </div>
-          ) : (
-            <>
-              {is_paid === "0" && (
-                <PurchaseButton
-                  pathname={pathname}
-                  handleSubmit={
-                    type === "buy" ? requestPayment : notifySellerHandler
-                  }
-                  status={statuss}
-                />
-              )}
+            ) : (
+              <>
+                {is_paid === "0" && (
+                  <PurchaseButton
+                    pathname={pathname}
+                    handleSubmit={
+                      type === "buy" ? requestPayment : notifySellerHandler
+                    }
+                    status={statuss}
+                  />
+                )}
 
-              {is_paid === "0" && (
-                <CancelButton
-                  status={statuss}
-                  openDialog={setOpenCancelDialog}
-                />
-              )}
-            </>
-          )}
-        </div>
+                {is_paid === "0" && (
+                  <CancelButton
+                    status={statuss}
+                    openDialog={setOpenCancelDialog}
+                  />
+                )}
+              </>
+            )}
+          </div>
+        ) : null}
         {loading && status === "" && (
           <div className="w-full flex justify-center">
             <div className="w-[100px] h-[100px] ">
@@ -432,27 +465,30 @@ const ConfirmOrder: React.FC<Props> = ({
       </button>
     </div> */}
       </div>
+      {/* {statuss === "1" && ( */}
       <Chat
         status={statuss}
         chat={chat}
         token={token}
         is_paid={type === "buy" ? is_paid : null}
         id={id}
+        handleTradeCompletion={handleTradeCompletion}
       />
-      <DisplayDialog
+      {/* )} */}
+      {/* <DisplayDialog
         open={openDialog}
         handleClose={() => setOpenDialog(false)}
         title="Order Instructions"
         buttonText="Close"
-      >
-        <div className="space-y-6">
+      > */}
+      {/* <div className="space-y-6">
           {product.instructions.map((instruction: any) => (
             <p key={instruction.id} className="text-sm lg:text-base">
               {instruction.body}
             </p>
           ))}
-        </div>
-        {/* {category === "Card" && (
+        </div> */}
+      {/* {category === "Card" && (
           <ol className="text-xs lg:text-sm list-decimal pl-2 space-y-4 text-gray-700">
             <>
               {" "}
@@ -504,7 +540,7 @@ const ConfirmOrder: React.FC<Props> = ({
             <br /> Order will be Completed ✅ by Admin once bundle is served.
           </p>
         )} */}
-      </DisplayDialog>
+      {/* </DisplayDialog> */}
       <CancelOrderDialog
         cancelHandler={() => {
           cancelOrder(id);
@@ -523,6 +559,10 @@ const ConfirmOrder: React.FC<Props> = ({
           momoPaymentLink={paystackLink}
         />
       )}
+      <TradeCompletedDialog
+        onClose={closeTradeCompletionDialogHandler}
+        isOpen={tradeCompleted}
+      />
     </>
   );
 };

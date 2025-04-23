@@ -5,12 +5,65 @@ import FilterSelectOutline from "@/components/Filter/FilterSelectOutline";
 import { ToastContainer } from "react-toastify";
 import FilterRange from "@/components/Filter/FilterRange";
 import NotificationListener from "@/components/Dashboard/Data/NotificationListener";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import path from "path";
+import DealCard from "@/components/Deals/DealCard";
+import DealsSlider from "@/components/Deals/DealsSlider";
+import axios from "axios";
+import axiosInstance from "@/utils/axios";
 
 interface Props {
   children: React.ReactNode;
 }
 
 const currencies: string[] = ["USD", "GHS", "CAD", "GBP", "EUR", "NGN"];
+
+// const deals = [
+//   {
+//     dealName: "Xbox Deals",
+//     dealUrl: "/dashboard/exchange/deals?category=xbox&currency=USD",
+//     dealImageUrl: "/images/xbox.png",
+//     btnColor: "bg-[#107c10] hover:bg-[#0b4b0b]",
+//   },
+//   {
+//     dealName: "Playstation Deals",
+//     dealUrl: "/dashboard/exchange/deals?category=psn&currency=USD",
+//     dealImageUrl: "/images/psn.png",
+//     btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
+//   },
+//   {
+//     dealName: "Nintendo Deals",
+//     dealUrl: "/dashboard/exchange/deals?category=nintendo&currency=USD",
+//     dealImageUrl: "/images/nintendo.png",
+//     btnColor: "bg-[#e60012] hover:bg-[#a5000d]",
+//   },
+//   {
+//     dealName: "Daily Deals",
+//     dealUrl: "/dashboard/exchange/deals?category=daily&currency=USD",
+//     dealImageUrl: "/images/daily.png",
+//     btnColor: "bg-[#0070d1] hover:bg-[#004a9f]",
+//   },
+// ];
+
+const fetchProductCategories = async () => {
+  const config = {
+    method: "GET",
+    url: `${process.env.API_ENDPOINT}/product-categories`,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  };
+  try {
+    const response = await axiosInstance(config);
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    console.error("Error fetching product categories:", error.request);
+    return [];
+  }
+};
 
 const giftCards: string[] = [
   "Playstation",
@@ -24,11 +77,19 @@ const giftCards: string[] = [
   "Target",
 ];
 
-const layout: React.FC<Props> = ({ children }) => {
+const layout: React.FC<Props> = async ({ children }) => {
+  // const router = useRouter();
+  // const pathname = usePathname();
+
+  // const isDeals = pathname.includes("deals");
+
+  const productCategories = await fetchProductCategories();
+  const deals = productCategories.data;
+
   return (
     <>
       <div className="px-2 mb-32  lg:mb:0">
-        <Card className="bg-secondary justify-center items-center flex flex-col pb-8 w-full">
+        {/* <Card className="bg-secondary justify-center items-center flex flex-col pb-8 w-full">
           <div>
             <Image
               src="/images/image 9.png"
@@ -41,7 +102,23 @@ const layout: React.FC<Props> = ({ children }) => {
           <p className="text-sm text-gray-500">
             APKxchange.com, Trade anything anywhere with APKxchange.com!
           </p>
-        </Card>
+        </Card> */}
+        {/* Hero Section with Gaming Deals */}
+        <section
+          className="py-8 bg-[#0a1030] bg-[url('/images/exploredeals.png')]"
+          style={{ backgroundSize: "cover" }}
+        >
+          <div className="container max-w-5xl mx-auto ">
+            <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {deals.map((deal: any, index: any) => (
+                <DealCard key={index} deal={deal} />
+              ))}
+            </div>
+            <div className="lg:hidden">
+              <DealsSlider deals={deals} />
+            </div>
+          </div>
+        </section>
         <div className="w-full lg:max-w-[1150px] m-auto">
           <div className="w-full text-white flex justify-center mt-4">
             <Switch
@@ -60,6 +137,7 @@ const layout: React.FC<Props> = ({ children }) => {
               backgroundColor="bg-secondary"
             />
           </div>
+
           <div className="flex justify-center items-center gap-x-4 mt-3 py-6 border-b border-gray-700">
             {/* <span className="py-2 px-3 bg-secondary rounded-lg text-white text-xs hover:cursor-pointer">
             All Products

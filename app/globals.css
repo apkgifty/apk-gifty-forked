@@ -108,3 +108,52 @@ input[type="number"] {
 * {
   scrollbar-width: thin;
 }
+
+.message {
+  background-color: #353945;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 10px;
+  margin: 6px 5px;
+  display: inline-block;
+}
+
+.isCompleted {
+  padding: 0px;
+}
+
+.message .completed-trade {
+  background-color: #37a452;
+  color: #fff;
+  padding: 0px 12px;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.message .completed-trade br {
+  display: none;
+}
+
+.message .completed-trade .completed-trade-header {
+  font-weight: 600;
+  margin-bottom: 0px;
+  display: inline;
+}
+
+.message .completed-trade .completed-trade-body {
+  font-size: 14px;
+  /* display: inline; */
+}
+
+/* Hide time in completed trade messages */
+.isCompleted > [data-time].message-time {
+  display: none;
+}
+
+.time {
+  color: #fff;
+}
+
+.completed-trade {
+  background-color: #37a452 !important;
+}
