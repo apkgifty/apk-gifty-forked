@@ -24,7 +24,6 @@ export async function POST(req: Request, res: Response) {
     };
 
     const response = await axiosInstance(config);
-    // console.log("Checkout cart response:", response);
     return NextResponse.json(response.data);
   } catch (error: any) {
     console.error("Checkout Cart API Error:", {
