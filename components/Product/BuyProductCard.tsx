@@ -61,7 +61,7 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
   };
 
   return (
-    <div className="w-full md:w-[280px]">
+    <div className="w-full md:w-[300px]">
       {" "}
       {/* Fixed width container */}
       <div className="flex flex-col space-y-4">
