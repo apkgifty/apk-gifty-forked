@@ -83,6 +83,7 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
               OFF
             </div>
           </div> */}
+          {/* // */}
         </div>
 
         {/* Card Info */}
@@ -115,5 +116,5 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
     </div>
   );
 };
-//
+
 export default BuyProductCard;
