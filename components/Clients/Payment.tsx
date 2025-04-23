@@ -59,7 +59,7 @@ const Payment = ({
   if (method.channel.toLowerCase() === "momo") {
     methodImage = "/images/momopayment.jpeg";
   } else if (method.channel.toLowerCase() === "bank") {
-    methodImage = "/images/bankpayment.png";
+    methodImage = "/images/bankpayment.jpeg";
   } else if (method.channel.toLowerCase() === "usdt") {
     methodImage = "/images/usdtpayment.png";
   }
