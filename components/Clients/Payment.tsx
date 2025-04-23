@@ -57,7 +57,7 @@ const Payment = ({
   let dialog;
 
   if (method.channel.toLowerCase() === "momo") {
-    methodImage = "/images/momopayment.png";
+    methodImage = "/images/momopayment.jpeg";
   } else if (method.channel.toLowerCase() === "bank") {
     methodImage = "/images/bankpayment.png";
   } else if (method.channel.toLowerCase() === "usdt") {
