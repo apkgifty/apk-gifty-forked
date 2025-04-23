@@ -81,9 +81,7 @@ const HomePage = async () => {
 
             <div className="w-full flex flex-col items-start justify-center mt-16 bg-tertiary roounded-md py-32 space-y-6 rounded-lg relative">
               <Image
-                src={
-                  "https://s3-alpha-sig.figma.com/img/afa5/729f/57c1d778e4dfc9c07809dfc2e41df210?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=n3AoaKnl2Lt770VD1sd61G9Ud6sSI8iVNwnQigFo7WYuO9E0xfj3AHxOeydeSKkAqXPHgXXCYwngAzSAk5MzBVlKjOZGlIth~qCwUB~vUT3~YF2OiXnPn1pnYF657hMtPIM9o9-b3RyDTHzJuu32qk0hc9x4c1ijaKyHVW7NNRoR1g9DsSTrHUpCaPx4yIANZLCIHSA8ND56x5whflBgHktzibry3NUDTsUnH~QfLnwgVNkcvY3VqOBJNn0NEtcmkwwpfLxgz3CkzDdHhkxY-dgWoQHTlif4MP3wFGQlLQ3c~--zKGHgr~~5SFinx~nBjWq98QuXw7UtJ43MYyKAaw__"
-                }
+                src={"/images/midbanner.png"}
                 alt="main mid banner"
                 fill
                 objectFit="cover"
