@@ -74,13 +74,13 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
             className="w-full h-full object-cover bg-no-repeat"
           />
           {/* 45% OFF Tag */}
-          <div className="absolute top-0 right-0 bg-red-600 text-white py-2 px-4 clip-path-tag">
+          {/* <div className="absolute top-0 right-0 bg-red-600 text-white py-2 px-4 clip-path-tag">
             <div className="font-bold text-xs">
               45%
               <br />
               OFF
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Card Info */}
