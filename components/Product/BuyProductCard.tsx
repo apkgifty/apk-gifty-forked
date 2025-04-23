@@ -115,5 +115,5 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
     </div>
   );
 };
-
+//
 export default BuyProductCard;
