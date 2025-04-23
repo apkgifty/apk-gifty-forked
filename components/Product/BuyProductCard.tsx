@@ -61,12 +61,12 @@ const BuyProductCard: React.FC<Props> = ({ productInfo }) => {
   };
 
   return (
-    <div className="w-full md:w-[300px]">
+    <div className="w-full lg:w-[300px]">
       {" "}
       {/* Fixed width container */}
       <div className="flex flex-col space-y-4">
         {/* Card */}
-        <div className="aspect-square rounded-t-xl overflow-hidden relative w-full h-0 pb-[100%]">
+        <div className="w-full h-[200px] rounded-t-xl overflow-hidden relative  pb-[100%]">
           <Image
             src={image_url}
             alt={name}
