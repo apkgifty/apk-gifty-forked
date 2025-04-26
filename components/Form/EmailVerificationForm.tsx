@@ -9,6 +9,7 @@ import FormHeader from "./FormComponents/FormHeader";
 import FormBody from "./FormComponents/FormBody";
 import ButtonIcon from "./FormComponents/ButtonIcon";
 import { Snackbar, Alert } from "@mui/material";
+import FormFooter from "./FormComponents/FormFooter";
 
 interface Error {
   message: string;
@@ -87,6 +88,12 @@ const EmailVerificationForm = () => {
             {showLinkButton && <ButtonIcon text="Resend Link" type="submit" />}
           </form>
         </FormBody>
+        <FormFooter>
+          <p className="text-sm text-gray-100">
+            If you&apos;re not seeing the email in your Inbox, kindly check your
+            Spam folder.
+          </p>
+        </FormFooter>
       </FormContainer>
 
       <Snackbar

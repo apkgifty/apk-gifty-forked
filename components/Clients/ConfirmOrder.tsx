@@ -334,8 +334,8 @@ const ConfirmOrder: React.FC<Props> = ({
           </div>
         ) : null}
         {/* // )} */}
-
-        {/* {pathname == "buy" && (
+        {/* 
+        {
           <div className="mt-14">
             <h4 className="text-sm lg:text-lg font-semibold">
               Payment Instructions{" "}
@@ -344,13 +344,10 @@ const ConfirmOrder: React.FC<Props> = ({
               <span className="mr-2 text-orange-600">
                 <ReportIcon />
               </span>{" "}
-              Kindly note that when sending payments for transactions, it&#x27;s
-              essential to use your registered account username as the payment
-              reference. This ensures accurate processing. Thank you for your
-              cooperation.
+              {instructions}
             </p>
           </div>
-        )} */}
+        } */}
         {statuss === "0" || statuss === "1" ? (
           <div className="mt-12">
             {statuss === "0" && (
