@@ -157,3 +157,11 @@ input[type="number"] {
 .completed-trade {
   background-color: #37a452 !important;
 }
+
+.digital-name {
+  color: blue;
+}
+
+.digital-code {
+  color: blue;
+}
