@@ -17,7 +17,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const currencies: string[] = ["USD", "GHS", "CAD", "GBP", "EUR", "NGN"];
+const currencies: string[] = ["USD", "GHS", "CAD", "AUD", "GBP", "EUR", "NGN"];
 
 // const deals = [
 //   {
