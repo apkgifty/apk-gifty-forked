@@ -26,7 +26,7 @@ const NotificationListener = ({ token }: { token: string }) => {
   }, []);
 
   useEffect(() => {
-    const pusher = new Pusher("e597b63b0a16d6c4a2c6", {
+    const pusher = new Pusher("l5bnlzrwflkoofjekj3r", {
       cluster: "mt1",
       channelAuthorization: {
         endpoint: `${process.env.API_ENDPOINT}/api/chat/auth`,
