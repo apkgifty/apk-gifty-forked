@@ -31,6 +31,7 @@ const NotificationListener = ({ token }: { token: string }) => {
       channelAuthorization: {
         endpoint: `${process.env.API_ENDPOINT}/api/chat/auth`,
         transport: "ajax",
+
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
