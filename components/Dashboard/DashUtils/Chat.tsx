@@ -81,8 +81,10 @@ const Chat = ({
   }, []);
   // e597b63b0a16d6c4a2c6   -- old pusher key
   useEffect(() => {
-    const pusher = new Pusher("l5bnlzrwflkoofjekj3r", {
+    const pusher = new Pusher(pusherKey!, {
       cluster: "mt1",
+      wsHost: "sock-prod.twentysoft.com",
+      wsPort: 443,
       channelAuthorization: {
         endpoint: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/chat/auth`,
         transport: "ajax",
